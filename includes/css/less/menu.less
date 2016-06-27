@@ -1,0 +1,318 @@
+.topmenu {
+  margin-bottom: 0;
+  
+  .dropdown {
+    position: static !important;
+    text-align: center;
+
+    &.open .categorias {
+      background-color: transparent !important;
+      color: @gris_oscuro !important;
+    }
+
+    // Menú de categorias
+    ////////////////////////////////////////////////////////////////
+    .dropdown-menu.menu-subcategorias {
+      width: 100%;
+      height: auto;
+      padding: 20px 0;
+      background: @blanco;
+      text-align: center;
+      border: 0;
+      border-radius: 0;
+      
+      .header {
+        padding: 0;
+
+        .close {
+          line-height: 17px;
+          margin: 10px 0;
+          vertical-align: top;
+        }
+        
+        .title {
+          font-size: 15px;
+          color: @gris_claro;
+          letter-spacing: 5px;
+          line-height: 17px;
+          margin: 10px 0;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 0;
+          
+          @media (max-width:@xxs) {
+            padding: 0 20px;
+          }
+        }
+      }
+
+      li {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 -3px;
+        width: 100px;
+        height: 128px;
+        border: 2px solid transparent;
+        text-align: center;
+        padding: 10px 0 5px;
+        position: relative;
+        
+        &:hover,
+        &.active {
+          border-color: @azul;
+
+          .submenu {
+            display: block;
+          }
+        }
+
+        & > a {
+          padding: 0;
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          img {
+            @media (max-width: @xs-max) {
+              display: none;
+            }
+          }
+
+          .text {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: 0.92px;
+            line-height: 14px;
+            text-transform: uppercase;
+            margin-top: 15px;
+
+            .glyphicon {
+              display: none;
+            }
+
+            @media (max-width:@xs-max) {
+              margin-top: 0;
+              padding: 10px 0;
+            }
+          }
+        }
+        
+        @media (max-width:@xs-max) {
+          border: 0;
+          display: block;
+          height: auto;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+
+          &:hover,
+          &.active {
+            border: 0;
+
+            .submenu {
+              display: none;
+            }
+          }
+        }
+      }
+
+      @media (max-width: @xs-max) {
+        position: absolute;
+        box-shadow:  0 10px 10px fadeout(@negro, 80%);
+      }
+    }
+  }
+
+  // Menú de subcategorias
+  ////////////////////////////////////////////////////////////////
+  .submenu {
+    display: none;
+    position: absolute;
+    width: 600px;
+    top: 100%;
+    left: 0;
+    font-family: @mainFont;
+    margin: 2px 0 0 0;
+    background: @blanco;
+    padding: 10px 0;
+    text-align: center;
+    transition: opacity .15s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+
+    .container {
+      width: auto;
+    }
+    
+    &.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .back {
+      opacity: 0.5;
+      font-size: 14px;
+      color: #4A4A4A;
+      letter-spacing: 2px;
+      line-height: 16px;
+      text-transform: uppercase;
+      margin-left: -20px;
+      
+      @media (max-width:@xxs) {
+        margin-left: 0;
+      }
+      
+      &:hover {
+        opacity: 1;
+      }
+      
+      img {
+        margin-right: 5px;
+      }
+    }
+    
+    .text {
+      font-size: 18px;
+      font-weight: 400;
+      color: @negro;
+      line-height: 30px;
+      text-transform: uppercase;
+      margin: 10px 0;
+      
+      @media (max-width:@xs) {
+        display: none;
+      }
+      
+      .all {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 4px 30px;
+        margin-left: 10px;
+        margin-top: -8px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #00AEDC;
+        letter-spacing: 0.92px;
+        line-height: 14px;
+        border: 1px solid @azul;
+        border-radius: 40px;
+        text-transform: uppercase;
+        &:hover {
+          background-color: @azul;
+          color: @blanco;
+        }
+        @media (max-width:@xxs) {
+          position: absolute;
+          top: 34px;
+          right: 15px;
+        }
+      }
+    }
+    
+    .item {
+      display: block;
+      text-align: left;
+      margin: 15px 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: @gris;
+      letter-spacing: 0.7px;
+      line-height: 14px;
+      text-transform: uppercase;
+      transition: .2s;
+      
+      &:hover {
+        color: @negro;
+        text-decoration: none;
+
+        span {
+          color: @gris;
+        }
+      }
+
+      span {
+        color: @gris_claro;
+        transition: .2s;
+      }
+
+      @media (max-width:@xs-max) {
+        text-align: center;
+      }
+    }
+
+    .promo-menu {
+      cursor: pointer;
+      display: block;
+      padding: 5px;
+      transition: .3s;
+      
+      &:hover {
+        background-color: @azul;
+        color: @blanco;
+        text-decoration: none;
+
+        .featuring-menu-title {
+          color: @blanco;
+        }
+
+        .promo-title {
+          color: @blanco;
+        }
+
+        .promo-description {
+          color: @blanco;
+        }
+      }
+
+      .featuring-menu-title {
+        color: @rojo;
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        transition: .3s;
+      }
+
+      .promo-title {
+        color: @gris_oscuro;
+        display: block;
+          height: 40px;
+          overflow: hidden;
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        transition: .3s;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .promo-description {
+        color: @gris_oscuro;
+        display: block;
+        font-size: 13px;
+        height: 40px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        text-align: center;
+        transition: .3s;
+      }
+
+      .promo-image {
+        margin-bottom: 5px;
+      }
+    }
+
+    @media (max-width:@xs-max) {
+      position: inherit;
+      width: 100%;
+      background-color: @blanco_roto;
+      box-shadow: inset 0 10px 10px -5px rgba(0,0,0,0.20);
+    }
+  }
+}

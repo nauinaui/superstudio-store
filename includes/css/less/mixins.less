@@ -1,0 +1,138 @@
+// Colores ===================== //
+@blanco: rgb(255,255,255);      // #ffffff
+@blanco_roto: rgb(242,242,242); // #f2f2f2
+@gris_claro: rgb(175,175,175);  // #afafaf
+@gris: rgb(110,110,110);        // #6e6e6e
+@gris_oscuro: rgb(74,74,74);    // #4a4a4a
+@negro: rgb(0,0,0);             // #000000
+
+@azul: rgb(0,174,220);          // #00aedc
+@rojo: rgb(219,56,59);          // #db383b
+@verde: rgb(47,163,20);         // #2fa314
+@naranja: rgb(241,161,16);      // #f1a110
+
+// Medidas
+@margenRem: 0.9375rem;
+
+// Tipografia ================== //
+@mainFont: 'Titillium Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@font_mini: 11px;
+@font_small: 13px;
+@font_standar: 16px;
+@font_big: 20px;
+@font_xbig: 22px;
+@line_height: 24px;
+
+// Media queries =============== //
+@xxs:     479px; // disabled
+@xs:      767px;
+@sm:      991px;
+@md:      1199px;
+
+@xxs-max: @xxs;
+@xs-max:  @xs;
+@sm-max:  @sm;
+@md-max:  @md;
+
+@xs-min:  (@xxs + 1);
+@sm-min:  (@xs + 1);
+@md-min:  (@sm + 1);
+@lg-min:  1200;
+
+// Base ======================== //
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x:  hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+h4 {
+  .titularNegroEspaciado;
+}
+
+section {
+  padding: 50px 0;
+}
+
+button {
+  outline: 0;
+}
+
+.title {
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin: 20px 0 50px;
+  font-family: @mainFont;
+  font-size: @font_xbig;
+  font-weight: 700;
+  line-height: 31px;
+  color: @gris_oscuro;
+  text-align: center;
+}
+
+#spin {
+  display: none;
+  background: fadeout(@negro, 20%);
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border: 1px solid fadeout(@blanco, 25%);
+  box-shadow: 0 40px 45px -35px rgba(0,0,0,0.75);
+  z-index: 9999999999;
+}
+
+// Margenes y Paddings ======================= //
+.mb8 {
+  margin-bottom: 8px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+.mb25 {
+  margin-bottom: 25px;
+}
+
+.mb50 {
+  margin-bottom: 50px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+// Fondos ======================= //
+.bgDark {
+  background-color: @blanco_roto;
+}
+
+// Formas ======================= //
+.triDown() {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 3px 0 3px;
+  border-color: #ffffff transparent transparent transparent;
+}

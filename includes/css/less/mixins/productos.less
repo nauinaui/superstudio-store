@@ -1,0 +1,354 @@
+
+.producto() {
+  display: block;
+  font-family: @mainFont;
+  background-color: @blanco;
+  position: relative;
+  padding: 20px 15px 30px;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+  text-decoration: none;
+  
+  @media (max-width:@xs-max) {
+    padding: 10px 7px;
+  }
+
+  @media (max-width: @xs-max) {
+    padding: 20px 15px;
+  }
+
+  &:hover {
+    border: 1px solid @gris_claro;
+    box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+
+    & + .folding {
+      overflow: visible;
+
+      .caja {
+        box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+        max-height: 160px;
+        webkit-transition: max-height .3s linear;
+
+        &:hover {
+          border: 1px solid @gris_claro;
+          border-width: 0 1px 1px;
+          box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+        }
+      }
+    }
+  }
+
+  &.show {
+    border: 1px solid @gris_claro;
+    box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+    
+    & + .folding {
+      overflow: visible;
+      
+      .caja {
+        max-height: 160px;
+      }
+    }
+
+    & > img.primary {
+      display: none;
+    }
+
+    & > img.secondary {
+      display: block;
+    }
+  }
+  
+  & > img {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    transition: transform 0.2s ease;
+
+    &.secondary {
+      display: none;
+    }
+    
+    @media (max-width:@sm-max) {
+      width: 80%;
+    }
+  }
+
+  .added-to-cart-alert {
+    display: block;
+    position: absolute;
+    left: 50%;
+    .transform(translateX(-50%));
+    width: 200px;
+  }
+}
+
+.nombre() {
+  color: @negro;
+  font-weight: 400;
+  font-size: 17px;
+  .box-sizing(border-box);
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 43px;
+  overflow: hidden;
+  text-transform: none;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.infoProducto() {
+  margin-bottom: 15px;
+  @media (max-width:@xxs-max) {
+    margin-bottom: 10px;
+  }
+  .nombre {
+    .nombre();
+    @media (max-width:@xxs-max) {
+      font-size: 18px;
+      line-height: 19px;
+      height: 40px;
+    }
+  }
+  .categoria {
+    color: @gris_claro;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    height: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    @media (max-width:@xxs-max) {
+      font-size: 12px;
+      line-height: 13px;
+      letter-spacing: 4px;
+    }
+  }
+}
+
+.precioProducto() {
+  color: @rojo;
+  font-weight: 400;
+  display: block;
+  font-size: 28px;
+  margin-top: 5px;
+  @media (@xxs, @xs) {
+    font-size: 18px;
+  }
+  span {
+    font-weight: 700;
+  }
+}
+
+.delivery-time() {
+  color: @gris;
+  display: block;
+  font-size: 13px;
+}
+
+.textInfoProducto() {
+  background-color: @rojo;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  color: @blanco;
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 17px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.listaLabelsProducto() {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline;
+  }
+}
+
+.label() {
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 400;
+  margin-right: 5px;
+  padding: .3em .6em;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 12px;
+
+  &.label-inmediato {
+    background-color: @verde;
+  }
+  &.label-nuevo {
+    background-color: @azul;
+  }
+}
+
+// Caja de producto (listado)
+////////////////////////////////////////////////////////////////
+.producto-box {
+  margin-bottom: @margenRem*2;
+  padding: 0 8px;
+
+  .item {
+    .producto();
+    
+    .info {
+      .infoProducto();
+    }
+    
+    .precio {
+      .precioProducto();
+    }
+    
+    .text-desc {
+      .titularNegroEspaciado();
+      color: @gris_oscuro;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .delivery-time {
+      .delivery-time();
+    }
+
+    .text-info {
+      .textInfoProducto();
+    }
+  }
+  
+  .lista-labels {
+    .listaLabelsProducto();
+    
+    .label {
+      .label();
+    }
+  }
+
+  .folding {
+    position: relative;
+    box-sizing: content-box;
+    margin-top: -0.5em;
+    top: .5em;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    cursor: pointer;
+
+    .caja {
+      border: 1px solid @gris_claro;
+      border-width: 0 1px 1px 1px;
+      box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+      box-sizing: border-box;
+      background: #fff;
+      position: absolute;
+      top: -1px;
+      max-height: 0px;
+      overflow: hidden;
+      .transition(max-height .3s linear);
+      width: 100%;
+      z-index: 99999;
+
+      .add-product-form {
+        margin: 0 20px;
+        position: relative;
+
+        .btn.add-to-cart {
+          display: block;
+          font-weight: 700;
+          margin: 0 0 10px;
+          text-transform: uppercase;
+          font-size: 14px;
+          width: 100%;
+        }
+
+        .acabados{
+          font-size: 0;
+          margin-bottom: 10px;
+          padding: 0;
+
+          .color {
+            display: inline-block;
+            list-style: none;
+            margin: 3px;
+            width: 15px;
+            height: 15px;
+            padding-left: 0;
+            background-color: red;
+
+            img[src$="blanco.gif"] {
+              border: 1px solid @blanco_roto;
+            }
+
+            input[type="radio"] {
+              margin: 0;
+              width: 15px;
+              height: 15px;
+              opacity: 0;
+
+              &:checked + img {
+                border: 1px solid @blanco;
+                box-shadow: 0 0 0 2px @azul;
+              }
+            }
+          }
+        }
+
+        .tooltip {
+          position: absolute;
+        }
+      }
+    }
+
+    .aviso {
+      background-color: @gris_claro;
+      color: @blanco;
+      font-size: 11px;
+      padding: 5px 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .medidas {
+      background-color: @blanco_roto;
+      padding: 10px 0;
+      
+      & > div {
+        display: inline-block;
+        padding: 0;
+        color: @gris;
+        font-size: 13px;
+        text-align: center;
+
+        &.anchura {
+          img {
+            transform: rotate(90deg);
+            margin-right: 10px;
+          }
+        }
+
+        &.profundidad {
+          img {
+            transform: rotate(45deg);
+          }
+        }
+
+        img {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="11px" height="21px" viewBox="0 0 11 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>CERRAR</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Desktop-HD" sketch:type="MSArtboardGroup" transform="translate(-108.000000, -94.000000)" fill="#5B5B58">
+            <g id="Menu-1b" sketch:type="MSLayerGroup" transform="translate(88.000000, 80.000000)">
+                <g id="Menu" sketch:type="MSShapeGroup">
+                    <path d="M30.8848946,14.6703354 C31.0383685,14.5168614 31.0383685,14.2685794 30.8848946,14.1151054 C30.7314206,13.9616315 30.4826148,13.9616315 30.3291408,14.1151054 L20.5,23.9442463 L19.9442463,24.5 L20.5,25.0557537 L30.3291408,34.8843708 C30.4061397,34.9613696 30.5061858,34.9996071 30.6067558,34.9996071 C30.7073257,34.9996071 30.8078957,34.9613696 30.8848946,34.8843708 C31.0383685,34.7308968 31.0383685,34.4826148 30.8848946,34.3291408 L21.0552299,24.5 L30.8848946,14.6703354 Z" id="CERRAR"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

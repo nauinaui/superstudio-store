@@ -1,0 +1,212 @@
+.banners-principales {
+  a {
+    display: block;
+    margin-bottom: 15px;
+
+    & > img {
+      margin: 0 auto;
+    }
+  }
+  .countdown {
+    display: inline-block;
+    width: 100%;
+    margin-top: 5px;
+    font-family: @mainFont;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: @rojo;
+    span {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: @gris_oscuro;
+      border-top: 1px solid @gris_claro;
+    }
+    div {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+
+.banners-especial {
+  padding-top: 50px;
+  text-align: center;
+
+  .banner {
+    .banner-img {
+      margin-bottom: 10px;
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+      
+      .titulo {
+        .tituloBanner();
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        .textoSombra();
+        
+        span {
+          display: block;
+          font-size: 36px;
+        }
+
+      }
+
+      .footer-text {
+        background-color: rgba(0,0,0,.5);
+        color: @blanco;
+        display: block;
+        font-size: 13px;
+        line-height: 24px;
+        .textoSombra();
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-transform: uppercase;
+        width: 100%;
+      }
+
+      @media (max-width: @sm-max) {
+        margin: 0 auto 10px;
+        max-width: 410px;
+      }
+    }  
+    
+    .boton {
+      .botonCTA();
+      margin-top: 10px;
+      margin-bottom: 25px;
+      @media (max-width:@xs) {
+        margin-top: 5px;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: @sm-max) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.title-btn {
+  display: table;
+  margin: 0 auto;
+  min-width: 130px;
+}
+
+.title {
+  & + .title-btn {
+    margin: -30px auto 30px;
+  }
+}
+
+#disenadores,
+#estilos,
+#colecciones {
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: 1s;
+  
+  @media (max-width:@xs) {
+    max-height: inherit;
+  }
+  
+  a {
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+
+    & > img {
+      margin: 0 auto;
+    }
+  }
+  
+  h6 {
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    .transform(translate(-50%,-50%));
+
+    @media (max-width: @xs-max) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+}
+
+.banners {
+  .banner {
+    position: relative;
+    img {
+      margin: 0 auto 20px;
+    }
+  }
+
+  .puntos-de-venta {
+    img {
+      margin-bottom: 0;
+    }
+
+    .btn {
+      border-color: @blanco;
+      color: @blanco;
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      .transform(translateX(-50%));
+      .box-shadow(0px 1px 3px rgba(0,0,0,0.5));
+      text-shadow: 0px 1px 3px #000;
+
+      @media (max-width: @sm-max) {
+        bottom: 10px;
+      }
+    }
+
+    &:hover .btn {
+      background-color: @azul;
+    }
+  }
+}
+
+.read-more {
+  position: absolute;
+  bottom: 0;
+  min-height: 100px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 40px 0 10px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  .background-image(linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%));
+  
+  .toggleHeight {
+    display: block;
+    margin: 40px auto 0;
+    min-width: 120px;
+
+    &.hide {
+      display: none;
+    }
+  }
+}
+
+.texto-seo {
+  font-size: 12px;
+}

@@ -1,0 +1,2300 @@
+<!--#include virtual="/includes/motor/inicio.asp"-->
+<!--#include virtual="/includes/motor/SSL.asp"-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Nueva SuperStudio</title>
+	<link rel="apple-touch-icon" sizes="57x57" href="imagenes/iconos/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="imagenes/iconos/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="imagenes/iconos/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="imagenes/iconos/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="imagenes/iconos/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="imagenes/iconos/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="imagenes/iconos/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="imagenes/iconos/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="imagenes/iconos/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="imagenes/iconos/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="imagenes/iconos/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="imagenes/iconos/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="imagenes/iconos/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/css/animate.min.css">
+    <link rel="stylesheet" href="includes/css/superestudio.css">
+</head>
+<body>
+
+<div id="spin"></div>
+
+<!-- Topbar -->
+<div class="topbar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-lg-7 left">
+				<div class="llamamos">
+					<span>Te llamamos</span>
+					<div class="select">
+						<input type="text" name="telefono" placeholder="Nº de teléfono">
+						<input type="text" name="nombre" placeholder="Nombre">
+						<input type="text" name="email" placeholder="Correo electrónico">
+						<a href="javascript:void(0)" class="showFranjaHoraria">¿Quieres especificar franja horaria?</a>
+						<div class="franjaHoraria">
+							<label><input type="checkbox"> Por la mañana</label>
+							<label><input type="checkbox"> Por la tarde</label>
+						</div>
+						<button type="submit">Enviar</button>
+					</div>
+				</div>
+				<a href="#">Enviamos a toda Europa</a>
+				<a href="#">Tiendas</a>
+				<a href="#">Devoluciones</a>
+				<a href="#">Contacto</a>
+			</div>
+			<div class="col-md-6 col-lg-5 right">
+				<a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
+				<a href="#" class="text-bold">Contacto</a>
+				<a href="#" class="text-bold">Iniciar sesión</a>
+				<div class="language">
+					<span>ES</span>
+					<div class="select">
+						<a href="https://www.superestudio.com?idioma=CAS">Castellano</a>
+						<a href="https://www.superestudio.com?idioma=ENG">English</a>
+						<a href="http://www.superestudio.fr/?idioma=FRA">Français</a>
+						<a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a>
+						<a href="http://www.superestudio.pt/?idioma=POR">Português</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default topmenu">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="default.asp">
+				<img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
+				<img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
+			</a>
+			<a class="btn-cart" href="javascript:void(0)">
+				<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+				<span class="badge">13</span>
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías
+						<div class="icon-menu">
+							<img src="imagenes/iconos/svg/categorias.svg" width="44" height="44" alt="">
+							<div class="icon-menu-wave"></div>
+						</div>
+					</a>
+					
+					<div class="subcategorias">
+						<a href="#" class="rojo">Promociones</a>
+						<a href="#" class="azul">Diseñadores</a>
+						<a href="#" class="verde">Colecciones</a>
+						<a href="#" class="naranja">Estilos</a>
+					</div>
+
+					<ul class="dropdown-menu menu-subcategorias" id="menuSubcategorias">
+						<div class="header">
+							<div class="container">
+								<button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+								<div class="title">Selecciona una categoria</div>
+							</div>
+						</div>
+						<li>
+							<a href="javascript:void(0);" class="category sub" data-tipo="sillas">
+								<img src="imagenes/iconos/svg/menuSillas.svg" alt="">
+								<div class="text">Sillas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Sillas -->
+							<div class="submenu" id="sillas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Sillas
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item" data-feature-link="/silla-dsw-wooden-polipropileno-eames-baz004" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg">Sillas iconos del diseño <span>(201)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico con patas de madera <span>(31)</span></a>
+												<a href="#" class="item" data-feature-link="/sillas_plegables_silla_plex_144331" data-feature-title="Silla PLEX" data-feature-desc="Perfecta como silla auxiliar cuando tengas invitados en casa." data-feature-img="https://www.superestudio.com/imagenes/productos/SHX030/SHX0301.jpg">Sillas plegables <span>(64)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-dsw-baby-wooden--baby-eames" data-feature-title="Silla BABY WOODEN" data-feature-desc="Versión de menor tamaño de la Silla WOODEN, para niños" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ009/BAZ0091.jpg">Sillas baby <span>(64)</span></a>
+												<a href="#" class="item" data-feature-link="/puff-ferret-polyester-version-wv0007" data-feature-title="Puff FERRET -Polyester Version-" data-feature-desc="elemento decorativo original y muy divertido" data-feature-img="https://www.superestudio.com/imagenes/productos/WV0007/WV00071.jpg">Puffs <span>(7)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas metálicas <span>(39)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas tapizadas <span>(4)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-acapulco-chair-color-edition" data-feature-title="Silla MÉXICO -Color Edition-" data-feature-desc="Silla Acapulco, durabilidad, calidad y diseño" data-feature-img="https://www.superestudio.com/imagenes/productos/WIW003/WIW0031.jpg">Sillas para exterior <span>(1)</span></a>
+												<a href="#" class="item" data-feature-link="/banco-eco-batten" data-feature-title="Banco ECO BATTEN" data-feature-desc="Inspirado en el Banco Platform de George Nelson" data-feature-img="https://www.superestudio.com/imagenes/productos/XSG027/38/XSG027-38_1.jpg">Bancos <span>(1)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
+												<a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Silla WOODEN -Polipropileno-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Silla WOODEN -Polipropileno-</span>
+													<div class="promo-description">Silla de diseño de estilo Tower para cocina o comedor.</div>
+													<div class="promo-image">
+														<img class="featured-product-image" src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las sillas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category" data-tipo="taburetes">
+								<img src="imagenes/iconos/svg/menuTaburetes.svg" alt="">
+								<div class="text">Taburetes</div>
+							</a>
+							<!-- SUBMENU Taburetes -->
+							<div class="submenu" id="taburetes">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Taburetes
+										</div>
+										<div class="row">
+											<div class="col-sm-4 col-sm-offset-4 hidden-xs">
+												<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Taburete HIGHT URAL -Metal Cepillado">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Taburete HIGHT URAL -Metal Cepillado-</span>
+													<div class="promo-description">Taburete metálico en estilo industrial.</div>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los taburetes</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="mesas">
+								<img src="imagenes/iconos/svg/menuMesas.svg" alt="">
+								<div class="text">Mesas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Mesas -->
+							<div class="submenu" id="mesas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Mesas
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Mesas de comedor <span>(57)</span></a>
+												<a href="#" class="item">Mesas de oficina <span>(31)</span></a>
+												<a href="#" class="item">Mesas de centro <span>(64)</span></a>
+												<a href="#" class="item">Mesas de exterior <span>(4)</span></a>
+												<a href="#" class="item">Mobiliario de oficina <span>(1)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Mesitas de café <span>(47)</span></a>
+												<a href="#" class="item">Mesas de bar <span>(10)</span></a>
+												<a href="#" class="item">Mesas de TV <span>(39)</span></a>
+												<a href="#" class="item">Barras <span>(39)</span></a>
+												<a href="#" class="item">Consolas <span>(4)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/mesa-dsw-tendar-wood-120-tendar-wood-eames">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Mesa TENDAR WOOD 120</span>
+													<div class="promo-description">Mesa de comedor inspirada en diseño de la Mesa DSW de Charles & Ray Eames.</div>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las mesas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="lamparas">
+								<img src="imagenes/iconos/svg/menuLamparas.svg" alt="">
+								<div class="text">Lámparas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Lámparas -->
+							<div class="submenu" id="lamparas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Lámparas
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Lámparas en suspensión <span>(57)</span></a>
+												<a href="#" class="item">Lámparas de sobremesa <span>(23)</span></a>
+												<a href="#" class="item">Apliques <span>(4)</span></a>
+												<a href="#" class="item">Bombillas <span>(13)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Lámparas de pie <span>(47)</span></a>
+												<a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
+												<a href="#" class="item">Iluminación creativa <span>(39)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/lampara-amsti" title="Lámpara AMSTI">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Lámpara AMSTI</span>
+													<div class="promo-description">Lámpara en acero tintado en negro con interior dorado.</div>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las lámparas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="sofas">
+								<img src="imagenes/iconos/svg/menuSofas.svg" alt="">
+								<div class="text">Sofás<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Sofás -->
+							<div class="submenu" id="sofas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Sofás
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Sofás <span>(18)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Sofás cama <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/sofa-chester-pu-2-plazas" title="Sofá CHESTER PU -2 Plazas-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Sofá CHESTER PU -2 Plazas-</span>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los sofás</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="cojines">
+								<img src="imagenes/iconos/svg/menuCojines.svg" alt="">
+								<div class="text">Cojines<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Cojines -->
+							<div class="submenu" id="cojines">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Cojines
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Frases <span>(18)</span></a>
+												<a href="#" class="item">Animales humanizados <span>(18)</span></a>
+												<a href="#" class="item">Estampados <span>(18)</span></a>
+												<a href="#" class="item">Países <span>(12)</span></a>
+												<a href="#" class="item">Cómic <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Apalabrados <span>(12)</span></a>
+												<a href="#" class="item">Divertidos <span>(12)</span></a>
+												<a href="#" class="item">Rellenos <span>(12)</span></a>
+												<a href="#" class="item">Animales <span>(12)</span></a>
+												<a href="#" class="item">Pop <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/funda-cojin-drink-champagne-algodon-30x50" title="Funda cojín DRINK CHAMPAGNE algodón 30x50">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Funda cojín DRINK CHAMPAGNE algodón 30x50</span>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cojines</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="alfombras">
+								<img src="imagenes/iconos/svg/menuAlfombras.svg" alt="">
+								<div class="text">Alfombras<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Alfombras -->
+							<div class="submenu" id="alfombras">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Alfombras
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Felpudos <span>(18)</span></a>
+												<a href="#" class="item">Alfombras infantiles <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Alfombras <span>(71)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/alfombra-felpudo-aqui-dentro-hay-mucho-amor-60x40cm" title="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-</span>
+													<div class="promo-description">Felpudo para recibir con arte a tus invitados</div>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las alfombras</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="cuadros">
+								<img src="imagenes/iconos/svg/menuCuadros.svg" alt="">
+								<div class="text">Cuadros<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Cuadros -->
+							<div class="submenu" id="cuadros">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Cuadros
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Lienzos 1 pieza <span>(18)</span></a>
+												<a href="#" class="item">Cuadros madera impresa <span>(18)</span></a>
+												<a href="#" class="item">Lienzos pirámide 5 piezas <span>(12)</span></a>
+												<a href="#" class="item">Chapas decorativas <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
+												<a href="#" class="item">Cuadros con marco <span>(71)</span></a>
+												<a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
+												<a href="#" class="item">Portafotos <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/banderola-yourself" title="Banderola YOURSELF">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Banderola YOURSELF</span>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cuadros</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="vinilos">
+								<img src="imagenes/iconos/svg/menuVinilos.svg" alt="">
+								<div class="text">Vinilos<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Vinilos -->
+							<div class="submenu" id="vinilos">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Vinilos
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Vinilos <span>(410)</span></a>
+												<a href="#" class="item">Vinilos luminiscentes <span>(18)</span></a>
+												<a href="#" class="item">Vinilos infantiles <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
+												<a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
+												<a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/vinilo-decorativo-live-your-dreams" title="Vinilo Decorativo LIVE YOUR DREAMS">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Vinilo Decorativo LIVE YOUR DREAMS</span>
+													<div class="promo-image">
+														<img src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los vinilos</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="almacenaje">
+								<img src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="">
+								<div class="text">Almacenaje<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Almacenaje -->
+							<div class="submenu" id="almacenaje">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Almacenaje
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Baúles <span>(410)</span></a>
+												<a href="#" class="item">Joyeros <span>(18)</span></a>
+												<a href="#" class="item">Camas <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Estanterías <span>(71)</span></a>
+												<a href="#" class="item">Cajoneras <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/baul-almacenaje-plegable-40-x-255-x-24-cm" title="Baúl almacenaje plegable 40 x 25,5 x 24 cm">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
+													<div class="promo-description"></div>
+													<div class="promo-image">
+														<img src="http://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los almacenajes</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)" class="category sub" data-tipo="decoracion">
+								<img src="imagenes/iconos/svg/menuDecoracion.svg" alt="">
+								<div class="text">Decoración<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Decoración -->
+							<div class="submenu" id="decoracion">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Decoración
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Espejos <span>(18)</span></a>
+												<a href="#" class="item">Jarrones y figuras decorativas <span>(18)</span></a>
+												<a href="#" class="item">Relojes decorativos <span>(18)</span></a>
+												<a href="#" class="item">Trofeos cabeza animal en madera <span>(18)</span></a>
+												<a href="#" class="item">Biombos <span>(12)</span></a>
+												<a href="#" class="item">Maceteros <span>(12)</span></a>
+												<a href="#" class="item">Paneles decorativos <span>(12)</span></a>
+												<a href="#" class="item">Portafotos <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Percheros <span>(71)</span></a>
+												<a href="#" class="item">Plantas decorativas <span>(71)</span></a>
+												<a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
+												<a href="#" class="item">Pizarras <span>(71)</span></a>
+												<a href="#" class="item">Cajas de madera <span>(12)</span></a>
+												<a href="#" class="item">Menaje <span>(12)</span></a>
+												<a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/muebles_de_diseno/_mantel_pvc_43x30_picnik_green_-uso_1_persona-_141775" title="Mantel PVC 43x30 PICNIK Green -uso 1 persona-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
+													<div class="promo-image">
+														<img src="http://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos de decoración</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+		        </li>
+			</ul>
+		  
+			<ul class="nav navbar-nav navbar-right">
+				<a href="#" class="status">
+					<div class="text hidden-sm">
+						Consulta el <br />
+						<strong>estado de tu pedido</strong>
+					</div>
+					<img src="imagenes/iconos/svg/status.svg" alt="">
+				</a>
+				
+				<li class="divider"></li>
+				
+				<form class="navbar-form search" action="#" method="post" role="search">
+					<div class="input-group">
+				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca...">
+				    	<span class="input-group-btn">
+				        	<button class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
+				      	</span>
+				    </div>
+				</form>
+
+
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+
+	<!-- Cabecera -->
+	<div class="categoria-menu">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="menu">
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+	  <li><a href="#">Inicio</a></li>
+	  <li><a href="#">Sillas</a></li>
+	  <li><a href="#">Sillas icono del Diseño</a></li>
+	  <li class="active">Silla WOODEN -Polipropileno-</li>
+	</ol>
+	
+	<!-- Especiales -->
+	<section class="row banners-especial">
+		<div class="col-sm-6 col-md-4 banner banner-eames">
+			<a href="#">
+				<div class="banner-img">
+					<img class="img-responsive" src="imagenes/banners/eames.jpg" srcset="imagenes/banners/eames@2x.jpg 2x" alt="#">
+					<div class="titulo">Especial <span>Eames design</span></div>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 col-md-4 banner banner-tolix">
+			<a href="#">
+				<div class="banner-img">
+					<img class="img-responsive" src="imagenes/banners/tolix.jpg" srcset="imagenes/banners/tolix@2x.jpg 2x" alt="#">
+					<div class="titulo">Especial <span>Tolix design</span></div>
+				</div>
+			</a>
+		</div>
+		<div class="hidden-sm col-md-4 banner banner-pop">
+			<a href="#">
+				<div class="banner-img">
+					<img class="img-responsive" src="imagenes/banners/preciominimo3.jpg" srcset="imagenes/banners/preciominimo3@2x.jpg 2x" alt="#">
+					<div class="titulo">Precio mínimo <span>garantizado</span></div>
+					<span class="footer-text">en más de 60 productos</span>
+				</div>
+			</a>
+		</div>
+	</section>
+</div>
+
+<section class="detail-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 image-column">
+				<div class="last-units-stock"><p><strong>¡Últimas unidades en stock!</strong> - Hay 8 personas viendo este producto</p></div>
+				<div class="fast-delivery-badge"><span>envío inmediato</span></div>
+				<img id="mainImage" class="img-responsive main-image" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño" />
+				<div class="row more-images">
+					<ul>
+						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0011.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0012.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0013.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0014.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0015.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+					</ul>
+					<div class="collapse" id="otherImages">
+						<ul>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0016.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0017.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0018.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0019.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00110.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00111.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00112.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00113.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00114.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+							<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN00115.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
+						</ul>
+					</div>
+					<button class="btn btn-secondary btn-xs btn-rounded collapsed show-more" type="button" data-toggle="collapse" data-target="#otherImages" aria-expanded="false" aria-controls="otherImages">
+						<span class="more">Más imágenes</span>
+						<span class="less">Menos imágenes</span>
+					</button>
+				</div>
+			</div>
+			
+			<div class="col-md-5 col-lg-4 col-lg-offset-1">
+				<form class="add-main-product-form" id="addMainProductForm">
+					<div class="label-group">
+						<span class="label label-default">Novedad</span>
+						<span class="label label-default">En stock</span>
+						<span class="label label-default">Liquidación</span>
+					</div>
+					<div class="title">Silla WOODEN -Polipropileno-</div>
+					<div class="subtitle">Inspiración DSW de Charles & Ray Eames</div>
+					<div class="ref">Ref. TRN001</div>
+					
+					<div class="time-offer">
+						<div class="title">Oferta por tiempo limitado</div>
+						<p>Promoción MITAD DE PRECIO. Aplicado a todos los productos de la web válido sólo en España</p>
+						<div class="countdown-group">
+							<span class="glyphicon glyphicon-time"></span><div class="countdown countdown1"></div>
+						</div>
+					</div>
+
+					<div class="finishes">
+						<span class="text">acabados disponibles:</span>
+			        	<div class="list-group finishes-list">
+							<label class="radio-inline color">
+						  		<input type="radio" name="finishesRadioInput" value="Beige" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5" required>
+								<img src="imagenes/colores/beige.jpg" width="15" alt="Beige" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Turquesa" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
+								<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Azul petróleo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Marrón" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Naranja" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Rojo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Rosa claro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Blanco" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Negro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Crema" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Azul" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Verde" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Amarillo" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+							</label>
+							<label class="radio-inline color">
+								<input type="radio" name="finishesRadioInput" value="Gris oscuro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+							</label>
+			        	</div>
+					</div>
+					
+					<div class="price">
+						<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
+						<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
+						<div class="discount">-50%</div>
+					</div>
+
+					<div class="row info" id="infoDiv">
+						<div class="col-xs-4">
+							<div class="square vat">
+								<span><i>IVA</i> incluido</span>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="square time in-stock">
+								<span><i>entrega</i><span id="deliveryTimeText">2-3 días</span></span>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="square shipment">
+								<span><i>Envío</i> No incluido</span>
+								<a class="btn show-shipment collapsed" id="showShipmentBtn" role="button" data-toggle="collapse" href="#calculateShipment" aria-expanded="false" aria-controls="calculateShipment">
+									<span class="action">calcular</span>
+									<span class="show-price">x4 = 35,05€ <i class="glyphicon glyphicon-refresh"></i></span>
+								</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div id="betterDeliveryTip" class="better-delivery-tip collapse">
+							<p>Puedes ver otros productos similares con plazos de entrega más cortos. <button type="button" id="showBetterDelivery" class="btn btn-link">¡Click aquí!</button></p>
+						</div>
+					</div>
+
+					<div class="alert alert-success" id="addedProductAlert" role="alert" style="display: none">
+						<strong>¡Actualizado!</strong> Producto añadido correctamente
+					</div>
+
+					<div class="actions">
+						<input type="hidden" name="id_producto" id="id_producto" value="142898">
+	                    <input type="hidden" name="acabado" id="variante-acabado" value="">
+
+						<div class="select-group">
+							<select class="form-control units input-lg" id="unitsSelect">
+								<option selected>1</option>
+							</select>
+							<span class="units-price" id="unitsPrice">58,01€</span>
+						</div>
+
+						<div class="add-to-cart-group">
+							<button type="submit" class="btn btn-primary btn-lg btn-rounded" id="addToCartButton">Añadir al carrito</button>
+							<span class="last-units">¡Sólo quedan 4 en stock!</span>
+						</div>
+
+						<div class="favourite-group">
+							<button type="submit" class="btn btn-secondary btn-lg btn-rounded favourite-btn"><span class="glyphicon glyphicon-heart"></span></button>
+						</div>
+					</div>
+
+					<div class="payment-methods">
+						<ul class="list-unstyled payment-methods-list">
+							<li class="visa" data-toggle="tooltip" data-placement="top" title="visa"></li>
+							<li class="visa-electron" data-toggle="tooltip" data-placement="top" title="visa electron"></li>
+							<li class="mastercard" data-toggle="tooltip" data-placement="top" title="mastercard"></li>
+							<li class="maestro" data-toggle="tooltip" data-placement="top" title="maestro"></li>
+							<li class="american-express" data-toggle="tooltip" data-placement="top" title="american express"></li>
+							<li class="skrill" data-toggle="tooltip" data-placement="top" title="skrill"></li>
+							<li class="trustly" data-toggle="tooltip" data-placement="top" title="trustly"></li>
+							<li class="aplazame" data-toggle="tooltip" data-placement="top" title="aplázame"></li>
+							<li class="sofort-banking" data-toggle="tooltip" data-placement="top" title="sofort banking"></li>
+							<li class="cb" data-toggle="tooltip" data-placement="top" title="carta bleue"></li>
+							<li class="bank-transfer" data-toggle="tooltip" data-placement="top" title="bank transfer"></li>
+							<li class="cod" data-toggle="tooltip" data-placement="top" title="cash on delivery"></li>
+						</ul>
+						<span class="secure-text">Pagos realizados bajo protocolo de seguridad</span>
+					</div>
+
+					<div class="aplazame">
+						<span>Producto financiable</span>
+						<iframe></iframe>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="bgDark">
+	<div class="container">
+		
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs other-info-title-tabs" role="tablist">
+			<li role="presentation" class="title active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+			<li role="presentation" class="title"><a href="#materialAndMeasures" aria-controls="materialAndMeasures" role="tab" data-toggle="tab">Material y medidas</a></li>
+			<li role="presentation" class="title"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contacto</a></li>
+			<a class="btn btn-link show-more pull-right hidden-xs" role="button" data-toggle="collapse" href="#otherInfoContentTabs" aria-expanded="false" aria-controls="subcategoriaTodos">
+				<div>
+					<span class="more">+</span>
+					<span class="less">-</span>
+				</div>
+			</a>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content other-info-content-tabs collapse in" id="otherInfoContentTabs" aria-expanded="true">
+			<!-- description -->
+			<div role="tabpanel" class="tab-pane active" id="description">
+				<div class="col-xs-12">
+					<h2 class="title">Elegancia y estilo unidos en la silla Eames DSW</h2>
+					<div class="text">
+						<ul class="list-unstyled">
+							<li>Inspirada en la silla DSW de Charles & Ray Eames.</li>
+							<li>La estructura de las patas está basada en la Torre Eiffel.</li>
+							<li>Peso que soporta la silla: 150Kg.</li>
+							<li>Disponible en 8 colores diferentes.</li>
+						</ul>
+						<p>La Silla DSW Eames WOODEN es uno de los modelos más populares del diseño de vanguardia del último siglo. Estilo, elegancia y comodidad se unen en la Silla DSW Eames para dar un toque distintivo a tu comedor o tu despacho.<br />
+						El respaldo en polipropileno de la Silla DSW Eames se adapta perfectamente a tu cuerpo, y la base de patas de madera de haya es muy resistente y de gran robustez. La combinación de estos materiales la convierten en una silla muy duradera.</p>
+						<p>Disfruta de un confort total con un diseño sencillo y funcional de la mano de la Silla DSW Eames, que no olvida la belleza de las líneas.</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- material and measures-->
+			<div role="tabpanel" class="tab-pane" id="materialAndMeasures">
+				<div class="col-md-3 info">
+					<h3 class="title">Material</h3>
+					<p>Polipropileno - Haya - Acero</p>
+				</div>
+				<div class="col-md-9 info">
+					<h3 class="title">Medidas</h3>
+					<div class="row">
+						<div class="col-sm-4">
+							<p><strong>Medidas generales:</Strong><br />
+							82cm x 46cm x 53cm</p>
+							<p><strong>Alto del asiento:</Strong><br />
+							45cm</p>
+						</div>
+						<div class="col-sm-4 sketch">
+							<div class="category-chair">
+								<span class="width">46</span>
+								<span class="height">82</span>
+								<span class="sitting-height">45</span>
+								<span class="depth">53</span>
+							</div> 
+							<!-- <div class="category-table">
+								<span class="width">46</span>
+								<span class="height">82</span>
+								<span class="depth">53</span>
+							</div> -->
+							<!-- <div class="category-lamp">
+								<span class="width">46</span>
+								<span class="height">82</span>
+								<span class="depth">53</span>
+								<span class="diameter">38</span>
+							</div>  -->
+ 							<!-- <div class="category-stool">
+								<span class="width">46</span>
+								<span class="height">82</span>
+								<span class="sitting-height">45</span>
+								<span class="depth">53</span>
+							</div> -->
+							<!-- <div class="category-sofa">
+								<span class="width">46</span>
+								<span class="height">82</span>
+								<span class="sitting-height">45</span>
+								<span class="depth">53</span>
+							</div> --> 
+							<!-- <div class="category-cushion">
+								<span class="width">46</span>
+								<span class="height">82</span>
+							</div>  -->
+							<!-- <div class="category-carpet">
+								<span class="width">46</span>
+								<span class="height">82</span>
+							</div>  -->
+							<!-- <div class="category-cushion">
+								<span class="width">46</span>
+								<span class="height">82</span>
+							</div>  -->
+							<!-- <div class="category-cushion">
+								<span class="width">46</span>
+								<span class="height">82</span>
+							</div>  -->
+						</div>
+						<div class="col-sm-4">
+							<span class="info-icon"><img src="imagenes/iconos/weight.png" alt="peso del producto" />3,6kg</span>
+							<span class="info-icon"><img src="imagenes/iconos/weight-supported.png" alt="peso soportado" />120kg</span>
+							<button type="button" class="btn btn-secondary btn-rounded" data-toggle="modal" data-target="#measureImage">Ver medidas en imagen</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="contact">
+				<div class="col-xs-12">
+					<p>Puedes ponerte en contacto con nosotros sobre el producto <strong>Silla WOODEN -Polipropileno-</strong> rellenando el siguiente formulario.</p>
+				</div>
+				<form class="form-horizontal">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="inputName" class="col-sm-4 control-label">Nombre*</label>
+							<div class="col-sm-8">
+								<input type="email" class="form-control" id="inputName" placeholder="Nombre" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-sm-4 control-label">Email*</label>
+							<div class="col-sm-8">
+								<input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPhone" class="col-sm-4 control-label">Teléfono</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" id="inputPhone" placeholder="Teléfono">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="textareaMessage" class="col-sm-4 control-label">Mensaje*</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" rows="3" id="textareaMessage" required></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+                        <div class="form-group" id="verificationGroup">
+                        	<label for="rcaptcha" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
+                            <div class="col-sm-8 col-lg-11 col-lg-offset-1">
+                                <div class="g-recaptcha" id="rcaptcha" data-sitekey="6LccYR4TAAAAAAV7n_8DXPUbUvD6I3-DSEm6ams2"></div>
+                            </div>
+                        </div>
+						<div class="form-group">
+							<div class="col-sm-8 col-sm-offset-4 col-md-12 col-md-offset-0 col-lg-11 col-lg-offset-1">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox"> Comprendo y acepto las <a href="#" title="condiciones de uso">condiciones de uso</a> y la <a href="#" title="política de privacidad"> política de privacidad</a>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8 col-md-offset-0 col-lg-offset-1">
+								<button type="submit" class="btn btn-primary btn-rounded">Enviar</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="up-selling collapse in" id="upSellingSection">
+	<div class="container">
+		<div class="title">Ahorra con nuestras ofertas en packs</div>
+		<div class="row">
+			<div class="col-xs-12 elements">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active">
+						<div id="carouselUpSelling" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<div class="col-xs-6 col-sm-4 product-pack">
+										<span class="units">4 unidades</span>
+										<img class="product-pack-img" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+										<p class="product-name">Silla WOODEN -High Quality Color Edition-</p>
+									</div>
+									<div class="col-xs-6 col-sm-4 product-pack">
+										<span class="units">1 unidad</span>
+										<img class="product-pack-img" src="https://www.superestudio.com/imagenes/productos/SHX022/min/categoria/SHX0221.jpg" alt="Mesa TENDAR WOOD 120">
+										<p class="product-name">Mesa TENDAR WOOD 120</p>
+									</div>
+									<div class="col-xs-hidden col-sm-4 info-price">
+										<img class="pack-img" src="imagenes/productos/product-pack-mini.jpg" alt="Pack - 1x Mesa TENDAR WOOD 120 + 2x Silla WOODEN -Polipropileno-"/>
+										<span class="pvp-price">PVP: 340,00€<em> (por separado)</em></span>
+										<span class="offer-price">oferta: 220,00€<em> (por separado)</em></span>
+										<span class="last-price">Precio pack: <span>149,98€</span></span>
+										<button class="btn btn-primary btn-rounded">Ver pack</button>
+										<span class="text-desc">-32% descuento</span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="col-xs-6 col-sm-4 product-pack">
+										<span class="units">2 unidades</span>
+										<img class="product-pack-img" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+										<p class="product-name">Silla WOODEN -High Quality Color Edition-</p>
+									</div>
+									<div class="col-xs-6 col-sm-4 product-pack">
+										<span class="units">1 unidad</span>
+										<img class="product-pack-img" src="https://www.superestudio.com/imagenes/productos/TDF063/min/categoria/TDF0631.jpg" alt="Mesa TENDAR WOOD 80">
+										<p class="product-name">Mesa TENDAR WOOD 80</p>
+									</div>
+									<div class="col-xs-hidden col-sm-4 info-price">
+										<img class="pack-img" src="imagenes/productos/product-pack-mini.jpg" alt="Pack - 1x Mesa TENDAR WOOD 80 + 2x Silla WOODEN -Polipropileno-"/>
+										<span class="pvp-price">PVP: 178,79€</span>
+										<span class="offer-price">oferta: 118,89€</span>
+										<span class="last-price">Ahora: <span>99,98€</span></span>
+										<button class="btn btn-primary btn-rounded">Ver pack</button>
+										<span class="text-desc">-32% descuento</span>
+									</div>
+								</div>
+							</div>
+							<a class="left btn btn-secondary btn-rounded" href="#carouselUpSelling" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carouselUpSelling" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselUpSelling" data-slide-to="1"></li>
+							</ol>
+							<!-- Controls -->
+							<a class="right btn btn-secondary btn-rounded" href="#carouselUpSelling" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cross-selling collapse" id="crossSellingSection">
+	<div class="container">
+		<div class="title"><span>-10% extra sólo ahora en estos productos</span><br />Ofertas para combinar con tu silla</div>
+		<div class="row">
+			<div class="col-lg-9 col-lg-push-3 elements">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="slideContent1">
+						<div id="carouselCrossSelling1" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img class="col-xs-6 col-sm-3 img-responsive active" src="https://www.superestudio.com/imagenes/productos/HCN1273/min/categoria/HCN12731.jpg" alt="Funda cojín EXPANSION YELLOW algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1246/HCN12461.jpg" alt="Funda cojín STAR PINK algodón 45x45" />
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1230/87/HCN1230-87_1.jpg" alt="Funda cojín MARILYN POP algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1277/87/HCN1277-87_1.jpg" alt="Funda cojín ROVIRO algodón 45x45">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1267/87/HCN1267-87_1.jpg" alt="Funda cojín LOLA TOP RED AND WHITE algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1248/87/HCN1248-87_1.jpg" alt="Funda cojín BATMAN LOGO algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1263/87/HCN1263-87_1.jpg" alt="Funda cojín BULIE BLUES algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1239/87/HCN1239-87_1.jpg" alt="Funda cojín LOVE COOL CAT algodón 45x45">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1227/87/HCN1227-87_1.jpg" alt="Funda cojín COOL SAUVAGE algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1270/87/HCN1270-87_1.jpg" alt="Funda cojín PRISMAS BLACK algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1233/87/HCN1233-87_1.jpg" alt="Funda cojín MARILYN GLOSS algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1265/87/HCN1265-87_1.jpg" alt="Funda cojín LOLA TOP WHITE AND RED algodón 45x45">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1274/87/HCN1274-87_1.jpg" alt="Funda cojín WAVE BLACK algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1264/87/HCN1264-87_1.jpg" alt="Funda cojín LOLA TOP BLACK AND WHITE algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1257/87/HCN1257-87_1.jpg" alt="Funda cojín COLLAGE TWO algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1266/87/HCN1266-87_1.jpg" alt="Funda cojín LOLA TOP WHITE AND BLACK algodón 45x45">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1868/HCN18681.jpg" alt="Funda cojín BORING OWLD algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1497/87/HCN1497-87_1.jpg" alt="Funda cojín ABCD algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN889/87/HCN889-87_1.jpg" alt="Funda de Cojín SKINZEBRA algodón 45x45">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1843/87/HCN1843-87_1.jpg" alt="Funda cojín LIVESIMPLY algodón 45x45">
+								</div>
+							</div>
+							<a class="left btn btn-secondary btn-rounded" href="#carouselCrossSelling1" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carouselCrossSelling1" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselCrossSelling1" data-slide-to="1"></li>
+								<li data-target="#carouselCrossSelling1" data-slide-to="2"></li>
+								<li data-target="#carouselCrossSelling1" data-slide-to="3"></li>
+								<li data-target="#carouselCrossSelling1" data-slide-to="4"></li>
+							</ol>
+							<!-- Controls -->
+							<a class="right btn btn-secondary btn-rounded" href="#carouselCrossSelling1" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="slideContent2">
+						<div id="carouselCrossSelling2" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2025/HCN20251.jpg" alt="Mariposas de vinilo adhesivo FLYING -12 piezas-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1624/5/HCN1624-5_1.jpg" alt="Vinilo Decorativo EL CHEF SIEMPRE TIENE LA RAZON">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2208/87/HCN2208-87_1.jpg" alt="Vinilo decorativo WINDOW PARIS">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2372/5/HCN2372-5_1.jpg" alt="Vinilo Decorativo LOVE STAMP">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2028/min/categoria/HCN20281.jpg" alt="Vinilo Decorativo MAPAMUNDI UNIVERSO">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1542/min/categoria/HCN15421.jpg" alt="Vinilo Decorativo MAPAMUNDI PIXEL">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1541/min/categoria/HCN15411.jpg" alt="Vinilo Decorativo MAPAMUNDI POP">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2504/min/categoria/HCN25041.jpg" alt="Vinilo Decorativo COUNTRIES">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN982/min/categoria/HCN9821.jpg" alt="Vinilo Adhesivo de Espejo 3 ROUND">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1556/min/categoria/HCN15561.jpg" alt="Vinilo adhesivo de espejo FAMILY ELEPHANTS">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1550/min/categoria/HCN15501.jpg" alt="Pizarra de vinilo ELEPHANT & BIRDS">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN964/min/categoria/HCN9641.jpg" alt="Pizarra de vinilo adhesivo HELLO CALENDAR -76x81-">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1812/min/categoria/HCN18121.jpg" alt="Vinilo Decorativo WC DOWNLOADING">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1746/min/categoria/HCN17461.jpg" alt="Vinilo Decorativo YOUR SHELF -152x56-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1634/min/categoria/HCN16341.jpg" alt="Vinilo Decorativo para Enchufe FLOWER CUORE">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2254/min/categoria/HCN22541.jpg" alt="Vinilo Decorativo con Colgadores COAT STAND">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN590/min/categoria/HCN5901.jpg" alt="Vinilo Decorativo EVERY MOMENT">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN558/min/categoria/HCN5581.jpg" alt="Vinilo Decorativo LEARN LIVE HOPE">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN635/min/categoria/HCN6351.jpg" alt="Vinilo Decorativo TIME">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN516/min/categoria/HCN5161.jpg" alt="Vinilo Decorativo FAMILY BLACK">
+								</div>
+							</div>
+							<a class="left btn btn-secondary btn-rounded" href="#carouselCrossSelling2" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carouselCrossSelling2" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselCrossSelling2" data-slide-to="1"></li>
+								<li data-target="#carouselCrossSelling2" data-slide-to="2"></li>
+								<li data-target="#carouselCrossSelling2" data-slide-to="3"></li>
+								<li data-target="#carouselCrossSelling2" data-slide-to="4"></li>
+							</ol>
+							<!-- Controls -->
+							<a class="right btn btn-secondary btn-rounded" href="#carouselCrossSelling2" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="slideContent3">
+						<div id="carouselCrossSelling3" class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2225/87/HCN2225-87_1.jpg" alt="Alfombra felpudo ART COMIC HELLO -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2233/87/HCN2233-87_1.jpg" alt="Alfombra felpudo AT HOME -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2235/87/HCN2235-87_1.jpg" alt="Alfombra felpudo MRS RIGHT -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2234/87/HCN2234-87_1.jpg" alt="Alfombra felpudo ZAPATILLAS -60x40cm-">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2220/87/HCN2220-87_1.jpg" alt="Alfombra felpudo LANGUAGES 70 x 180 cm">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2224/87/HCN2224-87_1.jpg" alt="Alfombra felpudo KEEP CALM AND COME IN -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2227/87/HCN2227-87_1.jpg" alt="Alfombra felpudo DONT FORGET -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2226/87/HCN2226-87_1.jpg" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2223/87/HCN2223-87_1.jpg" alt="Alfombra felpudo ART HELLO -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2228/87/HCN2228-87_1.jpg" alt="Alfombra felpudo WELCOME GOODBYE -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2230/87/HCN2230-87_1.jpg" alt="Alfombra felpudo BONJOUR -60x40cm-">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2220/87/HCN2220-87_1.jpg" alt="Alfombra felpudo LANGUAGES 70 x 180 cm">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1145/2/HCN1145-2_1.jpg" alt="Alfombra BLUE YARN 50x80">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1144/HCN11441.jpg" alt="Alfombra RED YARN 50x80">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1148/212/HCN1148-212_1.jpg" alt="Alfombra GREY YARN 60x90">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN1168/87/HCN1168-87_1.jpg" alt="Alfombra KARIERT 120x180">
+								</div>
+								<div class="item">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2050/87/HCN2050-87_1.jpg" alt="Alfombra HAPPY ANIMALS">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2049/87/HCN2049-87_1.jpg" alt="Alfombra MY LITTLE WORLD">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2042/87/HCN2042-87_1.jpg" alt="Alfombra MY LITTLE CITY">
+									<img class="col-xs-6 col-sm-3 img-responsive" src="https://www.superestudio.com/imagenes/productos/HCN2041/87/HCN2041-87_1.jpg" alt="Alfombra SOCCER">
+								</div>
+							</div>
+							<a class="left btn btn-secondary btn-rounded" href="#carouselCrossSelling3" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#carouselCrossSelling3" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselCrossSelling3" data-slide-to="1"></li>
+								<li data-target="#carouselCrossSelling3" data-slide-to="2"></li>
+								<li data-target="#carouselCrossSelling3" data-slide-to="3"></li>
+								<li data-target="#carouselCrossSelling3" data-slide-to="4"></li>
+							</ol>
+							<!-- Controls -->
+							<a class="right btn btn-secondary btn-rounded" href="#carouselCrossSelling3" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active">
+						<button class="btn btn-secondary btn-rounded category-btn" href="#slideContent1" aria-controls="slideContent1" role="tab" data-toggle="tab">Cojines</button>
+					</li>
+					<li role="presentation">
+						<button class="btn btn-secondary btn-rounded category-btn" href="#slideContent2" aria-controls="slideContent2" role="tab" data-toggle="tab">Vinilos</button>
+					</li>
+					<li role="presentation">
+						<button class="btn btn-secondary btn-rounded category-btn" href="#slideContent3" aria-controls="slideContent3" role="tab" data-toggle="tab">Alfombras</button>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-lg-pull-9 selection">
+				<div class="combine-products">
+					<div class="product pull-left">
+						<img width="100px" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-" />
+					</div>
+					<span class="glyphicon glyphicon-heart-empty animated pulse"></span>
+					<div class="product-to-add pull-right">
+						<img width="100px" src="https://www.superestudio.com/imagenes/productos/HCN1273/min/categoria/HCN12731.jpg" alt="Funda cojín EXPANSION YELLOW algodón 45x45" />
+						<span class="discount">60% DTO</span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<span class="pvp-price">PVP: 17,79€</span>
+				<span class="offer-price">oferta: 8,89€</span>
+				<span class="last-price">Ahora: <span>6,98€</span></span>
+				<span class="total-price">Precio total: <strong>46,50€</strong></span>
+				<button class="btn btn-primary btn-rounded">Añadir al carrito</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="bgDark">
+	<div class="container">
+		<!-- similar items with same finishing with less delivery time -->
+		<section class="row center related better-time collapse" id="betterTimeSection">
+			<h5 class="title">otros productos que podrían interesarte</h5>
+			<a href="#" class="btn btn-secondary btn-rounded title-btn">ver todos</a>
+			
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+			        	<span class="delivery-time">Entrega entre 5-8 días</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+			        	<span class="delivery-time">Entrega entre 5-8 días</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+			        	<span class="delivery-time">Entrega entre 5-8 días</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+			        	<span class="delivery-time">Entrega entre 5-8 días</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+		</section>
+
+		<!-- More items about same colection -->
+		<section class="row center related same-collection">
+			<h5 class="title">Más sobre la colección Eames Design</h5>
+			<a href="#" class="btn btn-secondary btn-rounded title-btn">ver toda la colección</a>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 producto-box">
+				<div class="content">
+				    <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+				        <div class="info">
+				            <div class="nombre">Silla WOODEN -Polipropileno-</div>
+				            <div class="categoria">Sillas Icono del Diseño</div>
+				        </div>
+				        <img class="primary" src="https://intranet.superestudio.com//imagenes/productos/SHX014/min/default/SHX0141.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="Silla WOODEN -Polipropileno-">
+				        <span class="precio">
+				        	Ahora:&nbsp;<span>35,01&nbsp;€</span>
+				    	</span>
+			        	<span class="text-desc">-66% descuento</span>
+				    </a>
+				    <div class="folding">
+				    	<div class="caja">
+				    		<form class="add-product-form">
+				        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+					        	<div class="acabados">
+									<label class="radio-inline color">
+								  		<input type="radio" name="finishesRadioInput" value="Beige" required>
+										<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Turquesa">
+										<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+										<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Marrón">
+										<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Naranja">
+										<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rojo">
+										<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Rosa claro">
+										<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Blanco">
+										<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Negro">
+										<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Crema">
+										<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Azul">
+										<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Verde">
+										<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Amarillo">
+										<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+									</label>
+									<label class="radio-inline color">
+										<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+										<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+									</label>
+					        	</div>
+					        </form>
+				        	<div class="aviso">¡últimas unidades!</div>
+				        	<div class="medidas">
+				        		<div class="col-xs-4 altura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+				        		</div>
+				        		<div class="col-xs-4 anchura">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+				        		</div>
+				        		<div class="col-xs-4 profundidad">
+				        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+				        		</div>
+				        		<div class="clearfix"></div>
+				        	</div>
+				    	</div>
+				    </div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+<!-- Footer -->
+<section class="footer">
+	<div class="container">
+		<div class="row footer-titulos hidden-xs">
+			<div class="col-md-8">
+				<h4>Todas las categorías</h4>
+				<div class="row footer-enlaces">
+					<div class="col-xs-6 col-md-3 enlaces">
+						<a href="#" class="enlace-bold">Sillas</a>
+						<a href="#">Sillas iconos del diseño</a>
+						<a href="#">Sillas de madera</a>
+						<a href="#">Sillas metálicas</a>
+						<a href="#">Sillas de plástico</a>
+						<a href="#">Sillas de oficina</a>
+						<a href="#">Sillas tapizadas</a>
+						<a href="#">Sillas patchwork</a>
+						<a href="#">Sillas plegables</a>
+						<a href="#">Sillas para exterior</a>
+						<a href="#">Sillas balancin</a>
+						<a href="#">Sillas baby</a>
+						<a href="#">Sillones</a>
+						<a href="#">Bancos</a>
+						<a href="#" class="enlace-bold">Taburetes</a>
+						<a href="#">Taburetes</a>
+						<a href="#" class="enlace-bold">Sofás</a>
+						<a href="#">Sofás</a>
+						<a href="#">Sofás cama</a>
+					</div>
+					<div class="col-xs-6 col-md-3 enlaces">
+						<a href="#" class="enlace-bold">Mesas</a>
+						<a href="#">Mesas de comedor</a>
+						<a href="#">Mesas de oficina</a>
+						<a href="#">Mesas de centro</a>
+						<a href="#">Mesas de café</a>
+						<a href="#">Mesas de bar</a>
+						<a href="#">Mesas de TV</a>
+						<a href="#">Mesas de exterior</a>
+						<a href="#">Mobiliario de oficina</a>
+						<a href="#">Barras</a>
+						<a href="#">Consolas</a>
+						<a href="#" class="enlace-bold">Lámparas</a>
+						<a href="#">Lámparas de suspensión</a>
+						<a href="#">Lámparas de sobremesa</a>
+						<a href="#">Lámparas de pie</a>
+						<a href="#">Lámparas de oficina</a>
+						<a href="#">Apliques</a>
+						<a href="#">Bombillas</a>
+						<a href="#" class="enlace-bold">Puffs</a>
+						<a href="#">Puffs</a>
+					</div>
+					<div class="col-xs-6 col-md-3 enlaces">
+						<a href="#" class="enlace-bold">Mobiliario de Diseño</a>
+						<a href="#">Estanterias</a>
+						<a href="#">Cajoneras</a>
+						<a href="#">Camas</a>
+						<a href="#">Joyero</a>
+						<a href="#" class="enlace-bold">Textil</a>
+						<a href="#">Cojines y fundas</a>
+						<a href="#">Alfombras</a>
+						<a href="#" class="enlace-bold">Complementos</a>
+						<a href="#">Espejos</a>
+						<a href="#">Relojes</a>
+						<a href="#">Percheros</a>
+						<a href="#">Revisteros</a>
+						<a href="#">Biombos</a>
+						<a href="#">Velas</a>
+						<a href="#">Jarrones y figuras</a>
+						<a href="#">Maceteros</a>
+						<a href="#">Menaje</a>
+						<a href="#">Mobiliario iluminado</a>
+						<a href="#">Libros de diseño</a>
+						<a href="#">Productos de limpieza</a>
+					</div>
+					<div class="col-xs-6 col-md-3 enlaces">
+						<a href="#" class="enlace-bold">Wall deco</a>
+						<a href="#">Lienzos 1 y 3 piezas</a>
+						<a href="#">Lienzos pirámide 5 piezas</a>
+						<a href="#">Fotocuadros 1 y 3 piezas</a>
+						<a href="#">Fotocuadros pirámide</a>
+						<a href="#">Vinilos</a>
+						<a href="#">Vinilos pizarra</a>
+						<a href="#">Vinilos infatiles</a>
+						<a href="#">Vinilos de espejo</a>
+						<a href="#">Vinilos de Navidad</a>
+						<a href="#">Cuadros de metal impreso</a>
+						<a href="#">Cuadros de madera impresa</a>
+						<a href="#">Relojes decorativos</a>
+						<a href="#">Paneles decorativos</a>
+						<a href="#">Colgadores decorativos</a>
+						<a href="#">Chapas decorativas</a>
+						<a href="#">Portafotos</a>
+						<a href="#">Pizarras</a>
+						<a href="#">Otros</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h4>Más información</h4>
+				<div class="row footer-enlaces">
+					<div class="col-xs-6 col-md-6 enlaces">
+						<a href="#" class="enlace-bold">Servicios</a>
+						<a href="#">Mobiliario para restauración</a>
+						<a href="#">Quiero alquilar mobiliario</a>
+						<a href="#">Soluciones empresariales</a>
+						<a href="#">Directorio de empresas</a>
+						<a href="#">Registro profesional</a>
+						<a href="#" class="enlace-bold">Nosotros</a>
+						<a href="#">Preguntas frecuentes</a>
+						<a href="#">Tiendas</a>
+						<a href="#">Franquicias</a>
+					</div>
+					<div class="col-xs-6 col-md-6 enlaces">
+						<a href="#" class="enlace-bold">¿Cómo contactarnos?</a>
+						<a href="#">Contacto</a>
+						<a href="#">Trabaja con nosotros</a>
+						<a href="#">Enviar sugerencias</a>
+						<a href="#" class="enlace-bold">Promociones</a>
+						<a href="#">Outlet</a>
+						<a href="#">Novedades</a>
+						<a href="#">Todas las promociones</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="terms">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 left"><span>&copy; 2005-2016 SuperStudio. Todos los derechos reservados</span></div>
+				<div class="col-sm-6 right">
+					<a href="#">Condiciones de uso</a> - <a href="#">Política de privacidad y cookies</a> - <a href="#">Notal
+					legal</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- shipment cost form -->
+<div class="collapse calculate-shipment" id="calculateShipment">
+	<form class="form-horizontal" name="calculateShipmentForm" id="calculateShipmentForm">
+  		<div class="form-group">
+	    	<label for="inputCountry" class="col-sm-4 col-md-6 col-lg-4 control-label">País</label>
+    		<div class="col-sm-8 col-md-6 col-lg-8">
+				<select class="form-control" required>
+					<option>Albania</option>
+					<option selected>Andorra</option>
+					<option>Áustria</option>
+					<option>Bosnia-Herzegovina</option>
+					<option>Bélgica</option>
+					<option>Suiza</option>
+					<option>Chipre</option>
+				</select>
+	    	</div>
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="inputZipcode" class="col-sm-4 col-md-6 col-lg-4 control-label">Código postal</label>
+	    	<div class="col-sm-8 col-md-6 col-lg-8">
+	      		<input type="text" class="form-control" id="inputZipcode" placeholder="Código postal" required>
+	    	</div>
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="inputUnits" class="col-sm-4 col-md-6 col-lg-4 control-label">Unidades</label>
+	    	<div class="col-sm-8 col-md-6 col-lg-8">
+	      		<input type="number" class="form-control" id="inputUnits" placeholder="Unidades" min="1" required>
+	    	</div>
+	  	</div>
+		<div class="form-group">
+			<div class="col-sm-12 text-right">
+				<a class="btn btn-secondary btn-rounded btn-sm show-shipment collapsed" id="hideShipmentBtn" role="button" data-toggle="collapse" href="#calculateShipment" aria-expanded="false" aria-controls="calculateShipment">Cancelar</a>
+				<button type="submit" class="btn btn-primary btn-rounded btn-sm">Calcular</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- Large image modal -->
+<div class="modal fade large-image-modal" id="largeImageModal" tabindex="-1" role="dialog" aria-labelledby="largeImageModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<button type="button" class="btn btn-link close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<img class="img-responsive" src="" alt="">
+		</div>
+	</div>
+</div>
+
+<!-- Modal image measure -->
+<div class="modal fade measure-image-modal" id="measureImage" tabindex="-1" role="dialog" aria-labelledby="measureImageLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Medidas</h4>
+      </div>
+      <div class="modal-body">
+        <img src="imagenes/product-measures.jpg" alt=""/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Feedback message when a product is added to cart from product's grid -->
+<div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
+ 	<button type="button" class="close"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+</div>
+
+<script data-main="includes/scripts/detail" src="includes/scripts/lib/require.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+</body>
+</html>

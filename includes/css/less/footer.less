@@ -1,0 +1,220 @@
+
+.ventajas {
+  font-size: @font_small;
+  img {
+    height: 42px;
+    width: 42px;
+  }
+  p {
+    color: lighten(@negro, 60%);
+    line-height: 18px;
+    font-size: 14px;
+    padding: 0 40px;
+    margin-top: 10px;
+    @media (max-width:@xxs) {
+      padding: 0;
+      margin-bottom: 40px;
+    }
+  }
+  a {
+    display: inline;
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+/*
+* METODOS DE PAGO
+*/
+.metodo-pago {
+  ul {
+    padding: 0;
+
+    .pagos {
+      background: @blanco_roto url('../../imagenes/iconos/payment-methods.jpg') no-repeat;
+      display: inline-block;
+      margin: 0 2px 2px;
+      padding: 5px 0;
+      width: 90px;
+      height: 50px;
+
+      &.visa {
+        background-position: 0px 5px;
+      }
+      &.visa-electron {
+        background-position: -90px 5px;
+      }
+      &.mastercard {
+        background-position: -180px 5px;
+      }
+      &.maestro {
+        background-position: -270px 5px;
+      }
+      &.american-express {
+        background-position: -360px 5px;
+      }
+      &.skrill {
+        background-position: -450px 5px;
+      }
+      &.ideal {
+        background-position: -540px 5px;
+      }
+      &.giropay {
+        background-position: -630px 5px;
+      }
+      &.postepay {
+        background-position: -720px 5px;
+      }
+      &.trustly {
+        background-position: -810px 5px;
+      }
+      &.aplazame {
+        background-position: -900px 5px;
+      }
+      &.sofort-banking {
+        background-position: -990px 5px;
+      }
+      &.cb {
+        background-position: -1080px 5px;
+      }
+      &.eps {
+        background-position: -1170px 5px;
+      }
+      &.bank-transfer {
+        background-position: -1260px 5px;
+      }
+      &.cod {
+        background-position: -1350px 5px;
+      }
+    }
+  }
+}
+
+.calidad-y-confianza {
+  ul {
+    padding: 0;
+
+    .pagos {
+      background: @blanco_roto url('../../imagenes/iconos/payment-methods.jpg') no-repeat;
+      display: inline-block;
+      margin: 0 2px 2px;
+      padding: 5px 0;
+      width: 90px;
+      height: 50px;
+
+      &.rapid-ssl {
+        background-position: -1530px 5px;
+      }
+      &.trusted-shops {
+        background-position: -1440px 5px;
+      }
+    }
+  }
+}
+
+.newsletter {
+  .footer-top {
+    padding: 25px 0;
+    margin-bottom: 20px;
+  }
+  
+  .form-nws {
+    display: inline-block;
+    max-width: 400px;
+    
+    @media (max-width:@xs) {
+      margin-bottom: 20px;
+    }
+  }
+  
+  input[type="submit"]  {
+    background-color: @gris;
+    color: @blanco;
+
+    &:hover,
+    &:active {
+      background-color: @gris_oscuro;
+    }
+  }
+
+  .enlaces_sociales {
+    display: inline-block;
+    margin: 10px;
+    opacity: 0.85;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
+.footer {
+  padding: 25px 0 0;
+  
+  @media (max-width:@xs) {
+    padding: 0;
+    text-align: center;
+  }
+  
+  .footer-titulos h4 {
+    margin: 0 0 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid fadeout(@gris, 50%);
+  }
+  
+  .footer-enlaces {
+    margin-bottom: 20px;
+    
+    .enlaces {
+      a {
+        font-size: 11px;
+        color: #7a7a7a;
+        line-height: 16px;
+        &:hover {
+          color: #343434;
+        }
+      }
+    }
+    
+    .enlace-bold {
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  }
+  
+  .terms {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    padding: 8px 0;
+    font-size: 12px;
+    
+    @media (max-width:@xs) {
+      font-size: 11px;
+    }
+    
+    a {
+      display: inline-block;
+      color: #ffffff;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    .left {
+      text-align: left;
+      @media (max-width:@xs) {
+        text-align: center;
+        margin-bottom: 5px;
+      }
+    }
+    
+    .right {
+      text-align: right;
+      
+      @media (max-width:@xs) {
+        text-align: center;
+      }
+    }
+  }
+}

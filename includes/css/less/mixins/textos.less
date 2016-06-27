@@ -1,0 +1,76 @@
+h6 {
+  text-transform: uppercase;
+  font-family: @mainFont;
+  font-size: 21px;
+  line-height: 21px;
+  color: #FFFFFF;
+  text-shadow: 0 0 3px rgba(0,0,0,1);
+  text-align: center;
+  margin: 0;
+}
+
+.tituloBanner() {
+  font-family: @mainFont;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 43px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tituloNegro() {
+  font-family: @mainFont;
+  font-size: 26px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 28px;
+  letter-spacing: -1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.titularNegroEspaciado() {
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-family: @mainFont;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 4.33px;
+  line-height: 16px;
+  
+  @media (max-width:@xs) {
+    letter-spacing: 1px;
+  }
+}
+
+.textoSombra() {
+  text-shadow: 0 0 5px rgba(0,0,0,0.75);
+}
+
+.subtituloGris() {
+  font-family: @mainFont;
+  font-size: 15px;
+  color: fadeout(@negro, 60%);
+  letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.totalPrice() {
+  color: @gris_claro;
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pvpPrice() {
+  color: @gris;
+  display: block;
+  font-size: 14px;
+  text-decoration: line-through;
+  text-transform: uppercase;
+  text-align: center;
+}

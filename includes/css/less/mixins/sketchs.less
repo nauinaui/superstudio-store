@@ -1,0 +1,342 @@
+.categoryChair() {
+  background: url('../../imagenes/iconos/svg/measures-chair.svg') no-repeat top center;
+  height: 165px;
+  position: relative;
+
+  span {
+    position: absolute;
+
+    &.width {
+      top: 155px;
+      left: 83px;
+      .transform(rotate(30deg));
+    }
+
+    &.height {
+      top: 70px;
+      left: 200px;
+    }
+
+    &.sitting-height {
+      top: 95px;
+      left: 45px;
+    }
+
+    &.depth {
+      top: 30px;
+      left: 77px;
+      .transform(rotate(-30deg));
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+
+    span {
+      &.width {
+        top: 155px;
+        left: 43px;
+        .transform(rotate(30deg));
+      }
+
+      &.height {
+        top: 70px;
+        left: 160px;
+      }
+
+      &.sitting-height {
+        top: 95px;
+        left: 5px;
+      }
+
+      &.depth {
+        top: 30px;
+        left: 37px;
+        .transform(rotate(-30deg));
+      }
+    }
+  }
+}
+
+.categoryTable() {
+  background: url('../../imagenes/iconos/svg/measures-table.svg') no-repeat top center;
+  height: 110px;
+  position: relative;
+ 
+  span {
+    position: absolute;
+
+    &.width {
+      top: -5px;
+      left: 165px;
+      .transform(rotate(30deg));
+    }
+
+    &.height {
+      top: 53px;
+      left: 200px;
+    }
+
+    &.depth {
+      top: -5px;
+      left: 73px;
+      .transform(rotate(-30deg));
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;         
+
+    span {
+      position: absolute;
+
+      &.width {
+        top: -5px;
+        left: 125px;
+        .transform(rotate(30deg));
+      }
+
+      &.height {
+        top: 53px;
+        left: 160px;
+      }
+
+      &.depth {
+        top: -5px;
+        left: 33px;
+        .transform(rotate(-30deg));
+      }
+    }
+  }
+}
+
+.categoryStool() {
+  background: url('../../imagenes/iconos/svg/measures-stool.svg') no-repeat top center;
+  height: 165px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: 155px;
+      left: 83px;
+      .transform(rotate(30deg));
+    }
+
+    &.height {
+      top: 70px;
+      left: 195px;
+    }
+
+    &.sitting-height {
+      top: 90px;
+      left: 45px;
+    }
+
+    &.depth {
+      top: 15px;
+      left: 77px;
+      .transform(rotate(-30deg));
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+
+    span {
+      &.width {
+      }
+      &.height {
+      }
+      &.sitting-height {
+      } 
+      &.depth {
+      }
+    }
+  }
+}
+
+.categoryLamp() {
+  background: url('../../imagenes/iconos/svg/measures-lamp.svg') no-repeat top center;
+  height: 165px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: 152px;
+      left: 91px;
+      .transform(rotate(30deg));
+    }
+
+    &.height {
+      top: 70px;
+      left: 190px;
+    }
+
+    &.diameter {
+      top: 107px;
+      left: 35px;
+
+      &:before {
+        content: "Ø";
+      }
+    }
+
+    &.depth {
+      top: 45px;
+      left: 85px;
+      .transform(rotate(-30deg));
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+    margin-left: 10px;
+
+    span {
+      &.width {
+        left: 55px;
+      }
+
+      &.height {
+        left: 150px;
+      }
+
+      &.depth {
+        left: 45px;
+      }
+
+      &.diameter {
+        left: -5px;
+      }
+    }
+  }
+}
+
+.categorySofa() {
+  background: url('../../imagenes/iconos/svg/measures-sofa.svg') no-repeat top center;
+  height: 165px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: 0px;
+      left: 171px;
+      .transform(rotate(30deg));
+    }
+
+    &.height {
+      top: 70px;
+      left: 220px;
+    }
+
+    &.sitting-height {
+      top: 83px;
+      left: 20px;
+    }
+
+    &.depth {
+      top: 143px;
+      left: 180px;
+      .transform(rotate(-30deg));
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+    margin-left: 10px;
+
+    span {
+      &.width {
+        left: 135px;
+      }
+
+      &.height {
+        left: 185px;
+      }
+
+      &.depth {
+        left: 145px;
+      }
+
+      &.sitting-height {
+        left: -15px;
+      }
+    }
+  }
+}
+
+.categoryCushion() {
+  background: url('../../imagenes/iconos/svg/measures-cushion.svg') no-repeat top center;
+  height: 165px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: -20px;
+      left: 125px;
+    }
+
+    &.height {
+      top: 70px;
+      left: 25px;
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+    margin-left: 10px;
+
+    span {
+      &.width {
+        left: 90px;
+      }
+
+      &.height {
+        left: -10px;
+      }
+    }
+  }
+}
+
+.categoryCarpet() {
+  background: url('../../imagenes/iconos/svg/measures-carpet.svg') no-repeat top center;
+  height: 95px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: -20px;
+      left: 110px;
+    }
+
+    &.height {
+      top: 45px;
+      left: 215px;
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+    margin-left: 10px;
+
+    span {
+      &.width {
+        left: 75px;
+      }
+
+      &.height {
+        left: 180px;
+      }
+    }
+  }
+}
