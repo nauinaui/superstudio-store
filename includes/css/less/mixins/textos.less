@@ -47,6 +47,7 @@ h6 {
 
 .textoSombra() {
   text-shadow: 0 0 5px rgba(0,0,0,0.75);
+  filter: glow(color=#000000,strength=2);
 }
 
 .subtituloGris() {
@@ -73,4 +74,59 @@ h6 {
   text-decoration: line-through;
   text-transform: uppercase;
   text-align: center;
+}
+
+.price() {
+  margin-bottom: 30px;
+
+  .last-price {
+    font-size: 36px;
+    vertical-align: bottom;
+    display: inline-block;
+    line-height: 23px;
+    margin-right: 20px;
+
+    .cents, .currency {
+      font-size: 24px;
+    }
+  }
+
+  .old-price {
+    color: @gris_claro;
+    font-size: 24px;
+    font-weight: 300;
+    vertical-align: bottom;
+    display: inline-block;
+    line-height: 18px;
+    margin-right: 20px;
+    padding: 0 5px;
+    position: relative;
+    
+    .cents, .currency {
+      font-size: 18px;
+    }
+
+    &:after {
+      content:"";
+      background-color: @gris_claro;
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 1px;
+      .rotate(-15deg);
+    }
+  }
+
+  .discount {
+    background-color: @rojo;
+    color: @blanco;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 0px 10px;
+    vertical-align: bottom;
+    line-height: 23px;
+  }
 }

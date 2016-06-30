@@ -144,7 +144,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    .translate(-50%, -50%);
 
     .logo {
       display: inline-block;
@@ -284,7 +284,9 @@
     }
   }
   
-  .btn-menu, .btn-login, .btn-cart {
+  .btn-menu,
+  .btn-login,
+  .btn-cart {
     display: inline-block;
     vertical-align: middle;
     position: relative;
@@ -311,6 +313,10 @@
       height: 34px;
       margin: 8px 0px;
     }
+  }
+
+  .cart-container {
+    position: relative;
   }
   
   .btn-menu {
@@ -432,6 +438,181 @@
     }
   }
 
+  // user cart
+  ////////////////////////////////////////////////////////////////
+  .my-cart {
+    background-color: @blanco;
+    border-radius: 10px;
+    .box-shadow(0 0px 12px rgba(0,0,0,0.175));
+    position: absolute;
+    width: 400px;
+    top: 0;
+    right: 0;
+    z-index: 1010;
+
+    .header {
+      padding: 10px 20px;
+      text-align: center;
+
+      .close {
+        width: 20px;
+      }
+
+      .icon {
+        margin-right: 1px;
+        margin-top: 2px;
+      }
+
+      .title {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+    }
+
+    .item {
+      background-color: @blanco_roto;
+      margin-top: 0;
+      padding: 10px 20px;
+      text-align: left;
+      transition: .3s;
+
+      &:nth-of-type(odd) {
+        background-color: darken(@blanco_roto, 5%);
+        
+        &:hover {
+          background-color: darken(@blanco_roto, 8%);
+        }
+      }
+
+      &:hover {
+        background-color: darken(@blanco_roto, 3%);
+      }
+
+      .close {
+        width: 20px;
+      }
+
+      .nombre {
+        display: block;
+        font-weight: 700;
+      }
+
+      .finish {
+        color: @gris_claro;
+        display: block;
+      }
+
+      .price {
+        .price();
+        margin: 5px 0 0;
+
+        .last-price {
+          font-size: 20px;
+          line-height: 18px;
+          margin-right: 5px;
+
+          .cents,
+          .currency {
+            font-size: 16px;
+          }
+        }
+
+        .old-price {
+          font-size: 20px;
+          margin-right: 5px;
+          
+          .cents,
+          .currency {
+            font-size: 16px;
+          }
+        }
+
+        .discount {
+          font-size: 14px;
+          line-height: 18px;
+          padding: 0 5px;
+        }
+      }
+
+      .units {
+        font-size: 0;
+        text-align: center;
+
+        .units-title {
+          color: @gris_claro;
+          display: block;
+          font-size: 10px;
+          letter-spacing: 1px;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+        }
+
+        button {
+          font-size: 10px;
+          padding: 3px;
+          line-height: 7px;
+        }
+
+        .number {
+          color: @gris_oscuro;
+          font-size: 20px;
+          font-weight: 700;
+          margin: 0 5px;
+          vertical-align: bottom;
+          display: inline-block;
+          line-height: 16px;
+        }
+      }
+    }
+
+    .footer {
+      text-align: center;
+
+      p {
+        color: @gris_claro;
+        display: block;
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        
+        &.subtotal {
+          color: @gris_oscuro;
+        }
+      }
+
+      .price {
+        font-size: 24px;
+        display: block;
+        vertical-align: bottom;
+
+        &.saved {
+          color: @gris_claro;
+          line-height: 37px;
+        }
+
+        &.subtotal {
+          color: @gris_oscuro;
+          line-height: 35px;
+        }
+      }
+
+      .vat-text {
+        text-transform: none;
+      }
+
+      .go-checkout-btn {
+        display: block;
+        margin: 0 auto;
+        width: 60%;
+      }
+
+      .continue-shopping-btn {
+        color: @azul;
+      }
+    }
+  }
+
   // Cuando hacemos scroll y se queda la cabecera fija
   ////////////////////////////////////////////////////////////////
   &.fixed {
@@ -513,6 +694,7 @@
       border-radius: 11px;
       height: 22px;
       margin-top: 2px;
+      position: relative;
 
       img {
         width: auto;

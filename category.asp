@@ -90,10 +90,110 @@
 				<img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
 				<img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
 			</a>
-			<a class="btn-cart" href="javascript:void(0)">
-				<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
-				<span class="badge">13</span>
-			</a>
+			<div class="cart-container">
+				<a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
+					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+					<span class="badge">13</span>
+				</a>
+
+				<!-- My cart (opened) -->
+				<div class="collapse my-cart" id="myCart">
+					<div class="header">
+						<button type="button" class="close pull-left" data-toggle="collapse" data-target="#myCart" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<span class="title">tu carrito</span>
+						<img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Silla Wooden -Polipropileno-</span>
+								<span class="finish">Gris claro</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-50%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Silla TEREK</span>
+								<span class="finish">Acero cepillado</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-60%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/SHX022/min/categoria/SHX0221.jpg" alt="Mesa Tendar WOOD 120">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Mesa Tendar WOOD 120</span>
+								<span class="finish">Blanco</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
+									<div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-50%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="col-xs-6 text-right">
+							<p class="subtotal">subtotal</p>
+							<span class="price subtotal">369,08€</span>
+						</div>
+						<div class="col-xs-6 text-left">
+							<p>ahorro total</p>
+							<span class="price saved">138,29€</span>
+						</div>
+						<div class="clearfix"></div>
+						<p class="vat-text">Precio IVA incluido. Portes según destino.</p>
+						<a href="#" class="btn btn-primary btn-rounded go-checkout-btn">hacer pedido</a>
+						<button type="button" class="btn btn-link continue-shopping-btn" data-toggle="collapse" data-target="#myCart" aria-label="Close">Seguir comprando</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -1434,8 +1534,8 @@
 		                                            <div class="nombre"><%=limitar_texto(nombre,50)%></div>
 		                                            <div class="categoria"><%=nombre_cat%></div>
 		                                        </div>
-		                                        <img class="primary" src="<%=var_src_img%>/<%=muestra_imagen(url_imagen_destacado)%>" alt="<%=nombre%>">
-		                                        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/SHX014/SHX01412.jpg" alt="<%=nombre%>">
+		                                        <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="<%=nombre%>">
+		                                        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="<%=nombre%>">
 		                                        <span class="precio">
 		                                        <% if oferta = true Then %>
 		                                            <%if pcteColorDescuento > 0 then response.write "Desde" & "&nbsp;" else Response.Write(et_general(79)) ' ahora %>&nbsp;<span><%=mostrar_precio_pais(precio_final,null,true,true)%></span>

@@ -89,10 +89,110 @@
 				<img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
 				<img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
 			</a>
-			<a class="btn-cart" href="javascript:void(0)">
-				<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
-				<span class="badge">13</span>
-			</a>
+			<div class="cart-container">
+				<a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
+					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+					<span class="badge">13</span>
+				</a>
+			
+				<!-- My cart (opened) -->
+				<div class="collapse my-cart" id="myCart">
+					<div class="header">
+						<button type="button" class="close pull-left" data-toggle="collapse" data-target="#myCart" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<span class="title">tu carrito</span>
+						<img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Silla Wooden -Polipropileno-</span>
+								<span class="finish">Gris claro</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-50%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Silla TEREK</span>
+								<span class="finish">Acero cepillado</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-60%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="item media">
+						<div class="media-left media-middle">
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="media-body media">
+							<div class="media-left media-middle">
+								<img width="50" src="https://www.superestudio.com/imagenes/productos/SHX022/min/categoria/SHX0221.jpg" alt="Mesa Tendar WOOD 120">
+							</div>
+							<div class="media-body">
+								<span class="nombre">Mesa Tendar WOOD 120</span>
+								<span class="finish">Blanco</span>
+								<div class="price">
+									<div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
+									<div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
+									<div class="discount">-50%</div>
+								</div>
+							</div>
+						</div>
+						<div class="units media-right media-middle">
+							<span class="units-title">unidades</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+							<span class="number">4</span>
+							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="col-xs-6 text-right">
+							<p class="subtotal">subtotal</p>
+							<span class="price subtotal">369,08€</span>
+						</div>
+						<div class="col-xs-6 text-left">
+							<p>ahorro total</p>
+							<span class="price saved">138,29€</span>
+						</div>
+						<div class="clearfix"></div>
+						<p class="vat-text">Precio IVA incluido. Portes según destino.</p>
+						<a href="#" class="btn btn-primary btn-rounded go-checkout-btn">hacer pedido</a>
+						<button type="button" class="btn btn-link continue-shopping-btn" data-toggle="collapse" data-target="#myCart" aria-label="Close">Seguir comprando</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -715,6 +815,7 @@
 						</div>
 					</div>
 
+					<!-- Finishes section. Hide this section if it's an outlet product -->
 					<div class="finishes">
 						<span class="text">acabados disponibles:</span>
 			        	<div class="list-group finishes-list">
@@ -775,6 +876,16 @@
 								<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
 							</label>
 			        	</div>
+					</div>
+
+					<!-- Outlet finishes: Only show when is an outlet product. Toggle with the previous div.finishes -->
+					<div class="finishes outlet">
+						<span class="text">acabado outlet:</span>
+						<p>Haya</p>
+						<p><strong>ATENCIÓN:</strong> Este producto Outlet puede presentar taras o pequeños fallos, vea la <em>descripción del producto</em> en la FICHA DE PRODUCTO para conocer los detalles.</p>
+						<p><strong>Los productos Outlet no aceptan cambios ni devoluciones.</strong></p>
+						<p>Unidades disponibles: 1</p>
+						<p>¿Quieres visitar este producto? <button id="showContactFormButton" type="button" class="btn btn-secondary btn-sm btn-rounded">Solicitar visita</button></p>
 					</div>
 					
 					<div class="price">
@@ -1003,9 +1114,9 @@
 					</div>
 					<div class="col-md-4">
                         <div class="form-group" id="verificationGroup">
-                        	<label for="rcaptcha" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
+                        	<label for="rcaptcha1" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
                             <div class="col-sm-8 col-lg-11 col-lg-offset-1">
-                                <div class="g-recaptcha" id="rcaptcha" data-sitekey="6LccYR4TAAAAAAV7n_8DXPUbUvD6I3-DSEm6ams2"></div>
+                                <div class="g-recaptcha" id="rcaptcha1"></div>
                             </div>
                         </div>
 						<div class="form-group">
@@ -2258,6 +2369,58 @@
 			</div>
 		</div>
 	</form>
+</div>
+
+<!-- Contact form for outlet products -->
+<div id="contactFormContent" class="lateral-content">
+	<button id="outletContactFormCloseButton" type="button" class="close"><span aria-hidden="true">&times;</span></button>
+	<div class="container">
+		<div class="headerpanel">
+			<h3 class="title">Pide cita para ver el producto</h3>
+			<p>Nuestro Outlet en Barcelona:<br />
+				C/ Sant Eusebi, 53<br>
+				L-V, de 9:00h a 14:00h y de 15:30 a 17:00h.</p>
+			<p>Fuera de este horario, el Outlet permanecerá cerrado.</p>
+			<p>Para atenderte personalmente, elige día y hora de visita a nuestra tienda.</p>							
+		</div>
+		<form action="/contacto" method="post" name="contacto" target="_self" id="formulario">
+		 	<div class="form-group">
+		    	<label for="inputName">Nombre:</label>
+		    	<input type="text" class="form-control" id="inputName" placeholder="Nombre" required>
+		  	</div>
+		 	<div class="form-group">
+		    	<label for="inputEmail">Email:</label>
+		    	<input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+		  	</div>
+		 	<div class="form-group">
+		    	<label for="inputPhone">Teléfono:</label>
+		    	<input type="text" class="form-control" id="inputPhone" placeholder="Teléfono" required>
+		  	</div>
+		 	<div class="form-group">
+		    	<label for="inputDate">Fecha:</label>
+		    	<input type="date" class="form-control" id="inputDate" placeholder="Fecha" required>
+		  	</div>
+		 	<div class="form-group">
+		    	<label for="inputTime">Hora:</label>
+		    	<input type="time" class="form-control" id="inputTime" placeholder="Hora" required>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="inputMessage">Mensaje:</label>
+		    	<textarea class="form-control" rows="3" id="inputMessage"></textarea>
+		  	</div>
+            <div class="form-group">
+            	<label for="rcaptcha2" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
+                <div class="g-recaptcha" id="rcaptcha2"></div>
+            </div>
+		  	<div class="checkbox">
+		    	<label>
+		      		<input type="checkbox" required> Comprendo y acepto las <a href="" title="">condiciones de uso</a> y la <a href="" title="">política de privacidad</a>
+		    	</label>
+		  	</div>
+		  	<button id="cancelOutletContactForm" type="button" class="btn btn-secondary btn-rounded">Cancel</button>
+		  	<button id="submitOutletContactForm" type="submit" class="btn btn-primary btn-rounded">Submit</button>
+		</form>
+	</div>
 </div>
 
 <!-- Large image modal -->
