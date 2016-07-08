@@ -1,4 +1,4 @@
-define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap, Countdown, Lib) {
+define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], function (Base, Bootstrap, Countdown, Lib, Zoom, Recaptcha) {
     var mDefault = new Base('This is the data for Page Detail');
 
 	/**
@@ -12,7 +12,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 	 */
 	function startCountdown() {
 		$('.countdown1').countdown({
-			date: "June 30, 2016 15:03:26",
+			date: "July 30, 2016 15:03:26",
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
@@ -88,6 +88,127 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 	}
 
 	/**
+	 * Detail page - Show correct delivery time for selected finish and show products with better delivery time advice and module
+	 * @param this:object Selected product finish
+	 */
+	function calculatePriceUnits(tipo) {
+		var price = $('#productPrice').text();
+		price = Number(price.replace(/[^0-9\.]+/g,""));
+		price = price / 100;
+		price = $('#unitsSelect').val() * price;
+		price = price.toFixed(2);
+
+		if (tipo === 'uk') { // Es UK
+			$('#unitsPrice').text( '&pound; '+price);
+		} else if (tipo === 'nl') { // Es NL
+			$('#unitsPrice').text( '&pound;'+price);
+		} else { // Son €
+			$('#unitsPrice').text( price + '€');
+		}
+	}
+
+	/**
+	 * Detail page - zoom effect in main image
+	 */
+	function zoomInit() {
+		if (window.innerWidth > 529) {
+			$('.zoom').zoom({magnifys: 2});
+		} else {
+			$('.zoom').trigger('zoom.destroy');
+		}
+	}
+
+	/**
+	 * Detail page - Receive correct price for product and finish selected
+	 */
+	function calculatePrice() {
+		var nameID = "id_producto",
+		valueID = $('body').data('product-id'),
+		porcenDesc = $('#discount'),
+		moreprice = $('#productPrice'),
+		tachaprice = $('#oldPrice'),
+		nuevoPrecio = $('#unitsPrice'),
+		activos = $('#finishesList input:checked'),
+		price = $('.price'),
+		normalprice = $('.normalprice'),
+		colorID = '',
+		acabadoID = '',
+		opcionID = '',
+		cantidadInput = $('#unitsSelect').val();
+
+		$.each(activos, function (i, e) {
+			var tipo = $(e).parent().data('type');
+			if (tipo === 'color') {
+				colorID = $(this).data('idacabado');
+			}
+			if (tipo === 'acabados') {
+				acabadoID = $(this).data('idacabado');
+			}
+			if (tipo === 'opciones') {
+				opcionID = $(this).data('idacabado');
+			}
+		});
+
+		$.ajax({
+			url: '/includes/web/plugin_precio_detalle.asp?' + nameID + '=' + valueID + '&color=' + colorID + '&acabado=' + acabadoID + '&opcion=' + opcionID,
+			success: function (data) {
+				console.log('received prices!');
+				var precio = data.split("|"),
+						precioPrint,
+						precioPrintOld,
+						precioPrintEuro,
+						precioPrintOldEuro,
+						porcentaje = precio[4],
+						tipo;
+
+				if (precio[0].charAt(0) === "&") { // Es UK o NL (con euro delante)
+					if (precio[0].indexOf('euro') !== -1) { // NL
+						// Replacing
+						precioPrint = precio[1].replace('&euro;', '');
+						precioPrintOld = precio[0].replace('&euro;', '');
+						// Printing
+						moreprice.html('&euro;' + precioPrint);
+						tachaprice.html('&euro;' + precioPrintOld);
+						nuevoPrecio.html('&euro;' + precioPrint);
+						precioPrint = precioPrint.replace(',', '.'); // Volvemos a poner INT
+						tipo = 'nl';
+					} else { // UK
+						// Reemplazamos
+						precioPrint = precio[1].replace('&pound;', '');
+						precioPrintOld = precio[0].replace('&pound;', '');
+						precioPrintEuro = precio[3].replace('&nbsp;&euro;', '');
+						precioPrintEuro = precioPrintEuro.replace(',', '.');
+						precioPrintOldEuro = precio[2].replace('&nbsp;&euro;', '');
+						precioPrintOldEuro = precioPrintOldEuro.replace(',', '.');
+						// Pintamos
+						moreprice.html('&pound;' + precioPrint + '<span class="priceMin">' + precioPrintEuro + '&euro;</span>');
+						tachaprice.html('&pound;' + precioPrintOld + '<span class="tachaprice priceMin">' + precioPrintOldEuro + '&euro;</span>');
+						nuevoPrecio.html('&pound;' + precioPrint);
+						tipo = 'uk';
+					}
+				} else { // Son €
+					// Reemplazamos
+					precioPrint = precio[1].replace('&nbsp;&euro;', '');
+					precioPrintOld = precio[0].replace('&nbsp;&euro;', '');
+					
+					// Printing
+					var precioPrintSeparated = precioPrint.split(',');
+					var precioPrintOldSeparated = precioPrintOld.split(',');
+
+					moreprice.html(precioPrintSeparated[0]+',<span class="cents">'+precioPrintSeparated[1]+'&euro;</span>');
+					tachaprice.html(precioPrintOldSeparated[0]+',<span class="cents">'+precioPrintOldSeparated[1]+'&euro;</span>');
+					nuevoPrecio.html(precioPrint + ' &euro;');
+					precioPrint = precioPrint.replace(',', '.'); // Volvemos a poner INT
+					tipo = 'normal';
+				}
+
+				porcenDesc.html(porcentaje);
+				calculatePriceUnits(tipo);
+			}
+		});
+	}
+
+	/**
 	 * =================
 	 * EVENTS
 	 * =================
@@ -95,19 +216,23 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 
 	// Detail page - Show large image when clicking on secundary images thummbnails
 	$('.more-images img[data-target="#largeImageModal"]').on('click', function(e) {
-		if (isMobile == false) {
+		//if (isMobile == false) {
 			var source = $(this).attr('src');
 			$('#largeImageModal .modal-content img').attr('src',source);
-		} else {
-			e.preventDefault();
-			e.stopPropagation();
-			$('#largeImageModal').modal({show: false});
-		}
+		//} else {
+		//	e.preventDefault();
+		//	e.stopPropagation();
+		//	$('#largeImageModal').modal({
+		//		show: false
+		//	});
+		//}
 	});
 
 	// Detail page - Show secundary image in main image content when hover in a thumbnail
 	$('.more-images img').mouseover(function() {
+		$('.zoom').trigger('zoom.destroy');
 		$('#mainImage').attr('src',$(this).attr('src'));
+		zoomInit();
 	});
 
 	// Show delivery time and stock after selecting a finish
@@ -140,11 +265,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 
 	// Detail page - Update price when product units select changes
 	$('#unitsSelect').on('change', function() {
-		var price = $('#productPrice').text();
-		console.log(price);
-		price = Number(price.replace(/[^0-9\.]+/g,""));
-		price = price / 100;
-		$('#unitsPrice').text( $('#unitsSelect').val() * price + '€');
+		calculatePriceUnits();
 	});
 
 	// Detail page - Collapse other information and show cross selling when a product is added to the cart
@@ -188,7 +309,13 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 	 */
 
     $(document).ready( function() {
+		// Init countdown
 		startCountdown();
+		// Get price of product
+		calculatePrice();
+		// Zoom effect
+		window.addEventListener("resize", zoomInit);
+		zoomInit();
 
 		// Stop auto play carousel
 		$('.carousel').carousel({
@@ -216,7 +343,6 @@ define(['./Base', 'bootstrap', 'countdown', '../lib'], function (Base, Bootstrap
 			  'theme' : 'dark'
 			});
 		};
-
     });
 
     return mDefault;

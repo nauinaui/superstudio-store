@@ -1,0 +1,349 @@
+.panel-group {
+  .panel-default {
+    background-color: transparent;
+    border: 0;
+    .box-shadow(none);
+
+    &.error {
+      & > .panel-heading .panel-title .glyphicon-remove {
+        display: inline-block;
+      }
+    }
+    
+    &.ok {
+      & > .panel-heading .panel-title .glyphicon-ok {
+        display: inline-block;
+      }
+    }
+
+    & > .panel-heading {
+      background-color: transparent;
+      border: 0;
+      margin-bottom: 20px;
+
+      .panel-title {
+        font-size: 18px;
+
+        .glyphicon {
+          display: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+          text-decoration: none;
+        }
+
+        span {
+          font-size: 14px;
+        }
+
+        .edit {
+          color: @gris;
+          font-size: 13px;
+          letter-spacing: 2px;
+        }
+      }
+
+      & + .panel-collapse {
+        & > .panel-body {
+          border-top: 0;
+          padding: 0;
+
+          .nav-tabs {
+            border-bottom: 0;
+
+            & > li {
+              background-color: @gris_claro_mas;
+              text-align: center;
+              width: 50%;
+              
+              & > a {
+                border: 0;
+                border-radius: 0;
+                margin: 0;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 3px;
+                color: @blanco;
+                text-transform: uppercase;
+
+                &:hover {
+                  background-color: @gris_claro;
+                }
+              }
+
+              &.active {
+                background-color: @gris_claro;
+                
+                & > a,
+                & > a:hover,
+                & > a:focus {
+                  background-color: @blanco;
+                  border: 0;
+                  color: @gris;
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .box {
+      background-color: @blanco;
+      color: @gris;
+      margin-bottom: 20px;
+      padding: 15px;
+
+      .subtitle {
+        .subtitle();
+      }
+
+      a {
+        color: @azul;
+        text-decoration: none;
+
+        &:hover {
+          color: darken(@azul, 10%);
+        }
+      }
+
+      .well.well-sm {
+        font-size: 12px;
+      }
+
+      .table-header {
+        border-bottom: 2px solid @gris;
+        margin-bottom: 10px;
+
+        .subtitle {
+          text-align: left;
+          display: inline;
+          margin-bottom: 0;
+        }
+
+        .delivery-time {
+          color: @gris_oscuro;
+          em {
+            font-weight: 700;
+            font-style: normal;
+          }
+        }
+      }
+
+      table {
+        & > thead {
+          & > tr {
+            & > th {
+              font-weight: 300;
+            }
+          }
+        }
+
+        & > tbody {
+          & > tr {
+            & > td {
+              vertical-align: middle;
+
+              &.warning-alert {
+                border-top: 0;
+
+                .alert {
+                  margin-bottom: 0;
+                  padding: 5px 15px;
+                }
+              }
+
+              &.price {
+                .price();
+                text-align: center;
+                .old-price {
+                  font-size: 14px;
+                  display: initial;
+                  margin: 0;
+                  padding: 0;
+                }
+                .last-price {
+                  font-size: 14px;
+                  display: block;
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .coupon-form {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .alert {
+        .close{
+          border: 0;
+          color: @gris;
+          font-weight: 700;
+          text-decoration: uppercase;
+
+          &:hover {
+            background-color: transparent;
+            color: @gris_oscuro;
+          }
+        }
+      }
+
+      .footer-price {
+        border-top: 1px solid @gris_claro_mas;
+
+        p {
+          margin: 10px 0 0;
+          text-align: right;
+        }
+      }
+
+      .shipping-company-list {
+        .company {
+          margin-bottom: 10px;
+          text-align: center;
+
+          label {
+            padding: 0;
+
+            input[type="radio"] {
+              margin: 0;
+              opacity: 0;
+              height: 25px;
+              width: 25px;
+
+              &:checked + .company-content {
+                border-radius: 5px;
+                box-shadow: 0 0 0 3px @azul;
+
+                .check-thick {
+                  opacity: 1;
+                }
+              }
+            }
+
+            .company-content {
+              height: 200px;
+              padding: 10px;
+              width: 195px;
+
+              .check-thick {
+                opacity: 0;
+                width: 20px;
+                height: 20px;
+                margin: 0 auto;
+                background-color: @azul;
+                border-radius: 50%;
+                margin-bottom: 20px;
+
+                .glyphicon {
+                  color: @blanco;
+                  font-size: 13px;
+                }
+              }
+
+              .logo {
+                background: url('../../imagenes/iconos/shipping-companies.gif') no-repeat;
+                display: block;
+                margin: 0 auto 20px;
+                width: 100px;
+                height: 40px;
+              }
+
+              .name {
+                display: block;
+                font-weight: 700;
+              }
+
+              .price {
+                display: block;
+
+                &:after {
+                  content: '*';
+                }
+              }
+
+              .mozo {
+                margin-bottom: 0;
+
+                label {
+                  font-size: 12px;
+                  margin-left: 20px;
+                }
+              }
+            }
+
+            &.asm .logo {
+              background-position: 0px 0px;
+            }
+            
+            &.dhl .logo {
+              background-position: 0px -40px;
+            }
+            
+            &.seur .logo {
+              background-position: 0px -80px;
+            }
+
+            &.rhenus .logo {
+              background-position: 0px -120px;
+            }
+          }
+        }
+      }
+    }
+  }  
+}
+
+.resume {
+  h4 {
+    color: @gris_oscuro;
+    font-size: 18px;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+  }
+
+  &.affix {
+    top: 100px;
+  }
+
+  .box {
+    background-color: @blanco;
+    color: @gris;
+    margin-bottom: 20px;
+    padding: 15px;
+
+    .table-resume {
+      & > tbody {
+        & > tr {
+          & > td {
+            font-size: 12px;
+            padding: 5px;
+            vertical-align: middle;
+          }
+        }
+      }
+      th {
+        font-size: 11px;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.popover {
+  font-size: 12px;
+  width: 500px;
+}
+
+@media (max-width: @xs-max) {
+  .popover {
+    width: 300px;
+  }
+}

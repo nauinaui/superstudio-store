@@ -28,9 +28,16 @@
     <link rel="stylesheet" href="includes/css/animate.min.css">
     <link rel="stylesheet" href="includes/css/superestudio.css">
 </head>
-<body>
 
-<div id="spin"></div>
+<body data-product-id="142898">
+<div class="ui-blocker">
+	<div class="thecube">
+		<div class="cube c1"></div>
+		<div class="cube c2"></div>
+		<div class="cube c4"></div>
+		<div class="cube c3"></div>
+	</div>
+</div>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -92,7 +99,7 @@
 			<div class="cart-container">
 				<a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
 					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
-					<span class="badge">13</span>
+					<span id="cartItemsNumber" class="badge">3</span>
 				</a>
 			
 				<!-- My cart (opened) -->
@@ -102,9 +109,9 @@
 						<span class="title">tu carrito</span>
 						<img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
 					</div>
-					<div class="item media">
+					<div class="item media" rel="142898" data-color="5" data-finish="" data-option="" data-type="producto">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -114,7 +121,7 @@
 								<span class="nombre">Silla Wooden -Polipropileno-</span>
 								<span class="finish">Gris claro</span>
 								<div class="price">
-									<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="last-price">58,<span class="cents">01</span><span class="currency">€</span></div>
 									<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-50%</div>
 								</div>
@@ -127,9 +134,9 @@
 							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
 						</div>
 					</div>
-					<div class="item media">
+					<div class="item media" rel="6679300" data-color="46313" data-finish="" data-option="" data-type="producto">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -139,7 +146,7 @@
 								<span class="nombre">Silla TEREK</span>
 								<span class="finish">Acero cepillado</span>
 								<div class="price">
-									<div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="last-price">48,<span class="cents">01</span><span class="currency">€</span></div>
 									<div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-60%</div>
 								</div>
@@ -152,9 +159,9 @@
 							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
 						</div>
 					</div>
-					<div class="item media">
+					<div class="item media" rel="6679256" data-color="46313" data-finish="" data-option="" data-type="producto">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -164,7 +171,7 @@
 								<span class="nombre">Mesa Tendar WOOD 120</span>
 								<span class="finish">Blanco</span>
 								<div class="price">
-									<div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
+									<div class="last-price">69,<span class="cents">95</span><span class="currency">€</span></div>
 									<div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-50%</div>
 								</div>
@@ -618,7 +625,7 @@
 													<span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
 													<div class="promo-description"></div>
 													<div class="promo-image">
-														<img src="http://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
+														<img src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
 													</div>
 												</a>
 											</div>
@@ -667,7 +674,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
 													<div class="promo-image">
-														<img src="http://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
+														<img src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
 													</div>
 												</a>
 											</div>
@@ -766,7 +773,9 @@
 			<div class="col-md-7 image-column">
 				<div class="last-units-stock"><p><strong>¡Últimas unidades en stock!</strong> - Hay 8 personas viendo este producto</p></div>
 				<div class="fast-delivery-badge"><span>envío inmediato</span></div>
-				<img id="mainImage" class="img-responsive main-image" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño" />
+				<a href="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" title="Las sillas WOODEN son uno de los clásicos del diseño" class="zoom">
+					<img id="mainImage" class="img-responsive main-image" src="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño" />
+				</a>
 				<div class="row more-images">
 					<ul>
 						<li><img type="button" data-toggle="modal" data-target="#largeImageModal" src="https://www.superestudio.com/imagenes/productos/TRN001/TRN0011.jpg" alt="Las sillas WOODEN son uno de los clásicos del diseño"></li>
@@ -818,61 +827,61 @@
 					<!-- Finishes section. Hide this section if it's an outlet product -->
 					<div class="finishes">
 						<span class="text">acabados disponibles:</span>
-			        	<div class="list-group finishes-list">
+			        	<div class="list-group finishes-list" id="finishesList">
 							<label class="radio-inline color">
-						  		<input type="radio" name="finishesRadioInput" value="Beige" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5" required>
+						  		<input type="radio" data-type="color" name="finishesRadioInput" value="Beige" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5" required>
 								<img src="imagenes/colores/beige.jpg" width="15" alt="Beige" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Turquesa" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Turquesa" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
 								<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa" data-diasnacional="5-8 días" data-diasinternacional="10" data-stock="5">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Azul petróleo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Azul petróleo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Marrón" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Marrón" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Naranja" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Naranja" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Rojo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Rojo" data-diasnacional="2-3 días" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Rosa claro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Rosa claro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Blanco" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Blanco" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Negro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Negro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Crema" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Crema" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Azul" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Azul" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Verde" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Verde" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Amarillo" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Amarillo" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
 							</label>
 							<label class="radio-inline color">
-								<input type="radio" name="finishesRadioInput" value="Gris oscuro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
+								<input type="radio" data-type="color" name="finishesRadioInput" value="Gris oscuro" data-diasnacional="2-3 semanas" data-diasinternacional="10" data-stock="25">
 								<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
 							</label>
 			        	</div>
@@ -889,9 +898,9 @@
 					</div>
 					
 					<div class="price">
-						<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
-						<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
-						<div class="discount">-50%</div>
+						<div id="productPrice" class="last-price">58,<span class="cents">01</span><span class="currency">€</span></div>
+						<div id="oldPrice" class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
+						<div id="discount" class="discount">-50%</div>
 					</div>
 
 					<div class="row info" id="infoDiv">
@@ -2457,7 +2466,6 @@
 </div>
 
 <script data-main="includes/scripts/detail" src="includes/scripts/lib/require.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
 </html>

@@ -30,8 +30,14 @@
     <link rel="stylesheet" href="includes/css/superestudio.css">
 </head>
 <body class="category-page">
-
-<div id="spin"></div>
+<div class="ui-blocker">
+	<div class="thecube">
+		<div class="cube c1"></div>
+		<div class="cube c2"></div>
+		<div class="cube c4"></div>
+		<div class="cube c3"></div>
+	</div>
+</div>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -93,7 +99,7 @@
 			<div class="cart-container">
 				<a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
 					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
-					<span class="badge">13</span>
+					<span id="cartItemsNumber" class="badge">3</span>
 				</a>
 
 				<!-- My cart (opened) -->
@@ -1471,172 +1477,1089 @@
 			</div>
 
 			<div class="row productos">
-				<%
-					sql = 	" SELECT TOP 12 productos.id_producto,oferta,oferta_particulares,oferta_profesionales,prod_textos.url_amigable, " &_
-							" ref,CASE WHEN prod_textos.nombre_producto IS NULL THEN nombre ELSE prod_textos.nombre_producto END AS nombre,precio,precio_tiendas,precio_profesionales,precio_coste,cat_textos.categoria as cat_isapi " &_
-							" FROM productos " &_
-							" LEFT JOIN prod_textos ON productos.id_producto = prod_textos.id_producto AND prod_textos.id_idioma = '" & idioma_textos & "' " &_
-							" LEFT JOIN cat_textos ON productos.id_categoria = cat_textos.id_categoria AND cat_textos.id_idioma = '"&session("idioma")&"' " &_
-							" ORDER BY suma_ventas_mensuales DESC "  ' productos.visitas DESC
-							'response.write(sql)
-							rs.Open sql, con
-
-							Response.Buffer = True
-							
-							if NOT rs.EOF then
-
-								contador = 1
-								Do While NOT rs.EOF
-									nombre = rs("nombre")
-									nombre_cat = rs("cat_isapi")
-									cat_isapi = limpiar_url(nombre_cat)
-									url_imagen_destacado = "/imagenes/productos/"&rs("ref")&"/min/default/"&rs("ref")&"1.jpg"
-									if NOT isnull(rs("url_amigable")) AND rs("url_amigable") <> "" Then
-										link_detalle_destacado = "/" & rs("url_amigable")
-									else
-										link_detalle_destacado = "/" & palabra_clave_prod & "/" & cat_isapi & "_" & limpiar_url(rs("nombre")) & "_" & rs("id_producto")
-									end if
-
-									'precios
-									oferta = EsOferta(rs("id_producto"))
-									tipo_oferta = et_general(71) ' OFERTA
-									precio_sin_descuento = calcula_precio_producto(rs("id_producto"),mostrar_iva,1)
-									if oferta = True Then
-										precio_final = calcula_precio_producto(rs("id_producto"),mostrar_iva,0)
-										porc_oferta = Round(((cCUR(precio_sin_descuento) - cCUR(precio_final)) / cCUR(precio_sin_descuento)) * 100,0)
-	'									if (porc_oferta mod 10)<> 0 and trim(id_referer) <> "" Then
-	'										precio_final= round(precio_sin_descuento -(precio_sin_descuento * porc_oferta / 100),2)
-	'									end if
-									end if  
-									' Averiguar si hay que calcular un precio por color
-									pcteColorDescuento = 0
-									if global_promocion_por_acabados = True then 
-										pcteColorDescuento = devuelve_max_descuento_color(rs("id_producto"))
-										if pcteColorDescuento > 0 then 
-											oferta = true
-											precio_final = calcula_precio_descuento(precio_final,pcteColorDescuento)
-											porc_oferta = calcula_descuento(porc_oferta, pcteColorDescuento)
-										end if
-									end if
-									
-									%>
-
-	                                <div class="col-sm-6 col-md-3 producto-box">
-	                                	<div class="content">
-		                                    <a href="<%=link_detalle_destacado%>" class="item"<% if oferta = True Then %> title="Oferta por tiempo limitado"<% end if %>>
-		                                        <ul class="lista-labels">
-			                                        <% if oferta = True Then %>
-			                                        	<li><span class="label label-inmediato">Envío inmediato</span></li>
-														<li><span class="label label-nuevo">Nuevo</span></li>
-			                                        <% end if %>
-			                                    </ul>
-		                                        <div class="info">
-		                                            <div class="nombre"><%=limitar_texto(nombre,50)%></div>
-		                                            <div class="categoria"><%=nombre_cat%></div>
-		                                        </div>
-		                                        <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="<%=nombre%>">
-		                                        <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="<%=nombre%>">
-		                                        <span class="precio">
-		                                        <% if oferta = true Then %>
-		                                            <%if pcteColorDescuento > 0 then response.write "Desde" & "&nbsp;" else Response.Write(et_general(79)) ' ahora %>&nbsp;<span><%=mostrar_precio_pais(precio_final,null,true,true)%></span>
-		                                        <% else %>
-		                                            <%=mostrar_precio_pais(precio_sin_descuento,null,true,true)%>
-		                                        <% end if %>
-		                                                    
-		                                        <!--span>€</span--></span>
-		                                        <% if oferta = True Then %>
-		                                        	<span class="text-desc">-<%=porc_oferta%>% descuento</span>
-		                                    	<% end if %>
-		                                        
-		                                        <!--<span class="text-info">Liquidación</span>-->
-		                                    </a>
-										    <div class="folding">
-										    	<div class="caja">
-										    		<form class="add-product-form">
-										        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
-											        	<div class="acabados">
-															<label class="radio-inline color">
-														  		<input type="radio" name="finishesRadioInput" value="Beige" required>
-																<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Turquesa">
-																<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Azul petróleo">
-																<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Marrón">
-																<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Naranja">
-																<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Rojo">
-																<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Rosa claro">
-																<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Blanco">
-																<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Negro">
-																<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Crema">
-																<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Azul">
-																<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Verde">
-																<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Amarillo">
-																<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
-															</label>
-															<label class="radio-inline color">
-																<input type="radio" name="finishesRadioInput" value="Gris oscuro">
-																<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
-															</label>
-											        	</div>
-											        </form>
-										        	<div class="aviso">¡últimas unidades!</div>
-										        	<div class="medidas">
-										        		<div class="col-xs-4 altura">
-										        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
-										        		</div>
-										        		<div class="col-xs-4 anchura">
-										        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
-										        		</div>
-										        		<div class="col-xs-4 profundidad">
-										        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
-										        		</div>
-										        		<div class="clearfix"></div>
-										        	</div>
-										    	</div>
-										    </div>
-									    </div>
-	                                </div>
-							<%	rs.MoveNext
-								contador = contador + 1
-								Response.Flush()
-						Loop
-					end if
-				rs.Close
-				%>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3  hidden-xs producto-box promo">
+                	<div class="content">
+                        <a href="#" class="item" title="Semana especial - Ofertas de verano">
+                            <div class="info">
+                                <div class="nombre">¡No te pierdas esta promoción!</div>
+                            </div>
+                            <img class="primary" src="imagenes/banners/product-banner-verano@2x.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <button type="button" class="btn btn-secondary">Ver promoción</button>
+                        </a>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3  hidden-xs producto-box promo">
+                	<div class="content">
+                        <a href="#" class="item" title="Semana especial - Ofertas de verano">
+                            <div class="info">
+                            	<p class="bg-info promo-title">verpasse diese Promotion nicht!</p>
+                                <!-- <button type="button" class="promo-title btn btn-default">verpasse diese Promotion nicht!</button> -->
+                            </div>
+                            <img class="primary" src="imagenes/banners/product-banner-rebajas@2x.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <button type="button" class="btn btn-secondary">Ver promoción</button>
+                        </a>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
+				<div class="col-sm-6 col-md-3 producto-box">
+                	<div class="content">
+                        <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
+                            <ul class="lista-labels">
+                                
+                                	<li><span class="label label-inmediato">Envío inmediato</span></li>
+									<li><span class="label label-nuevo">Nuevo</span></li>
+                                
+                            </ul>
+                            <div class="info">
+                                <div class="nombre">Silla WOODEN -Polipropileno-</div>
+                                <div class="categoria">Sillas Icono del Diseño</div>
+                            </div>
+                            <img class="primary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <img class="secondary" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0046.jpg" alt="Silla WOODEN -Polipropileno-">
+                            <span class="precio">
+                            Ahora:&nbsp;<span>32,90&nbsp;€</span>
+                            
+                                        
+                            <!--span>€</span--></span>
+                            
+                            	<span class="text-desc">-68% descuento</span>
+                        	
+                            
+                            <!--<span class="text-info">Liquidación</span>-->
+                        </a>
+					    <div class="folding">
+					    	<div class="caja">
+					    		<form class="add-product-form">
+					        		<input type="submit" class="btn btn-primary add-to-cart" value="añadir al carrito">
+						        	<div class="acabados">
+										<label class="radio-inline color">
+									  		<input type="radio" name="finishesRadioInput" value="Beige" required="">
+											<img src="imagenes/colores/beige.jpg" width="15" alt="Beige">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Turquesa">
+											<img src="imagenes/colores/turquesa.jpg" width="15" alt="Turquesa">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul petróleo">
+											<img src="imagenes/colores/azul-petroleo.jpg" width="15" alt="Azul petróleo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Marrón">
+											<img src="imagenes/colores/marron.jpg" width="15" alt="Marrón">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Naranja">
+											<img src="imagenes/colores/naranja.jpg" width="15" alt="Naranja">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rojo">
+											<img src="imagenes/colores/rojo.gif" width="15" alt="Rojo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Rosa claro">
+											<img src="imagenes/colores/rosa-claro.jpg" width="15" alt="Rosa claro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Blanco">
+											<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Negro">
+											<img src="imagenes/colores/negro.gif" width="15" alt="Negro">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Crema">
+											<img src="imagenes/colores/crema.gif" width="15" alt="Crema">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Azul">
+											<img src="imagenes/colores/azul.jpg" width="15" alt="Azul">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Verde">
+											<img src="imagenes/colores/verde.gif" width="15" alt="Verde">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Amarillo">
+											<img src="imagenes/colores/amarillo.jpg" width="15" alt="Amarillo">
+										</label>
+										<label class="radio-inline color">
+											<input type="radio" name="finishesRadioInput" value="Gris oscuro">
+											<img src="imagenes/colores/gris-oscuro.gif" width="15" alt="Gris oscuro">
+										</label>
+						        	</div>
+						        </form>
+					        	<div class="aviso">¡últimas unidades!</div>
+					        	<div class="medidas">
+					        		<div class="col-xs-4 altura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="altura">85cm
+					        		</div>
+					        		<div class="col-xs-4 anchura">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="anchura">52cm
+					        		</div>
+					        		<div class="col-xs-4 profundidad">
+					        			<img src="imagenes/iconos/svg/flechas-medidas.svg" alt="profundidad">45cm
+					        		</div>
+					        		<div class="clearfix"></div>
+					        	</div>
+					    	</div>
+					    </div>
+				    </div>
+                </div>
 			</div>
 		</section>
 	</div>

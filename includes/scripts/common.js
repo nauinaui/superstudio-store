@@ -14,14 +14,19 @@ require.config({
     bootstrap_slider: 'bootstrap-slider.min',
     plugins: 			    'Plugins',
     countdown:        'jquery.countdown.min',
-    detect_mobile:    'detectmobilebrowser.min'
+    detect_mobile:    'detectmobilebrowser.min',
+    zoom:             'zoom.min',
+    recaptcha:        'https://www.google.com/recaptcha/api',
+
   },
 	
 	shim: {
-		"app": 				       ["jquery"],
-	    "bootstrap":       ["jquery"],
-	    "bootstrap_slider":["jquery"],
-	    "plugins": 			   ["jquery"],
-	    "countdown":		   ["jquery"]
+		"app": 				     ["jquery"],
+    "bootstrap":       ["jquery"],
+    "bootstrap_slider":["jquery"],
+    "plugins": 			   ["jquery"],
+    "countdown":		   ["jquery"],
+    "zoom":            ["jquery"],
+    "recaptcha":       ["jquery"]
 	}
 });

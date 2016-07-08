@@ -1,4 +1,4 @@
 define(['./Base'], function (Base) {
-    var cDefault = new Base('Controller default');
-    return cDefault;
+    var cDetail = new Base('Controller detail');
+    return cDetail;
 });
