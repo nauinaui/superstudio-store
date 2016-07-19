@@ -22,9 +22,9 @@
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300' rel='stylesheet' type='text/css'>
-<!-- 	<link rel="stylesheet" href="includes/css/skeuocard.reset.css" />
+ 	<link rel="stylesheet" href="includes/css/skeuocard.reset.css" />
 	<link rel="stylesheet" href="includes/css/skeuocard.css" />
-	<link rel="stylesheet" href="includes/css/demo.css"> -->
+	<!-- <link rel="stylesheet" href="includes/css/demo.css"> -->
     <link rel="stylesheet" href="includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="includes/css/animate.min.css">
 
@@ -771,22 +771,23 @@
 
 <section class="bgDark">
 	<div class="container">
-
 		<div class="title">Completa tu pedido</div>
 		<div class="row">
 			<div class="col-sm-7 col-md-8">
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-				  <div id="deliveryDetailsPanel" class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingDeliveryDetails">
+				<div class="panel-group steps-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+				  	
+				  	<!-- STEP 1: Delivery details -->
+				  	<div id="deliveryDetailsPanel" class="panel panel-default">
+				    	<div class="panel-heading" role="tab" id="headingDeliveryDetails">
 				      <h4 class="panel-title">
 				        <span class="glyphicon glyphicon-ok"></span>
 				        <span class="glyphicon glyphicon-remove"></span>
 				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDeliveryDetails" aria-expanded="true" aria-controls="collapseDeliveryDetails">
-				          Delivery details <span class="edit pull-right">edit</span>
+				          Información de envío <span class="edit pull-right">editar</span>
 				        </a>
 				      </h4>
-				    </div>
-				    <div id="collapseDeliveryDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDeliveryDetails">
+				    	</div>
+				    	<div id="collapseDeliveryDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDeliveryDetails">
 				      <div class="panel-body">
 						<div>
 						  <!-- Nav tabs -->
@@ -897,382 +898,434 @@
 									</div>
 								</div>
 						    </div>
-						    <button type="button" class="btn btn-primary pull-right">Siguiente</button>
+						    <button type="button" class="btn btn-primary pull-right" data-step="1">Siguiente</button>
 						  </div>
 						</div>
 				      </div>
-				    </div>
-				  </div>
-				  <div id="productsPanel" class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingProducts">
-						<h4 class="panel-title">
-					        <span class="glyphicon glyphicon-ok"></span>
-					        <span class="glyphicon glyphicon-remove"></span>
-							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
-							  Products <span class="edit pull-right">edit</span>
-							</a>
-						</h4>
-				    </div>
-				    <div id="collapseProducts" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingProducts">
-				      <div class="panel-body">
-				      	<div class="box">
-				        	<div class="subtitle">Elige opciones de envío</div>
-							<div class="radio">
-								<label>
-									<input type="radio" name="deliveryType" id="deliveryType1" value="option1" checked>
-									<strong>Realizar entrega parcial</strong>
-								</label>
-								<div class="well well-sm">Sin coste añadido (Recomendado). Se realizarán 2 envíos en este pedido SEGÚN EL PLAZO DE ENTREGA INDICADO PARA CADA PRODUCTO (ver a continuación).</div>
-							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" name="deliveryType" id="deliveryType2" value="option2">
-									<strong>Deseo que se envíe todo junto</strong>
-								</label>
-								<div class="well well-sm">En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.</div>
-							</div>
+				    	</div>
+				  	</div>
 
-							<div class="table-header">
-								<p class="subtitle">Envío número 1</p>
-								<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 5 y 8 días</em></span>
-							</div>
-							<table class="table">
-								<thead>
-									<tr>
-										<th></th>
-										<th></th>
-										<th class="text-center">Unit price</th>
-										<th class="text-center">Quantity</th>
-										<th class="text-right">Total</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
-										<td>
-											WOODEN Chair -Polypropilene-
-											<select class="form-control">
-												<optgroup label="Entrega entre 5 y 8 días">
-													<option>Beige</option>
-													<option>Turquesa</option>
-													<option selected>Azul petróleo</option>
-												</optgroup>
-												<optgroup label="Entrega entre 10 y 13 días">
-													<option>Gris oscuro</option>
-													<option>Marrón</option>
-													<option>Naranja</option>
-													<option>Rojo</option>
-													<option>Azul</option>
-												</optgroup>
-												<optgroup label="Entrega entre 19 y 22 días">
-													<option>Verde</option>
-													<option>Amarillo</option>
-												</optgroup>
-											</select>
-										</td>
-										<td class="price">
-											<span class="old-price">116,00€</span>
-											<span class="last-price">38,01€</span>
-										</td>
-										<td>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-												<option selected>28</option>
-											</select>
-										</td>
-										<td class="text-right">1.064,28€</td>
-									</tr>
-									<tr>
-										<td class="warning-alert" colspan="5">
-											<div class="alert alert-warning" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
-										</td>
-									</tr>
-									<tr>
-										<td><img width="100px" src="https://intranet.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" alt="Taburete HIGHT URAL -Metal Cepillado-"></td>
-										<td>
-											HIGHT URAL -Brushed Metal- Stool
-											<select class="form-control">
-												<optgroup label="Entrega entre 5 y 8 días">
-													<option>Acero cepillado</option>
-												</optgroup>
-											</select>
-										</td>
-										<td class="price">
-											<span class="old-price">81,33€</span>
-											<span class="last-price">39,00€</span>
-										</td>
-										<td>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-											</select>
-										</td>
-										<td class="text-right">39,00€</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div class="table-header">
-								<p class="subtitle">Envío número 2</p>
-								<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 14 y 15 semanas</em></span>
-							</div>
-							<table class="table">
-								<thead>
-									<tr>
-										<th></th>
-										<th></th>
-										<th class="text-center">Unit price</th>
-										<th class="text-center">Quantity</th>
-										<th class="text-right">Total</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
-										<td>
-											WOODEN Chair -Polypropilene-
-											<select class="form-control">
-												<optgroup label="Entrega entre 5 y 8 días">
-													<option>Beige</option>
-													<option>Turquesa</option>
-													<option>Azul petróleo</option>
-												</optgroup>
-												<optgroup label="Entrega entre 10 y 13 días">
-													<option>Gris oscuro</option>
-													<option>Marrón</option>
-													<option>Naranja</option>
-													<option>Rojo</option>
-													<option>Azul</option>
-												</optgroup>
-												<optgroup label="Entrega entre 19 y 22 días">
-													<option>Verde</option>
-													<option>Amarillo</option>
-												</optgroup>
-												<optgroup label="Entrega entre 14 y 15 semanas">
-													<option selected>Crema</option>
-												</optgroup>
-											</select>
-										</td>
-										<td class="price">
-											<span class="old-price">116,00€</span>
-											<span class="last-price">38,01€</span>
-										</td>
-										<td>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-											</select>
-										</td>
-										<td class="text-right">1.064,28€</td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div class="subtitle">Cupón de descuento</div>
-							<p>El importe mínimo de compra del cupón no incluye los gastos de envío. El cupón descuento queda vinculado al pedido realizado, aunque no esté pagado. Por favor, tenlo en cuenta especialmente si vas a realizar un pedido mediante transferencia bancaria.</p>
-							<form class="form-inline coupon-form">
-								<div class="form-group">
-									<label for="inputCoupon">Código del cupón:</label>
-									<input type="text" class="form-control" id="inputCoupon" placeholder="Código del cupón">
+				  	<!-- STEP 2: Products -->
+				  	<div id="productsPanel" class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingProducts">
+							<h4 class="panel-title">
+						        <span class="glyphicon glyphicon-ok"></span>
+						        <span class="glyphicon glyphicon-remove"></span>
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+								  Productos <span class="edit pull-right">editar</span>
+								</a>
+							</h4>
+					    </div>
+					    <div id="collapseProducts" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingProducts">
+					      <div class="panel-body">
+					      	<div class="box">
+					        	<div class="subtitle">Elige opciones de envío</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="deliveryType" id="deliveryType1" value="option1" checked>
+										<strong>Realizar entrega parcial</strong>
+									</label>
+									<div class="well well-sm">Sin coste añadido (Recomendado). Se realizarán 2 envíos en este pedido SEGÚN EL PLAZO DE ENTREGA INDICADO PARA CADA PRODUCTO (ver a continuación).</div>
 								</div>
-								<button type="submit" class="btn btn-secondary">Validar</button>
-								<div class="clearfix"></div>
-							</form>
-							
-							<div class="alert alert-success alert-dismissible" role="alert">
-	  							<button type="button" class="close btn" data-dismiss="alert" aria-label="Close">anular cupón <span aria-hidden="true">&times;</span></button>¡Código correcto! Descuento aplicado de: <strong>-10,00€</strong>
-	  						</div>
-							
-							<div class="alert alert-danger" role="alert">
-								No has alcanzado el <strong>importe mínimo de 100,00€</strong> para que el cupón sea válido.
-							</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="deliveryType" id="deliveryType2" value="option2">
+										<strong>Deseo que se envíe todo junto</strong>
+									</label>
+									<div class="well well-sm">En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.</div>
+								</div>
 
-							<div class="footer-price">
-								<p class="subtitle">Total productos: 1.331,34€</p>
-							</div>
-			        	</div>
-						<button type="button" class="btn btn-primary pull-right">Siguiente</button>
-				      </div>
-				    </div>
-				  </div>
-				  <div id="shippingMethodPanel" class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingShippingMethod">
-				      	<h4 class="panel-title">
-					        <span class="glyphicon glyphicon-ok"></span>
-					        <span class="glyphicon glyphicon-remove"></span>
-				        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseShippingMethod" aria-expanded="false" aria-controls="collapseShippingMethod">
-				          		Shipping method <span class="edit pull-right">edit</span>
-				        	</a>
-				      	</h4>
-				    </div>
-				    <div id="collapseShippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingShippingMethod">
-				      <div class="panel-body">
-				        <div class="box">
-					        <p>All shipping costs are calculated from your zipcode given in your delivery details.</p>
-					        <div class="row shipping-company-list">
-					        	<div class="col-md-4 company">
-									<div class="radio">
-										<label class="asm">
-											<input type="radio" name="shippingCompany" id="asm" value="ASM">
-											<div class="company-content">
-												<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-												<div class="logo"></div>
-												<span class="name">ASM</span>
-												<span class="price">131,46€</span>
-											</div>
-										</label>
-									</div>	
-					        	</div>
-					        	<div class="col-md-4 company">
-									<div class="radio">
-										<label class="dhl">
-											<input type="radio" name="shippingCompany" id="dhl" value="DHL">
-											<div class="company-content">
-												<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-												<div class="logo"></div>
-												<span class="name">DHL</span>
-												<span class="price">93,27€</span>
-												<div class="checkbox mozo">
-													<label>
-													<input type="checkbox"> Opción mozo <span>(+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
-													</label>
+								<div class="table-header">
+									<p class="subtitle">Envío número 1</p>
+									<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 5 y 8 días</em></span>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th></th>
+											<th></th>
+											<th class="text-center">Unit price</th>
+											<th class="text-center">Quantity</th>
+											<th class="text-right">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
+											<td>
+												WOODEN Chair -Polypropilene-
+												<select class="form-control">
+													<optgroup label="Entrega entre 5 y 8 días">
+														<option>Beige</option>
+														<option>Turquesa</option>
+														<option selected>Azul petróleo</option>
+													</optgroup>
+													<optgroup label="Entrega entre 10 y 13 días">
+														<option>Gris oscuro</option>
+														<option>Marrón</option>
+														<option>Naranja</option>
+														<option>Rojo</option>
+														<option>Azul</option>
+													</optgroup>
+													<optgroup label="Entrega entre 19 y 22 días">
+														<option>Verde</option>
+														<option>Amarillo</option>
+													</optgroup>
+												</select>
+											</td>
+											<td class="price">
+												<span class="old-price">116,00€</span>
+												<span class="last-price">38,01€</span>
+											</td>
+											<td>
+												<select class="form-control">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+													<option selected>28</option>
+												</select>
+											</td>
+											<td class="text-right">1.064,28€</td>
+										</tr>
+										<tr>
+											<td class="warning-alert" colspan="5">
+												<div class="alert alert-warning" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
+											</td>
+										</tr>
+										<tr>
+											<td><img width="100px" src="https://intranet.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" alt="Taburete HIGHT URAL -Metal Cepillado-"></td>
+											<td>
+												HIGHT URAL -Brushed Metal- Stool
+												<select class="form-control">
+													<optgroup label="Entrega entre 5 y 8 días">
+														<option>Acero cepillado</option>
+													</optgroup>
+												</select>
+											</td>
+											<td class="price">
+												<span class="old-price">81,33€</span>
+												<span class="last-price">39,00€</span>
+											</td>
+											<td>
+												<select class="form-control">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</td>
+											<td class="text-right">39,00€</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="table-header">
+									<p class="subtitle">Envío número 2</p>
+									<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 14 y 15 semanas</em></span>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th></th>
+											<th></th>
+											<th class="text-center">Unit price</th>
+											<th class="text-center">Quantity</th>
+											<th class="text-right">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
+											<td>
+												WOODEN Chair -Polypropilene-
+												<select class="form-control">
+													<optgroup label="Entrega entre 5 y 8 días">
+														<option>Beige</option>
+														<option>Turquesa</option>
+														<option>Azul petróleo</option>
+													</optgroup>
+													<optgroup label="Entrega entre 10 y 13 días">
+														<option>Gris oscuro</option>
+														<option>Marrón</option>
+														<option>Naranja</option>
+														<option>Rojo</option>
+														<option>Azul</option>
+													</optgroup>
+													<optgroup label="Entrega entre 19 y 22 días">
+														<option>Verde</option>
+														<option>Amarillo</option>
+													</optgroup>
+													<optgroup label="Entrega entre 14 y 15 semanas">
+														<option selected>Crema</option>
+													</optgroup>
+												</select>
+											</td>
+											<td class="price">
+												<span class="old-price">116,00€</span>
+												<span class="last-price">38,01€</span>
+											</td>
+											<td>
+												<select class="form-control">
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</td>
+											<td class="text-right">1.064,28€</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="subtitle">Cupón de descuento</div>
+								<p>El importe mínimo de compra del cupón no incluye los gastos de envío. El cupón descuento queda vinculado al pedido realizado, aunque no esté pagado. Por favor, tenlo en cuenta especialmente si vas a realizar un pedido mediante transferencia bancaria.</p>
+								<form class="form-inline coupon-form">
+									<div class="form-group">
+										<label for="inputCoupon">Código del cupón:</label>
+										<input type="text" class="form-control" id="inputCoupon" placeholder="Código del cupón">
+									</div>
+									<button type="submit" class="btn btn-secondary">Validar</button>
+									<div class="clearfix"></div>
+								</form>
+								
+								<div class="alert alert-success alert-dismissible" role="alert">
+		  							<button type="button" class="close btn" data-dismiss="alert" aria-label="Close">anular cupón <span aria-hidden="true">&times;</span></button>¡Código correcto! Descuento aplicado de: <strong>-10,00€</strong>
+		  						</div>
+								
+								<div class="alert alert-danger" role="alert">
+									No has alcanzado el <strong>importe mínimo de 100,00€</strong> para que el cupón sea válido.
+								</div>
+
+								<div class="footer-price">
+									<p class="subtitle">Total productos: 1.331,34€</p>
+								</div>
+				        	</div>
+							<button type="button" class="btn btn-primary pull-right" data-step="2">Siguiente</button>
+					      </div>
+					    </div>
+				  	</div>
+
+				  	<!-- STEP 3: Shipping method -->
+					<!-- <div id="shippingMethodPanel" class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingShippingMethod">
+					      	<h4 class="panel-title">
+						        <span class="glyphicon glyphicon-ok"></span>
+						        <span class="glyphicon glyphicon-remove"></span>
+					        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseShippingMethod" aria-expanded="false" aria-controls="collapseShippingMethod">
+					          		Método de envío <span class="edit pull-right">editar</span>
+					        	</a>
+					      	</h4>
+					    </div>
+					    <div id="collapseShippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingShippingMethod">
+					      <div class="panel-body">
+					        <div class="box">
+						        <p>All shipping costs are calculated from your zipcode given in your delivery details.</p>
+						        <div class="row shipping-company-list">
+						        	<div class="col-md-4 company">
+										<div class="radio">
+											<label class="asm">
+												<input type="radio" name="shippingCompany" id="asm" value="ASM">
+												<div class="company-content">
+													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
+													<div class="logo"></div>
+													<span class="name">ASM</span>
+													<span class="price">131,46€</span>
 												</div>
-											</div>
-										</label>
+											</label>
+										</div>	
+						        	</div>
+						        	<div class="col-md-4 company">
+										<div class="radio">
+											<label class="dhl">
+												<input type="radio" name="shippingCompany" id="dhl" value="DHL">
+												<div class="company-content">
+													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
+													<div class="logo"></div>
+													<span class="name">DHL</span>
+													<span class="price">93,27€</span>
+													<div class="checkbox mozo">
+														<label>
+														<input type="checkbox"> Opción mozo <span>(+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
+														</label>
+													</div>
+												</div>
+											</label>
+										</div>
+						        	</div>
+						        	<div class="col-md-4 company">
+										<div class="radio">
+											<label class="seur">
+												<input type="radio" name="shippingCompany" id="seur" value="Seur">
+												<div class="company-content">
+													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
+													<div class="logo"></div>
+													<span class="name">Seur</span>
+													<span class="price">139,28€</span>
+												</div>
+											</label>
+										</div>
+						        	</div>
+						      	</div>
+								<div class="well well-sm">(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</div>
+								<div class="footer-price">
+									<p class="subtitle">Total envío: <span>0,00€</span></p>
+								</div>
+				        	</div>
+				        	<button type="button" class="btn btn-primary pull-right">Siguiente</button>
+					      </div>
+					    </div>
+					</div> -->
+				  	
+				  	<!-- STEP 4: Payment method -->
+				  	<div id="paymentMethodPanel" class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingPaymentMethod">
+					      	<h4 class="panel-title">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span class="glyphicon glyphicon-remove"></span>
+					        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePaymentMethod" aria-expanded="false" aria-controls="collapsePaymentMethod">
+					          		Método de pago <span class="edit pull-right">editar</span>
+					        	</a>
+					      	</h4>
+					    </div>
+				    	<div id="collapsePaymentMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPaymentMethod">
+				      		<div class="panel-body">
+				      			<div class="box">
+				      				<p>Selecciona el método de pago para realizar la transacción</p>
+									<div class="panel-group accordion-payment-method" id="accordionPaymentMethod" role="tablist" aria-multiselectable="true">
+							  			<div class="panel panel-default">
+							    			<div class="panel-heading" role="tab" id="headingCreditCard">
+							      				<h4 class="panel-title">
+							        				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseCreditCard" aria-expanded="false" aria-controls="collapseCreditCard">
+							          					<span class="glyphicon glyphicon-ok"></span> Tarjeta de crédito, débito o prepago (Visa y Mastercard) y AMEX
+							        				</a>
+							      				</h4>
+							    			</div>
+							    			<div id="collapseCreditCard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCreditCard" data-value="visa">
+							      				<div class="panel-body">
+							      					<ul class="list-unstyled payment-methods-list">
+							      						<li class="visa"></li>
+							      						<li class="visa-electron"></li>
+							      						<li class="mastercard"></li>
+							      						<li class="maestro"></li>
+							      						<li class="american-express"></li>
+							      					</ul>
+							        				<p>Rellene los datos de tu tarjeta a continuación. Empieze con los 16 dígitos. Los datos no serán enviados hasta que no aprietes el botón FINALIZAR LA COMPRA.</p>
+						      					</div>
+							    			</div>
+							  			</div>
+						  				<div class="panel panel-default">
+							    			<div class="panel-heading" role="tab" id="headingBankTransfer">
+							      				<h4 class="panel-title">
+							        				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseBankTransfer" aria-expanded="false" aria-controls="collapseBankTransfer">
+							          					<span class="glyphicon glyphicon-ok"></span> Transferencia bancaria
+							        				</a>
+							      				</h4>
+							    			</div>
+							    			<div id="collapseBankTransfer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBankTransfer" data-value="trans">
+							      				<div class="panel-body">
+							      					<ul class="list-unstyled payment-methods-list">
+							      						<li class="bank-transfer"></li>
+							      					</ul>
+							        				<p>Haz clic en FINALIZAR LA COMPRA y te facilitaremos nuestros datos bancarios para realizar la transferencia. También los recibirás por email. Reservamos tu pedido 48 horas (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</p>
+							      				</div>
+							    			</div>
+						  				</div>
+							  			<div class="panel panel-default">
+							    			<div class="panel-heading" role="tab" id="headingCod">
+							      				<h4 class="panel-title">
+							        				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseCod" aria-expanded="false" aria-controls="collapseCod">
+							          					<span class="glyphicon glyphicon-ok"></span> Contra reembolso (+5% sólo España peninsular)
+							        				</a>
+							      				</h4>
+							    			</div>
+							    			<div id="collapseCod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCod" data-value="contra" data-tax="5">
+							      				<div class="panel-body">
+							      					<ul class="list-unstyled payment-methods-list">
+							      						<li class="cod"></li>
+							      					</ul>
+							        				<p>Haz clic en CONFIRMAR LA COMPRA y te enviaremos un email para confirmar tu aceptación del pago contrareembolso (pedido mínimo sin incluir los costes de envío: 35€ / pedido máximo: 500€).</p>
+							      				</div>
+							    			</div>
+							  			</div>
+							  			<div class="panel panel-default">
+							    			<div class="panel-heading" role="tab" id="headingAplazame">
+							      				<h4 class="panel-title">
+							        				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseAplazame" aria-expanded="false" aria-controls="collapseAplazame">
+							          					<span class="glyphicon glyphicon-ok"></span> Pago a plazos (Aplázame)
+							        				</a>
+							      				</h4>
+							    			</div>
+							    			<div id="collapseAplazame" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAplazame" data-value="aplazame">
+							      				<div class="panel-body">
+							      					<ul class="list-unstyled payment-methods-list">
+							      						<li class="aplazame"></li>
+							      					</ul>
+							        				<p>Haz clic en CONFIRMAR LA COMPRA para iniciar el proceso de financiación de tu pedido. Necesitaremos tu DNI y un número de tarjeta de crédito. Importe máximo por compra: 1.000€.</p>
+							      				</div>
+							    			</div>
+										</div>
+							  			<div class="panel panel-default">
+							    			<div class="panel-heading" role="tab" id="headingSkrill">
+							      				<h4 class="panel-title">
+							        				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseSkrill" aria-expanded="false" aria-controls="collapseSkrill">
+							          					<span class="glyphicon glyphicon-ok"></span> Skrill, Skrill Direct, Trustly y Sofort Banking
+							        				</a>
+							      				</h4>
+							    			</div>
+							    			<div id="collapseSkrill" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSkrill" data-value="skrill">
+							      				<div class="panel-body">
+							      					<ul class="list-unstyled payment-methods-list">
+							      						<li class="skrill"></li>
+							      						<li class="trustly"></li>
+							      						<li class="sofort-banking"></li>
+							      					</ul>
+							        				<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web de Skrill donde podrás elegir entre las diferentes opciones de pago.</p>
+							      				</div>
+							    			</div>
+							  			</div>
 									</div>
-					        	</div>
-					        	<div class="col-md-4 company">
-									<div class="radio">
-										<label class="seur">
-											<input type="radio" name="shippingCompany" id="seur" value="Seur">
-											<div class="company-content">
-												<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-												<div class="logo"></div>
-												<span class="name">Seur</span>
-												<span class="price">139,28€</span>
-											</div>
-										</label>
+									<div class="footer-price">
+										<p class="subtitle">Total método de pago: <span>0,00€</span></p>
 									</div>
-					        	</div>
-					      	</div>
-							<div class="well well-sm">(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</div>
-							<div class="footer-price">
-								<p class="subtitle">Total envío: <span>0,00€</span></p>
+				      			</div>
+				      			<input id="paymentMethodInput" name="forma_de_pago" type="hidden" value="">
+				      			<button type="button" class="btn btn-primary pull-right" data-step="3">Siguiente</button>
+				      		</div>
+				    	</div>
+				  	</div>
+			    </div>
+				
+				<!-- FAST PAYMENT -->
+				<div id="lastStep" class="collapse box last-step hidden-xs">
+			  		<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+					<div class="media">
+					  	<div class="media-body">
+							<p class="total">TOTAL (IVA incluido): <strong>1.331,34€</strong></p>
+							<div class="media secure-warning">
+								<div class="media-left media-middle media-middle">
+									<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
+								</div>
+							  	<div class="media-body media-middle">
+							    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
+									<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
+							  	</div>
 							</div>
-			        	</div>
-			        	<button type="button" class="btn btn-primary pull-right">Siguiente</button>
-				      </div>
-				    </div>
-				  </div>
-				  <div id="paymentMethodPanel" class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingPaymentMethod">
-				      	<h4 class="panel-title">
-							<span class="glyphicon glyphicon-ok"></span>
-							<span class="glyphicon glyphicon-remove"></span>
-				        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePaymentMethod" aria-expanded="false" aria-controls="collapsePaymentMethod">
-				          		Método de pago <span class="edit pull-right">edit</span>
-				        	</a>
-				      	</h4>
-				    </div>
-				    <div id="collapsePaymentMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPaymentMethod">
-				      <div class="panel-body">
-				      	<div class="box">
-				      		<p>Selecciona el método de pago para realizar la transacción</p>
-							<div class="panel-group" id="accordionPaymentMethod" role="tablist" aria-multiselectable="true">
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingCreditCard">
-							      <h4 class="panel-title">
-							        <a role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseCreditCard" aria-expanded="true" aria-controls="collapseCreditCard">
-							          Tarjeta de crédito, débito o prepago (Visa y Mastercard) y AMEX
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseCreditCard" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCreditCard">
-							      <div class="panel-body">
-							        <p>Rellene los datos de tu tarjeta a continuación. Empieze con los 16 dígitos. Los datos no serán enviados hasta que no aprietes el botón FINALIZAR LA COMPRA.</p>
-
-
-
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingBankTransfer">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseBankTransfer" aria-expanded="false" aria-controls="collapseBankTransfer">
-							          Transferencia bancaria
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseBankTransfer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBankTransfer">
-							      <div class="panel-body">
-							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingCod">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseCod" aria-expanded="false" aria-controls="collapseCod">
-							          Contra reembolso (+5% sólo España)
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseCod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCod">
-							      <div class="panel-body">
-							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingAplazame">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseAplazame" aria-expanded="false" aria-controls="collapseAplazame">
-							          Pago a plazos (Aplázame)
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseAplazame" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAplazame">
-							      <div class="panel-body">
-							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							      </div>
-							    </div>
-							  </div>
-							  <div class="panel panel-default">
-							    <div class="panel-heading" role="tab" id="headingSkrill">
-							      <h4 class="panel-title">
-							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionPaymentMethod" href="#collapseSkrill" aria-expanded="false" aria-controls="collapseSkrill">
-							          Skrill, Skrill Direct, Trustly y Sofort Banking
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseSkrill" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSkrill">
-							      <div class="panel-body">
-							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-							      </div>
-							    </div>
-							  </div>
-							</div>
-				      	</div>
-				      	<button type="button" class="btn btn-primary pull-right">Siguiente</button>
-				    </div>
-				  </div>
-				</div>
+					  	</div>
+						<div class="media-right media-middle button-place">
+							<button type="submit" class="btn btn-primary pull-right">Confirmar la compra</button>
+							<button type="button" class="btn btn-secondary pull-right">View resume</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<div class="col-sm-5 col-md-4 hidden-xs right-column" id="myScrollspy">
-				<div class="resume" data-spy="affix" data-offset-top="400" data-offset-bottom="100">
+		
+			<!-- RESUME -->
+			<div class="col-xs-12 col-sm-5 col-md-4 right-column">
+				<div class="resume">
 					<h4>Resume</h4>
 					<div class="box">
 						<div class="well well-sm">
@@ -1307,15 +1360,100 @@
 									<td class="text-center">1</td>
 									<td class="text-right">39,00€</td>
 								</tr>
+								<tr class="coupon">
+									<td>Cupón descuento</td>
+									<td colspan="3" class="text-right">-10,00€</td>
+								</tr>
+								<tr class="shipping">
+									<td>Envío</td>
+									<td colspan="3" class="text-right">GRATIS</td>
+								</tr>
+								<tr class="total">
+									<td colspan="2">TOTAL (IVA incluido):</td>
+									<td colspan="2" class="text-right"><strong>1.331,34€</strong></td>
+								</tr>
 							</tbody>
 						</table>
+						
+						<div class="visible-xs-block">
+							<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+
+							<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="invoiceCheckobox"> Quiero que me hagáis llegar una factura <small>La factura es necesaria para aplicar el retorno del IVA</small>
+							</label>
+						</div>
+
+						<div class="collapse" id="invoiceCollapse">
+							<form class="invoice-form">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="NIF/CIF">
+								</div>
+								<div class="form-group">
+									<select class="form-control" id="customerKindSelect">
+										<option value="particular" selected>Particular</option>
+										<option value="empresa">Empresa</option>
+									</select>
+								</div>
+								<div class="form-group collapse" id="companyNameInput">
+									<input type="text" class="form-control" placeholder="Nombre de empresa*">
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="addressCompanyCheckbox"> La dirección de facturación es distinta a la dirección de envío.
+									</label>
+								</div>
+								<div class="collapse" id="addressCompany">
+									<div class="form-group">
+										<input type="text" class="form-control" id="inputInvoiceAddress" placeholder="Dirección de facturación *">	
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" id="inputInvoiceZipcode" placeholder="Código postal de facturación *">	
+									</div>
+									<div class="form-group">
+										<select class="form-control" id="inputInvoiceCity">
+										</select>
+									</div>
+									<div class="form-group">
+										<select class="form-control" id="inputInvoiceCountry">
+											<option>Andorra</option>
+											<option>Albania</option>
+											<option>Áustria</option>
+											<option>Bosnia-Herzegovina</option>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> Quiero recibir promociones en mi email <small>Podrás cancelar las notificaciones en cualquier momento.</small>
+							</label>
+						</div>
+
+						<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+
+						<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
+
+						<div class="media secure-warning">
+							<div class="media-left media-middle">
+								<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
+							</div>
+						  	<div class="media-body media-middle">
+						    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
+								<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
+						  	</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-</div>
 
 <!-- Footer -->
 <section class="footer">

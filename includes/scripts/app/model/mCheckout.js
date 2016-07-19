@@ -1,4 +1,4 @@
-define(['./Base', 'bootstrap'], function (Base, Bootstrap) {
+define(['./Base', 'bootstrap', 'skeuocard'], function (Base, Bootstrap, Skeuocard) {
     var mCheckout = new Base('This is the data for Page Checkout');
 
 	/**
@@ -27,11 +27,57 @@ define(['./Base', 'bootstrap'], function (Base, Bootstrap) {
        return false;
     }
 
+    function refreshFooterTotal(step) {
+		var codAmount = $('#collapsePaymentMethod #collapseCod.collapse.in').attr('data-tax');
+		$('#productsPanel .footer-price .subtitle')
+		$('' + step + '.footer-price span').text();
+    }
+
 	/**
 	 * =================
 	 * EVENTS
 	 * =================
 	 */
+	
+	// Payment method - Give value to hidden input when a payment option is selected
+	$('#collapsePaymentMethod').on('shown.bs.collapse', function () {
+		var value = $('#collapsePaymentMethod .panel-collapse.collapse.in').attr('data-value');
+		$('#paymentMethodInput').val(value);	
+		console.log($('#paymentMethodInput').val());
+		if ( $('#collapsePaymentMethod #collapseCod.collapse.in').length > 0 ) {
+			refreshFooterTotal('paymentMethod');
+		}
+	})
+	// Payment method - Delete value to hidden input when a payment option is diselected
+	$('#collapsePaymentMethod').on('hidden.bs.collapse', function () {
+		$('#paymentMethodInput').val('');
+		console.log($('#paymentMethodInput').val());
+	})
+
+	// Show more fields if customer wants invoice
+	$('#invoiceCheckobox').click(function() {
+		if ( $(this).is(':checked') ) {
+			$('#invoiceCollapse').collapse('show');
+		} else {
+			$('#invoiceCollapse').collapse('hide');
+		}
+	})
+	
+	$('#customerKindSelect').on('change', function() {
+		if ( $(this).find('option:selected').val()=='empresa' ) {
+			$('#companyNameInput').collapse('show');
+		} else {
+			$('#companyNameInput').collapse('hide');
+		}
+	})
+	
+	$('#addressCompanyCheckbox').click(function() {
+		if ( $(this).is(':checked') ) {
+			$('#addressCompany').collapse('show');
+		} else {
+			$('#addressCompany').collapse('hide');
+		}
+	})
 
 	/**
 	 * =================
@@ -45,8 +91,6 @@ define(['./Base', 'bootstrap'], function (Base, Bootstrap) {
 			trigger: 'hover',
 			html: true
 		});
-
-
     });
 
     return mCheckout;

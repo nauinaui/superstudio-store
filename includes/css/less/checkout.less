@@ -1,4 +1,4 @@
-.panel-group {
+.panel-group.steps-accordion {
   .panel-default {
     background-color: transparent;
     border: 0;
@@ -92,11 +92,6 @@
     }
 
     .box {
-      background-color: @blanco;
-      color: @gris;
-      margin-bottom: 20px;
-      padding: 15px;
-
       .subtitle {
         .subtitle();
       }
@@ -297,8 +292,138 @@
           }
         }
       }
+
+      .accordion-payment-method {
+        .panel-default {
+          & > .panel-heading {
+            margin-bottom: 0;
+            padding: 10px 25px;
+
+              .panel-title {
+              font-size: 14px;
+              letter-spacing: 2px;
+
+              & a {
+                color: @azul;
+                position: relative;
+                transform: .3s;
+
+                &.collapsed {
+                  color: @gris;
+
+                  .glyphicon {
+                    display: none;
+                  }
+                }
+
+                &:hover {
+                  color: @azul;
+                }
+
+                .glyphicon {
+                  display: inline-block;
+                  margin-left: -10px;
+                  position: absolute;
+                  left: -12px;
+                  line-height: 19px;
+                }
+              }
+            }
+          }
+
+          .panel-collapse {
+            padding: 10px 25px;
+
+            .payment-methods-list {
+              font-size: 0;
+
+              li {
+                background-image: url('../../imagenes/iconos/payment-methods-white.jpg');
+                display: inline-block;
+                height: 40px;
+                width: 90px;
+
+                &.visa {
+                  background-position: 0 0;
+                }
+                &.visa-electron {
+                  background-position: -90px 0;
+                }
+                &.mastercard {
+                  background-position: -180px 0;
+                }
+                &.maestro {
+                  background-position: -270px 0;
+                }
+                &.american-express {
+                  background-position: -360px 0;
+                }
+                &.skrill {
+                  background-position: -450px 0;
+                }
+                &.ideal {
+                  background-position: -300px 0;
+                }
+                &.giropay {
+                  background-position: -350px 0;
+                }
+                &.postepay {
+                  background-position: -400px 0;
+                }
+                &.trustly {
+                  background-position: -810px 0;
+                }
+                &.aplazame {
+                  background-position: -900px 0;
+                }
+                &.sofort-banking {
+                  background-position: -990px 0;
+                }
+                &.cb {
+                  background-position: -150px -30px;
+                }
+                &.eps {
+                  background-position: -200px -30px;
+                }
+                &.bank-transfer {
+                  background-position: -1260px -0;
+                }
+                &.cod {
+                  background-position: -1350px 0;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }  
+}
+
+.total {
+  color: @negro;
+  font-size: 16px;
+}
+
+.secure-warning {
+  color: @gris;
+  
+  .secure-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  .secure-text {
+    font-size: 11px;
+    margin-bottom: 0;
+  }
+}
+
+.button-place {
+  .btn {
+    margin: 10px 0;
+    width: 100%;
+  }
 }
 
 .resume {
@@ -314,18 +439,47 @@
   }
 
   .box {
-    background-color: @blanco;
-    color: @gris;
-    margin-bottom: 20px;
-    padding: 15px;
+    .well.well-sm {
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+      color: #31708f;
+
+      p {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      ul {
+        font-size: 12px;
+      }
+    }
 
     .table-resume {
       & > tbody {
         & > tr {
           & > td {
             font-size: 12px;
-            padding: 5px;
+            padding: 10px 5px;
             vertical-align: middle;
+          }
+
+          &.coupon,
+          &.shipping,
+          &.total {
+            text-transform: uppercase;
+
+            td {
+              border-top: 1px solid @gris_claro;
+            }
+          }
+
+          &.total {
+            td {
+              color: @negro;
+              font-size: 16px;
+              text-transform: none;
+            }
           }
         }
       }
@@ -334,12 +488,87 @@
         font-weight: 300;
       }
     }
+
+    small {
+      color: @gris_claro;
+      display: block;
+    }
+
+    .invoice-form {
+      border-bottom: 1px solid @gris_claro;
+    }
+  }
+
+  .confirm-button {
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  .secure-warning {
+    margin: 0 auto;
+  }
+}
+
+.box {
+  background-color: @blanco;
+  color: @gris;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.acceptation {
+  font-size: 12px;
+  padding: 10px;
+}
+
+.secure-warning {
+  display: table;
+
+  .media-body {
+    min-width: 200px;
+    width: auto;
+
+    p {
+      display: inline;
+    }
   }
 }
 
 .popover {
   font-size: 12px;
   width: 500px;
+}
+
+@media (max-width: @md-max) {
+  .panel-group.steps-accordion .panel-default .box .shipping-company-list .company label .company-content {
+    width: 175px;
+  }
+}
+
+@media (max-width: @sm-max) {
+  .panel-group.steps-accordion .panel-default .box .shipping-company-list .company label .company-content {
+    width: 200px;
+  }
+
+  .last-step {
+    .total {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .secure-warning {
+      margin: 0 auto;
+    }
+  }
+
+  .secure-warning {
+    margin-bottom: 20px;
+  }
+
+  .button-place {
+    display: block;
+    padding-left: 0;
+  }
 }
 
 @media (max-width: @xs-max) {
