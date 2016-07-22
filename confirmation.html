@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva SuperStudio</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="imagenes/iconos/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="imagenes/iconos/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="imagenes/iconos/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="imagenes/iconos/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="imagenes/iconos/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="imagenes/iconos/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="imagenes/iconos/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="imagenes/iconos/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/iconos/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="imagenes/iconos/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/iconos/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="imagenes/iconos/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagenes/iconos/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/css/animate.min.css">
+    <link rel="stylesheet" href="includes/css/superestudio.css">
+</head>
+
+<body class="confirmation bank-transfer">
+
+<!-- Topbar -->
+<div class="topbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-7 left">
+                <div class="llamamos">
+                    <span>Te llamamos</span>
+                    <div class="select">
+                        <input type="text" name="telefono" placeholder="Nº de teléfono">
+                        <input type="text" name="nombre" placeholder="Nombre">
+                        <input type="text" name="email" placeholder="Correo electrónico">
+                        <a href="javascript:void(0)" class="showFranjaHoraria">¿Quieres especificar franja horaria?</a>
+                        <div class="franjaHoraria">
+                            <label><input type="checkbox"> Por la mañana</label>
+                            <label><input type="checkbox"> Por la tarde</label>
+                        </div>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </div>
+                <a href="#">Enviamos a toda Europa</a>
+                <a href="#">Tiendas</a>
+                <a href="#">Devoluciones</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div class="col-md-6 col-lg-5 right">
+                <a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
+                <a href="#" class="text-bold">Contacto</a>
+                <a href="#" class="text-bold">Iniciar sesión</a>
+                <div class="language">
+                    <span>ES</span>
+                    <div class="select">
+                        <a href="https://www.superestudio.com?idioma=CAS">Castellano</a>
+                        <a href="https://www.superestudio.com?idioma=ENG">English</a>
+                        <a href="http://www.superestudio.fr/?idioma=FRA">Français</a>
+                        <a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a>
+                        <a href="http://www.superestudio.pt/?idioma=POR">Português</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default topmenu">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="default.asp">
+                <img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
+                <img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
+            </a>
+            <div class="cart-container">
+                <a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
+                    <img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+                    <span id="cartItemsNumber" class="badge">3</span>
+                </a>
+            
+                <!-- My cart (opened) -->
+                <div class="collapse my-cart" id="myCart">
+                    <div class="header">
+                        <button type="button" class="close pull-left" data-toggle="collapse" data-target="#myCart" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span class="title">tu carrito</span>
+                        <img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
+                    </div>
+                    <div class="item media" rel="142898" data-color="5" data-finish="" data-option="" data-type="producto">
+                        <div class="media-left media-middle">
+                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="media-body media">
+                            <div class="media-left media-middle">
+                                <img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+                            </div>
+                            <div class="media-body">
+                                <span class="nombre">Silla Wooden -Polipropileno-</span>
+                                <span class="finish">Gris claro</span>
+                                <div class="price">
+                                    <div class="last-price">58,<span class="cents">01</span><span class="currency">€</span></div>
+                                    <div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
+                                    <div class="discount">-50%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="units media-right media-middle">
+                            <span class="units-title">unidades</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+                            <span class="number">4</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+                        </div>
+                    </div>
+                    <div class="item media" rel="6679300" data-color="46313" data-finish="" data-option="" data-type="producto">
+                        <div class="media-left media-middle">
+                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="media-body media">
+                            <div class="media-left media-middle">
+                                <img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
+                            </div>
+                            <div class="media-body">
+                                <span class="nombre">Silla TEREK</span>
+                                <span class="finish">Acero cepillado</span>
+                                <div class="price">
+                                    <div class="last-price">48,<span class="cents">01</span><span class="currency">€</span></div>
+                                    <div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
+                                    <div class="discount">-60%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="units media-right media-middle">
+                            <span class="units-title">unidades</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+                            <span class="number">4</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+                        </div>
+                    </div>
+                    <div class="item media" rel="6679256" data-color="46313" data-finish="" data-option="" data-type="producto">
+                        <div class="media-left media-middle">
+                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="media-body media">
+                            <div class="media-left media-middle">
+                                <img width="50" src="https://www.superestudio.com/imagenes/productos/SHX022/min/categoria/SHX0221.jpg" alt="Mesa Tendar WOOD 120">
+                            </div>
+                            <div class="media-body">
+                                <span class="nombre">Mesa Tendar WOOD 120</span>
+                                <span class="finish">Blanco</span>
+                                <div class="price">
+                                    <div class="last-price">69,<span class="cents">95</span><span class="currency">€</span></div>
+                                    <div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
+                                    <div class="discount">-50%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="units media-right media-middle">
+                            <span class="units-title">unidades</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
+                            <span class="number">4</span>
+                            <button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="col-xs-6 text-right">
+                            <p class="subtotal">subtotal</p>
+                            <span class="price subtotal">369,08€</span>
+                        </div>
+                        <div class="col-xs-6 text-left">
+                            <p>ahorro total</p>
+                            <span class="price saved">138,29€</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="vat-text">Precio IVA incluido. Portes según destino.</p>
+                        <a href="#" class="btn btn-primary btn-rounded go-checkout-btn">hacer pedido</a>
+                        <button type="button" class="btn btn-link continue-shopping-btn" data-toggle="collapse" data-target="#myCart" aria-label="Close">Seguir comprando</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías
+                        <div class="icon-menu">
+                            <img src="imagenes/iconos/svg/categorias.svg" width="44" height="44" alt="">
+                            <div class="icon-menu-wave"></div>
+                        </div>
+                    </a>
+                    
+                    <div class="subcategorias">
+                        <a href="#" class="rojo">Promociones</a>
+                        <a href="#" class="azul">Diseñadores</a>
+                        <a href="#" class="verde">Colecciones</a>
+                        <a href="#" class="naranja">Estilos</a>
+                    </div>
+
+                    <ul class="dropdown-menu menu-subcategorias" id="menuSubcategorias">
+                        <div class="header">
+                            <div class="container">
+                                <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                <div class="title">Selecciona una categoria</div>
+                            </div>
+                        </div>
+                        <li>
+                            <a href="javascript:void(0);" class="category sub" data-tipo="sillas">
+                                <img src="imagenes/iconos/svg/menuSillas.svg" alt="">
+                                <div class="text">Sillas<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Sillas -->
+                            <div class="submenu" id="sillas">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Sillas
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item" data-feature-link="/silla-dsw-wooden-polipropileno-eames-baz004" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg">Sillas iconos del diseño <span>(201)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico con patas de madera <span>(31)</span></a>
+                                                <a href="#" class="item" data-feature-link="/sillas_plegables_silla_plex_144331" data-feature-title="Silla PLEX" data-feature-desc="Perfecta como silla auxiliar cuando tengas invitados en casa." data-feature-img="https://www.superestudio.com/imagenes/productos/SHX030/SHX0301.jpg">Sillas plegables <span>(64)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-dsw-baby-wooden--baby-eames" data-feature-title="Silla BABY WOODEN" data-feature-desc="Versión de menor tamaño de la Silla WOODEN, para niños" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ009/BAZ0091.jpg">Sillas baby <span>(64)</span></a>
+                                                <a href="#" class="item" data-feature-link="/puff-ferret-polyester-version-wv0007" data-feature-title="Puff FERRET -Polyester Version-" data-feature-desc="elemento decorativo original y muy divertido" data-feature-img="https://www.superestudio.com/imagenes/productos/WV0007/WV00071.jpg">Puffs <span>(7)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas metálicas <span>(39)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas tapizadas <span>(4)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-acapulco-chair-color-edition" data-feature-title="Silla MÉXICO -Color Edition-" data-feature-desc="Silla Acapulco, durabilidad, calidad y diseño" data-feature-img="https://www.superestudio.com/imagenes/productos/WIW003/WIW0031.jpg">Sillas para exterior <span>(1)</span></a>
+                                                <a href="#" class="item" data-feature-link="/banco-eco-batten" data-feature-title="Banco ECO BATTEN" data-feature-desc="Inspirado en el Banco Platform de George Nelson" data-feature-img="https://www.superestudio.com/imagenes/productos/XSG027/38/XSG027-38_1.jpg">Bancos <span>(1)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
+                                                <a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
+                                                <a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Silla WOODEN -Polipropileno-">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Silla WOODEN -Polipropileno-</span>
+                                                    <div class="promo-description">Silla de diseño de estilo Tower para cocina o comedor.</div>
+                                                    <div class="promo-image">
+                                                        <img class="featured-product-image" src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las sillas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category" data-tipo="taburetes">
+                                <img src="imagenes/iconos/svg/menuTaburetes.svg" alt="">
+                                <div class="text">Taburetes</div>
+                            </a>
+                            <!-- SUBMENU Taburetes -->
+                            <div class="submenu" id="taburetes">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Taburetes
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 col-sm-offset-4 hidden-xs">
+                                                <a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Taburete HIGHT URAL -Metal Cepillado">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Taburete HIGHT URAL -Metal Cepillado-</span>
+                                                    <div class="promo-description">Taburete metálico en estilo industrial.</div>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los taburetes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="mesas">
+                                <img src="imagenes/iconos/svg/menuMesas.svg" alt="">
+                                <div class="text">Mesas<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Mesas -->
+                            <div class="submenu" id="mesas">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Mesas
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Mesas de comedor <span>(57)</span></a>
+                                                <a href="#" class="item">Mesas de oficina <span>(31)</span></a>
+                                                <a href="#" class="item">Mesas de centro <span>(64)</span></a>
+                                                <a href="#" class="item">Mesas de exterior <span>(4)</span></a>
+                                                <a href="#" class="item">Mobiliario de oficina <span>(1)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Mesitas de café <span>(47)</span></a>
+                                                <a href="#" class="item">Mesas de bar <span>(10)</span></a>
+                                                <a href="#" class="item">Mesas de TV <span>(39)</span></a>
+                                                <a href="#" class="item">Barras <span>(39)</span></a>
+                                                <a href="#" class="item">Consolas <span>(4)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/mesa-dsw-tendar-wood-120-tendar-wood-eames">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Mesa TENDAR WOOD 120</span>
+                                                    <div class="promo-description">Mesa de comedor inspirada en diseño de la Mesa DSW de Charles & Ray Eames.</div>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las mesas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="lamparas">
+                                <img src="imagenes/iconos/svg/menuLamparas.svg" alt="">
+                                <div class="text">Lámparas<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Lámparas -->
+                            <div class="submenu" id="lamparas">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Lámparas
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Lámparas en suspensión <span>(57)</span></a>
+                                                <a href="#" class="item">Lámparas de sobremesa <span>(23)</span></a>
+                                                <a href="#" class="item">Apliques <span>(4)</span></a>
+                                                <a href="#" class="item">Bombillas <span>(13)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Lámparas de pie <span>(47)</span></a>
+                                                <a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
+                                                <a href="#" class="item">Iluminación creativa <span>(39)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/lampara-amsti" title="Lámpara AMSTI">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Lámpara AMSTI</span>
+                                                    <div class="promo-description">Lámpara en acero tintado en negro con interior dorado.</div>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las lámparas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="sofas">
+                                <img src="imagenes/iconos/svg/menuSofas.svg" alt="">
+                                <div class="text">Sofás<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Sofás -->
+                            <div class="submenu" id="sofas">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Sofás
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Sofás <span>(18)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Sofás cama <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/sofa-chester-pu-2-plazas" title="Sofá CHESTER PU -2 Plazas-">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Sofá CHESTER PU -2 Plazas-</span>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los sofás</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="cojines">
+                                <img src="imagenes/iconos/svg/menuCojines.svg" alt="">
+                                <div class="text">Cojines<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Cojines -->
+                            <div class="submenu" id="cojines">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Cojines
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Frases <span>(18)</span></a>
+                                                <a href="#" class="item">Animales humanizados <span>(18)</span></a>
+                                                <a href="#" class="item">Estampados <span>(18)</span></a>
+                                                <a href="#" class="item">Países <span>(12)</span></a>
+                                                <a href="#" class="item">Cómic <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Apalabrados <span>(12)</span></a>
+                                                <a href="#" class="item">Divertidos <span>(12)</span></a>
+                                                <a href="#" class="item">Rellenos <span>(12)</span></a>
+                                                <a href="#" class="item">Animales <span>(12)</span></a>
+                                                <a href="#" class="item">Pop <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/funda-cojin-drink-champagne-algodon-30x50" title="Funda cojín DRINK CHAMPAGNE algodón 30x50">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Funda cojín DRINK CHAMPAGNE algodón 30x50</span>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cojines</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="alfombras">
+                                <img src="imagenes/iconos/svg/menuAlfombras.svg" alt="">
+                                <div class="text">Alfombras<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Alfombras -->
+                            <div class="submenu" id="alfombras">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Alfombras
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Felpudos <span>(18)</span></a>
+                                                <a href="#" class="item">Alfombras infantiles <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Alfombras <span>(71)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/alfombra-felpudo-aqui-dentro-hay-mucho-amor-60x40cm" title="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-</span>
+                                                    <div class="promo-description">Felpudo para recibir con arte a tus invitados</div>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las alfombras</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="cuadros">
+                                <img src="imagenes/iconos/svg/menuCuadros.svg" alt="">
+                                <div class="text">Cuadros<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Cuadros -->
+                            <div class="submenu" id="cuadros">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Cuadros
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Lienzos 1 pieza <span>(18)</span></a>
+                                                <a href="#" class="item">Cuadros madera impresa <span>(18)</span></a>
+                                                <a href="#" class="item">Lienzos pirámide 5 piezas <span>(12)</span></a>
+                                                <a href="#" class="item">Chapas decorativas <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
+                                                <a href="#" class="item">Cuadros con marco <span>(71)</span></a>
+                                                <a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
+                                                <a href="#" class="item">Portafotos <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/banderola-yourself" title="Banderola YOURSELF">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Banderola YOURSELF</span>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cuadros</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="vinilos">
+                                <img src="imagenes/iconos/svg/menuVinilos.svg" alt="">
+                                <div class="text">Vinilos<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Vinilos -->
+                            <div class="submenu" id="vinilos">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Vinilos
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Vinilos <span>(410)</span></a>
+                                                <a href="#" class="item">Vinilos luminiscentes <span>(18)</span></a>
+                                                <a href="#" class="item">Vinilos infantiles <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
+                                                <a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
+                                                <a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/vinilo-decorativo-live-your-dreams" title="Vinilo Decorativo LIVE YOUR DREAMS">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Vinilo Decorativo LIVE YOUR DREAMS</span>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los vinilos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="almacenaje">
+                                <img src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="">
+                                <div class="text">Almacenaje<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Almacenaje -->
+                            <div class="submenu" id="almacenaje">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Almacenaje
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Baúles <span>(410)</span></a>
+                                                <a href="#" class="item">Joyeros <span>(18)</span></a>
+                                                <a href="#" class="item">Camas <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Estanterías <span>(71)</span></a>
+                                                <a href="#" class="item">Cajoneras <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/baul-almacenaje-plegable-40-x-255-x-24-cm" title="Baúl almacenaje plegable 40 x 25,5 x 24 cm">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
+                                                    <div class="promo-description"></div>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los almacenajes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="category sub" data-tipo="decoracion">
+                                <img src="imagenes/iconos/svg/menuDecoracion.svg" alt="">
+                                <div class="text">Decoración<span class="glyphicon glyphicon-menu-down"></span></div>
+                            </a>
+                            <!-- SUBMENU Decoración -->
+                            <div class="submenu" id="decoracion">
+                                <div class="container">
+                                    <div class="left">
+                                        <div class="text">
+                                            Decoración
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Espejos <span>(18)</span></a>
+                                                <a href="#" class="item">Jarrones y figuras decorativas <span>(18)</span></a>
+                                                <a href="#" class="item">Relojes decorativos <span>(18)</span></a>
+                                                <a href="#" class="item">Trofeos cabeza animal en madera <span>(18)</span></a>
+                                                <a href="#" class="item">Biombos <span>(12)</span></a>
+                                                <a href="#" class="item">Maceteros <span>(12)</span></a>
+                                                <a href="#" class="item">Paneles decorativos <span>(12)</span></a>
+                                                <a href="#" class="item">Portafotos <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <a href="#" class="item">Percheros <span>(71)</span></a>
+                                                <a href="#" class="item">Plantas decorativas <span>(71)</span></a>
+                                                <a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
+                                                <a href="#" class="item">Pizarras <span>(71)</span></a>
+                                                <a href="#" class="item">Cajas de madera <span>(12)</span></a>
+                                                <a href="#" class="item">Menaje <span>(12)</span></a>
+                                                <a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
+                                            </div>
+                                            <div class="col-sm-4 hidden-xs">
+                                                <a class="promo-menu" href="/muebles_de_diseno/_mantel_pvc_43x30_picnik_green_-uso_1_persona-_141775" title="Mantel PVC 43x30 PICNIK Green -uso 1 persona-">
+                                                    <div class="featuring-menu-title">Destacamos:</div>
+                                                    <span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
+                                                    <div class="promo-image">
+                                                        <img src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text col-md-12">
+                                            <a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos de decoración</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+          
+            <ul class="nav navbar-nav navbar-right">
+                <a href="#" class="status">
+                    <div class="text hidden-sm">
+                        Consulta el <br />
+                        <strong>estado de tu pedido</strong>
+                    </div>
+                    <img src="imagenes/iconos/svg/status.svg" alt="">
+                </a>
+                
+                <li class="divider"></li>
+                
+                <form class="navbar-form search" action="#" method="post" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
+                        </span>
+                    </div>
+                </form>
+
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+
+    <!-- Cabecera -->
+    <div class="categoria-menu">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="menu">
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <section>
+        <h1 class="title">Pedido confirmado</h1>
+        <p>En breve recibirás mediante email los datos de tu pedido y la información para realizar el seguimiento. Por favor, revisa la bandeja de Spam de tu correo si no encuentras nuestro mensaje. Para cualquier duda, puedes ponerte en contacto con nosotros mediante este formulario o en el (+34) 93 241 73 30.</p>
+    </section>
+</div>
+    
+<div class="bgDark">
+    <div class="container">
+        <section>
+            <h2 class="title">Pedido recibido</h2>
+            <p>Tu pedido <strong><span style="color: red;">#5586364</span></strong> realizado el <strong>21/07/2016</strong> a las <strong>14:01:00</strong> se ha recibido correctamente (para cualquier consulta sobre tu pedido, necesitaremos este número).</p>
+            <p>En todo momento podrás seguir el estado de tu pedido desde tu panel de usuario o desde el siguiente enlace:</p>
+            <div class="text-center">
+                <a class="btn btn-secondary" href="https://www.superestudio.com/mis_pedidos.asp?e=dXhAc3VwZXJlc3R1ZGlvLmNvbQ&amp;p=5586364">Estado del pedido</a>
+            </div>
+            <div class="bg-success">
+                <p><strong>Puedes pagar tu pedido mediante transferencia bancaria a la siguiente cuenta:</strong></p> 
+                <p><strong>Titular:&nbsp;</strong>TODOFURNITURE S.L.</p>
+                <p><strong>Número de Identificación Bancaria (NIB):&nbsp;</strong>0075 0833 82060016865 2</p>
+                <p><strong>Internacional Banking Account Number (IBAN):&nbsp;</strong>ES15 0075 0833 8206 0016 8652</p>
+                <p><strong>Bank Identification Code (BIC):&nbsp;</strong>POPUESMM</p>
+                Importe de la transferencia: <strong>7,04&nbsp;€</strong><br /><br />
+                <p class="bg-warning">
+                    <strong>ATENCIÓN:</strong>&nbsp;es obligatorio indicar&nbsp;en el concepto de la transferencia el <strong>número de pedido</strong> y el <strong>nombre completo </strong>con el que has realizado el pedido. &nbsp;<strong>5586364</strong>
+                </p>
+            </div>
+            <h3 class="subtitle">Importante</h3>
+            <ul>
+                <li>Al pagar mediante transferencia bancaria, el pedido se confirma</span><strong> cuando SuperStudio recibe en cuenta el pago del cliente</strong>.</li>
+                <li><strong>Reservamos tu pedido 48 horas</strong><span> (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</span></li>
+                <li>Los<strong> plazos de entrega pueden variar</strong> desde que el cliente realiza el pedido hasta que SuperStudio recibe el pago.</li>
+        </section>
+    </div>
+</div>
+
+<div class="container">
+    <section>
+        <h2 class="title">Datos de facturación</h2>
+        <div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><strong>DNI - NIF/CIF:</strong></td>
+                            <td>46469901X</td>
+                            <td><strong>E-mail:</strong></td>
+                            <td>ux@superestudio.com</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nombre:</strong></td>
+                            <td>Oscar Castillo</td>
+                            <td><strong>Dirección:</strong></td>
+                            <td>No existe</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Código postal:</strong></td>
+                            <td>08211</td>
+                            <td><strong>Población:</strong></td>
+                            <td>Castellar del Vallès</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Teléfono 1:</strong></td>
+                            <td>555666444</td>
+                            <td><strong>Teléfono 2:</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>País:</strong></td>
+                            <td>ES</td>
+                            <td><strong>Forma de pago:</strong></td>
+                            <td>Transferencia bancaria</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notas:</strong></td>
+                            <td>pedido de prueba. no gestionar</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="bgDark">
+    <div class="container">
+        <section>
+            <h2 class="title">Dirección de entrega</h2>
+            <div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Dirección:</strong></td>
+                                <td>No existe</td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td><strong>Código postal:</strong></td>
+                                <td>08211</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Población:</strong></td>
+                                <td>Castellar del Vallès</td>
+                                <td>&nbsp;</td>
+                                <td><strong>País:</strong></td>
+                                <td>ES</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="container">
+    <section>
+        <h2 class="title">Detalles del pedido</h2>
+        <div>
+            <div class="envio-parcial">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td rowspan="4" width="80">
+                                    <img src="https://www.superestudio.com/includes/motor/miniaturas.asp?path=/imagenes/productos/HCN2454/HCN24541.jpg&amp;w=80" alt="">
+                                </td>
+                                <td valign="top" colspan="3">
+                                    <strong>Mantel SPARKOW 40x30 -1 Persona-</strong> (HCN2454)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Entrega: <span style="color:red">entre 5 y 8 días</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Descuento: 50%</strong></td>
+                                <td colspan="2">Acabado: <strong>Multicolor</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Unidades: <strong>1</strong></td>
+                                <td>Precio unidad: <strong>2,31&nbsp;€</strong></td>
+                                <td>Precio total producto: <strong>2,31&nbsp;€</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="bgDark">
+    <div class="container">
+        <section>
+            <h2 class="title">Importes</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Total gastos de envío:</strong></td>
+                            <td align="right">3,51&nbsp;€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Base pedido:</strong></td>
+                            <td align="right">5,82&nbsp;€</td>
+                        </tr>
+                        <tr>
+                            <td><strong> IVA:</strong></td>
+                            <td align="right">1,22&nbsp;€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL PEDIDO:</strong></td>
+                            <td align="right"><strong>7,04&nbsp;€</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Footer -->
+<section class="footer">
+    <div class="container">
+        <div class="row footer-titulos hidden-xs">
+            <div class="col-md-8">
+                <h4>Todas las categorías</h4>
+                <div class="row footer-enlaces">
+                    <div class="col-xs-6 col-md-3 enlaces">
+                        <a href="#" class="enlace-bold">Sillas</a>
+                        <a href="#">Sillas iconos del diseño</a>
+                        <a href="#">Sillas de madera</a>
+                        <a href="#">Sillas metálicas</a>
+                        <a href="#">Sillas de plástico</a>
+                        <a href="#">Sillas de oficina</a>
+                        <a href="#">Sillas tapizadas</a>
+                        <a href="#">Sillas patchwork</a>
+                        <a href="#">Sillas plegables</a>
+                        <a href="#">Sillas para exterior</a>
+                        <a href="#">Sillas balancin</a>
+                        <a href="#">Sillas baby</a>
+                        <a href="#">Sillones</a>
+                        <a href="#">Bancos</a>
+                        <a href="#" class="enlace-bold">Taburetes</a>
+                        <a href="#">Taburetes</a>
+                        <a href="#" class="enlace-bold">Sofás</a>
+                        <a href="#">Sofás</a>
+                        <a href="#">Sofás cama</a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 enlaces">
+                        <a href="#" class="enlace-bold">Mesas</a>
+                        <a href="#">Mesas de comedor</a>
+                        <a href="#">Mesas de oficina</a>
+                        <a href="#">Mesas de centro</a>
+                        <a href="#">Mesas de café</a>
+                        <a href="#">Mesas de bar</a>
+                        <a href="#">Mesas de TV</a>
+                        <a href="#">Mesas de exterior</a>
+                        <a href="#">Mobiliario de oficina</a>
+                        <a href="#">Barras</a>
+                        <a href="#">Consolas</a>
+                        <a href="#" class="enlace-bold">Lámparas</a>
+                        <a href="#">Lámparas de suspensión</a>
+                        <a href="#">Lámparas de sobremesa</a>
+                        <a href="#">Lámparas de pie</a>
+                        <a href="#">Lámparas de oficina</a>
+                        <a href="#">Apliques</a>
+                        <a href="#">Bombillas</a>
+                        <a href="#" class="enlace-bold">Puffs</a>
+                        <a href="#">Puffs</a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 enlaces">
+                        <a href="#" class="enlace-bold">Mobiliario de Diseño</a>
+                        <a href="#">Estanterias</a>
+                        <a href="#">Cajoneras</a>
+                        <a href="#">Camas</a>
+                        <a href="#">Joyero</a>
+                        <a href="#" class="enlace-bold">Textil</a>
+                        <a href="#">Cojines y fundas</a>
+                        <a href="#">Alfombras</a>
+                        <a href="#" class="enlace-bold">Complementos</a>
+                        <a href="#">Espejos</a>
+                        <a href="#">Relojes</a>
+                        <a href="#">Percheros</a>
+                        <a href="#">Revisteros</a>
+                        <a href="#">Biombos</a>
+                        <a href="#">Velas</a>
+                        <a href="#">Jarrones y figuras</a>
+                        <a href="#">Maceteros</a>
+                        <a href="#">Menaje</a>
+                        <a href="#">Mobiliario iluminado</a>
+                        <a href="#">Libros de diseño</a>
+                        <a href="#">Productos de limpieza</a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 enlaces">
+                        <a href="#" class="enlace-bold">Wall deco</a>
+                        <a href="#">Lienzos 1 y 3 piezas</a>
+                        <a href="#">Lienzos pirámide 5 piezas</a>
+                        <a href="#">Fotocuadros 1 y 3 piezas</a>
+                        <a href="#">Fotocuadros pirámide</a>
+                        <a href="#">Vinilos</a>
+                        <a href="#">Vinilos pizarra</a>
+                        <a href="#">Vinilos infatiles</a>
+                        <a href="#">Vinilos de espejo</a>
+                        <a href="#">Vinilos de Navidad</a>
+                        <a href="#">Cuadros de metal impreso</a>
+                        <a href="#">Cuadros de madera impresa</a>
+                        <a href="#">Relojes decorativos</a>
+                        <a href="#">Paneles decorativos</a>
+                        <a href="#">Colgadores decorativos</a>
+                        <a href="#">Chapas decorativas</a>
+                        <a href="#">Portafotos</a>
+                        <a href="#">Pizarras</a>
+                        <a href="#">Otros</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Más información</h4>
+                <div class="row footer-enlaces">
+                    <div class="col-xs-6 col-md-6 enlaces">
+                        <a href="#" class="enlace-bold">Servicios</a>
+                        <a href="#">Mobiliario para restauración</a>
+                        <a href="#">Quiero alquilar mobiliario</a>
+                        <a href="#">Soluciones empresariales</a>
+                        <a href="#">Directorio de empresas</a>
+                        <a href="#">Registro profesional</a>
+                        <a href="#" class="enlace-bold">Nosotros</a>
+                        <a href="#">Preguntas frecuentes</a>
+                        <a href="#">Tiendas</a>
+                        <a href="#">Franquicias</a>
+                    </div>
+                    <div class="col-xs-6 col-md-6 enlaces">
+                        <a href="#" class="enlace-bold">¿Cómo contactarnos?</a>
+                        <a href="#">Contacto</a>
+                        <a href="#">Trabaja con nosotros</a>
+                        <a href="#">Enviar sugerencias</a>
+                        <a href="#" class="enlace-bold">Promociones</a>
+                        <a href="#">Outlet</a>
+                        <a href="#">Novedades</a>
+                        <a href="#">Todas las promociones</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="terms">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 left"><span>&copy; 2005-2016 SuperStudio. Todos los derechos reservados</span></div>
+                <div class="col-sm-6 right">
+                    <a href="#">Condiciones de uso</a> - <a href="#">Política de privacidad y cookies</a> - <a href="#">Notal
+                    legal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script data-main="includes/scripts/confirmation" src="includes/scripts/lib/require.min.js"></script>
+
+</body>
+</html>
