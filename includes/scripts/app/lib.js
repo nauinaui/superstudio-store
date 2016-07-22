@@ -311,9 +311,16 @@ define(['jquery', 'bootstrap'], function ($, Bootstrap) {
 				    fixedNav(stickyNavTop);
 				});
 
+				// Detect if client device is retina display
 				detectRetina();
 
-				$(document).ajaxStart(blockUI).ajaxStop(unblockUI);
+				// Block UI when AJAX is active
+				$(document).ajaxStart( function() {
+					$('#preloader').show();
+				});
+				$(document).ajaxStop( function() {
+					$('#preloader').hide();
+				});
 			})
 
             return $('body');

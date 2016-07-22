@@ -30,14 +30,6 @@
 </head>
 
 <body data-product-id="142898">
-<div class="ui-blocker">
-	<div class="thecube">
-		<div class="cube c1"></div>
-		<div class="cube c2"></div>
-		<div class="cube c4"></div>
-		<div class="cube c3"></div>
-	</div>
-</div>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -812,7 +804,7 @@
 						<span class="label label-default">En stock</span>
 						<span class="label label-default">Liquidación</span>
 					</div>
-					<div class="title">Silla WOODEN -Polipropileno-</div>
+					<h1 class="title">Silla WOODEN -Polipropileno-</h1>
 					<div class="subtitle">Inspiración DSW de Charles & Ray Eames</div>
 					<div class="ref">Ref. TRN001</div>
 					
@@ -888,7 +880,7 @@
 					</div>
 
 					<!-- Outlet finishes: Only show when is an outlet product. Toggle with the previous div.finishes -->
-					<div class="finishes outlet">
+					<div class="collapse finishes outlet">
 						<span class="text">acabado outlet:</span>
 						<p>Haya</p>
 						<p><strong>ATENCIÓN:</strong> Este producto Outlet puede presentar taras o pequeños fallos, vea la <em>descripción del producto</em> en la FICHA DE PRODUCTO para conocer los detalles.</p>
@@ -1003,7 +995,7 @@
 			<!-- description -->
 			<div role="tabpanel" class="tab-pane active" id="description">
 				<div class="col-xs-12">
-					<h2 class="title">Elegancia y estilo unidos en la silla Eames DSW</h2>
+					<h1 class="title">Elegancia y estilo unidos en la silla Eames DSW</h1>
 					<div class="text">
 						<ul class="list-unstyled">
 							<li>Inspirada en la silla DSW de Charles & Ray Eames.</li>
@@ -2463,6 +2455,16 @@
 <!-- Feedback message when a product is added to cart from product's grid -->
 <div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
  	<button type="button" class="close"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+</div>
+
+<!-- Preloader -->
+<div id="preloader" class="ui-blocker">
+	<div class="thecube">
+		<div class="cube c1"></div>
+		<div class="cube c2"></div>
+		<div class="cube c4"></div>
+		<div class="cube c3"></div>
+	</div>
 </div>
 
 <script data-main="includes/scripts/detail" src="includes/scripts/lib/require.min.js"></script>

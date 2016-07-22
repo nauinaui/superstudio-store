@@ -46,7 +46,7 @@
       }
 
       & + .panel-collapse {
-        & > .panel-body {
+        & .panel-body {
           border-top: 0;
           padding: 0;
 
@@ -293,104 +293,114 @@
         }
       }
 
-      .accordion-payment-method {
-        .panel-default {
-          & > .panel-heading {
-            margin-bottom: 0;
-            padding: 10px 25px;
+      .payment-method-form {
+        .radio {
+          margin-bottom: 0;
+          padding: 10px 25px;
 
-              .panel-title {
-              font-size: 14px;
-              letter-spacing: 2px;
+          label {
+            input[type="radio"] {
+              opacity: 0;
 
-              & a {
+              &:checked {
                 color: @azul;
                 position: relative;
                 transform: .3s;
 
-                &.collapsed {
-                  color: @gris;
-
-                  .glyphicon {
-                    display: none;
-                  }
+                & + .glyphicon {
+                  display: block;
                 }
 
-                &:hover {
+                & + .glyphicon + .title {
                   color: @azul;
-                }
-
-                .glyphicon {
-                  display: inline-block;
-                  margin-left: -10px;
-                  position: absolute;
-                  left: -12px;
-                  line-height: 19px;
+                  margin-left: 5px;
                 }
               }
             }
+
+            .glyphicon {
+              color: @azul;
+              display: none;
+              position: absolute;
+              left: 20px;
+              top: 15px;
+              line-height: 19px;
+            }
+
+            .title {
+              font-size: 14px;
+              font-weight: 700;
+              letter-spacing: 2px;
+              color: @gris;
+            }
+
+            &:hover {
+              .title {
+                color: @azul;
+              }
+            }
           }
+        }
 
-          .panel-collapse {
-            padding: 10px 25px;
+        .panel-collapse {
+          padding: 10px 25px;
 
-            .payment-methods-list {
-              font-size: 0;
+          .payment-methods-list {
+            font-size: 0;
 
-              li {
-                background-image: url('../../imagenes/iconos/payment-methods-white.jpg');
-                display: inline-block;
-                height: 40px;
-                width: 90px;
+            li {
+              background-image: url('../../imagenes/iconos/payment-methods-white.jpg');
+              display: inline-block;
+              height: 40px;
+              width: 90px;
 
-                &.visa {
-                  background-position: 0 0;
-                }
-                &.visa-electron {
-                  background-position: -90px 0;
-                }
-                &.mastercard {
-                  background-position: -180px 0;
-                }
-                &.maestro {
-                  background-position: -270px 0;
-                }
-                &.american-express {
-                  background-position: -360px 0;
-                }
-                &.skrill {
-                  background-position: -450px 0;
-                }
-                &.ideal {
-                  background-position: -300px 0;
-                }
-                &.giropay {
-                  background-position: -350px 0;
-                }
-                &.postepay {
-                  background-position: -400px 0;
-                }
-                &.trustly {
-                  background-position: -810px 0;
-                }
-                &.aplazame {
-                  background-position: -900px 0;
-                }
-                &.sofort-banking {
-                  background-position: -990px 0;
-                }
-                &.cb {
-                  background-position: -150px -30px;
-                }
-                &.eps {
-                  background-position: -200px -30px;
-                }
-                &.bank-transfer {
-                  background-position: -1260px -0;
-                }
-                &.cod {
-                  background-position: -1350px 0;
-                }
+              &.visa {
+                background-position: 0 0;
+              }
+              &.visa-electron {
+                background-position: -90px 0;
+              }
+              &.mastercard {
+                background-position: -180px 0;
+              }
+              &.maestro {
+                background-position: -270px 0;
+              }
+              &.american-express {
+                background-position: -360px 0;
+              }
+              &.skrill {
+                background-position: -450px 0;
+              }
+              &.ideal {
+                background-position: -300px 0;
+              }
+              &.giropay {
+                background-position: -350px 0;
+              }
+              &.postepay {
+                background-position: -400px 0;
+              }
+              &.trustly {
+                background-position: -810px 0;
+              }
+              &.aplazame {
+                background-position: -900px 0;
+              }
+              &.sofort-banking {
+                background-position: -990px 0;
+              }
+              &.cb {
+                background-position: -150px -30px;
+              }
+              &.eps {
+                background-position: -200px -30px;
+              }
+              &.bank-transfer {
+                background-position: -1260px -0;
+              }
+              &.cod {
+                background-position: -1350px 0;
               }
             }
           }
@@ -426,6 +436,7 @@
   }
 }
 
+// Resume
 .resume {
   h4 {
     color: @gris_oscuro;
@@ -471,6 +482,10 @@
 
             td {
               border-top: 1px solid @gris_claro;
+
+              label, span {
+                text-transform: none;
+              }
             }
           }
 

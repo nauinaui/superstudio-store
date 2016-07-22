@@ -29,14 +29,6 @@
     <link rel="stylesheet" href="includes/css/superestudio.css">
 </head>
 <body>
-<div class="ui-blocker">
-	<div class="thecube">
-		<div class="cube c1"></div>
-		<div class="cube c2"></div>
-		<div class="cube c4"></div>
-		<div class="cube c3"></div>
-	</div>
-</div>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -1733,6 +1725,16 @@
 <!-- Feedback message when a product is added to cart from product's grid -->
 <div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
  	<button type="button" class="close"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+</div>
+
+<!-- Preloader -->
+<div id="preloader" class="ui-blocker">
+	<div class="thecube">
+		<div class="cube c1"></div>
+		<div class="cube c2"></div>
+		<div class="cube c4"></div>
+		<div class="cube c3"></div>
+	</div>
 </div>
 
 <script data-main="includes/scripts/default" src="includes/scripts/lib/require.min.js"></script>

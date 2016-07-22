@@ -18,6 +18,7 @@ require.config({
     zoom:             'zoom.min',
     recaptcha:        'https://www.google.com/recaptcha/api',
     skeuocard:        'cssua.min',
+    blockui:          'blockUI',
 
   },
 	
@@ -29,6 +30,7 @@ require.config({
     "countdown":		   ["jquery"],
     "zoom":            ["jquery"],
     "recaptcha":       ["jquery"],
-    "skeuocard":       ["jquery"]
+    "skeuocard":       ["jquery"],
+    "blockui":         ["jquery"]
 	}
 });
