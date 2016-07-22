@@ -93,17 +93,6 @@ define(['jquery', 'bootstrap'], function ($, Bootstrap) {
 			}
 
 			/**
-			 * Retina screen detection
-			 */
-			function detectRetina() {
-		        var isRetina = window.devicePixelRatio > 1 ? true : false;
-		        if (isRetina) {
-		            //window.location.href = "?retina=1";
-		            console.log("is retina");
-		        }
-		    }
-
-			/**
 			 * Refresh cart number of items after adding one
 			 * @param action:String Add or substract item
 			 */
@@ -310,9 +299,6 @@ define(['jquery', 'bootstrap'], function ($, Bootstrap) {
 				$(window).scroll(function() {
 				    fixedNav(stickyNavTop);
 				});
-
-				// Detect if client device is retina display
-				detectRetina();
 
 				// Block UI when AJAX is active
 				$(document).ajaxStart( function() {

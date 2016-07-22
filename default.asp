@@ -756,8 +756,8 @@
 		<div class="col-md-4 banner banner-tolix">
 			<a href="#">
 				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/banners/tolix.jpg" srcset="imagenes/banners/tolix@2x.jpg 2x" alt="#">
-					<div class="titulo">Especial <span>Tolix design</span></div>
+					<img class="img-responsive" src="imagenes/banners/packs.jpg" srcset="imagenes/banners/packs@2x.jpg 2x" alt="#">
+					<div class="titulo">Ofertas especiales en <span>Packs</span></div>
 				</div>
 				<div class="btn btn-primary btn-sm btn-rounded">Compra ahora</div>
 			</a>
