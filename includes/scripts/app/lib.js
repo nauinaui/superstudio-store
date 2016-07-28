@@ -285,6 +285,42 @@ define(['jquery', 'bootstrap'], function ($, Bootstrap) {
 				deleteProductFromCart(id_producto, opciones, tipo);
 			});
 
+			// Subscribing to newslettter
+			$('#newsletterForm').on('submit', function(){	
+				$('#existingEmailError').hide();
+				$('#emailInput').parent().removeClass('has-error', 'has-feedback');
+				var url = $(this).attr('action');
+				console.log($('#emailInput').val());
+				$.ajax({
+					url: url,
+					type: 'post',
+					data: $('#emailInput').val(),
+					success: function(data) {
+						console.log('ajax success');
+						if (data === 'enviado') {
+							console.log('data enviado ok');
+							$('#step1').fadeOut('fast', function(){
+								$('#step2').fadeIn('fast');
+							});
+						} else {
+							console.log('data no enviado');
+							if (data === 'noindicado') {
+								console.log('no indicado');
+								$('.noindicado').show();
+							} else if (data === 'yaexiste') {
+								console.log('ja existeix');
+								$('.yaexiste').show();
+							} else {
+								console.log('erroni');
+								$('.erroneo').show();
+							}
+						}
+					}
+				});
+				return false;
+			});
+
+
 			/**
 			 * =================
 			 * TO EXECUTE WHEN INIT

@@ -153,8 +153,29 @@
 .banners {
   .banner {
     position: relative;
-    img {
-      margin: 0 auto 20px;
+
+    a {
+      display: block;
+      margin-bottom: 20px;
+      position: relative;
+
+      &:hover img {
+        .filter(brightness(1.1));
+      }
+      
+      img {
+        margin: 0 auto;
+        .filter(brightness(1));
+        transition: .2s filter linear;
+        -webkit-transition: .2s -webkit-filter linear;
+        -moz-transition: .2s -moz-filter linear;
+        -ms-transition: .2s -ms-filter linear;
+        -o-transition: .2s -o-filter linear;
+      }
+
+      span {
+        .textoBannerInferior();
+      }
     }
   }
 

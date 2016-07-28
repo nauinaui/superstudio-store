@@ -54,6 +54,13 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 		$(this).toggleClass('hide');
 	 });
 
+	//Hide lateral contact form
+	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
+		$('#subscribeNewsletter').removeClass('show');
+		$('body').removeClass('block-content');
+	});
+
+
 	/**
 	 * =================
 	 * TO EXECUTE WHEN INIT

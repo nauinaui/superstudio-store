@@ -22,13 +22,14 @@
   }
   a {
     display: inline-block;
-    color: @blanco;
+    color: @blanco_roto;
     padding: 0 7px 0 0;
     margin: 0 7px 0 0;
     border-right: 1px solid @blanco;
     
     &:hover {
-      text-decoration: underline;
+      color: @blanco;
+      text-decoration: none;
     }
     &:last-child {
       padding: 0;
@@ -36,71 +37,97 @@
       border: 0;
     }
   }
-  .language, .llamamos {
-    position: relative;
+  
+  .dropdown {
     display: inline-block;
-    cursor: pointer;
-    z-index: 20;
-    span {
-      margin-right: 10px;
-    }
-    &:hover > .select {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    &:before {
-      .triDown();
-    }
-  }
-  .llamamos {
     padding-right: 5px;
     margin-right: 5px;
     border-right: 1px solid @blanco;
-    .select {
-      width: 240px;
-      left: 0;
-      right: inherit;
+
+    .dropdown-toggle {
+      border: 0;
+      color: @blanco_roto;
+      font-size: 13px;
+      padding: 0;
+      vertical-align: top;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:visited {
+        color: @blanco;
+        text-decoration: none;
+      }
     }
-    &:before {
-      margin-right: 5px;
-    }
-    input[type="text"] {
-      .textInput();
-    }
-    button {
-      .botonCTA();
-      margin-top: 10px;
-      border: 1px solid @blanco;
-    }
-    .showFranjaHoraria {
-      text-decoration: underline;
-    }
-    .franjaHoraria {
-      display: none;
-      label {
-        cursor: pointer;
-        display: inline-block;
-        width: 100%;
+
+    .dropdown-menu {
+      background-color: @azul;
+      padding: 10px;
+      width: 200px;
+
+      .form-group {
+        margin-bottom: 5px;
+
+        input {
+          background-color: transparent;
+          border: 0;
+          border-bottom: 2px solid @gris_claro;
+          border-radius: 0;
+          color: @blanco;
+          .box-shadow(none);
+          .placeholder(@blanco_roto);
+        }        
+      }
+
+      a {
+        color: @gris_claro_mas;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited {
+          color: @blanco_roto;
+          text-decoration: none;
+        }
+      }
+
+      .franja-horaria-link {
+        border: 0;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .franja-horaria {
+        padding: 0 0 10px;
+
+        label {
+          display: block;
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+
+      .btn {
+        display: block;
+        margin: 0 auto;
       }
     }
   }
-  .select {
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    padding: 15px;
-    background: #00AEDD;
-    transform: translateY(-300px);
-    transition: opacity .2s ease;
-    z-index: 99999;
-    a {
-      display: block;
-      border: 0;
-      padding: 0 !important;
-      margin: 0 !important;
-      line-height: 21px;
-      &:hover {
-        text-decoration: underline;
+
+  .language {
+    border: 0;
+
+    .dropdown-menu {
+      width: 150px;
+      
+      .language-list {
+        margin: 0;
+        padding: 0;
+
+        a {
+          display: block;
+        }
       }
     }
   }
@@ -473,6 +500,21 @@
       }
     }
 
+    .outlet-warning-text {
+      p {
+        margin-bottom: 0;
+        padding: 10px;
+        text-align: center;
+
+        &.title {
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
     .item {
       background-color: @blanco_roto;
       margin-top: 0;
@@ -555,6 +597,13 @@
           font-size: 10px;
           padding: 3px;
           line-height: 7px;
+          background-color: @blanco;
+          height: 15px;
+          width: 15px;
+
+          &:hover {
+            border-color: @gris_oscuro;
+          }
         }
 
         .number {

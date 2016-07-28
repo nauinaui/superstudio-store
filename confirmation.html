@@ -34,18 +34,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-7 left">
-                <div class="llamamos">
-                    <span>Te llamamos</span>
-                    <div class="select">
-                        <input type="text" name="telefono" placeholder="Nº de teléfono">
-                        <input type="text" name="nombre" placeholder="Nombre">
-                        <input type="text" name="email" placeholder="Correo electrónico">
-                        <a href="javascript:void(0)" class="showFranjaHoraria">¿Quieres especificar franja horaria?</a>
-                        <div class="franjaHoraria">
-                            <label><input type="checkbox"> Por la mañana</label>
-                            <label><input type="checkbox"> Por la tarde</label>
-                        </div>
-                        <button type="submit">Enviar</button>
+                <div class="dropdown we-call-you">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="weCallYouDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Te llamamos <span class="caret"></span></button>
+                    <div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="InputPhone" placeholder="Nº de teléfono" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="InputName" placeholder="Nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Correo electrónico" required>
+                            </div>
+                            <a class="franja-horaria-link" data-toggle="collapse" href="#franjaHoraria" aria-expanded="false" aria-controls="franjaHoraria">¿Quieres especificar franja horaria?</a>
+                            <div id="franjaHoraria" class="collapse franja-horaria">
+                                <label><input type="checkbox"> Por la mañana</label>
+                                <label><input type="checkbox"> Por la tarde</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-rounded btn-sm">Enviar</button>
+                        </form>
                     </div>
                 </div>
                 <a href="#">Enviamos a toda Europa</a>
@@ -57,14 +65,17 @@
                 <a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
                 <a href="#" class="text-bold">Contacto</a>
                 <a href="#" class="text-bold">Iniciar sesión</a>
-                <div class="language">
-                    <span>ES</span>
-                    <div class="select">
-                        <a href="https://www.superestudio.com?idioma=CAS">Castellano</a>
-                        <a href="https://www.superestudio.com?idioma=ENG">English</a>
-                        <a href="http://www.superestudio.fr/?idioma=FRA">Français</a>
-                        <a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a>
-                        <a href="http://www.superestudio.pt/?idioma=POR">Português</a>
+                <div class="dropdown language navbar-right">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
+                    <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <ul class="language-list">
+                            <li><a href="https://www.superestudio.com?idioma=CAS">Castellano</a></li>
+                            <li><a href="https://www.superestudio.com?idioma=CAS">Castellano</a></li>
+                            <li><a href="https://www.superestudio.com?idioma=ENG">English</a></li>
+                            <li><a href="http://www.superestudio.fr/?idioma=FRA">Français</a></li>
+                            <li><a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a></li>
+                            <li><a href="http://www.superestudio.pt/?idioma=POR">Português</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

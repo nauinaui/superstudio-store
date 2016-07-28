@@ -1,25 +1,27 @@
 .confirmation {
-	.btn {
-		margin: 0 0 20px;
-	}
+	section {
+		.btn {
+			margin: 0 0 20px;
+		}
 
-	.subtitle {
-		.subtitle();
-		color: @gris_oscuro;
-	}
+		.subtitle {
+			.subtitle();
+			color: @gris_oscuro;
+		}
 
-	.bg-success {
-		margin: 0 auto;
-		max-width: 700px;
-	}
+		.bg-success {
+			margin: 0 auto;
+			max-width: 700px;
+		}
 
-	.bank-transfer-info {
-		display: none;
-	}
-
-	&.bank-transfer {
 		.bank-transfer-info {
-			display: block;
+			display: none;
+		}
+
+		&.bank-transfer {
+			.bank-transfer-info {
+				display: block;
+			}
 		}
 	}
 }

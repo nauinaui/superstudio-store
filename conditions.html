@@ -22,22 +22,11 @@
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,700,300' rel='stylesheet' type='text/css'>
- 	<link rel="stylesheet" href="includes/css/skeuocard.reset.css" />
-	<link rel="stylesheet" href="includes/css/skeuocard.css" />
     <link rel="stylesheet" href="includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="includes/css/animate.min.css">
     <link rel="stylesheet" href="includes/css/superestudio.css">
 </head>
-
-<body data-spy="scroll" data-target="#myScrollspy">
-<div class="ui-blocker">
-	<div class="thecube">
-		<div class="cube c1"></div>
-		<div class="cube c2"></div>
-		<div class="cube c4"></div>
-		<div class="cube c3"></div>
-	</div>
-</div>
+<body>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -107,12 +96,13 @@
 				<img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
 				<img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
 			</a>
+			
 			<div class="cart-container">
 				<a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
 					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
 					<span id="cartItemsNumber" class="badge">3</span>
 				</a>
-			
+
 				<!-- My cart (opened) -->
 				<div class="collapse my-cart" id="myCart">
 					<div class="header">
@@ -120,9 +110,9 @@
 						<span class="title">tu carrito</span>
 						<img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
 					</div>
-					<div class="item media" rel="142898" data-color="5" data-finish="" data-option="" data-type="producto">
+					<div class="item media">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -132,7 +122,7 @@
 								<span class="nombre">Silla Wooden -Polipropileno-</span>
 								<span class="finish">Gris claro</span>
 								<div class="price">
-									<div class="last-price">58,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
 									<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-50%</div>
 								</div>
@@ -145,9 +135,9 @@
 							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
 						</div>
 					</div>
-					<div class="item media" rel="6679300" data-color="46313" data-finish="" data-option="" data-type="producto">
+					<div class="item media">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -157,7 +147,7 @@
 								<span class="nombre">Silla TEREK</span>
 								<span class="finish">Acero cepillado</span>
 								<div class="price">
-									<div class="last-price">48,<span class="cents">01</span><span class="currency">€</span></div>
+									<div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
 									<div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-60%</div>
 								</div>
@@ -170,9 +160,9 @@
 							<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
 						</div>
 					</div>
-					<div class="item media" rel="6679256" data-color="46313" data-finish="" data-option="" data-type="producto">
+					<div class="item media">
 						<div class="media-left media-middle">
-							<button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="media-body media">
 							<div class="media-left media-middle">
@@ -182,7 +172,7 @@
 								<span class="nombre">Mesa Tendar WOOD 120</span>
 								<span class="finish">Blanco</span>
 								<div class="price">
-									<div class="last-price">69,<span class="cents">95</span><span class="currency">€</span></div>
+									<div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
 									<div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
 									<div class="discount">-50%</div>
 								</div>
@@ -740,786 +730,112 @@
 </nav>
 
 <div class="container">
-	<!-- Breadcrumb -->
-	<ol class="breadcrumb">
-	  <li><a href="#">Inicio</a></li>
-	  <li><a href="#">Sillas</a></li>
-	  <li><a href="#">Sillas icono del Diseño</a></li>
-	  <li class="active">Silla WOODEN -Polipropileno-</li>
-	</ol>
-	
-	<!-- Especiales -->
-	<section class="row banners-especial">
-		<div class="col-sm-6 col-md-4 banner banner-eames">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/banners/eames.jpg" srcset="imagenes/banners/eames@2x.jpg 2x" alt="#">
-					<div class="titulo">Especial <span>Eames design</span></div>
-				</div>
-			</a>
-		</div>
-		<div class="col-sm-6 col-md-4 banner banner-tolix">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/banners/tolix.jpg" srcset="imagenes/banners/tolix@2x.jpg 2x" alt="#">
-					<div class="titulo">Especial <span>Tolix design</span></div>
-				</div>
-			</a>
-		</div>
-		<div class="hidden-sm col-md-4 banner banner-pop">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/banners/preciominimo3.jpg" srcset="imagenes/banners/preciominimo3@2x.jpg 2x" alt="#">
-					<div class="titulo">Precio mínimo <span>garantizado</span></div>
-					<span class="footer-text">en más de 60 productos</span>
-				</div>
-			</a>
-		</div>
-	</section>
+	<section class="row conditions">
+	    <h1 class="title">Condiciones de uso</h1>
+		<h2 class="subtitle">Pedidos</h2>
+		<ol>
+			<li>Los precios mostrados en el sitio web incluyen IVA. El IVA aplicado es el vigente en cada momento en España, país donde está ubicada la razón social de la compañía.</li>
+			<li>Para evitar errores, todos los pedidos deben realizarse on line, o por escrito vía email o fax.</li>
+			<li><strong>No puede mezclar en un mismo pedido artículos de tienda con artículos de Outlet</strong>, ya que estos últimos están bajo promoción especial. Si le interesa algún producto del Outlet, debe realizar un pedido diferente que incluya únicamente productos de Outlet. <strong>Los productos Outlet no aceptan cambios ni devoluciones</strong>.</li>
+			<li>En un plazo de 48 horas recibirá una confirmación de su pedido y la factura pro forma vía email, con el plazo de entrega, importe final, listado de productos, colores o acabados, etc. <strong>Es imprescindible verificar los datos del pedido</strong>, ya que cualquier recargo posterior ocasionado por un error en el pedido será responsabilidad del cliente.</li>
+			<li>El <strong>importe mínimo para un pedido con destino a Islas Canarias es de 100€</strong>. En estos casos, los precios indicados en la factura aparecerán sin IVA. El cliente deberá pagar los impuestos correspondientes (IGIC) al recibir su pedido.</li>
+			<li><strong>El plazo máximo para cancelar un pedido es de 4 meses</strong> desde la fecha de confirmación del mismo. Pasado ese plazo, cualquier paga y señal se perderá en tu totalidad. Esta cláusula no se aplica en el marco del ejercicio del derecho de desistimiento.</li>
+			<li>Las <strong>reservas</strong> de productos en stock son <strong>válidas durante 6 meses máximo</strong>. Pasado ese plazo, la reserva se anulará y el cliente perderá cualquier paga y señal depositada, en su totalidad. Para productos sin stock, este plazo de 6 meses empieza a contar desde la fecha en que los artículos están disponibles en SuperStudio.</li>
+			<li>En el caso de pedidos de artículos fuera de stock, adquiridos por SuperStudio&nbsp;<strong>bajo petición expresa del cliente</strong>, NO habrá posibilidad de cancelación ni de modificación en ninguna circunstancia. El cliente pagará el <strong>100% del precio</strong> facturado al reconocer que SuperStudio debe pagar a sus proveedores igualmente por la adquisición de dichos productos. Esta cláusula no se aplica en el marco del ejercicio del derecho de desistimiento.</li>
+		</ol>
+
+		<h2 class="subtitle">Entregas</h2>
+		<ol>
+			<li>Entregamos en todos los países del Espacio Schengen (excepto Islandia) y en Andorra.</li>
+			<li>Los <strong>plazos de entrega se especifican en nuestro sitio web</strong>, en la ficha de cada producto. Si elige <strong>pago por transferencia bancaria, debe añadir 3 - 5 días más</strong> al plazo de entrega indicado. Este plazo empieza a contar desde el momento en que SuperStudio recibe el pago y puede realizar la factura correspondiente al pedido.</li>
+			<li>Los gastos de envío corren a cargo del cliente.</li>
+			<li>El cliente debe facilitar un teléfono y una dirección de email donde el transportista pueda localizarlo/a para concertar el momento de la entrega.</li>
+			<li>Los paquetes serán devueltos a nuestro almacén si el transportista no logra contactar con el cliente por teléfono o email durante 3 días seguidos. Si el cliente expresa posteriormente su deseo de recibir el pedido, deberá <strong>pagar los gastos de transporte de un nuevo envío</strong>.</li>
+			<li>El cliente tiene la obligación de indicar cualquier detalle importante para la entrega. Cualquier gasto adicional por dificultades de acceso a la dirección de entrega, correrá a cargo del cliente.&nbsp;</li>
+			<li><strong>No se realizan entregas en Islas Canarias de pedidos inferiores a 100€</strong>. Toda mercancía que entra en las islas debe declararse en aduanas. <strong>El coste del despacho de importación corre a cargo del cliente</strong>. Los aranceles de importación están fijados por la Unión Europea. El importe mínimo del pedido establecido por SuperStudio, asegura que el precio del despacho no supere nunca el precio del producto. El despacho de exportación corre a cargo de SuperStudio, y aparece incluido en los gastos de envío. Si el cliente rechaza pagar los gastos de despacho de entrada, no podrá recibir su pedido. Además, deberá abonar los gastos de transporte de ida y vuelta de la mercancía.</li>
+			<li>Igualmente, para entregas en <strong>Islas Canarias</strong>, el cliente deberá pagar los impuestos correspondientes (IGIC) al recibir su pedido.</li>
+			<li><strong>Los pagos contra reembolso sólo se aceptan para entregas en España de pedidos con un importe igual o superior a 35€</strong>. Además, este método de pago tiene un <strong>cargo adicional de un 5%</strong> sobre el total de la factura. La compañía de transporte le cobrará directamente al cliente estos gastos en el momento de la entrega. El coste mínimo a pagar serán 3€. Todos los pedidos contra reembolso deben ser confirmados, aceptando estas condiciones de entrega, vía email o fax.</li>
+			<li>Los pedidos con destinos fuera de España tienen asignada una fecha de entrega pero no una hora determinada. El cliente podrá recibir su pedido en cualquier momento a lo largo del día. Fijar una franja horaria para la entrega es un servicio adicional de la compañía de transporte no incluido en los gastos de envío. El cliente puede contactar a SuperStudio para solicitar este servicio y abonar el coste correspondiente.</li>
+			<li>Si observa algún <strong>desperfecto en el producto</strong> ocasionado durante el transporte, debe comunicarlo en un <strong>plazo de 24h desde su recepción</strong> a nuestro Servicio de Atención al Cliente, llamando al 932 417 330 o rellenando el formulario de contacto en <a href="https://www.superestudio.com/contacto" target="_self">https://www.superestudio.com/contacto</a>. SuperStudio garantiza la reposición del producto dañado si avisa dentro de este plazo de 24h y si <strong>hace constar "Conforme salvo examen" junto a su firma en el albarán del transportista.</strong></li>
+			<li>Póngase en contacto con nuestro Servicio Técnico para&nbsp;<strong>verificar las medidas exactas de un producto antes de realizar el pedido</strong>.</li>
+			<li>Los precios <strong>no incluyen el montaje</strong> de los artículos que lo requieran.</li>
+			<li>El material se entrega perfectamente embalado y protegido dentro de su caja. Si por cualquier motivo usted ordena el desembalaje del mismo antes de llegar a su destino final, cualquier desperfecto causado estará fuera de nuestra responsabilidad.</li>
+		</ol>
+
+		<h2 class="subtitle">Condiciones de pago:</h2>
+		<ol>
+			<li>Métodos de pago: transferencia bancaria, tarjeta de crédito (Visa, Mastercard, American Express) o contra reembolso (sólo para entregas en España).</li>
+			<li>Para pedidos especiales o de artículos que no están en stock, el cliente debe abonar el 50% del importe de la factura pro forma al realizar el pedido, y el 50% antes de que realicemos el envío. </li>
+			<li><strong>Los pagos contra reembolso sólo se aceptan para entregas en España de pedidos con un importe igual o superior a 35€</strong>. Además, este método de pago tiene un <strong>cargo adicional de un 5%</strong> sobre el total de la factura. La compañía de transporte le cobrará&nbsp;directamente al cliente&nbsp;estos gastos en el momento de la entrega. El coste mínimo a pagar serán 3€. Todos los pedidos contra reembolso deben ser confirmados, aceptando estas condiciones de entrega, vía email o fax.</li>
+			<li>Los clientes con formas de pago a 30 ó 60 días que realicen pedidos especiales, deben abonar por adelantado el 50% del importe de la factura pro forma mediante transferencia bancaria.</li>
+			<li>Las reservas de productos en stock son válidas durante 6 meses máximo. Pasado ese plazo, la reserva se anulará y el cliente perderá cualquier paga y señal depositada, en su totalidad. Para productos sin stock, este plazo de 6 meses empieza a contar desde la fecha en que los artículos están disponibles en SuperStudio.</li>
+			<li>Si después de 2 meses desde que los productos solicitados estén disponibles en los almacenes de SuperStudio, el cliente aún no los ha recogido, deberá pagar los gatos de almacenaje.</li>
+			<li>En el caso de pedidos de artículos fuera de stock, adquiridos por SuperStudio <strong>bajo petición expresa del cliente</strong>, NO habrá posibilidad de cancelación ni de modificación en ninguna circunstancia. El cliente pagará el <strong>100% del precio </strong>facturado al reconocer que SuperStido debe pagar a sus proveedores igualmente por la adquisición de dichos productos. Esta cláusula no se aplica en el marco del ejercicio del derecho de desistimiento.</li>
+		</ol>
+
+		<h2 class="subtitle">Derecho de desistimiento:</h2>
+		<ol>
+			<li>El cliente tiene derecho a desistir de cualquier compra sin necesidad de justificación, en un plazo de <strong>14 días naturales </strong>desde el día en que el cliente o un tercero indicado por él, distinto del transportista, recibe la mercancía. Para ejercer este derecho, deberá notificar su decisión de desistir del contrato antes de que venza el plazo de 14 días naturales, por correo ordinario, por correo electrónico o por teléfono:<br />
+			<em>SuperStudio<br>
+			C/ Aribau, 326<br>
+			08006 Barcelona<br>
+			Telf. 93 241 73 30<br>
+			E-mail: atc@superestudio.com</em><br></li>
+			<li>Podrá utilizar el modelo de notificación de desistimiento que figura a continuación, aunque su uso no es obligatorio:<br>
+			<em>"A la atención de SuperStudio, con dirección en C/ Aribau, 326, 08006, Barcelona, teléfono 93 241 73 30 y dirección de correo electrónico atc@superestudio.com:<br>
+			Por la presente le comunico que desisto de mi contrato de compra del/de los siguiente/s productos: (indicar nombre, referencia y cantidad del producto que desea devolver).<br>
+	        Indico los datos del pedido correspondiente:<br>
+	        - Número del pedido.<br>
+	        - Nombre completo del cliente.<br>
+	        - Dirección de entrega del pedido.<br>
+	        - Fecha y firma, en caso de presentarse por correo ordinario."<br></em></li>
+			<li>En caso de desistimiento por su parte, le devolveremos todos los pagos realizados por usted, excepto los gastos adicionales resultantes de la elección por su parte de una modalidad de entrega diferente a la modalidad menos costosa de entrega ordinaria que ofrezcamos, sin ninguna demora indebida y, en todo caso, a más tardar 14 días naturales a partir de la fecha en la que nos informe de su decisión de desistir del contrato de compra. En caso de desistimiento por su parte en pedidos realizados bajo promoción "costes de envío gratis",  le devolveremos todos los pagos realizados por usted, excepto los gastos de envío de retorno y los gastos adicionales resultantes de la elección por su parte de una modalidad de entrega diferente a la modalidad menos costosa de entrega ordinaria que ofrezcamos.<br></li>
+			<li><strong>Efectuaremos el reembolso utilizando el mismo medio de pago que usted empleó para la transacción inicial</strong>, a no ser que indique expresamente lo contrario. En todo caso, no incurrirá en ningún gasto como consecuencia del reembolso. Podremos retener el reembolso hasta haber recibido los productos, o bien hasta que usted haya presentado una prueba de la devolución de los mismos.<br>
+			Para llevar a cabo la devolución, debe seguir las instrucciones indicadas en el apartado "Devoluciones" de la web. <strong>En ningún caso el cliente debe devolver la mercancía a SuperStudio por sus propios medios. SuperStudio no se hará responsable de la mercancía si el cliente la devuelve por sus propios medios.</strong><br></li>
+			<li><strong>Los gastos de envío de la devolución de los productos correrán a cargo del cliente</strong>. La disminución de valor de los productos devueltos por una manipulación distinta a la necesaria para establecer la naturaleza, las características y el funcionamiento de los mismos, serán responsabilidad exclusiva del cliente, que deberá recompensar a SuperStudio por los perjuicios ocasionados.</li>
+		</ol>
+    	<h2 class="subtitle">Productos defectuosos o errores en el pedido:</h2>
+		<ol>
+    		<li>Si ha habido un error en su pedido o si ha recibido un artículo con defecto de fábrica, puede reclamar en un plazo de <strong>14 días naturales</strong> después de haber recibido la mercancía, escribiendo un email a: atc@superestudio.com.</li>
+    		<li>Durante ese plazo de 14 días naturales, el cliente debe <strong>conservar el embalaje original del producto en perfecto estado</strong>. Sin este embalaje, SuperStudio no acepta devoluciones de ningún tipo.</li>
+    		<li>Si el defecto ha sido ocasionado por rotura (golpes, arañazos, etc.) si observa el embalaje en mal estado debe indicarlo en el albarán de entrega del transportista. Si no lo indica, al firmar el albarán expresa su conformidad con la entrega y la empresa de transporte no se hará responsable de ningún daño de este tipo.</li>
+    		<li>Igualmente, debe indicar si falta algún producto en el albarán de entrega. Si no lo hace, la empresa de transporte no se hará responsable de errores en la entrega ni de pérdida de mercancías.</li>
+    		<li>En caso de&nbsp;daños ocasionados durante el transporte, tiene un plazo de 24 horas tras recibir la mercancía para notificar los desperfectos al Departamento de Incidencias: atc@superestudio.com. Todos los envíos se realizan bajo un seguro a todo riesgo que tiene vigencia hasta 24 horas después de la entrega.</li>
+    		<li>Recuerde enviar fotografías del producto y del embalaje por email, mostrando el error o desperfecto. <strong>Sin fotografías no podemos tramitar la incidencia</strong>.</li>
+    		<li>La reposición del producto defectuoso o la subsanación de un error en el pedido por nuestra parte no supondrá ningún gasto adicional para el cliente. Si no acepta la reposición o subsanación, el cliente debe pagar los gastos de transporte de vuelta de la mercancía.</li>
+    		<li>En caso de devolución por cualquier otra causa que no sea desperfecto del producto o error en el pedido, el cliente debe pagar los gastos de transporte de vuelta de la mercancía.</li>
+    		<li>En cualquier caso, sólo aceptamos devoluciones de <strong>productos que no hayan sido montados ni utilizados, y que conserven el embalaje original en perfecto estado</strong>.</li>
+    		<li>Una vez que SuperStudio haya recibido la mercancía, comprobaremos su estado, y procederemos al abono al cliente si corresponde.</li>
+    		<li>Las descripciones de todos los artículos del sitio web contienen las medidas y los colores del producto. Estos datos son aproximados y no se ajustan 100% a la realidad. Si para el cliente es imprescindible conocer con exactitud estas características, contacte con nuestro Servicio Técnico. Los gastos de transporte de vuelta de devoluciones por motivos técnicos de este tipo correrán a cargo del cliente.</li>
+    		<li>Si el cliente realiza un pedido <strong>contra reembolso </strong>y una vez recibido decide no aceptarlo, por cualquier otra causa que no sea ni defecto en el producto ni error por nuestra parte, <strong>deberá pagar igualmente los costes de ida y de vuelta del transporte de la mercancía</strong>.&nbsp;</li>
+		</ol>
+    	<h2 class="subtitle">Condiciones de devolución:</h2>
+		<ol>El derecho de desistimiento no será aplicable a los pedidos que se refieran a:
+    		<li>Productos confeccionados, caracterizados o claramente personalizados según las especificaciones del cliente.</li>
+    		<li>Productos que puedan deteriorarse o caducar con rapidez.</li>
+    		<li>Productos precintados que no sean aptos para ser devueltos por razones de protección de la salud o de higiene, una vez retirado el precinto.</li>
+    		<li>Productos fuera de catálogo o de stock, adquiridos por SuperStudio bajo petición expresa del cliente.<br>
+    		En cualquier caso, sólo aceptaremos devoluciones de <strong>productos que no hayan sido montados, ni usados</strong>&nbsp;y que <strong>conserven el embalaje original en perfecto estado</strong>.</li>
+    		<li>En devoluciones mediante cupón o similar por valor del importe parcial o total de la compra, los saldos a favor del comprador por devolución/compensación podrán ejecutarse con nuevas compras siempre y cuando el plazo transcurrido desde la fecha de devengo de dicho saldo no supere el plazo de 1 año.</li>
+		</ol>
+
+		<h2 class="subtitle">Garantía:</h2>
+		<ol>
+    		<li>Todos los productos tienen una <strong>garantía de 2 años</strong> desde la fecha de factura, sólo para <strong>defectos de fabricación</strong>. </li>
+    		<li>La garantía le asegura la sustitución o reparación del artículo tantas veces como sea necesario sin ningún coste, pero nunca se devuelve&nbsp;la totalidad del importe pagado pasados los 14 días de la entrega.</li>
+		</ol>
+    	
+    	<h2 class="subtitle">Divergencias:</h2>
+		<ol>
+			<li>Estas Condiciones Generales se rigen por la ley española. Las partes se someten, a su elección, para la resolución de los conflictos y con renuncia a cualquier otro fuero, a los juzgados y tribunales del domicilio del usuario. Asimismo, como entidad adherida a Confianza Online y en los términos de su Código Ético, en caso de controversias relativas a la contratación y publicidad online, protección de datos y protección de menores, el usuario podrá acudir al sistema de resolución extrajudicial de controversias de Confianza Online (www.confianzaonline.es).”</li>
+		</ol>
+        
+        <h2 class="subtitle">Registro de datos:</h2>
+    	<ol>
+    		<li>Para poder prestar el servicio, el usuario deberá registrarse en nuestro sitio web. Sus datos serán almacenados de forma automatizada en servidores de bases de datos alojados en España. Dicha información se tratará de modo totalmente confidencial para uso administrativo y operativo.</li>
+    	</ol>
+    </section>
 </div>
-
-<section class="bgDark">
-	<div class="container">
-		<div class="title">Completa tu pedido</div>
-		<div class="row">
-			<div class="col-sm-7 col-md-8">
-				<div class="panel-group steps-accordion" id="stepsAccordion" role="tablist" aria-multiselectable="true">
-				  	
-				  	<!-- STEP 1: Delivery details -->
-				  	<div id="deliveryDetailsPanel" class="panel panel-default">
-				    	<div class="panel-heading" role="tab" id="headingDeliveryDetails">
-							<h4 class="panel-title">
-								<span class="glyphicon glyphicon-ok"></span>
-								<span class="glyphicon glyphicon-remove"></span>
-								<a role="button">
-									Información de envío <span class="edit pull-right">editar</span>
-								</a>
-							</h4>
-				    	</div>
-				    	<div id="collapseDeliveryDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDeliveryDetails">
-					      		<div class="panel-body">
-									<!-- Nav tabs -->
-									<ul class="nav nav-tabs" role="tablist">
-										<li id="deliveryDetailsTab" role="presentation" class="active">
-											<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Datos de envío</a>
-										</li>
-										<li id="loginTab" role="presentation">
-											<a href="#loginContent" aria-controls="loginContent" role="tab" data-toggle="tab">Log in</a>
-										</li>
-									</ul>
-						  			<!-- Tab panes -->
-									<div class="tab-content">
-									    <div role="tabpanel" class="tab-pane active" id="shippingDetailsContent">
-									    	<div class="box">
-										    	<p>Por favor, rellene los datos de envío para calcular todas las opciones de envio para cada producto. Si ya estás registrado, identifícate y comprueba toda la información. Recuerda que tu compra será enviada en la siguiente dirección.</p>
-										    	<form id="deliveryDetailsForm" name="deliveryDetailsForm">
-											    	<div class="form-horizontal delivery-form">
-														<div class="form-group">
-														    <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
-														    <div class="col-sm-9">
-														    	<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
-														    </div>
-														</div>
-														<div class="form-group">
-														    <label for="inputName" class="col-sm-3 control-label">Nombre completo*</label>
-														    <div class="col-sm-9">
-														      <input type="text" class="form-control" id="inputName" placeholder="Nombre completo" required>
-														    </div>
-														  </div>
-														<div class="form-group">
-															<label for="inputPhone" class="col-sm-3 control-label">Teléfono*</label>
-															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputPhone" placeholder="Teléfono" required>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="inputAddress" class="col-sm-3 control-label">Dirección*</label>
-															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputAddress" placeholder="Dirección" required>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="inputPostcode" class="col-sm-3 control-label">Código postal*</label>
-															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputPostcode" placeholder="Código postal" required>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="inputCity" class="col-sm-3 control-label">Población*</label>
-															<div class="col-sm-9">
-																<select class="form-control" id="inputCity" required>
-																	<option>Andorra la Vella</option>
-																	<option>Escaldes</option>
-																	<option>Valira</option>
-																</select>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="inputCountry" class="col-sm-3 control-label">País*</label>
-															<div class="col-sm-9">
-																<select class="form-control" id="inputCountry" required>
-																	<option>Andorra</option>
-																	<option>Albania</option>
-																	<option>Áustria</option>
-																	<option>Bosnia-Herzegovina</option>
-																</select>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="inputPassport" class="col-sm-3 control-label">NIF/CIF*</label>
-															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputPassport" placeholder="NIF/CIF" required>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="btn btn-primary hidden">Submit</button>
-												</form>
-												<div class="alert alert-warning" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
-												<div class="alert alert-warning" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
-											</div>
-									    </div>
-									    
-									    <div role="tabpanel" class="tab-pane" id="loginContent">
-									    	<div class="box">
-										    	<form id="loginForm" name="loginForm">
-											    	<div class="form-horizontal delivery-form">
-														<div class="form-group">
-														    <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
-														    <div class="col-sm-9">
-														    	<input type="email" class="form-control" id="inputEmail" name="emailLogin" placeholder="Email" required>
-														    </div>
-														</div>
-														<div class="form-group">
-														    <label for="inputPassword" class="col-sm-3 control-label">Clave*</label>
-														    <div class="col-sm-9">
-														    	<input type="password" class="form-control" id="inputPassword" name="passwordLogin" placeholder="Clave" required>
-														    </div>
-														</div>
-														<div class="form-group">
-															<div class="col-sm-offset-3 col-sm-9">
-																<div class="checkbox">
-																	<label>
-																		<input type="checkbox"> Remember me
-																	</label>
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="col-sm-offset-3 col-sm-9">
-																<button type="submit" class="btn btn-primary">Log in</button>
-															</div>
-														</div>
-														<div class="form-group">
-															<div class="col-sm-offset-3 col-sm-9">
-																<p>¿Has olvidado tu clave? <a href="#" title="solicita nueva clave">Click aquí para obtener una nueva</a></p>
-															</div>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</form>
-											</div>
-									    </div>
-									    <button class="btn btn-primary pull-right step-btn" data-step="1">Siguiente</button>
-									</div>
-					      		</div>
-					      	</form>
-				    	</div>
-				  	</div>
-
-				  	<!-- STEP 2: Products -->
-				  	<div id="productsPanel" class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingProducts">
-							<h4 class="panel-title">
-						        <span class="glyphicon glyphicon-ok"></span>
-						        <span class="glyphicon glyphicon-remove"></span>
-								<a class="collapsed" role="button">
-								  Productos <span class="edit pull-right">editar</span>
-								</a>
-							</h4>
-					    </div>
-					    <div id="collapseProducts" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingProducts">
-						    <div class="panel-body">
-						      	<div class="box">
-						        	<div class="subtitle">Elige opciones de envío</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="deliveryType" id="deliveryType1" value="option1" checked>
-											<strong>Realizar entrega parcial</strong>
-										</label>
-										<div class="well well-sm">Sin coste añadido (Recomendado). Se realizarán 2 envíos en este pedido SEGÚN EL PLAZO DE ENTREGA INDICADO PARA CADA PRODUCTO (ver a continuación).</div>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="deliveryType" id="deliveryType2" value="option2">
-											<strong>Deseo que se envíe todo junto</strong>
-										</label>
-										<div class="well well-sm">En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.</div>
-									</div>
-
-									<div class="table-header">
-										<p class="subtitle">Envío número 1</p>
-										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 5 y 8 días</em></span>
-									</div>
-									<table class="table">
-										<thead>
-											<tr>
-												<th></th>
-												<th></th>
-												<th class="text-center">Unit price</th>
-												<th class="text-center">Quantity</th>
-												<th class="text-right">Total</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
-												<td>
-													WOODEN Chair -Polypropilene-
-													<select class="form-control">
-														<optgroup label="Entrega entre 5 y 8 días">
-															<option>Beige</option>
-															<option>Turquesa</option>
-															<option selected>Azul petróleo</option>
-														</optgroup>
-														<optgroup label="Entrega entre 10 y 13 días">
-															<option>Gris oscuro</option>
-															<option>Marrón</option>
-															<option>Naranja</option>
-															<option>Rojo</option>
-															<option>Azul</option>
-														</optgroup>
-														<optgroup label="Entrega entre 19 y 22 días">
-															<option>Verde</option>
-															<option>Amarillo</option>
-														</optgroup>
-													</select>
-												</td>
-												<td class="price">
-													<span class="old-price">116,00€</span>
-													<span class="last-price">38,01€</span>
-												</td>
-												<td>
-													<select class="form-control">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-														<option selected>28</option>
-													</select>
-												</td>
-												<td class="text-right">1.064,28€</td>
-											</tr>
-											<tr>
-												<td class="warning-alert" colspan="5">
-													<div class="alert alert-warning" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
-												</td>
-											</tr>
-											<tr>
-												<td><img width="100px" src="https://intranet.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" alt="Taburete HIGHT URAL -Metal Cepillado-"></td>
-												<td>
-													HIGHT URAL -Brushed Metal- Stool
-													<select class="form-control">
-														<optgroup label="Entrega entre 5 y 8 días">
-															<option>Acero cepillado</option>
-														</optgroup>
-													</select>
-												</td>
-												<td class="price">
-													<span class="old-price">81,33€</span>
-													<span class="last-price">39,00€</span>
-												</td>
-												<td>
-													<select class="form-control">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-													</select>
-												</td>
-												<td class="text-right">39,00€</td>
-											</tr>
-										</tbody>
-									</table>
-
-									<div class="table-header">
-										<p class="subtitle">Envío número 2</p>
-										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 14 y 15 semanas</em></span>
-									</div>
-									<table class="table">
-										<thead>
-											<tr>
-												<th></th>
-												<th></th>
-												<th class="text-center">Unit price</th>
-												<th class="text-center">Quantity</th>
-												<th class="text-right">Total</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
-												<td>
-													WOODEN Chair -Polypropilene-
-													<select class="form-control">
-														<optgroup label="Entrega entre 5 y 8 días">
-															<option>Beige</option>
-															<option>Turquesa</option>
-															<option>Azul petróleo</option>
-														</optgroup>
-														<optgroup label="Entrega entre 10 y 13 días">
-															<option>Gris oscuro</option>
-															<option>Marrón</option>
-															<option>Naranja</option>
-															<option>Rojo</option>
-															<option>Azul</option>
-														</optgroup>
-														<optgroup label="Entrega entre 19 y 22 días">
-															<option>Verde</option>
-															<option>Amarillo</option>
-														</optgroup>
-														<optgroup label="Entrega entre 14 y 15 semanas">
-															<option selected>Crema</option>
-														</optgroup>
-													</select>
-												</td>
-												<td class="price">
-													<span class="old-price">116,00€</span>
-													<span class="last-price">38,01€</span>
-												</td>
-												<td>
-													<select class="form-control">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-													</select>
-												</td>
-												<td class="text-right">1.064,28€</td>
-											</tr>
-										</tbody>
-									</table>
-
-									<div class="subtitle">Cupón de descuento</div>
-									<p>El importe mínimo de compra del cupón no incluye los gastos de envío. El cupón descuento queda vinculado al pedido realizado, aunque no esté pagado. Por favor, tenlo en cuenta especialmente si vas a realizar un pedido mediante transferencia bancaria.</p>
-									<form id="couponForm" class="form-inline coupon-form">
-										<div class="form-group">
-											<label for="inputCoupon">Código del cupón:</label>
-											<input type="text" class="form-control" id="inputCoupon" placeholder="Código del cupón" required>
-										</div>
-										<button type="submit" class="btn btn-secondary">Validar</button>
-										<div class="clearfix"></div>
-									</form>
-									
-									<div class="alert alert-success alert-dismissible collapse" role="alert">
-			  							<button type="button" class="close btn" data-dismiss="alert" aria-label="Close">anular cupón <span aria-hidden="true">&times;</span></button>¡Código correcto! Descuento aplicado de: <strong>-10,00€</strong>
-			  						</div>
-									
-									<div class="alert alert-danger collapse" role="alert">
-										No has alcanzado el <strong>importe mínimo de 100,00€</strong> para que el cupón sea válido.
-									</div>
-
-									<div class="footer-price">
-										<p class="subtitle">Total productos: 1.331,34€</p>
-									</div>
-					        	</div>
-								<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente</button>
-						    </div>
-					    </div>
-				  	</div>
-
-				  	<!-- STEP 3: Shipping method -->
-					<!-- <div id="shippingMethodPanel" class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingShippingMethod">
-					      	<h4 class="panel-title">
-						        <span class="glyphicon glyphicon-ok"></span>
-						        <span class="glyphicon glyphicon-remove"></span>
-					        	<a class="collapsed" role="button">
-					          		Método de envío <span class="edit pull-right">editar</span>
-					        	</a>
-					      	</h4>
-					    </div>
-					    <div id="collapseShippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingShippingMethod">
-					      <div class="panel-body">
-					        <div class="box">
-						        <p>All shipping costs are calculated from your zipcode given in your delivery details.</p>
-						        <div class="row shipping-company-list">
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="asm">
-												<input type="radio" name="shippingCompany" id="asm" value="ASM">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">ASM</span>
-													<span class="price">131,46€</span>
-												</div>
-											</label>
-										</div>	
-						        	</div>
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="dhl">
-												<input type="radio" name="shippingCompany" id="dhl" value="DHL">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">DHL</span>
-													<span class="price">93,27€</span>
-													<div class="checkbox mozo">
-														<label>
-														<input type="checkbox"> Opción mozo <span>(+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
-														</label>
-													</div>
-												</div>
-											</label>
-										</div>
-						        	</div>
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="seur">
-												<input type="radio" name="shippingCompany" id="seur" value="Seur">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">Seur</span>
-													<span class="price">139,28€</span>
-												</div>
-											</label>
-										</div>
-						        	</div>
-						      	</div>
-								<div class="well well-sm">(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</div>
-								<div class="footer-price">
-									<p class="subtitle">Total envío: <span>0,00€</span></p>
-								</div>
-				        	</div>
-				        	<button type="button" class="btn btn-primary pull-right">Siguiente</button>
-					      </div>
-					    </div>
-					</div> -->
-				  	
-				  	<!-- STEP 4: Payment method -->
-				  	<div id="paymentMethodPanel" class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingPaymentMethod">
-					      	<h4 class="panel-title">
-								<span class="glyphicon glyphicon-ok"></span>
-								<span class="glyphicon glyphicon-remove"></span>
-					        	<a class="collapsed" role="button">
-					          		Método de pago <span class="edit pull-right">editar</span>
-					        	</a>
-					      	</h4>
-					    </div>
-				    	<div id="collapsePaymentMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPaymentMethod">
-				      		<div class="panel-body">
-				      			<div class="box">
-				      				<p>Selecciona el método de pago para realizar la transacción</p>
-				      				<form id="paymentMethodForm" name="paymentMethodForm" class="payment-method-form">
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="visaInput" value="visa" required>
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Tarjeta de crédito, débito o prepago y AMEX</span>
-											</label>
-							    			<div id="collapseCreditCard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCreditCard" data-value="visa">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="visa"></li>
-							      						<li class="visa-electron"></li>
-							      						<li class="mastercard"></li>
-							      						<li class="maestro"></li>
-							      						<li class="american-express"></li>
-							      					</ul>
-							        				<p>Rellene los datos de tu tarjeta a continuación. Empieze con los 16 dígitos. Los datos no serán enviados hasta que no aprietes el botón FINALIZAR LA COMPRA.</p>
-													<div class="credit-card-input no-js" id="skeuocard">
-													  <p class="no-support-warning">
-													    Either you have Javascript disabled, or you're using an unsupported browser, amigo! That's why you're seeing this old-school credit card input form instead of a fancy new Skeuocard. On the other hand, at least you know it gracefully degrades...
-													  </p>
-													  <label for="cc_type">Card Type</label>
-													  <select name="cc_type">
-													    <option value="">...</option>
-													    <option value="visa">Visa</option>
-													    <option value="discover">Discover</option>
-													    <option value="mastercard">MasterCard</option>
-													    <option value="maestro">Maestro</option>
-													    <option value="jcb">JCB</option>
-													    <option value="unionpay">China UnionPay</option>
-													    <option value="amex">American Express</option>
-													    <option value="dinersclubintl">Diners Club</option>
-													  </select>
-													  <label for="cc_number">Card Number</label>
-													  <input type="text" name="cc_number" id="cc_number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19">
-													  <label for="cc_exp_month">Expiration Month</label>
-													  <input type="text" name="cc_exp_month" id="cc_exp_month" placeholder="00">
-													  <label for="cc_exp_year">Expiration Year</label>
-													  <input type="text" name="cc_exp_year" id="cc_exp_year" placeholder="00">
-													  <label for="cc_name">Cardholder's Name</label>
-													  <input type="text" name="cc_name" id="cc_name" placeholder="John Doe">
-													  <label for="cc_cvc">Card Validation Code</label>
-													  <input type="text" name="cc_cvc" id="cc_cvc" placeholder="123" maxlength="3" size="3">
-													</div>
-						      					</div>
-							    			</div>
-										</div>
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="visaExternalInput" value="visaExternal" required>
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Tarjeta de crédito, débito o prepago y AMEX (plataforma externa BBVA)</span>
-											</label>
-							    			<div id="collapseCreditCardExternal" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCreditCardExternal" data-value="visaExternal">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="visa"></li>
-							      						<li class="visa-electron"></li>
-							      						<li class="mastercard"></li>
-							      						<li class="maestro"></li>
-							      						<li class="american-express"></li>
-							      					</ul>
-							        				<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web externa del banco.</p>
-						      					</div>
-							    			</div>
-										</div>
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="transferenciaInput" value="transferencia">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Transferencia bancaria</span>
-											</label>
-							    			<div id="collapseBankTransfer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBankTransfer" data-value="trans">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="bank-transfer"></li>
-							      					</ul>
-							        				<p>Haz clic en FINALIZAR LA COMPRA y te facilitaremos nuestros datos bancarios para realizar la transferencia. También los recibirás por email. Reservamos tu pedido 48 horas (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</p>
-							      				</div>
-							    			</div>
-										</div>
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="contraInput" value="contra">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Contra reembolso (+5% sólo España peninsular)</span>
-											</label>
-							    			<div id="collapseCod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCod" data-value="contra" data-tax="5">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="cod"></li>
-							      					</ul>
-							        				<p>Haz clic en CONFIRMAR LA COMPRA y te enviaremos un email para confirmar tu aceptación del pago contrareembolso (pedido mínimo sin incluir los costes de envío: 35€ / pedido máximo: 500€).</p>
-							      				</div>
-							    			</div>
-										</div>
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="aplazameInput" value="aplazame">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Pago a plazos (Aplázame)</span>
-											</label>
-							    			<div id="collapseAplazame" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAplazame" data-value="aplazame">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="aplazame"></li>
-							      					</ul>
-							        				<p>Haz clic en CONFIRMAR LA COMPRA para iniciar el proceso de financiación de tu pedido. Necesitaremos tu DNI y un número de tarjeta de crédito. Importe máximo por compra: 1.000€.</p>
-							      				</div>
-							    			</div>
-										</div>
-										<div class="radio">
-											<label>
-												<input type="radio" name="paymentMethodRadios" id="skrillInput" value="skrill">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Skrill, Skrill Direct, Trustly y Sofort Banking</span>
-											</label>
-							    			<div id="collapseSkrill" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSkrill" data-value="skrill">
-							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="skrill"></li>
-							      						<li class="trustly"></li>
-							      						<li class="sofort-banking"></li>
-							      					</ul>
-							        				<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web de Skrill donde podrás elegir entre las diferentes opciones de pago.</p>
-							      				</div>
-							    			</div>
-										</div>
-										<button type="submit" class="btn btn-primary hidden">Submit</button>
-									</form>
-										
-									<div class="footer-price">
-										<p class="subtitle">Total método de pago: <span>0,00€</span></p>
-									</div>
-				      			</div>
-			      				<button type="button" class="btn btn-primary pull-right step-btn" data-step="3">Siguiente</button>
-				      		</div>
-				    	</div>
-				  	</div>
-			    </div>
-				
-				<!-- FAST PAYMENT -->
-				<div id="lastStep" class="collapse box last-step hidden-xs">
-			  		<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
-					<div class="media">
-					  	<div class="media-body">
-							<p class="total">TOTAL (IVA incluido): <strong>1.331,34€</strong></p>
-							<div class="media secure-warning">
-								<div class="media-left media-middle media-middle">
-									<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
-								</div>
-							  	<div class="media-body media-middle">
-							    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
-									<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
-							  	</div>
-							</div>
-					  	</div>
-						<div class="media-right media-middle button-place">
-							<button type="button" class="btn btn-primary pull-right confirm-button">Confirmar la compra</button>
-							<button type="button" class="btn btn-secondary pull-right">View resume</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<!-- RESUME -->
-			<div class="col-xs-12 col-sm-5 col-md-4 right-column">
-				<div class="resume">
-					<h4>Resume</h4>
-					<div class="box">
-						<div class="well well-sm">
-							<p><strong>¡Felicidades! Los portes son gratis cumpliendo los siguientes requisitos:</strong></p>
-							<ul>
-								<li>Pago con tarjeta de crédito.</li>
-								<li>El total de los productos adquiridos deben ser superiores a £300.</li>
-								<li>No se incluye ningún envío parcial.</li>
-								<li>Envios sólo al Reino Unido.</li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<table class="table table-resume">
-							<thead>
-								<tr>
-									<th></th>
-									<th class="text-center">Precio unitario</th>
-									<th class="text-center">Cantidad</th>
-									<th class="text-right">Total</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>WOODEN Chair -Polipropylene-</td>
-									<td class="text-center">38,01€</td>
-									<td class="text-center">34</td>
-									<td class="text-right">1.296,34€</td>
-								</tr>
-								<tr>
-									<td>HIGHT URAL -Brushed Metal- Stool</td>
-									<td class="text-center">39,00€</td>
-									<td class="text-center">1</td>
-									<td class="text-right">39,00€</td>
-								</tr>
-								<tr class="coupon">
-									<td>Cupón descuento</td>
-									<td colspan="3" class="text-right">-10,00€</td>
-								</tr>
-								<tr class="shipping">
-									<td colspan="2">
-										Envío (<span>Rhenus</span>)<br />
-										<div class="collapse checkbox mozo">
-											<label>
-											<input type="checkbox"> Opción mozo <span>(+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
-											</label>
-										</div>
-									</td>
-									<td colspan="2" class="text-right">GRATIS</td>
-								</tr>
-								<tr class="total">
-									<td colspan="2">TOTAL (IVA incluido):</td>
-									<td colspan="2" class="text-right"><strong>1.331,34€</strong></td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<div class="visible-xs-block">
-							<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
-
-							<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
-						</div>
-						
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" id="invoiceCheckbox"> Quiero que me hagáis llegar una factura <small>La factura es necesaria para aplicar el retorno del IVA</small>
-							</label>
-						</div>
-
-						<div class="collapse" id="invoiceCollapse">
-							<form id="invoiceForm" class="invoice-form">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="NIF/CIF" required>
-								</div>
-								<div class="form-group">
-									<select class="form-control" id="customerKindSelect" required>
-										<option value="particular" selected>Particular</option>
-										<option value="empresa">Empresa</option>
-									</select>
-								</div>
-								<div class="form-group collapse" id="companyNameInput">
-									<input type="text" class="form-control" placeholder="Nombre de empresa*">
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" id="addressCompanyCheckbox"> La dirección de facturación es distinta a la dirección de envío.
-									</label>
-								</div>
-								<div class="collapse" id="addressCompany">
-									<div class="form-group">
-										<input type="text" class="form-control" id="inputInvoiceAddress" placeholder="Dirección de facturación *">	
-									</div>
-									<div class="form-group">
-										<input type="text" class="form-control" id="inputInvoiceZipcode" placeholder="Código postal de facturación *">	
-									</div>
-									<div class="form-group">
-										<select class="form-control" id="inputInvoiceCity">
-										</select>
-									</div>
-									<div class="form-group">
-										<select class="form-control" id="inputInvoiceCountry">
-											<option>Andorra</option>
-											<option>Albania</option>
-											<option>Áustria</option>
-											<option>Bosnia-Herzegovina</option>
-										</select>
-									</div>
-								</div>
-								<button type="submit" class="btn btn-primary hidden">Submit</button>
-							</form>
-						</div>
-
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" checked> Quiero recibir promociones en mi email <small>Podrás cancelar las notificaciones en cualquier momento.</small>
-							</label>
-						</div>
-
-						<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
-
-						<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
-
-						<div class="media secure-warning">
-							<div class="media-left media-middle">
-								<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
-							</div>
-						  	<div class="media-body media-middle">
-						    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
-								<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
-						  	</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 <!-- Footer -->
 <section class="footer">
@@ -1659,16 +975,7 @@
 	</div>
 </section>
 
-<!-- Preloader -->
-<div id="preloader" class="ui-blocker">
-	<div class="thecube">
-		<div class="cube c1"></div>
-		<div class="cube c2"></div>
-		<div class="cube c4"></div>
-		<div class="cube c3"></div>
-	</div>
-</div>
+<script data-main="includes/scripts/privacy" src="includes/scripts/lib/require.min.js"></script>
 
-<script data-main="includes/scripts/checkout" src="includes/scripts/lib/require.min.js"></script>
 </body>
 </html>

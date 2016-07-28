@@ -37,7 +37,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 	}
 
 	/**
-	 * Detail page - Show alert for 3 seconds and hide again
+	 * Show alert for 3 seconds and hide again
 	 */
 	function showFeedback() {
 		$('#addedProductAlert').show();
@@ -50,7 +50,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 	}
 
 	/**
-	 * Detail page - Collapse other information and show cross selling section with a scrolling effect
+	 * Collapse other information and show cross selling section with a scrolling effect
 	 */
 	function showCrossSelling() {
 		if ( $('#otherInfoContentTabs').is(':visible') ) {
@@ -71,7 +71,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 	}
 
 	/**
-	 * Detail page - Show correct delivery time for selected finish and show products with better delivery time advice and module
+	 * Show correct delivery time for selected finish and show products with better delivery time advice and module
 	 * @param this:object Selected product finish
 	 */
 	function changeDeliveryTime(selection) {
@@ -85,6 +85,25 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 			$('#betterDeliveryTip').collapse('hide');
 			$('#betterTimeSection').collapse('hide');
 		}
+	}
+
+	/**
+	 * Calculate shipping price
+	 */
+	function calculateShipment() {
+		var country = $('#selectCountry').val(),
+			zipcode = $('#inputZipcode').val(),
+			units 	= $('#inputUnits').val(), // To implement when added units in backend
+			id 		= $('body').attr('data-product-id');
+
+		$.ajax({
+			url: '/includes/web/plugin_calcula_portes.asp?id=' + id + '&cp=' + zipcode + '&pais=' + country,
+			success: function (data) {
+				$('#showShipmentBtn .show-price').html('x'+units+' = '+data+' <i class="glyphicon glyphicon-refresh"></i>');
+				$('#calculateShipment').collapse('hide');
+				$('#showShipmentBtn').addClass('active');
+			}
+		});
 	}
 
 	/**
@@ -118,8 +137,24 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		}
 	}
 
+	function showSubscribeNewsletter() {
+		if ( !$('#subscribeNewsletter').is('.show') ) {
+			$('#subscribeNewsletter').addClass('show');
+			$('body').addClass('block-content');
+		}
+	}
+
 	/**
-	 * Detail page - Receive correct price for product and finish selected
+	 * Auto select finish when there is just one product option
+	 */	
+	function autoSelectFinish() {
+		if ( $('#finishesList input[name=finishesRadioInput]').length === 1 ) {
+			$('#finishesList input[name=finishesRadioInput]').attr('checked', 'checked');
+		}
+	}
+
+	/**
+	 * Receive correct price for product and finish selected
 	 */
 	function calculatePrice() {
 		var nameID = "id_producto",
@@ -228,7 +263,7 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		//}
 	});
 
-	// Detail page - Show secundary image in main image content when hover in a thumbnail
+	// Show secondary image in main image content when hover in a thumbnail
 	$('.more-images img').mouseover(function() {
 		$('.zoom').trigger('zoom.destroy');
 		$('#mainImage').attr('src',$(this).attr('src'));
@@ -256,10 +291,14 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		refreshProductToAdd($(this));
 	});
 
+	//Detail page - Move shipment form to correct position when is shown
+	$('#showShipmentBtn').on('click', function() {
+		$('#calculateShipment').insertAfter('#infoDiv');
+	});
+
 	// Detail page - Show price after submitting shipment form and collapse this form
 	$('#calculateShipmentForm').submit(function() {
-		$('#calculateShipment').collapse('hide');
-		$('#showShipmentBtn').addClass('active');
+		calculateShipment();
 		return false;
 	});
 
@@ -277,11 +316,6 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		refreshCartNumber();
 	});
 
-	//Detail page - Move shipment form to correct position when is shown
-	$('#showShipmentBtn').on('click', function() {
-		$('#calculateShipment').insertAfter('#infoDiv');
-	});
-
 	//Detail page - Show tab content if is collapsed
 	$('.other-info-title-tabs li.title').on('click', function() {
 		if ( $('#otherInfoContentTabs').is(':hidden') ) {
@@ -293,14 +327,21 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 	$('#showContactFormButton').on('click', function() {
 		if ( !$('#contactFormContent').is('.show') ) {
 			$('#contactFormContent').addClass('show');
+			$('body').addClass('block-content');
 		}
 	});
 
 	//Detail page - Hide lateral contact form
-	$('#cancelOutletContactForm, #outletContactFormCloseButton').on('click', function() {
+	$('#cancelOutletContactForm, #outletContactFormCloseButton, .dark-layer').on('click', function() {
 		$('#contactFormContent').removeClass('show');
+		$('body').removeClass('block-content');
 	});
-	
+
+	//Hide lateral contact form
+	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
+		$('#subscribeNewsletter').removeClass('show');
+		$('body').removeClass('block-content');
+	});
 
 	/**
 	 * =================
@@ -311,8 +352,13 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
     $(document).ready( function() {
 		// Init countdown
 		startCountdown();
+		
 		// Get price of product
 		calculatePrice();
+		
+		// Auto select finish if there is just one option
+		autoSelectFinish();
+
 		// Zoom effect
 		window.addEventListener("resize", zoomInit);
 		zoomInit();
@@ -321,6 +367,11 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		$('.carousel').carousel({
 		  interval: false
 		})
+
+		// Init tooltip for different options price and payment methods
+		$('[data-toggle="tooltip"]').tooltip({
+			html: true
+		});
 
 		var verifyCallback = function(response) {
 			alert(response);
@@ -343,6 +394,11 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 			  'theme' : 'dark'
 			});
 		};
+
+		//Show subscribe newsletter
+		setTimeout(function(){
+			showSubscribeNewsletter();
+		}, 10000);
     });
 
     return mDefault;

@@ -1,0 +1,49 @@
+.lateral-content {
+  position: fixed;
+  height: 100%;
+  width: 300px;
+  background-color: @blanco_roto;
+  z-index: 10000;
+  top: 0;
+  right: -350px;
+  transition: 1s;
+  .box-shadow(0 0 10px rgba(0,0,0,0.5));
+  overflow-y: scroll;
+
+  &.show {
+    right: 0;
+  }
+
+  .close {
+    margin: 10px;
+  }
+
+  .container {
+    width: auto;
+
+    .title {
+      font-size: 14px;
+      letter-spacing: 2px;
+      line-height: 20px;
+    }
+  }
+}
+
+body {
+  .dark-layer {
+    display: none;
+  }
+
+  &.block-content {
+    overflow: hidden;
+
+    .dark-layer {
+      display: block;
+      background-color: rgba(0,0,0,0.3);
+      height: 100%;
+      width: 100%;
+      z-index: 10000;
+      position: fixed;
+    }
+  }
+}

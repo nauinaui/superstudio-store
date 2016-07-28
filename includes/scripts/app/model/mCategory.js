@@ -26,6 +26,13 @@ define(['./Base', 'bootstrap_slider', 'plugins'], function (Base, Bootstrap_slid
 		}
 	}
 
+	function showSubscribeNewsletter() {
+		if ( !$('#subscribeNewsletter').is('.show') ) {
+			$('#subscribeNewsletter').addClass('show');
+			$('body').addClass('block-content');
+		}
+	}
+
 	/**
 	 * Category page - Show active filter in top of filter box
 	 * @param option:String Selected option to show
@@ -132,6 +139,13 @@ define(['./Base', 'bootstrap_slider', 'plugins'], function (Base, Bootstrap_slid
 		disableFilter(null, $(this).parent().attr('id'))
 	});
 
+	//Hide lateral contact form
+	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
+		$('#subscribeNewsletter').removeClass('show');
+		$('body').removeClass('block-content');
+	});
+
+
 	/**
 	 * =================
 	 * TO EXECUTE WHEN INIT
@@ -142,7 +156,12 @@ define(['./Base', 'bootstrap_slider', 'plugins'], function (Base, Bootstrap_slid
 		toggleHeight('seoText', 'hide');
 
 		//Category page - Price range filter with slider
-		$('#priceRange').slider({});    	
+		$('#priceRange').slider({});  
+
+		//Show subscribe newsletter
+		setTimeout(function(){
+			showSubscribeNewsletter();
+		}, 10000);  	
     });
 
     return mCategory;
