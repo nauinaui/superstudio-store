@@ -139,23 +139,26 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		disableFilter(null, $(this).parent().attr('id'))
 	});
 
-	//Hide lateral contact form
+	//Hide lateral contact form -newsletter-
 	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
 		$('#subscribeNewsletter').removeClass('show');
 		$('body').removeClass('block-content');
 	});
 
-	// Show lateral contact form if is hidden -outlet-
+	// Show lateral contact form if it's hidden -outlet-
 	$('.show-contact-form-button').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
+		var productName = $(this).closest('.item').find('.info .nombre').text();
+		$('#contactFormContent .headerpanel .title span').html('');
+		$('#contactFormContent .headerpanel .title').append(' <span>'+productName+'</span>');
 		if ( !$('#contactFormContent').is('.show') ) {
 			$('#contactFormContent').addClass('show');
 			$('body').addClass('block-content');
 		}
 	});
 
-	//Detail page - Hide lateral contact form -outlet-
+	// Hide lateral contact form -outlet-
 	$('#cancelOutletContactForm, #outletContactFormCloseButton, .dark-layer').on('click', function() {
 		$('#contactFormContent').removeClass('show');
 		$('body').removeClass('block-content');

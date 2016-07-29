@@ -2,7 +2,7 @@
 define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon) {
 
 
-	var libCommon = new LibCommon();
+	var common = new LibCommon();
 	/**
 	 * =================
 	 * TO EXECUTE WHEN INIT
@@ -28,6 +28,11 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		$(document).ajaxStop( function() {
 			$('#preloader').hide();
 		});
+
+		// If device is mobile, show product grid in hover position
+		if ( common.detectMobile() == true ) {
+			$('.producto-box:not(.promo) .item').addClass('show mobile');
+		}
 	});
 
 	/**
@@ -84,17 +89,21 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 
 	// Product's grid - Show more info in product box's bottom while mouseover
 	$('.producto-box:not(.promo) > .content').mouseover(function() {
-		$(this).find('.item').addClass('show');
+		if ( common.detectMobile() == false ) {
+			$(this).find('.item').addClass('show');
+		}
 	});
 	$('.producto-box:not(.promo) > .content').mouseout(function() {
-		$(this).find('.item').removeClass('show');
+		if ( common.detectMobile() == false ) {
+			$(this).find('.item').removeClass('show');
+		}
 	});
 
 	// Delete product from cart (all from same product)
 	$('.deleteProductFromCartBtn').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		deleteAllProductFromCart( $(this).parent().parent().attr('rel') );
+		common.deleteAllProductFromCart( $(this).parent().parent().attr('rel') );
 	})
 
 	// Cart - Add one more product (already added in cart)
@@ -108,7 +117,7 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		var id_producto = product.attr('rel');
 		var opciones = '&cantidad=' + qty + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
 
-		addProductToCart(id_producto, opciones, tipo);
+		common.addProductToCart(id_producto, opciones, tipo);
 	});
 
 	// Cart - Delete one product (already added in cart)
@@ -122,41 +131,35 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		var id_producto = product.attr('rel');
 		var opciones = '&cantidad=' + qty + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
 
-		LibCommon.deleteProductFromCart(id_producto, opciones, tipo);
+		common.deleteProductFromCart(id_producto, opciones, tipo);
 	});
 
 	// Subscribing to newslettter
-	$('#newsletterForm').on('submit', function(){	
-		$('#existingEmailError').hide();
-		$('#emailInput').parent().removeClass('has-error', 'has-feedback');
-		var url = $(this).attr('action');
-		console.log($('#emailInput').val());
-		$.ajax({
-			url: url,
-			type: 'post',
-			data: $('#emailInput').val(),
-			success: function(data) {
-				console.log('ajax success');
-				if (data === 'enviado') {
-					console.log('data enviado ok');
-					$('#step1').fadeOut('fast', function(){
-						$('#step2').fadeIn('fast');
-					});
-				} else {
-					console.log('data no enviado');
-					if (data === 'noindicado') {
-						console.log('no indicado');
-						$('.noindicado').show();
-					} else if (data === 'yaexiste') {
-						console.log('ja existeix');
-						$('.yaexiste').show();
+	$('#newsletterForm, #footerNewsletterForm').on('submit', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+
+		var url = 'https://intranet.superestudio.com/newsletter';
+			$.ajax({
+				url: url,
+				type: 'post',
+				data: $(this).serialize(),
+				success: function(data) {
+					if (data === 'enviado') {
+						$('#step1').fadeOut('fast', function(){
+							$('#step2').fadeIn('fast');
+						});
 					} else {
-						console.log('erroni');
-						$('.erroneo').show();
+						if (data === 'noindicado') {
+							$('.noindicado').show();
+						} else if (data === 'yaexiste') {
+							$('.yaexiste').show();
+						} else {
+							$('.erroneo').show();
+						}
 					}
 				}
-			}
-		});
-		return false;
-	});
+			});
+			return false;
+		});	
 });

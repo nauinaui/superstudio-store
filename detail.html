@@ -1159,7 +1159,7 @@
                         <div class="form-group" id="verificationGroup">
                         	<label for="rcaptcha1" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
                             <div class="col-sm-8 col-lg-11 col-lg-offset-1">
-                                <div class="g-recaptcha" id="rcaptcha1"></div>
+                                <div class="g-recaptcha" id="rcaptcha1" data-sitekey="6LccYR4TAAAAAAV7n_8DXPUbUvD6I3-DSEm6ams2"></div>
                             </div>
                         </div>
 						<div class="form-group">
@@ -2454,7 +2454,7 @@
 		  	</div>
             <div class="form-group">
             	<label for="rcaptcha2" class="col-sm-4 hidden-md hidden-lg control-label">Verificación*</label>
-                <div class="g-recaptcha" id="rcaptcha2"></div>
+                <div class="g-recaptcha" id="rcaptcha2" data-sitekey="6LccYR4TAAAAAAV7n_8DXPUbUvD6I3-DSEm6ams2"></div>
             </div>
 		  	<div class="checkbox">
 		    	<label>
@@ -2479,9 +2479,11 @@
 			<p><strong>Apúntate a nuestro boletín para llevarte un descuento de 10€* en tu próxima compra superior a 100€. Déjanos tu email y en unos minutos recibirás tu cupón.</strong></p>
 			<p><small>No aplicable en productos Outlet, Liquidación o Promociones Especiales. Sólo compras online. No válido para registro profesional o tienda.</small></p>
 			<p id="existingEmailError" style="color:red;display:none">Esta dirección de correo electrónico ya existe.</p>
-			<form name="newsletterForm" id="newsletterForm" action="/newsletter">
+			<form name="newsletterForm" id="newsletterForm">
+				<input type="hidden" name="datos" value="1">
+				<input type="hidden" name="outlet" value="">
 				<div class="form-group">
-					<input type="email" class="form-control" id="emailInput" placeholder="Dirección email" required>
+					<input type="email" name="email_newsletter" class="form-control" id="emailInput" placeholder="Dirección email" required>
 				</div>
 				<div class="checkbox">
 					<label>
