@@ -1,4 +1,4 @@
-define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], function (Base, Prepare, Bootstrap, SkeuocardCSSUA, Skeuocard) {
+define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], function (Base, LibCommon, Bootstrap, SkeuocardCSSUA, Skeuocard) {
     var mCheckout = new Base('This is the data for Page Checkout');
 
 	/**
@@ -209,9 +209,9 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 			html: true
 		});
 
-		var common = new Prepare();
+		var common = new LibCommon();
 		common.detectMobile();
-		
+
 		// Init skeuocard
 		// card = new Skeuocard($("#skeuocard"));
     });

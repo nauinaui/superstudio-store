@@ -1,4 +1,4 @@
-define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], function (Base, Bootstrap, Countdown, Lib, Zoom, Recaptcha) {
+define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Lib, Zoom, Recaptcha) {
     var mDefault = new Base('This is the data for Page Detail');
 
 	/**
@@ -316,14 +316,14 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		refreshCartNumber();
 	});
 
-	//Detail page - Show tab content if is collapsed
+	// Detail page - Show tab content if is collapsed
 	$('.other-info-title-tabs li.title').on('click', function() {
 		if ( $('#otherInfoContentTabs').is(':hidden') ) {
 			$('#otherInfoContentTabs').collapse('show');
 		}
 	});
 
-	//Detail page - Show lateral contact form if is hidden
+	// Detail page - Show lateral contact form if is hidden -outlet-
 	$('#showContactFormButton').on('click', function() {
 		if ( !$('#contactFormContent').is('.show') ) {
 			$('#contactFormContent').addClass('show');
@@ -331,13 +331,13 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 		}
 	});
 
-	//Detail page - Hide lateral contact form
+	// Hide lateral contact form -outlet-
 	$('#cancelOutletContactForm, #outletContactFormCloseButton, .dark-layer').on('click', function() {
 		$('#contactFormContent').removeClass('show');
 		$('body').removeClass('block-content');
 	});
 
-	//Hide lateral contact form
+	// Hide lateral contact form -newsletter-
 	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
 		$('#subscribeNewsletter').removeClass('show');
 		$('body').removeClass('block-content');
@@ -382,16 +382,14 @@ define(['./Base', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], func
 			// Renders the HTML element with id 'example1' as a reCAPTCHA widget.
 			// The id of the reCAPTCHA widget is assigned to 'widgetId1'.
 			widgetId1 = grecaptcha.render('example1', {
-			  'sitekey' : 'your_site_key',
-			  'theme' : 'light'
-			});
-			widgetId2 = grecaptcha.render(document.getElementById('example2'), {
-			  'sitekey' : 'your_site_key'
-			});
-			grecaptcha.render('example3', {
-			  'sitekey' : 'your_site_key',
+			  'sitekey' : '6LccYR4TAAAAAGH2j14AkvUCYzzb2EZrgx2A6Y5G',
 			  'callback' : verifyCallback,
-			  'theme' : 'dark'
+			  'theme' : 'clean'
+			});
+			widgetId2 = grecaptcha.render('example2', {
+			  'sitekey' : '6LccYR4TAAAAAGH2j14AkvUCYzzb2EZrgx2A6Y5G',
+			  'callback' : verifyCallback,
+			  'theme' : 'clean'
 			});
 		};
 

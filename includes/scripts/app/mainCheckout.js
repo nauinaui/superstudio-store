@@ -10,6 +10,6 @@ define(function (require) {
     //common and specific pieces.
     controller.setModel(model);
     $(function () {
-        controller.render(libEvents.libCommon());
+        controller.render(lib.getBody());
     });
 });

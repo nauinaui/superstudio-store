@@ -1,4 +1,4 @@
-define(['./Base', 'bootstrap_slider', 'plugins'], function (Base, Bootstrap_slider, Plugins) {
+define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
     var mCategory = new Base('This is the data for Page Category');
 
 	const $toggleHeight = $('.toggleHeight');
@@ -142,6 +142,22 @@ define(['./Base', 'bootstrap_slider', 'plugins'], function (Base, Bootstrap_slid
 	//Hide lateral contact form
 	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
 		$('#subscribeNewsletter').removeClass('show');
+		$('body').removeClass('block-content');
+	});
+
+	// Show lateral contact form if is hidden -outlet-
+	$('.show-contact-form-button').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		if ( !$('#contactFormContent').is('.show') ) {
+			$('#contactFormContent').addClass('show');
+			$('body').addClass('block-content');
+		}
+	});
+
+	//Detail page - Hide lateral contact form -outlet-
+	$('#cancelOutletContactForm, #outletContactFormCloseButton, .dark-layer').on('click', function() {
+		$('#contactFormContent').removeClass('show');
 		$('body').removeClass('block-content');
 	});
 

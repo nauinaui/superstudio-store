@@ -1,5 +1,5 @@
 //generic JS for all views
-define(['jquery', 'bootstrap', 'libCommon'], function ($, Bootstrap, LibCommon) {
+define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon) {
 
 
 	var libCommon = new LibCommon();
@@ -10,12 +10,15 @@ define(['jquery', 'bootstrap', 'libCommon'], function ($, Bootstrap, LibCommon) 
 	 */
 	$( document ).ready(function() {
 		console.log('initialized all common events');
+
+		var common = new LibCommon();
+
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
-		LibCommon.fixedNav(stickyNavTop);
+		common.fixedNav(stickyNavTop);
 		
 		$(window).scroll(function() {
-		    LibCommon.fixedNav(stickyNavTop);
+		    common.fixedNav(stickyNavTop);
 		});
 
 		// Block UI when AJAX is active
