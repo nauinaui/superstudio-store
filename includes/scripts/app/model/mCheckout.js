@@ -1,4 +1,4 @@
-define(['./Base', 'bootstrap', 'skeuocard'], function (Base, Bootstrap, Skeuocard) {
+define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], function (Base, Prepare, Bootstrap, SkeuocardCSSUA, Skeuocard) {
     var mCheckout = new Base('This is the data for Page Checkout');
 
 	/**
@@ -6,27 +6,6 @@ define(['./Base', 'bootstrap', 'skeuocard'], function (Base, Bootstrap, Skeuocar
 	 * FUNCTIONS
 	 * =================
 	 */
-	function getCityState(results) {
-        var a = results[0].address_components;
-        var city, state;
-        for(i = 0; i <  a.length; ++i)
-        {
-           var t = a[i].types;
-           if(compIsType(t, 'administrative_area_level_1'))
-              state = a[i].long_name; //store the state
-           else if(compIsType(t, 'locality'))
-              city = a[i].long_name; //store the city
-        }
-        return (city + ', ' + state)
-    }
-
-	function compIsType(t, s) { 
-       for(z = 0; z < t.length; ++z) 
-          if(t[z] == s)
-             return true;
-       return false;
-    }
-
     function refreshFooterTotal(step) {
 		var codAmount = $('#collapsePaymentMethod #collapseCod.collapse.in').attr('data-tax');
 		$('#productsPanel .footer-price .subtitle')
@@ -229,6 +208,12 @@ define(['./Base', 'bootstrap', 'skeuocard'], function (Base, Bootstrap, Skeuocar
 			trigger: 'hover',
 			html: true
 		});
+
+		var common = new Prepare();
+		common.detectMobile();
+		
+		// Init skeuocard
+		// card = new Skeuocard($("#skeuocard"));
     });
 
     return mCheckout;

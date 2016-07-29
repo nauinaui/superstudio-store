@@ -8,29 +8,31 @@
 require.config({
   baseUrl: 'includes/scripts/lib',
   paths: {
-  	app: 				      '../app',
+  	app: 			  '../app',
     jquery:           'jquery-1.12.1.min',
     bootstrap:        'bootstrap.min',
     bootstrap_slider: 'bootstrap-slider.min',
-    plugins: 			    'Plugins',
+    plugins: 		  'Plugins',
     countdown:        'jquery.countdown.min',
     detect_mobile:    'detectmobilebrowser.min',
     zoom:             'zoom.min',
     recaptcha:        'https://www.google.com/recaptcha/api',
-    skeuocard:        'cssua.min',
+    skeuocard:        'skeuocard.min',
+    skeuocardCSSUA:   'cssua.min',
     blockui:          'blockUI',
 
   },
 	
 	shim: {
-		"app": 				     ["jquery"],
-    "bootstrap":       ["jquery"],
-    "bootstrap_slider":["jquery"],
-    "plugins": 			   ["jquery"],
-    "countdown":		   ["jquery"],
-    "zoom":            ["jquery"],
-    "recaptcha":       ["jquery"],
-    "skeuocard":       ["jquery"],
-    "blockui":         ["jquery"]
+    	"app":             ["jquery"],
+        "bootstrap":       ["jquery"],
+        "bootstrap_slider":["jquery"],
+        "plugins": 		   ["jquery"],
+        "countdown":	   ["jquery"],
+        "zoom":            ["jquery"],
+        "recaptcha":       ["jquery"],
+        "skeuocard":       ["jquery"],
+        "skeuocardCSSUA":  ["jquery"],
+        "blockui":         ["jquery"]
 	}
 });
