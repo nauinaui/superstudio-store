@@ -154,6 +154,22 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	}
 
 	/**
+	 * Get image of finish selected
+	 */	
+	function changeFinishImage(finish) {
+		var finish_id 	= finish.attr('data-finish'),
+			id 			= $('.ref span').text();
+
+		$.ajax({
+			url: '/includes/web/plugin_fotos_color.asp?ref='+id+'&id_color='+finish_id+'&_=1470048929621',
+			success: function (data) {
+				$('#mainImage').attr('src',data);
+				zoomInit();
+			}
+		});
+	}
+
+	/**
 	 * Receive correct price for product and finish selected
 	 */
 	function calculatePrice() {
@@ -187,7 +203,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		$.ajax({
 			url: '/includes/web/plugin_precio_detalle.asp?' + nameID + '=' + valueID + '&color=' + colorID + '&acabado=' + acabadoID + '&opcion=' + opcionID,
 			success: function (data) {
-				console.log('received prices!');
 				var precio = data.split("|"),
 						precioPrint,
 						precioPrintOld,
@@ -270,13 +285,14 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		zoomInit();
 	});
 
-	// Show delivery time and stock after selecting a finish
+	// Show delivery time and stock after selecting a finish and show finish image in main image place
 	$('input[name="finishesRadioInput"]').change(function() {
 		changeDeliveryTime($(this));
 		$('#unitsSelect').empty();
 		for (var i=0; i<$(this).attr('data-stock'); i++) {
 		    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
 		}
+		changeFinishImage($(this));
 	});
 
 	// Show products with better delivery and scroll
@@ -286,28 +302,28 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	    }, 1000);
 	});
 
-	// Detail page - Select product in cross selling
+	// Select product in cross selling
 	$('.carousel .item img').on('click', function(e) {
 		refreshProductToAdd($(this));
 	});
 
-	//Detail page - Move shipment form to correct position when is shown
+	// Move shipment form to correct position when is shown
 	$('#showShipmentBtn').on('click', function() {
 		$('#calculateShipment').insertAfter('#infoDiv');
 	});
 
-	// Detail page - Show price after submitting shipment form and collapse this form
+	// Show price after submitting shipment form and collapse this form
 	$('#calculateShipmentForm').submit(function() {
 		calculateShipment();
 		return false;
 	});
 
-	// Detail page - Update price when product units select changes
+	// Update price when product units select changes
 	$('#unitsSelect').on('change', function() {
 		calculatePriceUnits();
 	});
 
-	// Detail page - Collapse other information and show cross selling when a product is added to the cart
+	// Collapse other information and show cross selling when a product is added to the cart
 	$('#addMainProductForm').submit(function (e) {
 		e.preventDefault();
 		showFeedback();
@@ -316,14 +332,14 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		refreshCartNumber();
 	});
 
-	// Detail page - Show tab content if is collapsed
+	// Show tab content if is collapsed
 	$('.other-info-title-tabs li.title').on('click', function() {
 		if ( $('#otherInfoContentTabs').is(':hidden') ) {
 			$('#otherInfoContentTabs').collapse('show');
 		}
 	});
 
-	// Detail page - Show lateral contact form if is hidden -outlet-
+	// Show lateral contact form if is hidden -outlet-
 	$('#showContactFormButton').on('click', function() {
 		if ( !$('#contactFormContent').is('.show') ) {
 			$('#contactFormContent').addClass('show');
