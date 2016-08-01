@@ -264,18 +264,20 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 * =================
 	 */
 
-	// Detail page - Show large image when clicking on secundary images thummbnails
+	// Detail page - Show large image when clicking on secundary images thummbnails if device is not mobile
 	$('.more-images img[data-target="#largeImageModal"]').on('click', function(e) {
-		//if (isMobile == false) {
+		var common = new LibCommon();
+		console.log(common.detectMobile());
+		if ( common.detectMobile() == false ) {
 			var source = $(this).attr('src');
 			$('#largeImageModal .modal-content img').attr('src',source);
-		//} else {
-		//	e.preventDefault();
-		//	e.stopPropagation();
-		//	$('#largeImageModal').modal({
-		//		show: false
-		//	});
-		//}
+		} else {
+			e.preventDefault();
+			e.stopPropagation();
+			$('#largeImageModal').modal({
+				show: false
+			});
+		}
 	});
 
 	// Show secondary image in main image content when hover in a thumbnail
