@@ -47,6 +47,19 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 		});
     }
 
+    // Change from partial delivery to a unique delivery
+    function makeUniqueDelivery() {
+		$('#productsPanel table.main tbody').append($('#productsPanel table:not(main) tbody tr.item'));
+		$('#productsPanel .table-header.main .delivery-time').html( $('#productsPanel .table-header:last .delivery-time' ).html() );
+		$('#productsPanel table:not(.main), #productsPanel .table-header:not(.main)').hide();
+		$('#productsPanel .table-header.main .subtitle').hide();
+	}
+
+	// Change from unique delivery to a partial delivery
+	function makePartialDelivery() {
+
+	}
+
     // Check all forms
     function checkAllForms() {
 		//check delivery details form
@@ -100,6 +113,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 	// 	$('#paymentMethodInput').val('');
 	// 	console.log($('#paymentMethodInput').val());
 	// })
+
+	// Change from parcial delivery to a unique delivery
+	$('input[name="deliveryType"]').on('change', function() {
+		if ( $('#deliveryType2').is(':checked') ) {
+			makeUniqueDelivery();
+		} else if ( $('#deliveryType1').is(':checked') ) {
+			makePartialDelivery();
+		}
+	});
 
 	// Show more fields if customer wants invoice
 	$('#invoiceCheckbox').click(function() {

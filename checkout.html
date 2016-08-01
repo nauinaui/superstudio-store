@@ -956,11 +956,12 @@
 										<div class="well well-sm">En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.</div>
 									</div>
 
-									<div class="table-header">
+									<div class="table-header main">
 										<p class="subtitle">Envío número 1</p>
 										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 5 y 8 días</em></span>
+										<div class="clearfix"></div>
 									</div>
-									<table class="table">
+									<table class="table main">
 										<thead>
 											<tr>
 												<th></th>
@@ -971,26 +972,26 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr class="item">
 												<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
 												<td>
 													WOODEN Chair -Polypropilene-
-													<select class="form-control">
+													<select name="finish" class="form-control">
 														<optgroup label="Entrega entre 5 y 8 días">
-															<option>Beige</option>
-															<option>Turquesa</option>
-															<option selected>Azul petróleo</option>
+															<option value="1">Beige</option>
+															<option value="2">Turquesa</option>
+															<option value="3" selected>Azul petróleo</option>
 														</optgroup>
 														<optgroup label="Entrega entre 10 y 13 días">
-															<option>Gris oscuro</option>
-															<option>Marrón</option>
-															<option>Naranja</option>
-															<option>Rojo</option>
-															<option>Azul</option>
+															<option value="4">Gris oscuro</option>
+															<option value="5">Marrón</option>
+															<option value="6">Naranja</option>
+															<option value="7">Rojo</option>
+															<option value="8">Azul</option>
 														</optgroup>
 														<optgroup label="Entrega entre 19 y 22 días">
-															<option>Verde</option>
-															<option>Amarillo</option>
+															<option value="9">Verde</option>
+															<option value="10">Amarillo</option>
 														</optgroup>
 													</select>
 												</td>
@@ -999,13 +1000,13 @@
 													<span class="last-price">38,01€</span>
 												</td>
 												<td>
-													<select class="form-control">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-														<option selected>28</option>
+													<select name="quantity" class="form-control">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="28" selected>28</option>
 													</select>
 												</td>
 												<td class="text-right">1.064,28€</td>
@@ -1015,13 +1016,13 @@
 													<div class="alert alert-warning" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
 												</td>
 											</tr>
-											<tr>
+											<tr class="item">
 												<td><img width="100px" src="https://intranet.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" alt="Taburete HIGHT URAL -Metal Cepillado-"></td>
 												<td>
 													HIGHT URAL -Brushed Metal- Stool
-													<select class="form-control">
+													<select name="finish" class="form-control">
 														<optgroup label="Entrega entre 5 y 8 días">
-															<option>Acero cepillado</option>
+															<option value="11">Acero cepillado</option>
 														</optgroup>
 													</select>
 												</td>
@@ -1030,12 +1031,12 @@
 													<span class="last-price">39,00€</span>
 												</td>
 												<td>
-													<select class="form-control">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+													<select name="quantity" class="form-control">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
 													</select>
 												</td>
 												<td class="text-right">39,00€</td>
@@ -1058,7 +1059,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr class="item">
 												<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
 												<td>
 													WOODEN Chair -Polypropilene-
