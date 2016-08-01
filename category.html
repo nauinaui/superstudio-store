@@ -2868,6 +2868,9 @@
 				<input type="hidden" name="outlet" value="">
 				<div class="form-group">
 					<input type="email" name="email_newsletter" class="form-control" id="emailInput" placeholder="Dirección email" required>
+					<span id="helpBlockEmpty" class="help-block hidden">Debes introducir un email</span>
+					<span id="helpBlockExist" class="help-block hidden">Este email ya existe</span>
+					<span id="helpBlockError" class="help-block hidden">El email no es válido</span>
 				</div>
 				<div class="checkbox">
 					<label>
@@ -2878,9 +2881,9 @@
 				<button id="alreadySubscribedButton" type="button" class="btn btn-secondary btn-sm already-subscribed-btn">Ya recibo las newsletter</button>
 			</form>
 		</div>
-		<div id="step2" style="display: none">
-			<p>Gracias por registrarte</p>
-			<h2>EN unos minutos te llegará un email para obtener tu descuento.</h2>
+		<div id="step2" class="step-2">
+			<p class="bg-success">Gracias por registrarte<br />
+			En unos minutos te llegará un email para obtener tu descuento.</p>
 			<small>Revisa la carpeta Spam de tu correo si no lo recibes.</small>
             <button id="closeWindowButton" type="button" class="btn btn-primary">Cerrar ventana</button>
 		</div>

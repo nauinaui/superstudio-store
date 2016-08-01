@@ -2741,16 +2741,26 @@
 			<div class="row footer-top">
 				<div class="col-md-6 text-center">
 					<h4>¿Quieres recibir <br>nuestras newsletter?</h4>
-					<form id="footerNewsletterForm" class="footer-newsletter-form" method="post">
-						<input type="hidden" name="datos" value="1">
-						<input type="hidden" name="outlet" value="">
-						<div class="input-group">
-							<input id="footerEmailInput" name="email_newsletter" type="text" class="form-control" required>
-							<span class="input-group-btn">
-								<input class="btn btn-flat" type="submit" value="Inscribirse"/>
-							</span>
-					    </div>
-					</form>
+					<div id="step1">
+						<form id="footerNewsletterForm" class="footer-newsletter-form" method="post">
+							<input type="hidden" name="datos" value="1">
+							<input type="hidden" name="outlet" value="">
+							<div class="input-group">
+								<input id="footerEmailInput" name="email_newsletter" type="text" class="form-control" required>
+								<span class="input-group-btn">
+									<input class="btn btn-flat" type="submit" value="Inscribirse"/>
+								</span>
+						    </div>
+							<span id="helpBlockEmpty" class="help-block hidden">Debes introducir un email</span>
+							<span id="helpBlockExist" class="help-block hidden">Este email ya existe</span>
+							<span id="helpBlockError" class="help-block hidden">El email no es válido</span>
+						</form>
+					</div>
+					<div id="step2" class="step-2">
+						<p class="bg-success">Gracias por registrarte<br />
+						En unos minutos te llegará un email para obtener tu descuento.</p>
+						<small>Revisa la carpeta Spam de tu correo si no lo recibes.</small>
+					</div>
 				</div>
 				<div class="col-md-6 text-center">
 					<h4>Siguenos para no perderte nuestras <br>novedades y promociones</h4>

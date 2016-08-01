@@ -337,12 +337,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		$('body').removeClass('block-content');
 	});
 
-	// Hide lateral contact form -newsletter-
-	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
-		$('#subscribeNewsletter').removeClass('show');
-		$('body').removeClass('block-content');
-	});
-
 	/**
 	 * =================
 	 * TO EXECUTE WHEN INIT

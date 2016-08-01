@@ -139,27 +139,37 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		e.preventDefault();
 		e.stopPropagation();
 
+		$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
+		$('.help-block').addClass('hidden');
+
 		var url = 'https://intranet.superestudio.com/newsletter';
-			$.ajax({
-				url: url,
-				type: 'post',
-				data: $(this).serialize(),
-				success: function(data) {
-					if (data === 'enviado') {
-						$('#step1').fadeOut('fast', function(){
-							$('#step2').fadeIn('fast');
-						});
+		$.ajax({
+			url: url,
+			type: 'post',
+			data: $(this).serialize(),
+			success: function(data) {
+				if (data === 'enviado') {
+					$('#step1').fadeOut('fast', function(){
+						$('#step2').fadeIn('fast');
+					});
+				} else {
+					if (data === 'noindicado') {
+						$('#helpBlockEmpty').removeClass('hidden');
+					} else if (data === 'yaexiste') {
+						$('#helpBlockExist').removeClass('hidden');
 					} else {
-						if (data === 'noindicado') {
-							$('.noindicado').show();
-						} else if (data === 'yaexiste') {
-							$('.yaexiste').show();
-						} else {
-							$('.erroneo').show();
-						}
+						$('#helpBlockError').removeClass('hidden');
 					}
+					$('#newsletterForm .form-group, #footerNewsletterForm .input-group').addClass('has-error');
 				}
-			});
-			return false;
-		});	
+			}
+		});
+		return false;
+	});	
+
+	// Hide lateral contact form -newsletter-
+	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton, #closeWindowButton').on('click', function() {
+		$('#subscribeNewsletter').removeClass('show');
+		$('body').removeClass('block-content');
+	});
 });

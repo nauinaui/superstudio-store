@@ -120,20 +120,25 @@
   .footer-newsletter-form {
     display: inline-block;
     max-width: 400px;
+
+    input[type="submit"]  {
+      background-color: @gris;
+      color: @blanco;
+
+      &:hover,
+      &:active {
+        background-color: @gris_oscuro;
+      }
+    }
     
     @media (max-width:@xs) {
       margin-bottom: 20px;
     }
   }
-  
-  input[type="submit"]  {
-    background-color: @gris;
-    color: @blanco;
 
-    &:hover,
-    &:active {
-      background-color: @gris_oscuro;
-    }
+  .step-2 {
+    display: none;
+    margin-top: 20px;
   }
 
   .enlaces_sociales {
