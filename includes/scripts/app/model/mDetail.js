@@ -12,7 +12,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 */
 	function startCountdown() {
 		$('.countdown1').countdown({
-			date: "July 30, 2016 15:03:26",
+			date: "August 30, 2016 15:03:26",
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
@@ -169,6 +169,39 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		});
 	}
 
+	/*
+	* Change price if finish selection has different price
+	* param:finish object - Finish selected by user
+	*/
+	function changePrice(finish) {
+		var difference 		= finish.parent().find('.option-price').attr('data-price'),
+			originalPrice 	= $('#priceContainer').attr('data-product-price');
+		if ( difference === undefined ) {
+			var total = originalPrice.replace(',','.');
+			total = total.replace('€','');
+		} else {
+			difference 		= difference.replace('€', '');
+			originalPrice	= originalPrice.replace('€', '');
+			// add or substract
+			if ( difference.charAt(0) === '+' ) {
+				difference = difference.replace('+', '');
+				difference = parseFloat(difference.replace(',', '.'));
+				originalPrice = parseFloat(originalPrice.replace(',', '.'));
+				var total = originalPrice+difference;
+			} else {
+				difference = difference.replace('-', '');
+				difference = parseFloat(difference.replace(',', '.'));
+				originalPrice = parseFloat(originalPrice.replace(',', '.'));
+				var total = originalPrice-difference;
+			}
+		}
+		//print final price
+		total = total.toString();
+		$('#unitsPrice').text(total+'€');
+		total = total.split('.');
+		$('#productPrice').html(total[0]+',<span class="cents">'+total[1]+'</span><span class="currency">€</span>');
+	}
+
 	/**
 	 * Receive correct price for product and finish selected
 	 */
@@ -264,7 +297,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 * =================
 	 */
 
-	// Detail page - Show large image when clicking on secundary images thummbnails if device is not mobile
+	// Show large image when clicking on secundary images thummbnails if device is not mobile
 	$('.more-images img[data-target="#largeImageModal"]').on('click', function(e) {
 		var common = new LibCommon();
 		console.log(common.detectMobile());
@@ -290,11 +323,12 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	// Show delivery time and stock after selecting a finish and show finish image in main image place
 	$('input[name="finishesRadioInput"]').change(function() {
 		changeDeliveryTime($(this));
+		changeFinishImage($(this));
+		changePrice($(this));
 		$('#unitsSelect').empty();
 		for (var i=0; i<$(this).attr('data-stock'); i++) {
 		    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
 		}
-		changeFinishImage($(this));
 	});
 
 	// Show products with better delivery and scroll
