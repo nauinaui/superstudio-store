@@ -137,7 +137,7 @@ define(['jquery'], function ($) {
 	/**
 	 * AJAX - Add product to cart
 	 */
-	LibCommon.prototype.addProductToCart = function(id_producto, opciones, tipo) {
+	LibCommon.prototype.addProductToCart = function(id_producto, query, tipo) {
 		var topbar = $('#topbar');
 		var envioCarrito = '';
 
@@ -153,7 +153,7 @@ define(['jquery'], function ($) {
 		$('html,body').animate({scrollTop: 0}, 'fast');
 		// Enviamos la info al carrito
 		$.ajax({
-			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + opciones,
+			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				console.log('added!');
 				console.log(data);

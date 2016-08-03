@@ -75,12 +75,28 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 * @param this:object Selected product finish
 	 */
 	function changeDeliveryTime(selection) {
-		$('#deliveryTimeText').text(selection.attr('data-diasnacional'));0
-		if ( selection.attr('data-diasnacional').indexOf('semanas')!= -1 ) {
+		$('#deliveryTimeText #choose').hide();
+		$('#deliveryTimeText .value').hide();
+		var longestTime;
+		
+		if ( $('body').is('.pack') ) { // It's a pack product - check all options to get the largest time
+			var times = [],
+			i = 0;
+			$( ".finishes-list input:checked" ).each(function() {
+				times[i++] = $(this).attr('data-diasnacional');
+			});
+			longestTime = Math.max.apply(Math,times);
+		} else { // it's a normal product - get time delivery
+			longestTime = selection.attr('data-diasnacional');
+		}
+		$('#deliveryTimeText .value#time-'+longestTime).show();
+
+		// Show tip: more products with shorter time
+		if ( longestTime > 2 ) { // It's too late when delivery time exceeds 5-8 days
 			$('#deliveryTimeText').closest('.square.time').addClass('too-late');
 			$('#betterDeliveryTip').collapse('show');
 			$('#betterTimeSection').collapse('show');
-		} else if ( selection.attr('data-diasnacional').indexOf('días')!= -1 ) {
+		} else {
 			$('#deliveryTimeText').closest('.square.time').removeClass('too-late');
 			$('#betterDeliveryTip').collapse('hide');
 			$('#betterTimeSection').collapse('hide');
@@ -158,13 +174,18 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 */	
 	function changeFinishImage(finish) {
 		var finish_id 	= finish.attr('data-finish'),
-			id 			= $('.ref span').text();
+			ref			= finish.parent().parent().attr('data-product-ref');
 
 		$.ajax({
-			url: '/includes/web/plugin_fotos_color.asp?ref='+id+'&id_color='+finish_id+'&_=1470048929621',
+			url: '/includes/web/plugin_fotos_color.asp?ref='+ref+'&id_color='+finish_id,
 			success: function (data) {
-				$('#mainImage').attr('src',data);
-				zoomInit();
+				if ( $('body').is('.pack') ) {
+					var product_id = finish.parent().parent().attr('data-product-id');
+					$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
+				} else {
+					$('#mainImage').attr('src',data);
+					zoomInit();
+				}
 			}
 		});
 	}
@@ -178,7 +199,11 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			originalPrice 	= $('#priceContainer').attr('data-product-price');
 		if ( difference === undefined ) {
 			var total = originalPrice.replace(',','.');
-			total = total.replace('€','');
+			if ( total.charAt(0) === '&' ) {
+				total = total.replace('&pound;','');
+			} else {
+				total = total.replace('€','');
+			}
 		} else {
 			difference 		= difference.replace('€', '');
 			originalPrice	= originalPrice.replace('€', '');
@@ -218,7 +243,8 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		colorID = '',
 		acabadoID = '',
 		opcionID = '',
-		cantidadInput = $('#unitsSelect').val();
+		cantidadInput = $('#unitsSelect').val(),
+		originalPrice = $('#priceContainer');
 
 		$.each(activos, function (i, e) {
 			var tipo = $(e).parent().data('type');
@@ -250,6 +276,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 						precioPrint = precio[1].replace('&euro;', '');
 						precioPrintOld = precio[0].replace('&euro;', '');
 						// Printing
+						originalPrice.attr('data-product-price','&euro;' + precioPrint);
 						moreprice.html('&euro;' + precioPrint);
 						tachaprice.html('&euro;' + precioPrintOld);
 						nuevoPrecio.html('&euro;' + precioPrint);
@@ -264,6 +291,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 						precioPrintOldEuro = precio[2].replace('&nbsp;&euro;', '');
 						precioPrintOldEuro = precioPrintOldEuro.replace(',', '.');
 						// Pintamos
+						originalPrice.attr('data-product-price','&pound;' + precioPrint + precioPrintEuro + '&euro;');
 						moreprice.html('&pound;' + precioPrint + '<span class="priceMin">' + precioPrintEuro + '&euro;</span>');
 						tachaprice.html('&pound;' + precioPrintOld + '<span class="tachaprice priceMin">' + precioPrintOldEuro + '&euro;</span>');
 						nuevoPrecio.html('&pound;' + precioPrint);
@@ -278,6 +306,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 					var precioPrintSeparated = precioPrint.split(',');
 					var precioPrintOldSeparated = precioPrintOld.split(',');
 
+					originalPrice.attr('data-product-price',precioPrintSeparated[0] +','+ precioPrintSeparated[1] + '€');
 					moreprice.html(precioPrintSeparated[0]+',<span class="cents">'+precioPrintSeparated[1]+'&euro;</span>');
 					tachaprice.html(precioPrintOldSeparated[0]+',<span class="cents">'+precioPrintOldSeparated[1]+'&euro;</span>');
 					nuevoPrecio.html(precioPrint + ' &euro;');
@@ -321,14 +350,14 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	});
 
 	// Show delivery time and stock after selecting a finish and show finish image in main image place
-	$('input[name="finishesRadioInput"]').change(function() {
+	$('.finishes-list input[type="radio"]').change(function() {
 		changeDeliveryTime($(this));
 		changeFinishImage($(this));
 		changePrice($(this));
 		$('#unitsSelect').empty();
 		for (var i=0; i<$(this).attr('data-stock'); i++) {
 		    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
-		}
+		}			
 	});
 
 	// Show products with better delivery and scroll
@@ -365,7 +394,31 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		showFeedback();
 		hideUpSelling();
 		showCrossSelling();
-		refreshCartNumber();
+		var common 		= new LibCommon(),
+			product_id 	= $('body').attr('data-product-id'),
+			quantity	= $('#unitsSelect').val(),
+			finish 		= $('#finishesList input[type="radio"]:checked').attr('data-finish'),
+			type		= "producto";
+			finishList 	= $('.finishes:not(.collapse)');
+
+		if ( !$('body').is('.pack') ) { // normal product
+			var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
+		} else if ( $('body').is('.pack') ) { // product pack
+			var query = '&id='+id_producto+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
+			// Enviamos la info al carrito
+			$.ajax({
+				url: '/includes/web/carrito?accion=anadir' + query,
+				success: function (data) {
+					console.log(data);
+					// Cargamos carrito
+					// topbar.find('#carrito').html(data).slideDown(250);
+					// cargamos carrito linia
+					// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+				}
+			});
+		}
+
+		common.addProductToCart(product_id, query, type);
 	});
 
 	// Show tab content if is collapsed

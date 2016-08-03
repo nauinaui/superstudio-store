@@ -13,6 +13,16 @@ body {
     .product-pack-item-container {
       display: block;
     }
+
+    .detail-info .finishes {
+      .text i {
+        display: inline-block;
+      }
+      
+      &.pack {
+        display: block;
+      }
+    }
   }
 }
 
@@ -234,6 +244,15 @@ body {
 
   .finishes {
     margin-bottom: 30px;
+
+    &.pack {
+      display: none;
+    }
+
+    .text i {
+      display: none;
+      font-style: normal;
+    }
     
     .finishes-list {
       font-size: 0;
@@ -331,7 +350,7 @@ body {
         span {
           letter-spacing: 0;
           line-height: 14px;
-          margin: 10px 0;
+          margin: 3px 0;
 
           i {
             letter-spacing: 0;     
@@ -340,6 +359,10 @@ body {
 
           span {
             margin: 0;
+
+            &.value {
+              display: none;
+            }
           }
         }
 
