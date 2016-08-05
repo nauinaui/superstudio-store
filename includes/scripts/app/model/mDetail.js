@@ -32,7 +32,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		$('.carousel .item img').removeClass('active');
 		selected.addClass('active');
 		var src = selected.attr('src');
-		console.log(src);
 		$('.product-to-add img').attr( 'src', src );
 	}
 
@@ -329,7 +328,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	// Show large image when clicking on secundary images thummbnails if device is not mobile
 	$('.more-images img[data-target="#largeImageModal"]').on('click', function(e) {
 		var common = new LibCommon();
-		console.log(common.detectMobile());
 		if ( common.detectMobile() == false ) {
 			var source = $(this).attr('src');
 			$('#largeImageModal .modal-content img').attr('src',source);
@@ -404,12 +402,11 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		if ( !$('body').is('.pack') ) { // normal product
 			var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 		} else if ( $('body').is('.pack') ) { // product pack
-			var query = '&id='+id_producto+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
+			var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
 			// Enviamos la info al carrito
 			$.ajax({
 				url: '/includes/web/carrito?accion=anadir' + query,
 				success: function (data) {
-					console.log(data);
 					// Cargamos carrito
 					// topbar.find('#carrito').html(data).slideDown(250);
 					// cargamos carrito linia
@@ -451,9 +448,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
     $(document).ready( function() {
 		// Init countdown
 		startCountdown();
-		
-		// Get price of product
-		calculatePrice();
 		
 		// Auto select finish if there is just one option
 		autoSelectFinish();

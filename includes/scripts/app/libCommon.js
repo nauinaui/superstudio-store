@@ -149,14 +149,14 @@ define(['jquery'], function ($) {
 			envioCarrito = "&id=" + id_producto;
 		}
 
-		// Hacemos scroll hacia arriba
-		$('html,body').animate({scrollTop: 0}, 'fast');
+		console.log('enviocarrito: '+envioCarrito);
+		console.log('query: '+query);
+
 		// Enviamos la info al carrito
 		$.ajax({
 			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				console.log('added!');
-				console.log(data);
 
 				// This product has been already added to cart. Just increment its number
 				if ( $('#myCart .item[rel="'+id_producto+'"]').length ) {

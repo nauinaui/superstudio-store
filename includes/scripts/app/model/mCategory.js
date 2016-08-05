@@ -73,7 +73,8 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		if ( value == "price" ) {
 			$('#priceRange').data('slider').refresh();
 		}
-		$(this).removeClass('selected');$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
+
+		$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
 	}
 
 	/**
@@ -129,7 +130,6 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 			enableFilter( $(this).attr('data-title'), $(this).attr('value') );
 			$(this).addClass('selected');
 		}
-		// $(this).toggleClass('selected');
 	});
 
 	// Category page - Disable filter
