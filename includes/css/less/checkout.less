@@ -105,6 +105,12 @@
         }
       }
 
+      .delivery-form {
+        .btn {
+          margin-bottom: 20px;
+        }
+      }
+
       .well.well-sm {
         font-size: 12px;
       }
@@ -324,13 +330,14 @@
               position: absolute;
               left: 20px;
               top: 15px;
-              line-height: 19px;
+              line-height: 10px;
             }
 
             .title {
               font-size: 14px;
               font-weight: 700;
               letter-spacing: 2px;
+              line-height: 20px;
               color: @gris;
             }
 
@@ -401,6 +408,140 @@
               }
               &.cod {
                 background-position: -1350px 0;
+              }
+            }
+          }
+
+          .credit-card {
+            background-color: @gris_claro_mas;
+            border: 1px solid darken(@gris_claro_mas, 10%);
+            border-radius: 20px;
+            height: 216px;
+            margin-bottom: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 345px;
+            position: relative;
+
+            .label {
+              cursor: pointer;
+              font-weight: 300;
+              position: absolute;
+              top: 15px;
+              right: -20px;
+              width: 120px;
+              white-space: inherit;
+              z-index: 1;
+              transition: .3s;
+
+              &.error {
+                background-color: @rojo;
+
+                .glyphicon-remove-circle {
+                  display: block;
+                }
+              }
+
+              &.valid {
+                background-color: @verde;
+
+                .glyphicon-ok-circle {
+                  display: block;
+                }  
+              }
+
+              &:hover {
+                box-shadow: 0 0 3px rgba(0,0,0,0.5);
+              }
+
+              .media-heading {
+                color: @blanco;
+                font-weight: 300;
+                letter-spacing: 0;
+                text-transform: none;
+              }
+
+              .glyphicon {
+                color: @blanco;
+                display: none;
+                font-size: 20px;
+              }
+            }
+
+            .form-group.has-error {
+              .form-control {
+                background-color: lighten(@rojo, 30%);
+              }
+            }
+
+            .front {
+              background: url('../../imagenes/card-chip.gif') no-repeat 10px 35px;
+              .bank-title {
+                color: @gris_claro;
+                position: absolute;
+                top: 15px;
+                left: 30px;
+                font-weight: 700;
+                font-size: 25px;
+              }
+
+              .name-title {
+                color: @gris_claro;
+                position: absolute;
+                bottom: 20px;
+                left: 30px;
+                letter-spacing: 1px;
+                font-weight: 400;
+                font-size: 14px;
+                text-transform: uppercase;
+              }
+
+              .type-title {
+                color: @gris_claro;
+                position: absolute;
+                bottom: 15px;
+                right: 30px;
+                font-weight: 700;
+                font-size: 25px;
+                font-style: italic;
+              }
+
+              .card-number-group {
+                display: block;
+                
+                .card-number {
+                  font-size: 16px;
+                  margin-top: 85px;
+                  margin-bottom: 5px;
+                }
+              }
+
+              .card-month,
+              .card-year {
+                font-size: 12px;
+                height: 25px;
+                margin: 0 5px 0 0px;
+                padding: 0 5px;
+              }
+            }
+            
+            .rear {
+              background: url('../../imagenes/card-band.gif') no-repeat bottom left;
+              display: none;
+
+              .magnet-band {
+                background-color: @gris_claro;
+                position: absolute;
+                top: 20px;
+                left: 0;
+                height: 50px;
+                width: 100%;
+              }
+
+              .card-cvc {
+                height: 25px;
+                margin: 80px 0 5px 150px;
+                padding: 0 5px;
               }
             }
           }
@@ -554,6 +695,10 @@
   width: 500px;
 }
 
+.table-responsive {
+  border: 0;
+}
+
 @media (max-width: @md-max) {
   .panel-group.steps-accordion .panel-default .box .shipping-company-list .company label .company-content {
     width: 175px;
@@ -561,8 +706,14 @@
 }
 
 @media (max-width: @sm-max) {
-  .panel-group.steps-accordion .panel-default .box .shipping-company-list .company label .company-content {
-    width: 200px;
+  .panel-group.steps-accordion .panel-default .box {
+    .shipping-company-list .company label .company-content {
+      width: 200px;
+    }
+
+    .payment-method-form .panel-collapse .credit-card {
+      zoom: 0.85;
+    }
   }
 
   .last-step {
@@ -587,6 +738,63 @@
 }
 
 @media (max-width: @xs-max) {
+  .panel-group.steps-accordion .panel-default {
+    & > .panel-heading {
+      &+.panel-collapse .panel-body .nav-tabs>li>a {
+        letter-spacing: 0;
+      }
+
+      .panel-title .edit {
+        display: none;
+      }
+    }
+    
+    .box {
+      .table-header {
+        text-align: center;
+
+        .delivery-time {
+          display: block;
+          float: none !important;
+        }
+      }
+
+      .payment-method-form {
+        .radio {
+          padding: 10px 0;
+
+          label .glyphicon {
+            left: 0;
+          }
+        }
+        
+        .panel-collapse {
+          padding: 10px 0;
+
+          .payment-methods-list {
+            text-align: center;
+            zoom: .55;
+          }
+
+          .credit-card {
+            margin: 0 auto;
+            zoom: .7;
+
+            .form-group {
+              display: inline-block;
+              margin: 0;
+              
+              .form-control {
+                display: inline-block;
+                width: inherit;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .popover {
     width: 300px;
   }

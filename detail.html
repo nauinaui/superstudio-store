@@ -30,6 +30,19 @@
 <!-- body class can be 'outlet' or 'pack'-->
 <body data-product-id="142898" class="pack">
 
+<!-- Scroll to top arrow -->
+<button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
+
+<!-- Layer when ajax is active -->
+<div class="ui-blocker">
+	<div class="thecube">
+		<div class="cube c1"></div>
+		<div class="cube c2"></div>
+		<div class="cube c4"></div>
+		<div class="cube c3"></div>
+	</div>
+</div>
+
 <!-- Only shown when lateral content is opened -->
 <div class="dark-layer"></div>
 
@@ -41,22 +54,30 @@
 				<div class="dropdown we-call-you">
 					<button class="btn btn-link dropdown-toggle" type="button" id="weCallYouDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Te llamamos <span class="caret"></span></button>
 					<div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
-					    <form>
+					    <form id="weCallYouForm" action="/includes/web/plugin_llamadme.asp" method="post">
 							<div class="form-group">
-								<input type="text" class="form-control" id="InputPhone" placeholder="Nº de teléfono" required>
+								<input type="text" class="form-control" id="InputPhoneWeCallYou" placeholder="Nº de teléfono" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" id="InputName" placeholder="Nombre" required>
+								<input type="text" class="form-control" id="InputNameWeCallYou" placeholder="Nombre" required>
 							</div>
 							<div class="form-group">
-								<input type="email" class="form-control" id="inputEmail" placeholder="Correo electrónico" required>
+								<input type="email" class="form-control" id="inputEmailWeCallYou" placeholder="Correo electrónico" required>
+							</div>
+							<div class="form-group">
+								<select class="form-control" id="selectReasonWeCallYou" required>
+									<option value="">Motivo de la llamada</option>
+									<option value="Llamadme_comercial">Necesito información sobre productos, realizar pedidos, dudas sobre acabados, etc.</option>
+									<option value="Llamadme">Deseo conocer el estado de mi pedido</option>
+									<option value="Llamadme">Otras consultas</option>
+								</select>
 							</div>
 							<a class="franja-horaria-link" data-toggle="collapse" href="#franjaHoraria" aria-expanded="false" aria-controls="franjaHoraria">¿Quieres especificar franja horaria?</a>
 							<div id="franjaHoraria" class="collapse franja-horaria">
 								<label><input type="checkbox"> Por la mañana</label>
 								<label><input type="checkbox"> Por la tarde</label>
 							</div>
-							<button type="submit" class="btn btn-primary btn-rounded btn-sm">Enviar</button>
+							<input type="submit" class="btn btn-primary btn-rounded btn-sm" value="Enviar">
 					    </form>
 					</div>
 				</div>
@@ -71,9 +92,8 @@
 				<a href="#" class="text-bold">Iniciar sesión</a>
 				<div class="dropdown language navbar-right">
 					<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
-					<div class="dropdown-menu" aria-labelledby="languageDropdown">
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
 						<ul class="language-list">
-							<li><a href="https://www.superestudio.com?idioma=CAS">Castellano</a></li>
 							<li><a href="https://www.superestudio.com?idioma=CAS">Castellano</a></li>
 							<li><a href="https://www.superestudio.com?idioma=ENG">English</a></li>
 							<li><a href="http://www.superestudio.fr/?idioma=FRA">Français</a></li>

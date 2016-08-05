@@ -1,4 +1,4 @@
-define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], function (Base, LibCommon, Bootstrap, SkeuocardCSSUA, Skeuocard) {
+define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
     var mCheckout = new Base('This is the data for Page Checkout');
 
 	/**
@@ -37,7 +37,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 		$.ajax({
 			url: '/includes/web/plugin_login_carrito',
 			type: 'POST',
-			data: 'e=' + $('#envio_email').val() + '&p=' + $('#pass_cliente').val(),
+			data: 'e=' + $('#inputEmail').val() + '&p=' + $('#pass_cliente').val(),
 			success: function (data) {
 				if (data !== '') {
 					$('input[name="envio_email"]').after(data).slideDown('fast');
@@ -58,6 +58,106 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 	// Change from unique delivery to a partial delivery
 	function makePartialDelivery() {
 
+	}
+
+	// Flip credit card to rear view and check if cvc are filled
+	function flipCreditCardRear() {
+		if ( !$('#inputCardCvc').val() == '' ) { // check cvc
+			checkCvc();
+	    }
+		$('.credit-card').addClass('animated flipOutY'); // flip effect
+		setTimeout(function(){
+			$('.credit-card').removeClass('animated flipOutY');
+			$('.credit-card .front').hide();
+			$('.credit-card').addClass('animated flipInY');
+			$('.credit-card .rear').show();
+		}, 500);
+	}
+
+	// Flip credit card to front view and check if all inputs are filled
+	function flipCreditCardFront() {
+		var allFilled = true; // check credit card if all fields are filled
+		$('#creditCard .front input').each(function() {
+			if ( $(this).val() === '' ) {
+		      allFilled = false;
+		    }
+		})
+		if ( allFilled == true ) {
+			checkCreditCard();
+		}
+		$('.credit-card').addClass('animated flipOutY'); // flip effect
+		setTimeout(function(){
+			$('.credit-card').removeClass('animated flipOutY');
+			$('.credit-card .rear').hide();
+			$('.credit-card').addClass('animated flipInY');
+			$('.credit-card .front').show();
+		}, 500);	
+	}
+
+	// Check credit card
+	function checkCreditCard() {
+		var	cardNumber 	= $('#inputCardNumberBox1').val()+$('#inputCardNumberBox2').val()+$('#inputCardNumberBox3').val()+$('#inputCardNumberBox4').val();
+			cardMonth 	= $('#inputCardMonth').val(),
+			cardYear 	= $('#inputCardYear').val(),
+			regex		= new RegExp('^[0-9]*$'),
+			currentYear = (new Date).getFullYear();
+			validate 	= true;
+		currentYear = parseInt(currentYear) % 100;
+
+		if ( cardNumber.length == 16 && regex.test(cardNumber) ) {
+			$('.card-number-group').removeClass('has-error');
+		} else {
+			$('.card-number-group').addClass('has-error');
+			validate = false;
+		}
+		
+		if ( cardMonth.length == 2 && regex.test(cardMonth)) {
+			parseInt(cardMonth);
+			if ( cardMonth<13 && cardMonth>0 ) {
+				$('#inputCardMonth').parent().removeClass('has-error');
+			} else {
+				$('#inputCardMonth').parent().addClass('has-error');
+				validate = false;
+			}
+		} else {
+			$('#inputCardMonth').parent().addClass('has-error');
+			validate = false;
+		}
+		
+		if ( cardYear.length == 2 && regex.test(cardYear)) {
+			parseInt(cardYear);
+			if ( cardYear>=currentYear && cardYear>0 ) {
+				$('#inputCardYear').parent().removeClass('has-error');
+			} else {
+				$('#inputCardYear').parent().addClass('has-error');
+				validate = false;
+			}
+		} else {
+			$('#inputCardYear').parent().addClass('has-error');
+			validate = false;
+		}
+
+		if ( validate == false ) {
+			$('#turnCardLabel').removeClass('valid');
+			$('#turnCardLabel').addClass('error');
+		} else {
+			$('#turnCardLabel').removeClass('error');
+			$('#turnCardLabel').addClass('valid');
+		}
+	}
+
+	function checkCvc() {
+		var regex = new RegExp('^[0-9]*$');
+		if ( $('#inputCardCvc').val().length == 3 && regex.test($('#inputCardCvc').val()) ) {
+			$(this).parent().removeClass('has-error');
+			$('#turnCardLabel').removeClass('error');
+			$('#turnCardLabel').addClass('valid');
+			flipCreditCardFront();
+		} else {
+			$(this).parent().addClass('has-error');
+			$('#turnCardLabel').removeClass('valid');
+			$('#turnCardLabel').addClass('error');
+		}
 	}
 
     // Check all forms
@@ -165,6 +265,20 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 	// Check if email is already registered
 	$('#inputEmail').focusout(function() {
 		checkregistered();
+	});
+
+	// Open login tab if email is already registered from delivery details form
+	$('#loginLink').click(function() {
+		$('#loginTab').tab('show');
+		$('#shippingDetailsContent').removeClass('active');
+		$('#loginContent').addClass('active');
+		$('#inputEmailLogin').val($('#inputEmail').val());
+		$('#inputPasswordLogin').focus();
+	})
+
+	$('#inputPostcode').focusout(function() {
+		var zipcode = $(this).val(),
+			country = $('#inputCountry option:selected').attr('value'); // TO DO: ajax to get zipcodes from any database
 	})
 
 	// Simulate click to submit button of delivery details or login form when click on next button
@@ -176,45 +290,126 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 		}
 	})
 
+	// Validate 
 	$('#productsPanel .step-btn').click(function(e) {
 		e.preventDefault();
 		var currentStep = $(this).attr('data-step');
 		nextStep(currentStep);
 	})
 
+	// Validate payment method
 	$('#paymentMethodPanel .step-btn').click(function() {
 		$('#paymentMethodForm button[type="submit"]').trigger('click');
 	})
 
+	// Show selected payment method
 	$('#paymentMethodForm input[type="radio"]').change(function() {
 	  	$('#paymentMethodForm .collapse').collapse('hide');
-	  	if(this.checked) {
-	        $(this).parent().parent().find('.collapse').collapse('show');
+	  	if( this.checked ) {
+	        $(this).parent().parent().find('.panel-collapse').collapse('show');
 	    }
 	})
 
-	// Validate
+	// Validate delivery details
 	$('#deliveryDetailsForm').submit(function(e) {
 		e.preventDefault();
 		var currentStep = $('#deliveryDetailsPanel').find('.step-btn').attr('data-step');
 		nextStep(currentStep);
 	})
 
-	$('#paymentMethodForm').submit(function(e) {
+	// Log in
+	$('#loginForm').submit(function(e) {
 		e.preventDefault();
-		var currentStep = $('#paymentMethodPanel').find('.step-btn').attr('data-step');
-		nextStep(currentStep);
+		$.ajax({
+			url: '/includes/web/plugin_login_carrito',
+			type: 'POST',
+			data: 'e=' + $('#inputEmailLogin').val() + '&p=' + $('#inputPasswordLogin').val(),
+			success: function (data) {
+				if (data !== '') {
+					$('#wrongPassLoginMsg').collapse('show');
+					$('#inputPasswordLogin').focus();
+
+					if (data == 'login-ok') {
+						$('#wrongPassLoginMsg').collapse('hide');
+						$('#deliveryDetailsTab').tab('show');
+						$('#logincontent').removeClass('active');
+						$('#shippingDetailsContent').addClass('active');
+					}
+				}
+			}
+		});
 	})
 
+	// Validate payment method form
+	$('#paymentMethodForm').submit(function(e) {
+		e.preventDefault();
+		if ( $('input[value="visa"]:checked') ) {
+			checkCreditCard()
+			checkCvc();
+			if ( $('#creditCard .has-error').length > 0 ) {
+				$('#creditCardErrorAlert').collapse('show');
+			} else {
+				$('#creditCardErrorAlert').collapse('hide');
+				var currentStep = $('#paymentMethodPanel').find('.step-btn').attr('data-step');
+				nextStep(currentStep);
+			}
+		}
+	})
+
+	// Validate coupon form
 	$('#couponForm').submit(function(e) {
 		e.preventDefault();
-
 	})
 
 	// Check if all forms are right to send and formalize checkout
 	$('.confirm-button').click(function() {
 		if ( checkAllForms() == true ) {
 			window.location.href="confirmation.html"
+		}
+	})
+
+	// Change card label
+	$('#turnCardLabel').click(function() {
+		if ( $('.credit-card .front').is(":visible") ) { // flip to rear card
+			flipCreditCardRear();	
+		} else { // flip to front card
+			flipCreditCardFront();
+		}
+	})
+
+	// Move focus between number card inputs
+	$('.card-number-group input').keyup(function() {
+		var value = $(this).val();
+		if ( value.length > 3 ) {
+			if ( $(this).is('#inputCardNumberBox4') ) {
+				if ( !$('#inputCardMonth').val().length ) {
+					$('#inputCardMonth').focus();
+				}
+			} else if ( !$(this).next($('input')).val().length ) {
+				$(this).next($('input')).focus();
+			}
+		}
+	})
+
+	// Change focus from date inputs and decide when to check
+	$('#creditCard input').keyup(function() {
+		if ( $(this).parent().parent().is('.front') ) {
+			if ( $(this).is('#inputCardMonth') && $(this).val().length > 1 && !$('#inputCardYear').val().length ) { // change focus to year input
+				$('#inputCardYear').focus();
+			}
+			var filled = true; // check if everything is filled
+			$.each($('#creditCard .front input'), function() {
+				if ( !$(this).val().length || $(this).val().length<2 ) {
+					filled = false;
+				}
+			});
+			if ( filled === true ) { // check all front fields
+				checkCreditCard();
+			}
+		} else {
+			if ( $(this).val().length > 2 ) { // CVC check
+				checkCvc();
+			}
 		}
 	})
 
@@ -233,9 +428,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'skeuocardCSSUA', 'skeuocard'], f
 
 		var common = new LibCommon();
 		common.detectMobile();
-
-		// Init skeuocard
-		// card = new Skeuocard($("#skeuocard"));
     });
 
     return mCheckout;

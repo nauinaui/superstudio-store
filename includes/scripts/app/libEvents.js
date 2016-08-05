@@ -172,4 +172,19 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		$('#subscribeNewsletter').removeClass('show');
 		$('body').removeClass('block-content');
 	});
+
+	// Scroll to top button
+    $(window).scroll(function() {
+    	if ($(this).scrollTop() >= 100) {
+	        $('#scrollToTopBtn').fadeIn(200);
+	    } else {
+	        $('#scrollToTopBtn').fadeOut(200);
+	    }
+	});
+	$('#scrollToTopBtn').click(function() {
+	    $('body,html').animate({
+	        scrollTop : 0
+	    }, 500);
+	});
+
 });

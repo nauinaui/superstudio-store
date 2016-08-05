@@ -17,8 +17,6 @@ require.config({
     detect_mobile:    'detectmobilebrowser.min',
     zoom:             'zoom.min',
     recaptcha:        'https://www.google.com/recaptcha/api',
-    skeuocard:        'skeuocard.min',
-    skeuocardCSSUA:   'cssua.min',
     blockui:          'blockUI',
 
   },
@@ -31,8 +29,6 @@ require.config({
         "countdown":	   ["jquery"],
         "zoom":            ["jquery"],
         "recaptcha":       ["jquery"],
-        "skeuocard":       ["jquery"],
-        "skeuocardCSSUA":  ["jquery"],
         "blockui":         ["jquery"]
 	}
 });

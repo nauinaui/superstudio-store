@@ -7,6 +7,7 @@
   color: @blanco;
   padding-top: 5px;
   padding-bottom: 3px;
+  
   .left {
     text-align: left;
     @media (max-width:@sm-max) {
@@ -14,12 +15,14 @@
       margin-bottom: 5px;
     }
   }
+  
   .right {
     text-align: right;
     @media (max-width:@sm-max) {
       text-align: center;
     }
   }
+  
   a {
     display: inline-block;
     color: @blanco_roto;
@@ -35,6 +38,11 @@
       padding: 0;
       margin: 0;
       border: 0;
+    }
+
+    @media (max-width: @xs-max) {
+      padding: 0 4px 0 0;
+      margin: 0;
     }
   }
   
@@ -68,12 +76,12 @@
       .form-group {
         margin-bottom: 5px;
 
-        input {
+        input, select {
           background-color: transparent;
           border: 0;
           border-bottom: 2px solid @gris_claro;
           border-radius: 0;
-          color: @blanco;
+          color: @blanco_roto;
           .box-shadow(none);
           .placeholder(@blanco_roto);
         }        
@@ -561,6 +569,11 @@
           .currency {
             font-size: 16px;
           }
+
+          @media (max-width: @xs-max) {
+            display: table;
+            margin-bottom: 5px;
+          }
         }
 
         .old-price {
@@ -571,12 +584,22 @@
           .currency {
             font-size: 16px;
           }
+          
+          @media (max-width: @xs-max) {
+            display: table;
+            margin-bottom: 5px;
+          }
         }
 
         .discount {
           font-size: 14px;
           line-height: 18px;
           padding: 0 5px;
+
+          @media (max-width: @xs-max) {
+            display: table;
+            margin-bottom: 5px;
+          }
         }
       }
 
@@ -619,6 +642,7 @@
     }
 
     .footer {
+      padding: 10px 0;
       text-align: center;
 
       p {
@@ -663,6 +687,10 @@
       .continue-shopping-btn {
         color: @azul;
       }
+    }
+
+    @media (max-width: @xs-max) {
+      width: 320px;
     }
   }
 
