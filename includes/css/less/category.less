@@ -520,8 +520,14 @@ body.category-page {
       display: none;
     }
 
-    .item .ask-date {
-      display: none;
+    .item {
+      .outlet-finish {
+        display: none;
+      }
+
+      .ask-date {
+        display: none;
+      }
     }  
 
     .folding .caja .add-product-form {
@@ -537,14 +543,17 @@ body.category-page {
   
   &.outlet .producto-box {
     .item {
-      padding: 20px 15px 10px;
-
       .lista-labels {
         display: none;
 
         &.outlet {
           display: block;
         }
+      }
+
+      .outlet-finish {
+        color: @gris;
+        display: inline;
       }
 
       .ask-date {

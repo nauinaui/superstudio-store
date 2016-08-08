@@ -170,6 +170,7 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 	// Hide lateral contact form -newsletter-
 	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton, #closeWindowButton').on('click', function() {
 		$('#subscribeNewsletter').removeClass('show');
+		$('#subscribeNewsletter .coupon-image').removeClass('animated tada');
 		$('body').removeClass('block-content');
 	});
 

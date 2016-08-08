@@ -26,9 +26,15 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		}
 	}
 
+	/**
+	 * Show subscribing newsletter in lateral content
+	 */
 	function showSubscribeNewsletter() {
 		if ( !$('#subscribeNewsletter').is('.show') ) {
 			$('#subscribeNewsletter').addClass('show');
+			setTimeout(function(){
+				$('#subscribeNewsletter .coupon-image').addClass('animated tada');
+			}, 1000);
 			$('body').addClass('block-content');
 		}
 	}
@@ -177,10 +183,13 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		//Category page - Price range filter with slider
 		$('#priceRange').slider({});  
 
-		//Show subscribe newsletter
-		setTimeout(function(){
-			showSubscribeNewsletter();
-		}, 10000);  	
+		// Show subscribe newsletter - only if not mobile
+		var common = new LibCommon;
+		if ( common.detectMobile() == false ) {
+			setTimeout(function(){
+				showSubscribeNewsletter();
+			}, 1000);
+		}	
     });
 
     return mCategory;

@@ -142,7 +142,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	}
 
 	/**
-	 * Detail page - zoom effect in main image
+	 * zoom effect in main image
 	 */
 	function zoomInit() {
 		if (window.innerWidth > 529) {
@@ -152,9 +152,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		}
 	}
 
+	/**
+	 * Show subscribing newsletter in lateral content
+	 */
 	function showSubscribeNewsletter() {
 		if ( !$('#subscribeNewsletter').is('.show') ) {
 			$('#subscribeNewsletter').addClass('show');
+			setTimeout(function(){
+				$('#subscribeNewsletter .coupon-image').addClass('animated tada');
+			}, 1000);
 			$('body').addClass('block-content');
 		}
 	}
@@ -486,10 +492,13 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			});
 		};
 
-		//Show subscribe newsletter
-		setTimeout(function(){
-			showSubscribeNewsletter();
-		}, 10000);
+		// Show subscribe newsletter - only if not mobile
+		var common = new LibCommon;
+		if ( common.detectMobile() == false ) {
+			setTimeout(function(){
+				showSubscribeNewsletter();
+			}, 1000);
+		}
     });
 
     return mDefault;
