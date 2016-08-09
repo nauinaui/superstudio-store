@@ -214,7 +214,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	// 	console.log($('#paymentMethodInput').val());
 	// })
 
-	// Change from parcial delivery to a unique delivery
+	// Change from partial delivery to a unique delivery
 	$('input[name="deliveryType"]').on('change', function() {
 		if ( $('#deliveryType2').is(':checked') ) {
 			makeUniqueDelivery();
@@ -276,30 +276,10 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		$('#inputPasswordLogin').focus();
 	})
 
+	// Print cities related to zipcode given
 	$('#inputPostcode').focusout(function() {
 		var zipcode = $(this).val(),
 			country = $('#inputCountry option:selected').attr('value'); // TO DO: ajax to get zipcodes from any database
-	})
-
-	// Simulate click to submit button of delivery details or login form when click on next button
-	$('#deliveryDetailsPanel .step-btn').click(function() {
-		if ( $('#deliveryDetailsTab').is('.active') ) {
-			$('#deliveryDetailsForm button[type="submit"]').trigger('click');
-		} else {
-			$('#loginForm button[type="submit"]').trigger('click');
-		}
-	})
-
-	// Validate 
-	$('#productsPanel .step-btn').click(function(e) {
-		e.preventDefault();
-		var currentStep = $(this).attr('data-step');
-		nextStep(currentStep);
-	})
-
-	// Validate payment method
-	$('#paymentMethodPanel .step-btn').click(function() {
-		$('#paymentMethodForm button[type="submit"]').trigger('click');
 	})
 
 	// Show selected payment method
@@ -338,6 +318,13 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 				}
 			}
 		});
+	})
+
+	// Validate products
+	$('#productsPanel .step-btn').click(function(e) {
+		e.preventDefault();
+		var currentStep = $(this).attr('data-step');
+		nextStep(currentStep);
 	})
 
 	// Validate payment method form

@@ -42,10 +42,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		$('#addedProductAlert').show();
 		setTimeout(function(){
 			$('#addedProductAlert').hide();
-			$('html, body').animate({
-		        scrollTop: $("#crossSellingSection").offset().top - 50
-		    }, 1000);
-		}, 2000);
+		}, 3000);
 	}
 
 	/**
@@ -58,6 +55,9 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		if ( $('#crossSellingSection').is(':hidden') ) {
 			$('#crossSellingSection').collapse('show');
 		}
+		$('html, body').animate({
+	        scrollTop: $("#crossSellingSection").offset().top - 50
+	    }, 1000);
 	}
 
 	/**
@@ -395,9 +395,8 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	// Collapse other information and show cross selling when a product is added to the cart
 	$('#addMainProductForm').submit(function (e) {
 		e.preventDefault();
-		showFeedback();
 		hideUpSelling();
-		showCrossSelling();
+		// showCrossSelling();
 		var common 		= new LibCommon(),
 			product_id 	= $('body').attr('data-product-id'),
 			quantity	= $('#unitsSelect').val(),
@@ -413,6 +412,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			$.ajax({
 				url: '/includes/web/carrito?accion=anadir' + query,
 				success: function (data) {
+					showFeedback();
 					// Cargamos carrito
 					// topbar.find('#carrito').html(data).slideDown(250);
 					// cargamos carrito linia
@@ -497,7 +497,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		if ( common.detectMobile() == false ) {
 			setTimeout(function(){
 				showSubscribeNewsletter();
-			}, 1000);
+			}, 10000);
 		}
     });
 

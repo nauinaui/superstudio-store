@@ -188,4 +188,13 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 	    }, 500);
 	});
 
+	// We call you fix alert link
+	$('#weCallYouLink').on('click', function(e) {
+	  	e.stopPropagation();
+		$('body,html').animate({
+			scrollTop : 0
+		}, 500);
+	  	$('#weCallYouDropdown').dropdown('toggle');
+	  	$('#InputPhoneWeCallYou').focus();
+	})
 });

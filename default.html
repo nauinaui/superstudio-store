@@ -45,7 +45,7 @@
 <div class="topbar">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-7 left">
+			<div class="col-md-8 col-lg-7 left">
 				<div class="dropdown we-call-you">
 					<button class="btn btn-link dropdown-toggle" type="button" id="weCallYouDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Te llamamos <span class="caret"></span></button>
 					<div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
@@ -77,13 +77,14 @@
 					</div>
 				</div>
 				<a href="#">Enviamos a toda Europa</a>
+				<a href="#">10€ de descuento</a>
 				<a href="#">Tiendas</a>
 				<a href="#">Devoluciones</a>
+				<a href="#">Proyectos</a>
 				<a href="#">Contacto</a>
 			</div>
-			<div class="col-md-6 col-lg-5 right">
+			<div class="col-md-4 col-lg-5 right">
 				<a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
-				<a href="#" class="text-bold">Contacto</a>
 				<a href="#" class="text-bold">Iniciar sesión</a>
 				<div class="dropdown language navbar-right">
 					<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
@@ -779,7 +780,6 @@
 					<img class="img-responsive" src="imagenes/banners/eames.jpg" srcset="imagenes/banners/eames@2x.jpg 2x" alt="#">
 					<div class="titulo">Especial <span>Eames design</span></div>
 				</div>
-				<div class="btn btn-primary btn-sm btn-rounded">Compra ahora</div>
 			</a>
 		</div>
 		<div class="col-md-4 banner banner-tolix">
@@ -788,7 +788,6 @@
 					<img class="img-responsive" src="imagenes/banners/packs.jpg" srcset="imagenes/banners/packs@2x.jpg 2x" alt="#">
 					<div class="titulo">Ofertas especiales en <span>Packs</span></div>
 				</div>
-				<div class="btn btn-primary btn-sm btn-rounded">Compra ahora</div>
 			</a>
 		</div>
 		<div class="col-md-4 banner banner-pop">
@@ -798,7 +797,6 @@
 					<div class="titulo">Precio mínimo <span>garantizado</span></div>
 					<span class="footer-text">en más de 60 productos</span>
 				</div>
-				<div class="btn btn-primary btn-sm btn-rounded">Compra ahora</div>
 			</a>
 		</div>
 	</section>
@@ -2703,12 +2701,12 @@
 				<li class="pagos mastercard"></li>
 				<li class="pagos maestro"></li>
 				<li class="pagos american-express"></li>
+				<li class="pagos aplazame"></li>
 				<li class="pagos skrill"></li>
 				<li class="pagos ideal"></li>
 				<li class="pagos giropay"></li>
 				<li class="pagos postepay"></li>
 				<li class="pagos trustly"></li>
-				<li class="pagos aplazame"></li>
 				<li class="pagos sofort-banking"></li>
 				<li class="pagos cb"></li>
 				<li class="pagos eps"></li>
@@ -2718,7 +2716,7 @@
 		</div>
 
 		<div class="row text-center calidad-y-confianza">
-			<h4>garantía de calidad y confianza</h4>
+			<h4>Seguridad y calidad</h4>
 			<ul>
 				<li class="pagos rapid-ssl"></li>
 			</ul>
@@ -2733,22 +2731,22 @@
 			<div class="col-xs-6 col-md-3">
 				<img src="imagenes/iconos/svg/ventajasEscribenos.svg" alt="">
 				<h4>Escríbenos</h4>
-				<p>Contacta con nosotros:<br>info@superestudio.com</p>
+				<p><a href="contacto.html" title="Contacta con nosotros">Contacta con nosotros</a></p>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<img src="imagenes/iconos/svg/ventajasLlamanos.svg" alt="">
 				<h4>Llámanos</h4>
-				<p>Teléfono +34 932 417 330<br>L-V de 9h a 13:30 y de 15:30 a 19h.</p>
+				<p>Teléfono +34 932 417 330</p>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<img src="imagenes/iconos/svg/ventajasEnvio.svg" alt="">
 				<h4>Costes de envío</h4>
-				<p>Desde 3,95€. Consulta condiciones de envío <a href="#">aquí</a>. ¡Enviamos a toda Europa!</p>
+				<p><a href="shipping.html" title="enviamos a toda Europa">¡Enviamos a toda Europa!</a></p>
 			</div>
 			<div class="col-xs-6 col-md-3">
 				<img src="imagenes/iconos/svg/ventajasDevoluciones.svg" alt="">
 				<h4>Devoluciones</h4>
-				<p>Tienes un plazo de 14 días naturales para devolver tu producto.</p>
+				<p>Consulta aquí las <a href="condiciones.html" title="condiciones de uso">condiciones</a></p>
 			</div>
 		</div>
 	</div>
@@ -2774,6 +2772,7 @@
 							<span id="helpBlockEmpty" class="help-block hidden">Debes introducir un email</span>
 							<span id="helpBlockExist" class="help-block hidden">Este email ya existe</span>
 							<span id="helpBlockError" class="help-block hidden">El email no es válido</span>
+						    <small>Con el envío de mis datos confirmo que he leído y acepto la <a href="privacidad.html" title="política de privacidad">política de privacidad</a>.</small>
 						</form>
 					</div>
 					<div id="step2" class="step-2">
@@ -2949,9 +2948,17 @@
 	</div>
 </section>
 
+<!-- We call you fix alert  -->
+<div class="alert alert-dismissible we-call-you-alert hidden-xs" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<p class="title">
+		<button class="dropdown-toggle" id="weCallYouLink">Te llamamos</button>
+	</p>
+</div>
+
 <!-- Feedback message when a product is added to cart from product's grid -->
 <div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
- 	<button type="button" class="close"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+ 	<button type="button" class="close title"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
 </div>
 
 <!-- Preloader -->

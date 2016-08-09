@@ -46,7 +46,7 @@
 <div class="topbar">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-7 left">
+			<div class="col-md-8 col-lg-7 left">
 				<div class="dropdown we-call-you">
 					<button class="btn btn-link dropdown-toggle" type="button" id="weCallYouDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Te llamamos <span class="caret"></span></button>
 					<div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
@@ -78,13 +78,14 @@
 					</div>
 				</div>
 				<a href="#">Enviamos a toda Europa</a>
+				<a href="#">10€ de descuento</a>
 				<a href="#">Tiendas</a>
 				<a href="#">Devoluciones</a>
+				<a href="#">Proyectos</a>
 				<a href="#">Contacto</a>
 			</div>
-			<div class="col-md-6 col-lg-5 right">
+			<div class="col-md-4 col-lg-5 right">
 				<a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
-				<a href="#" class="text-bold">Contacto</a>
 				<a href="#" class="text-bold">Iniciar sesión</a>
 				<div class="dropdown language navbar-right">
 					<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
@@ -807,31 +808,31 @@
 							</h4>
 				    	</div>
 				    	<div id="collapseDeliveryDetails" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDeliveryDetails">
-					      		<div class="panel-body">
-									<!-- Nav tabs -->
-									<ul class="nav nav-tabs" role="tablist">
-										<li id="deliveryDetailsTab" role="presentation" class="active">
-											<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Datos de envío</a>
-										</li>
-										<li id="loginTab" role="presentation">
-											<a href="#loginContent" aria-controls="loginContent" role="tab" data-toggle="tab">Log in</a>
-										</li>
-									</ul>
-						  			<!-- Tab panes -->
-									<div class="tab-content">
-									    <div role="tabpanel" class="tab-pane active" id="shippingDetailsContent">
-									    	<div class="box">
-										    	<p>Por favor, rellene los datos de envío para calcular todas las opciones de envio para cada producto. Si ya estás registrado, identifícate y comprueba toda la información. Recuerda que tu compra será enviada en la siguiente dirección.</p>
-										    	<form id="deliveryDetailsForm" name="deliveryDetailsForm">
-											    	<div class="form-horizontal delivery-form">
-														<div class="form-group">
-														    <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
-														    <div class="col-sm-9">
-														    	<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
-														    	<span id="alreadyExist" class="collapse help-block">Este email ya está registrado. <a id="loginLink" href="javascript:void(0);" title="login">Clic aquí</a> para hacer login.</span>
-														    </div>
-														</div>
-														<div class="form-group">
+				      		<div class="panel-body">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li id="deliveryDetailsTab" role="presentation" class="active">
+										<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Datos de envío</a>
+									</li>
+									<li id="loginTab" role="presentation">
+										<a href="#loginContent" aria-controls="loginContent" role="tab" data-toggle="tab">Log in</a>
+									</li>
+								</ul>
+					  			<!-- Tab panes -->
+								<div class="tab-content">
+								    <div role="tabpanel" class="tab-pane active" id="shippingDetailsContent">
+								    	<div class="box">
+									    	<p>Por favor, rellene los datos de envío para calcular todas las opciones de envio para cada producto. Si ya estás registrado, identifícate y comprueba toda la información. Recuerda que tu compra será enviada en la siguiente dirección.</p>
+									    	<form id="deliveryDetailsForm" name="deliveryDetailsForm">
+										    	<div class="form-horizontal delivery-form">
+													<div class="form-group">
+													    <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
+													    <div class="col-sm-9">
+													    	<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+													    	<span id="alreadyExist" class="collapse help-block">Este email ya está registrado. <a id="loginLink" href="javascript:void(0);" title="login">Clic aquí</a> para hacer login.</span>
+													    </div>
+													</div>
+													<div class="form-group">
 														    <label for="inputName" class="col-sm-3 control-label">Nombre completo*</label>
 														    <div class="col-sm-9">
 														      <input type="text" class="form-control" id="inputName" placeholder="Nombre completo" required>
@@ -884,10 +885,11 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-primary hidden">Submit</button>
+													<div class="alert alert-warning" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
+													<div class="alert alert-warning" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
+													<button type="submit" class="btn btn-primary pull-right step-btn" data-step="1">Siguiente</button>
+													<div class="clearfix"></div>
 												</form>
-												<div class="alert alert-warning" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
-												<div class="alert alert-warning" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
 											</div>
 									    </div>
 									    
@@ -932,7 +934,6 @@
 												</form>
 											</div>
 									    </div>
-									    <button class="btn btn-primary pull-right step-btn" data-step="1">Siguiente</button>
 									</div>
 					      		</div>
 					      	</form>
@@ -1142,84 +1143,14 @@
 									<div class="footer-price">
 										<p class="subtitle">Total productos: 1.331,34€</p>
 									</div>
+									<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente</button>
+									<div class="clearfix"></div>
 					        	</div>
-								<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente</button>
 						    </div>
 					    </div>
 				  	</div>
-
-				  	<!-- STEP 3: Shipping method -->
-					<!-- <div id="shippingMethodPanel" class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingShippingMethod">
-					      	<h4 class="panel-title">
-						        <span class="glyphicon glyphicon-ok"></span>
-						        <span class="glyphicon glyphicon-remove"></span>
-					        	<a class="collapsed" role="button">
-					          		Método de envío <span class="edit pull-right">editar</span>
-					        	</a>
-					      	</h4>
-					    </div>
-					    <div id="collapseShippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingShippingMethod">
-					      <div class="panel-body">
-					        <div class="box">
-						        <p>All shipping costs are calculated from your zipcode given in your delivery details.</p>
-						        <div class="row shipping-company-list">
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="asm">
-												<input type="radio" name="shippingCompany" id="asm" value="ASM">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">ASM</span>
-													<span class="price">131,46€</span>
-												</div>
-											</label>
-										</div>	
-						        	</div>
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="dhl">
-												<input type="radio" name="shippingCompany" id="dhl" value="DHL">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">DHL</span>
-													<span class="price">93,27€</span>
-													<div class="checkbox mozo">
-														<label>
-														<input type="checkbox"> Opción mozo <span>(+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
-														</label>
-													</div>
-												</div>
-											</label>
-										</div>
-						        	</div>
-						        	<div class="col-md-4 company">
-										<div class="radio">
-											<label class="seur">
-												<input type="radio" name="shippingCompany" id="seur" value="Seur">
-												<div class="company-content">
-													<div class="check-thick"><span class="glyphicon glyphicon-ok"></div>
-													<div class="logo"></div>
-													<span class="name">Seur</span>
-													<span class="price">139,28€</span>
-												</div>
-											</label>
-										</div>
-						        	</div>
-						      	</div>
-								<div class="well well-sm">(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</div>
-								<div class="footer-price">
-									<p class="subtitle">Total envío: <span>0,00€</span></p>
-								</div>
-				        	</div>
-				        	<button type="button" class="btn btn-primary pull-right">Siguiente</button>
-					      </div>
-					    </div>
-					</div> -->
 				  	
-				  	<!-- STEP 4: Payment method -->
+				  	<!-- STEP 3: Payment method -->
 				  	<div id="paymentMethodPanel" class="panel panel-default">
 					    <div class="panel-heading" role="tab" id="headingPaymentMethod">
 					      	<h4 class="panel-title">
@@ -1375,14 +1306,14 @@
 							      				</div>
 							    			</div>
 										</div>
-										<button type="submit" class="btn btn-primary hidden">Submit</button>
-									</form>
 										
-									<div class="footer-price">
-										<p class="subtitle">Total método de pago: <span>0,00€</span></p>
-									</div>
+										<div class="footer-price">
+											<p class="subtitle">Total método de pago: <span>0,00€</span></p>
+										</div>
+										<button type="submit" class="btn btn-primary pull-right step-btn" data-step="3">Siguiente</button>
+										<div class="clearfix"></div>
+									</form>
 				      			</div>
-			      				<button type="button" class="btn btn-primary pull-right step-btn" data-step="3">Siguiente</button>
 				      		</div>
 				    	</div>
 				  	</div>

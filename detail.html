@@ -28,7 +28,7 @@
 </head>
 
 <!-- body class can be 'outlet' or 'pack'-->
-<body data-product-id="142898" class="outlet">
+<body data-product-id="142898" class="pack">
 
 <!-- Scroll to top arrow -->
 <button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
@@ -50,7 +50,7 @@
 <div class="topbar">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-7 left">
+			<div class="col-md-8 col-lg-7 left">
 				<div class="dropdown we-call-you">
 					<button class="btn btn-link dropdown-toggle" type="button" id="weCallYouDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Te llamamos <span class="caret"></span></button>
 					<div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
@@ -82,13 +82,14 @@
 					</div>
 				</div>
 				<a href="#">Enviamos a toda Europa</a>
+				<a href="#">10€ de descuento</a>
 				<a href="#">Tiendas</a>
 				<a href="#">Devoluciones</a>
+				<a href="#">Proyectos</a>
 				<a href="#">Contacto</a>
 			</div>
-			<div class="col-md-6 col-lg-5 right">
+			<div class="col-md-4 col-lg-5 right">
 				<a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
-				<a href="#" class="text-bold">Contacto</a>
 				<a href="#" class="text-bold">Iniciar sesión</a>
 				<div class="dropdown language navbar-right">
 					<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
@@ -993,7 +994,7 @@
 						</div>
 						<div class="clearfix"></div>
 						<div id="betterDeliveryTip" class="better-delivery-tip collapse">
-							<p>Puedes ver otros productos similares con plazos de entrega más cortos. <button type="button" id="showBetterDelivery" class="btn btn-link">¡Click aquí!</button></p>
+							<p>Puedes ver otros productos similares con plazos de entrega más cortos. <button type="button" id="showBetterDelivery" class="btn btn-secondary btn-rounded btn-xs">ver ahora</button></p>
 						</div>
 					</div>
 
@@ -2568,8 +2569,16 @@
   </div>
 </div>
 
+<!-- We call you fix alert  -->
+<div class="alert alert-dismissible we-call-you-alert hidden-xs" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<p class="title">
+		<button class="dropdown-toggle" id="weCallYouLink">Te llamamos</button>
+	</p>
+</div>
+
 <!-- Super promos fix alert  -->
-<div class="alert alert-dismissible super-promos-alert" role="alert">
+<div class="alert alert-dismissible super-promos-alert hidden-xs" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <p class="title">¡Súper Promos!</p>
   <p>Descuentos y ofertas por tiempo limitado</p>

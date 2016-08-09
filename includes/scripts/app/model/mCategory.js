@@ -18,11 +18,11 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		var heightFull = $element.css({height: 'auto'}).height() + $element.find('.read-more').outerHeight();
 		
 		if (action === 'show') {
-			$element.css('height', "110px");
+			$element.css('height', "60px");
 			$element.animate({ height: heightFull }, 500);
 		} else if (action === 'hide') {
 			$element.css('height', heightFull);
-			$element.animate({ height: "110px" }, 500);
+			$element.animate({ height: "60px" }, 500);
 		}
 	}
 
@@ -188,7 +188,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		if ( common.detectMobile() == false ) {
 			setTimeout(function(){
 				showSubscribeNewsletter();
-			}, 1000);
+			}, 10000);
 		}	
     });
 
