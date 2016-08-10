@@ -38,10 +38,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	/**
 	 * Show alert for 3 seconds and hide again
 	 */
-	function showFeedback() {
-		$('#addedProductAlert').show();
+	function showFeedback(ok) {
+		if ( ok == true ) {
+			$('#addedProductAlert').show();
+		} else {
+			$('#addedProductAlertError').show();
+		}
 		setTimeout(function(){
 			$('#addedProductAlert').hide();
+			$('#addedProductAlertError').hide();
 		}, 3000);
 	}
 
@@ -395,14 +400,14 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	// Collapse other information and show cross selling when a product is added to the cart
 	$('#addMainProductForm').submit(function (e) {
 		e.preventDefault();
-		hideUpSelling();
-		// showCrossSelling();
+		
 		var common 		= new LibCommon(),
 			product_id 	= $('body').attr('data-product-id'),
 			quantity	= $('#unitsSelect').val(),
 			finish 		= $('#finishesList input[type="radio"]:checked').attr('data-finish'),
 			type		= "producto";
-			finishList 	= $('.finishes:not(.collapse)');
+			finishList 	= $('.finishes:not(.collapse)'),
+			ok 			= true;
 
 		if ( !$('body').is('.pack') ) { // normal product
 			var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
@@ -412,11 +417,19 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			$.ajax({
 				url: '/includes/web/carrito?accion=anadir' + query,
 				success: function (data) {
-					showFeedback();
+					console.log('entro');
+					hideUpSelling();
+					showFeedback(ok);
+					showCrossSelling();
 					// Cargamos carrito
 					// topbar.find('#carrito').html(data).slideDown(250);
 					// cargamos carrito linia
 					// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+				},
+				error: function() {
+					console.log('error');
+					var ok = false;
+					showFeedback(ok);
 				}
 			});
 		}

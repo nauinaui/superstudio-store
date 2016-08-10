@@ -28,7 +28,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     		nextStep.collapse('show');
     	}
 		setTimeout(function(){
-		  	$('html, body').animate({scrollTop: nextStep.offset().top - 130}, 500);
+		  	$('html, body').animate({scrollTop: $('#stepsAccordion').offset().top - 70}, 500);
 		}, 500);
     }
 
@@ -138,52 +138,70 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		}
 
 		if ( validate == false ) {
-			$('#turnCardLabel').removeClass('valid');
+			$('#turnCardLabel').removeClass('valid'); // error
 			$('#turnCardLabel').addClass('error');
+			return false;
 		} else {
-			$('#turnCardLabel').removeClass('error');
+			$('#turnCardLabel').removeClass('error'); // ok
 			$('#turnCardLabel').addClass('valid');
+			return true;
 		}
 	}
 
 	function checkCvc() {
 		var regex = new RegExp('^[0-9]*$');
 		if ( $('#inputCardCvc').val().length == 3 && regex.test($('#inputCardCvc').val()) ) {
-			$(this).parent().removeClass('has-error');
+			$('#inputCardCvc').parent().removeClass('has-error');
 			$('#turnCardLabel').removeClass('error');
 			$('#turnCardLabel').addClass('valid');
 			flipCreditCardFront();
+			return true;
 		} else {
-			$(this).parent().addClass('has-error');
+			$('#inputCardCvc').parent().addClass('has-error');
 			$('#turnCardLabel').removeClass('valid');
 			$('#turnCardLabel').addClass('error');
+			return false;
 		}
 	}
 
     // Check all forms
     function checkAllForms() {
-		//check delivery details form
+    	debugger;
+		// check delivery details form
 		if ( $('#deliveryDetailsForm')[0].checkValidity() ) {
 			$('#collapseDeliveryDetails').collapse('hide');
-			//check payment method form
+			// check payment method form
 			if ( $('#paymentMethodForm')[0].checkValidity() ) {
-				$('#collapsePaymentMethod').collapse('hide');
+				// check if credit card payment is selected
+				if ( $('#visaInput').is(':checked') ) {
+					if ( checkCreditCard() == true ) { // check credit card
+						checkCvc();
+					}
+					if ( $('#creditCard .form-group').is('.has-error') ) { // credit card error
+						$('#creditCardErrorAlert').collapse('show');
+						return false;
+					} else {
+						$('#creditCardErrorAlert').collapse('hide'); // credit card ok
+						$('#collapsePaymentMethod').collapse('hide');
+						$('#collapseCreditCard').collapse('show');
+					}
+				}
 				//check invoice form
 				if ( $('#invoiceCheckbox').is(':checked') ) {
 					if ( $('#invoiceForm')[0].checkValidity() ) {
 						return true; // confirm order
 					} else {
-						$('#invoiceCollapse').collapse('show');
+						$('#invoiceCollapse').collapse('show'); // invoice error
 						$('#invoiceForm').find(':submit').click()
 					}
 				} else {
 					return true; // confirm order
 				}
-			} else {
+			} else { // payment method error
 				$('#collapsePaymentMethod').collapse('show');
 				$('#paymentMethodForm').find(':submit').click()
 			}
-		} else {
+		} else { // delivery details error
 			// check if delivery details form is visible due to tab selection and make it visible
 			$('#collapseDeliveryDetails').collapse('show');
 			if ( !$('#deliveryDetailsTab').is('.active') ) {
@@ -198,21 +216,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	 * EVENTS
 	 * =================
 	 */
-	
-	// // Payment method - Give value to hidden input when a payment option is selected
-	// $('#collapsePaymentMethod').on('shown.bs.collapse', function () {
-	// 	var value = $('#collapsePaymentMethod .panel-collapse.collapse.in').attr('data-value');
-	// 	$('#paymentMethodInput').val(value);	
-	// 	console.log($('#paymentMethodInput').val());
-	// 	if ( $('#collapsePaymentMethod #collapseCod.collapse.in').length > 0 ) {
-	// 		refreshFooterTotal('paymentMethod');
-	// 	}
-	// })
-	// // Payment method - Delete value to hidden input when a payment option is diselected
-	// $('#collapsePaymentMethod').on('hidden.bs.collapse', function () {
-	// 	$('#paymentMethodInput').val('');
-	// 	console.log($('#paymentMethodInput').val());
-	// })
 
 	// Change from partial delivery to a unique delivery
 	$('input[name="deliveryType"]').on('change', function() {
@@ -254,11 +257,10 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 
 	// Open step when click on 'edit' button
 	$('.steps-accordion .panel-title .edit').click(function() {
-		var toScroll = $(this).closest('.panel-heading');
 		$('.steps-accordion .panel-collapse').collapse('hide');
 		$(this).parent().parent().parent().parent().find('> .panel-collapse').collapse('show');
 		setTimeout(function(){
-			$('html, body').animate({scrollTop: toScroll.offset().top - 75}, 500);
+			$('html, body').animate({scrollTop: $('#stepsAccordion').offset().top - 70}, 500);
 		}, 500);
 	})
 
@@ -285,8 +287,10 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	// Show selected payment method
 	$('#paymentMethodForm input[type="radio"]').change(function() {
 	  	$('#paymentMethodForm .collapse').collapse('hide');
+	  	$('#paymentMethodForm input[type="radio"]').parent().parent().removeClass('active');
 	  	if( this.checked ) {
 	        $(this).parent().parent().find('.panel-collapse').collapse('show');
+	        $(this).parent().parent().addClass('active');
 	    }
 	})
 
@@ -325,22 +329,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		e.preventDefault();
 		var currentStep = $(this).attr('data-step');
 		nextStep(currentStep);
-	})
-
-	// Validate payment method form
-	$('#paymentMethodForm').submit(function(e) {
-		e.preventDefault();
-		if ( $('input[value="visa"]:checked') ) {
-			checkCreditCard()
-			checkCvc();
-			if ( $('#creditCard .has-error').length > 0 ) {
-				$('#creditCardErrorAlert').collapse('show');
-			} else {
-				$('#creditCardErrorAlert').collapse('hide');
-				var currentStep = $('#paymentMethodPanel').find('.step-btn').attr('data-step');
-				nextStep(currentStep);
-			}
-		}
 	})
 
 	// Validate coupon form
@@ -398,6 +386,12 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 				checkCvc();
 			}
 		}
+	})
+
+	$('#viewResumeButton').on('click', function() {
+		$('html, body').animate({
+			scrollTop: $('.resume').offset().top - 70
+		}, 500);
 	})
 
 	/**

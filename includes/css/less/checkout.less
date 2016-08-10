@@ -302,10 +302,20 @@
 
       .payment-method-form {
         .radio {
-          margin-bottom: 0;
+          border: 2px solid @gris_claro_mas;
+          border-radius: 5px;
+          margin-bottom: 20px;
           padding: 10px 25px;
+          transition: .3s;
+
+          &:hover,
+          &.active {
+            border: 2px solid @azul;
+          }
 
           label {
+            width: 100%;
+
             input[type="radio"] {
               opacity: 0;
 
@@ -347,71 +357,72 @@
                 color: @azul;
               }
             }
+
+            .payment-methods-list {
+              font-size: 0;
+              zoom: .6;
+
+              li {
+                background-image: url('../../imagenes/iconos/payment-methods-white.jpg');
+                display: inline-block;
+                height: 40px;
+                width: 90px;
+
+                &.visa {
+                  background-position: 0 0;
+                }
+                &.visa-electron {
+                  background-position: -90px 0;
+                }
+                &.mastercard {
+                  background-position: -180px 0;
+                }
+                &.maestro {
+                  background-position: -270px 0;
+                }
+                &.american-express {
+                  background-position: -360px 0;
+                }
+                &.skrill {
+                  background-position: -450px 0;
+                }
+                &.ideal {
+                  background-position: -300px 0;
+                }
+                &.giropay {
+                  background-position: -350px 0;
+                }
+                &.postepay {
+                  background-position: -400px 0;
+                }
+                &.trustly {
+                  background-position: -810px 0;
+                }
+                &.aplazame {
+                  background-position: -900px 0;
+                }
+                &.sofort-banking {
+                  background-position: -990px 0;
+                }
+                &.cb {
+                  background-position: -150px -30px;
+                }
+                &.eps {
+                  background-position: -200px -30px;
+                }
+                &.bank-transfer {
+                  background-position: -1260px -0;
+                }
+                &.cod {
+                  background-position: -1350px 0;
+                }
+              }
+            }
           }
         }
 
         .panel-collapse {
           padding: 10px 25px;
-
-          .payment-methods-list {
-            font-size: 0;
-
-            li {
-              background-image: url('../../imagenes/iconos/payment-methods-white.jpg');
-              display: inline-block;
-              height: 40px;
-              width: 90px;
-
-              &.visa {
-                background-position: 0 0;
-              }
-              &.visa-electron {
-                background-position: -90px 0;
-              }
-              &.mastercard {
-                background-position: -180px 0;
-              }
-              &.maestro {
-                background-position: -270px 0;
-              }
-              &.american-express {
-                background-position: -360px 0;
-              }
-              &.skrill {
-                background-position: -450px 0;
-              }
-              &.ideal {
-                background-position: -300px 0;
-              }
-              &.giropay {
-                background-position: -350px 0;
-              }
-              &.postepay {
-                background-position: -400px 0;
-              }
-              &.trustly {
-                background-position: -810px 0;
-              }
-              &.aplazame {
-                background-position: -900px 0;
-              }
-              &.sofort-banking {
-                background-position: -990px 0;
-              }
-              &.cb {
-                background-position: -150px -30px;
-              }
-              &.eps {
-                background-position: -200px -30px;
-              }
-              &.bank-transfer {
-                background-position: -1260px -0;
-              }
-              &.cod {
-                background-position: -1350px 0;
-              }
-            }
-          }
 
           .credit-card {
             background-color: @gris_claro_mas;
@@ -598,13 +609,17 @@
       color: #31708f;
 
       p {
-        text-transform: uppercase;
-        letter-spacing: 1px;
         text-align: center;
       }
 
       ul {
         font-size: 12px;
+      }
+
+      &.well-error {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
       }
     }
 
@@ -671,11 +686,6 @@
   color: @gris;
   margin-bottom: 20px;
   padding: 15px;
-}
-
-.acceptation {
-  font-size: 12px;
-  padding: 10px;
 }
 
 .secure-warning {

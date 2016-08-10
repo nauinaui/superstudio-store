@@ -812,7 +812,7 @@
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
 									<li id="deliveryDetailsTab" role="presentation" class="active">
-										<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Datos de envío</a>
+										<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Usuario anónimo</a>
 									</li>
 									<li id="loginTab" role="presentation">
 										<a href="#loginContent" aria-controls="loginContent" role="tab" data-toggle="tab">Log in</a>
@@ -822,7 +822,7 @@
 								<div class="tab-content">
 								    <div role="tabpanel" class="tab-pane active" id="shippingDetailsContent">
 								    	<div class="box">
-									    	<p>Por favor, rellene los datos de envío para calcular todas las opciones de envio para cada producto. Si ya estás registrado, identifícate y comprueba toda la información. Recuerda que tu compra será enviada en la siguiente dirección.</p>
+									    	<p>Por favor, rellene los datos para realizar tu compra sin ser usuario registrado. Si ya estás registrado, identifícate desde la pestaña LOG IN.</p>
 									    	<form id="deliveryDetailsForm" name="deliveryDetailsForm">
 										    	<div class="form-horizontal delivery-form">
 													<div class="form-group">
@@ -885,9 +885,9 @@
 															</div>
 														</div>
 													</div>
-													<div class="alert alert-warning" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
-													<div class="alert alert-warning" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
-													<button type="submit" class="btn btn-primary pull-right step-btn" data-step="1">Siguiente</button>
+													<div class="alert alert-warning alert-sm" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
+													<div class="alert alert-warning alert-sm" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
+													<button type="submit" class="btn btn-primary pull-right step-btn" data-step="1">Siguiente paso: ver productos</button>
 													<div class="clearfix"></div>
 												</form>
 											</div>
@@ -1028,7 +1028,7 @@
 												</tr>
 												<tr>
 													<td class="warning-alert" colspan="5">
-														<div class="alert alert-warning" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
+														<div class="alert alert-warning alert-sm" role="alert">El tiempo de entrega ha sido recalculado porque has excedido el stock disponible</div>
 													</td>
 												</tr>
 												<tr class="item">
@@ -1132,18 +1132,18 @@
 										<div class="clearfix"></div>
 									</form>
 									
-									<div class="alert alert-success alert-dismissible collapse" role="alert">
+									<div class="alert alert-success alert-dismissible hidden" role="alert">
 			  							<button type="button" class="close btn" data-dismiss="alert" aria-label="Close">anular cupón <span aria-hidden="true">&times;</span></button>¡Código correcto! Descuento aplicado de: <strong>-10,00€</strong>
 			  						</div>
 									
-									<div class="alert alert-danger collapse" role="alert">
+									<div class="alert alert-danger hidden" role="alert">
 										No has alcanzado el <strong>importe mínimo de 100,00€</strong> para que el cupón sea válido.
 									</div>
 
 									<div class="footer-price">
 										<p class="subtitle">Total productos: 1.331,34€</p>
 									</div>
-									<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente</button>
+									<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente paso: método de pago</button>
 									<div class="clearfix"></div>
 					        	</div>
 						    </div>
@@ -1169,18 +1169,18 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="visaInput" value="visa" required>
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Tarjeta de crédito, débito o prepago y AMEX</span>
+												<span class="glyphicon glyphicon-ok"></span>
+						      					<span class="title">Tarjeta de crédito, débito o prepago y AMEX</span>
+						      					<ul class="list-unstyled payment-methods-list">
+						      						<li class="visa"></li>
+						      						<li class="visa-electron"></li>
+						      						<li class="mastercard"></li>
+						      						<li class="maestro"></li>
+						      						<li class="american-express"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseCreditCard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCreditCard" data-value="visa">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="visa"></li>
-							      						<li class="visa-electron"></li>
-							      						<li class="mastercard"></li>
-							      						<li class="maestro"></li>
-							      						<li class="american-express"></li>
-							      					</ul>
 							        				<p>Rellene los datos de tu tarjeta a continuación. Empieze con los 16 dígitos. Los datos no serán enviados hasta que no aprietes el botón FINALIZAR LA COMPRA.</p>
 							        				<div id="creditCard" class="form-inline credit-card">
 														
@@ -1228,18 +1228,18 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="visaExternalInput" value="visaExternal" required>
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Tarjeta de crédito, débito o prepago y AMEX (plataforma externa BBVA)</span>
+												<span class="glyphicon glyphicon-ok"></span>
+												<span class="title">Tarjeta de crédito, débito o prepago y AMEX (plataforma externa BBVA)</span>
+						      					<ul class="list-unstyled payment-methods-list">
+						      						<li class="visa"></li>
+						      						<li class="visa-electron"></li>
+						      						<li class="mastercard"></li>
+						      						<li class="maestro"></li>
+						      						<li class="american-express"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseCreditCardExternal" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCreditCardExternal" data-value="visaExternal">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="visa"></li>
-							      						<li class="visa-electron"></li>
-							      						<li class="mastercard"></li>
-							      						<li class="maestro"></li>
-							      						<li class="american-express"></li>
-							      					</ul>
 							        				<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web externa del banco.</p>
 						      					</div>
 							    			</div>
@@ -1247,14 +1247,14 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="transferenciaInput" value="transferencia">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Transferencia bancaria</span>
+												<span class="glyphicon glyphicon-ok"></span>
+												<span class="title">Transferencia bancaria</span>
+												<ul class="list-unstyled payment-methods-list">
+						      						<li class="bank-transfer"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseBankTransfer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBankTransfer" data-value="trans">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="bank-transfer"></li>
-							      					</ul>
 							        				<p>Haz clic en FINALIZAR LA COMPRA y te facilitaremos nuestros datos bancarios para realizar la transferencia. También los recibirás por email. Reservamos tu pedido 48 horas (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</p>
 							      				</div>
 							    			</div>
@@ -1262,14 +1262,14 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="contraInput" value="contra">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Contra reembolso (+5% sólo España peninsular)</span>
+												<span class="glyphicon glyphicon-ok"></span>
+						      					<span class="title">Contra reembolso (+5% sólo España peninsular)</span>
+						      					<ul class="list-unstyled payment-methods-list">
+						      						<li class="cod"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseCod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCod" data-value="contra" data-tax="5">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="cod"></li>
-							      					</ul>
 							        				<p>Haz clic en CONFIRMAR LA COMPRA y te enviaremos un email para confirmar tu aceptación del pago contrareembolso (pedido mínimo sin incluir los costes de envío: 35€ / pedido máximo: 500€).</p>
 							      				</div>
 							    			</div>
@@ -1277,14 +1277,14 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="aplazameInput" value="aplazame">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Pago a plazos (Aplázame)</span>
+												<span class="glyphicon glyphicon-ok"></span>
+						      					<span class="title">Pago a plazos (Aplázame)</span>
+						      					<ul class="list-unstyled payment-methods-list">
+						      						<li class="aplazame"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseAplazame" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAplazame" data-value="aplazame">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="aplazame"></li>
-							      					</ul>
 							        				<p>Haz clic en CONFIRMAR LA COMPRA para iniciar el proceso de financiación de tu pedido. Necesitaremos tu DNI y un número de tarjeta de crédito. Importe máximo por compra: 1.000€.</p>
 							      				</div>
 							    			</div>
@@ -1292,16 +1292,16 @@
 										<div class="radio">
 											<label>
 												<input type="radio" name="paymentMethodRadios" id="skrillInput" value="skrill">
-													<span class="glyphicon glyphicon-ok"></span>
-													<span class="title">Skrill, Skrill Direct, Trustly y Sofort Banking</span>
+												<span class="glyphicon glyphicon-ok"></span>
+												<span class="title">Skrill, Skrill Direct, Trustly y Sofort Banking</span>
+												<ul class="list-unstyled payment-methods-list">
+						      						<li class="skrill"></li>
+						      						<li class="trustly"></li>
+						      						<li class="sofort-banking"></li>
+						      					</ul>
 											</label>
 							    			<div id="collapseSkrill" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSkrill" data-value="skrill">
 							      				<div class="panel-body">
-							      					<ul class="list-unstyled payment-methods-list">
-							      						<li class="skrill"></li>
-							      						<li class="trustly"></li>
-							      						<li class="sofort-banking"></li>
-							      					</ul>
 							        				<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web de Skrill donde podrás elegir entre las diferentes opciones de pago.</p>
 							      				</div>
 							    			</div>
@@ -1310,37 +1310,36 @@
 										<div class="footer-price">
 											<p class="subtitle">Total método de pago: <span>0,00€</span></p>
 										</div>
-										<button type="submit" class="btn btn-primary pull-right step-btn" data-step="3">Siguiente</button>
-										<div class="clearfix"></div>
+										
+										<!-- FAST PAYMENT -->
+										<div id="lastStep" class="last-step hidden-xs">
+											<div class="media">
+											  	<div class="media-body">
+													<p class="total">TOTAL (IVA incluido): <strong>1.331,34€</strong></p>
+													<div class="media secure-warning">
+														<div class="media-left media-middle media-middle">
+															<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
+														</div>
+													  	<div class="media-body media-middle">
+													    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
+															<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
+													  	</div>
+													</div>
+											  	</div>
+												<div class="media-right media-middle button-place">
+													<button type="button" class="btn btn-primary pull-right confirm-button">Confirmar la compra</button>
+													<button id="viewResumeButton" type="button" class="btn btn-secondary pull-right">View resume</button>
+												</div>
+											</div>
+									  		<div class="alert alert-warning alert-sm" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+										</div>
+										<input class="hidden" type="submit">
 									</form>
 				      			</div>
 				      		</div>
 				    	</div>
 				  	</div>
 			    </div>
-				
-				<!-- FAST PAYMENT -->
-				<div id="lastStep" class="collapse box last-step hidden-xs">
-			  		<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
-					<div class="media">
-					  	<div class="media-body">
-							<p class="total">TOTAL (IVA incluido): <strong>1.331,34€</strong></p>
-							<div class="media secure-warning">
-								<div class="media-left media-middle media-middle">
-									<img class="secure-icon" src="imagenes/iconos/secure-icon.gif" alt="pagos seguros con tarjeta de crédito">
-								</div>
-							  	<div class="media-body media-middle">
-							    	<p class="secure-title">Pagos seguros con tarjeta de crédito</p><br />
-									<p class="secure-text">Esto es un pago seguro encriptado con 256-bit SSL</p>
-							  	</div>
-							</div>
-					  	</div>
-						<div class="media-right media-middle button-place">
-							<button type="button" class="btn btn-primary pull-right confirm-button">Confirmar la compra</button>
-							<button type="button" class="btn btn-secondary pull-right">View resume</button>
-						</div>
-					</div>
-				</div>
 			</div>
 		
 			<!-- RESUME -->
@@ -1349,14 +1348,13 @@
 					<h4>Resume</h4>
 					<div class="box">
 						<div class="well well-sm">
-							<p><strong>¡Felicidades! Los portes son gratis cumpliendo los siguientes requisitos:</strong></p>
-							<ul>
-								<li>Pago con tarjeta de crédito.</li>
-								<li>El total de los productos adquiridos deben ser superiores a £300.</li>
-								<li>No se incluye ningún envío parcial.</li>
-								<li>Envios sólo al Reino Unido.</li>
-							</ul>
-							<div class="clearfix"></div>
+							<p>The amount of products of your purchase exceeds £200.00 (shipping costs not included).</p>
+							<p><strong>Congratulations! Shipping costs are free if you choose to pay by card. Partial delivery not included. UK shipments only.</strong></p>
+						</div>
+						<div class="well well-sm well-error hidden">
+							<p>The amount of your purchase is £182.23*.</p>
+							<p><strong>If you get to £200.00* and choose card payment, we give you back the shipping cost of your order.</strong></p>
+							<p>(*Shipping costs not included. Partial delivery not included. UK shipments only).</p>
 						</div>
 						<table class="table table-resume">
 							<thead>
@@ -1409,7 +1407,7 @@
 						</table>
 						
 						<div class="visible-xs-block">
-							<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+							<div class="alert alert-warning alert-sm" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
 
 							<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
 						</div>
@@ -1469,7 +1467,7 @@
 							</label>
 						</div>
 
-						<div class="alert alert-warning acceptation" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
+						<div class="alert alert-warning alert-sm" role="alert">Al completar tu pedido, aceptas la política de privacidad y las condiciones de uso de Superestudio.com</div>
 
 						<button type="button" class="btn btn-primary confirm-button">Confirmar la compra</button>
 

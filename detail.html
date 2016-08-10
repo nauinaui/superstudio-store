@@ -27,8 +27,8 @@
     <link rel="stylesheet" href="includes/css/superestudio.css">
 </head>
 
-<!-- body class can be 'outlet' or 'pack'-->
-<body data-product-id="142898" class="pack">
+<!-- body class can be 'outlet', 'pack' or nothing-->
+<body data-product-id="142898" class="">
 
 <!-- Scroll to top arrow -->
 <button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
@@ -938,7 +938,7 @@
 						<span class="text">acabados disponibles <i>para <strong>Mesa TENDAR WOOD 120</strong></i>:</span>
 			        	<div class="list-group finishes-list" data-product-id="143515" data-product-ref="SHX022">
 							<label class="radio-inline color">
-						  		<input type="radio" data-type="color" name="finishesRadioInput2" value="Blanco" data-finish="11" data-diasnacional="2" data-stock="5" required>
+						  		<input type="radio" data-type="color" name="finishesRadioInput2" value="Blanco" data-finish="11" data-diasnacional="2" data-stock="5"> <!-- make required if it's a product pack -->
 								<img src="imagenes/colores/blanco.gif" width="15" alt="Blanco" data-diasnacional="2" data-stock="5">
 							</label>
 							<label class="radio-inline color">
@@ -1000,6 +1000,9 @@
 
 					<div class="alert alert-success" id="addedProductAlert" role="alert" style="display: none">
 						<strong>¡Actualizado!</strong> Producto añadido correctamente
+					</div>
+					<div class="alert alert-error" id="addedProductAlertError" role="alert" style="display: none">
+						<strong>¡Error!</strong> Ha ocurrido un problema añadiendo el producto al carrito
 					</div>
 
 					<div class="actions">

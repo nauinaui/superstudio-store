@@ -19,10 +19,9 @@
 		    color: @blanco;
 		    font-size: 16px;
 		    letter-spacing: 2px;
-		    margin: 5px;
+		    margin: 0;
 		    text-transform: uppercase;
 		    line-height: 20px;
-		    margin-bottom: 10px;
 
 		    a {
 		    	color: @blanco;
@@ -76,6 +75,17 @@
 		right: 50px;
 	    border-bottom-left-radius: 0;
 	    border-bottom-right-radius: 0;
+	    transition: .5s;
+
+	    &.unshow {
+	    	bottom: -70px;
+	    }
+	}
+
+	&.alert-sm {
+		font-size: 12px;
+		margin-bottom: 10px;
+		padding: 5px;
 	}
 }
 
