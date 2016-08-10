@@ -47,17 +47,51 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		});
     }
 
+	// Show tables with products on document ready (other maintain collapsed)
+    function showTablesWithProducts() {
+    	$('#productsPanel table').each(function() {
+    		var time = $(this).attr('data-time-id');
+    		if ( $(this).find('tr.item').length > 0 ) {
+    			$(this).parent().collapse('show');
+    			$('#productsPanel .table-header[data-time-id="'+time+'"]').collapse('show');
+    		} else {
+    			$(this).parent().collapse('hide');
+    			$('#productsPanel .table-header[data-time-id="'+time+'"]').collapse('hide');
+    		}
+    	})
+    	var count = 1;
+    	$('#productsPanel .table-header[aria-expanded="true"').each(function() {
+    		$(this).find('.subtitle span').html(count); // give shipment number for every table
+    		count++;
+    	})
+    }
+
     // Change from partial delivery to a unique delivery
     function makeUniqueDelivery() {
-		$('#productsPanel table.main tbody').append($('#productsPanel table:not(main) tbody tr.item'));
-		$('#productsPanel .table-header.main .delivery-time').html( $('#productsPanel .table-header:last .delivery-time' ).html() );
-		$('#productsPanel table:not(.main), #productsPanel .table-header:not(.main)').hide();
-		$('#productsPanel .table-header.main .subtitle').hide();
+		$('#productsPanel table tbody tr:not(.item)').remove(); //delete alerts
+		$('#productsPanel table.main tbody').append($('#productsPanel table:not(main) tbody tr.item')); // move products from other tables to first table
+		$('#productsPanel .table-header.main .delivery-time').removeClass('partial');
+		$('#productsPanel .table-header.main .delivery-time em.unique').html( $('#productsPanel .table-header[aria-expanded="true"]:last .delivery-time em' ).html() ); // change delivery time getting time from last table
+		$('#productsPanel table:not(.main)').parent().collapse('hide'); // hide all tables and table headers except main table
+		$('#productsPanel .table-header:not(.main)').collapse('hide'); 
+		$('#productsPanel .table-header.main .subtitle').hide(); // hide subtitle for main table
+		$('#productsPanel table.main').parent().collapse('show');
+		$('#productsPanel .table-header.main').collapse('show');
 	}
 
 	// Change from unique delivery to a partial delivery
 	function makePartialDelivery() {
+		$('#productsPanel table tbody tr:not(.item)').remove(); //delete alerts
+		$('#productsPanel table tbody tr.item').each(function() {
+			var time = $(this).find('option:selected').parent().attr('data-time-id'), // get time-id from every item
+				currentTable = $('#productsPanel table[data-time-id="'+time+'"]'),
+				currentHeader = $('#productsPanel .table-header[data-time-id="'+time+'"]');
 
+			currentTable.append( $(this) ); // move element inside table with same time
+		})
+		$('#productsPanel .table-header.main .delivery-time').addClass('partial'); // show correct delivery time for main table
+		$('#productsPanel .table-header.main .subtitle').show(); // show shipment number for main table
+		showTablesWithProducts();
 	}
 
 	// Flip credit card to rear view and check if cvc are filled
@@ -225,6 +259,24 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			makePartialDelivery();
 		}
 	});
+
+	// Refresh product tables when a finish is changed
+	$('#productsPanel tr.item select[name="finish"]').on('change', function() {
+		var time = $(this).find('option:selected').parent().attr('data-time-id'),
+			tableTime = $('#productsPanel .table-header.main').attr('data-time-id');
+
+		if ( $('#deliveryType2').is(':checked') ) {
+			makeUniqueDelivery();
+			$('#productsPanel tr.item').each(function() {
+				if ( $(this).find('select[name="finish"] option:selected').parent().attr('data-time-id') > tableTime ) {
+					tableTime = $(this).find('select[name="finish"] option:selected').parent().attr('data-time-id');
+				}
+			})
+			$('#productsPanel .table-header.main .delivery-time em.unique').html( $('#productsPanel .table-header[data-time-id="'+tableTime+'"] .delivery-time em' ).html() );
+		} else if ( $('#deliveryType1').is(':checked') ) {
+			makePartialDelivery();
+		}
+	})
 
 	// Show more fields if customer wants invoice
 	$('#invoiceCheckbox').click(function() {
@@ -401,6 +453,9 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	 */
 
     $(document).ready( function() {
+		// Show tables with products
+		showTablesWithProducts();
+
 		// Init popover
 		$('[data-toggle="popover"]').popover({
 			trigger: 'hover',

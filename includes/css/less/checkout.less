@@ -127,9 +127,28 @@
 
         .delivery-time {
           color: @gris_oscuro;
+          
           em {
             font-weight: 700;
             font-style: normal;
+
+            &.partial {
+              display: none;
+            }
+
+            &.unique {
+              display: inline;
+            }
+          }
+
+          &.partial {
+            em.partial {
+              display: inline;
+            }
+
+            em.unique {
+              display: none;
+            }
           }
         }
       }

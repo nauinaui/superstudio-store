@@ -970,13 +970,16 @@
 										<div class="well well-sm">En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.</div>
 									</div>
 
-									<div class="table-header main">
-										<p class="subtitle">Envío número 1</p>
-										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 5 y 8 días</em></span>
+									<!-- create as many tables as different times we have. First table is main and first date time id -->
+									<div class="table-header main collapse" data-time-id="1">
+										<p class="subtitle">Envío número <span>1</span></p>
+										<span class="delivery-time partial pull-right">
+											<span class="glyphicon glyphicon-time"></span> <em class="partial">Entre 5 y 8 días</em><em class="unique"></em>
+										</span>
 										<div class="clearfix"></div>
 									</div>
-									<div class="table-responsive">
-										<table class="table main">
+									<div class="table-responsive collapse">
+										<table class="table main" data-time-id="1">
 											<thead>
 												<tr>
 													<th></th>
@@ -992,19 +995,19 @@
 													<td>
 														WOODEN Chair -Polypropilene-
 														<select name="finish" class="form-control">
-															<optgroup label="Entrega entre 5 y 8 días">
+															<optgroup data-time-id="1" label="Entrega entre 5 y 8 días">
 																<option value="1">Beige</option>
 																<option value="2">Turquesa</option>
 																<option value="3" selected>Azul petróleo</option>
 															</optgroup>
-															<optgroup label="Entrega entre 10 y 13 días">
+															<optgroup data-time-id="2" label="Entrega entre 10 y 13 días">
 																<option value="4">Gris oscuro</option>
 																<option value="5">Marrón</option>
 																<option value="6">Naranja</option>
 																<option value="7">Rojo</option>
 																<option value="8">Azul</option>
 															</optgroup>
-															<optgroup label="Entrega entre 19 y 22 días">
+															<optgroup data-time-id="3" label="Entrega entre 19 y 22 días">
 																<option value="9">Verde</option>
 																<option value="10">Amarillo</option>
 															</optgroup>
@@ -1036,8 +1039,11 @@
 													<td>
 														HIGHT URAL -Brushed Metal- Stool
 														<select name="finish" class="form-control">
-															<optgroup label="Entrega entre 5 y 8 días">
+															<optgroup data-time-id="1" label="Entrega entre 5 y 8 días">
 																<option value="11">Acero cepillado</option>
+															</optgroup>
+															<optgroup data-time-id="2" label="Entrega entre 10 y 13 días">
+																<option value="11">Aluminio recepillado</option>
 															</optgroup>
 														</select>
 													</td>
@@ -1060,12 +1066,57 @@
 										</table>
 									</div>
 
-									<div class="table-header">
-										<p class="subtitle">Envío número 2</p>
+									<!-- Second table -->
+									<div class="table-header collapse" data-time-id="2">
+										<p class="subtitle">Envío número <span></span></p>
+										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 10 y 13 días</em></span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="table-responsive collapse">
+										<table class="table" data-time-id="2">
+											<thead>
+												<tr>
+													<th></th>
+													<th></th>
+													<th class="text-center">Unit price</th>
+													<th class="text-center">Quantity</th>
+													<th class="text-right">Total</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+
+									<!-- Third table -->
+									<div class="table-header collapse" data-time-id="3">
+										<p class="subtitle">Envío número <span></span></p>
+										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 19 y 22 días</em></span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="table-responsive collapse">
+										<table class="table" data-time-id="3">
+											<thead>
+												<tr>
+													<th></th>
+													<th></th>
+													<th class="text-center">Unit price</th>
+													<th class="text-center">Quantity</th>
+													<th class="text-right">Total</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+
+									<!-- Fourth table -->
+									<div class="table-header collapse" data-time-id="4">
+										<p class="subtitle">Envío número <span></span></p>
 										<span class="delivery-time pull-right"><span class="glyphicon glyphicon-time"></span> <em>Entre 14 y 15 semanas</em></span>
 									</div>
-									<div class="table-responsive">
-										<table class="table">
+									<div class="table-responsive collapse">
+										<table class="table" data-time-id="4">
 											<thead>
 												<tr>
 													<th></th>
@@ -1080,24 +1131,24 @@
 													<td><img width="100" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-"></td>
 													<td>
 														WOODEN Chair -Polypropilene-
-														<select class="form-control">
-															<optgroup label="Entrega entre 5 y 8 días">
+														<select name="finish" class="form-control">
+															<optgroup data-time-id="1" label="Entrega entre 5 y 8 días">
 																<option>Beige</option>
 																<option>Turquesa</option>
 																<option>Azul petróleo</option>
 															</optgroup>
-															<optgroup label="Entrega entre 10 y 13 días">
+															<optgroup data-time-id="2" label="Entrega entre 10 y 13 días">
 																<option>Gris oscuro</option>
 																<option>Marrón</option>
 																<option>Naranja</option>
 																<option>Rojo</option>
 																<option>Azul</option>
 															</optgroup>
-															<optgroup label="Entrega entre 19 y 22 días">
+															<optgroup data-time-id="3" label="Entrega entre 19 y 22 días">
 																<option>Verde</option>
 																<option>Amarillo</option>
 															</optgroup>
-															<optgroup label="Entrega entre 14 y 15 semanas">
+															<optgroup data-time-id="4" label="Entrega entre 14 y 15 semanas">
 																<option selected>Crema</option>
 															</optgroup>
 														</select>
@@ -1597,8 +1648,6 @@
 						<a href="#">Preguntas frecuentes</a>
 						<a href="#">Tiendas</a>
 						<a href="#">Franquicias</a>
-					</div>
-					<div class="col-xs-6 col-md-6 enlaces">
 						<a href="#" class="enlace-bold">¿Cómo contactarnos?</a>
 						<a href="#">Contacto</a>
 						<a href="#">Trabaja con nosotros</a>
@@ -1607,6 +1656,9 @@
 						<a href="#">Outlet</a>
 						<a href="#">Novedades</a>
 						<a href="#">Todas las promociones</a>
+					</div>
+					<div class="col-xs-6 col-md-6 enlaces">
+						<a href="http://www.lionshome.de" class="enlace-bold" rel="nofollow"><img src="http://www.lionshome.de/partner_seal/shop/siegel2.png" border="0"></a>
 					</div>
 				</div>
 			</div>
