@@ -2582,11 +2582,13 @@
 </div>
 
 <!-- Super promos fix alert  -->
-<div class="alert alert-dismissible super-promos-alert hidden-xs" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <p class="title">¡Súper Promos!</p>
-  <p>Descuentos y ofertas por tiempo limitado</p>
-  <a href="promotions.html" title="Promociones" class="btn btn-default btn-default btn-rounded btn-sm">¡Descúbrelas! <span class="glyphicon glyphicon-play"></span></a>
+<div id="superPromosAlert" class="alert alert-dismissible super-promos-alert hidden-xs" role="alert">
+  	<a class="super-promos-link" href="promotions.com" title="promociones">
+		<button id="hidingAlertButton" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  	<p class="title">¡Súper Promos!</p>
+	  	<p>Descuentos y ofertas por tiempo limitado</p>
+	  	<a href="promotions.html" title="Promociones" class="btn btn-default btn-default btn-rounded btn-sm">¡Descúbrelas! <span class="glyphicon glyphicon-play"></span></a>
+	</a>
 </div>
 
 <!-- Feedback message when a product is added to cart from product's grid -->

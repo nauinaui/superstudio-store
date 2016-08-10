@@ -197,4 +197,12 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 	  	$('#weCallYouDropdown').dropdown('toggle');
 	  	$('#InputPhoneWeCallYou').focus();
 	})
+
+	// Hide body alert
+	$('#hidingAlertButton').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		console.log('entro');
+		$('#superPromosAlert').addClass('unshow');
+	})
 });
