@@ -1,4 +1,14 @@
+  // Generic styles for alerts
+  ////////////////////////////////////////////////////////////////
 .alert {
+	&.alert-sm {
+		font-size: 12px;
+		margin-bottom: 10px;
+		padding: 5px;
+	}
+  
+  // Specific alerts
+  ////////////////////////////////////////////////////////////////
 	&.we-call-you-alert,
 	&.super-promos-alert {
 		background-color: @azul;
@@ -107,10 +117,38 @@
 	    }
 	}
 
-	&.alert-sm {
-		font-size: 12px;
-		margin-bottom: 10px;
-		padding: 5px;
+	&.cookies-alert.collapse.in {
+		& + .super-promos-alert {
+			padding-bottom: 30px;
+		}
+	}
+
+	&.cookies-alert {
+		margin-bottom: 0;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+    	border-radius: 0;
+    	text-align: center;
+	    z-index: 11;
+
+	    .close {
+	    	float: none;
+	    	margin-left: 10px;
+		    position: initial;
+	    }
+	}
+}
+ 
+  // Media queries
+  ////////////////////////////////////////////////////////////////
+@media (max-width: @sm-max) {
+	.alert {
+		&.cookies-alert.collapse.in {
+			& + .super-promos-alert {
+				padding-bottom: 40px;
+			}
+		}
 	}
 }
 

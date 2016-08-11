@@ -16,7 +16,6 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
 		common.fixedNav(stickyNavTop);
-		
 		$(window).scroll(function() {
 		    common.fixedNav(stickyNavTop);
 		});
@@ -28,6 +27,9 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		$(document).ajaxStop( function() {
 			$('#preloader').hide();
 		});
+
+		// Show cookies alert
+		$('#cookiesAlert').collapse('show');
 
 		// If device is mobile, show product grid in hover position
 		if ( common.detectMobile() == true ) {
@@ -202,7 +204,13 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 	$('#hidingAlertButton').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		console.log('entro');
 		$('#superPromosAlert').addClass('unshow');
+	})
+
+	// Close cookies alert
+	$('#closeCookiesAlertButton').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$('#cookiesAlert').collapse('hide');
 	})
 });

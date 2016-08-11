@@ -2949,6 +2949,11 @@
 	</div>
 </section>
 
+<!-- Feedback message when a product is added to cart from product's grid -->
+<div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
+ 	<button type="button" class="close title"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+</div>
+
 <!-- We call you fix alert  -->
 <div class="alert alert-dismissible we-call-you-alert hidden-xs" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -2957,9 +2962,10 @@
 	</p>
 </div>
 
-<!-- Feedback message when a product is added to cart from product's grid -->
-<div class="alert alert-success added-to-cart-alert" id="addedToCartFeedback" role="alert">
- 	<button type="button" class="close title"><span aria-hidden="true">&times;</span></button>Producto añadido correctamente al carrito
+<!-- cookies alert-->
+<div id="cookiesAlert" class="alert alert-warning alert-dismissible alert-sm cookies-alert collapse" role="alert">
+	www.superestudio.com utiliza cookies propias y de terceros para mejorar sus servicios, si continúa navegando consideramos que acepta su uso. <a href="privacity.html" title="privacidad" target="_blank">Más información</a>
+	<button id="closeCookiesAlertButton" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 
 <!-- Preloader -->
