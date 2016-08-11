@@ -460,10 +460,6 @@
       display: inline-block;
       vertical-align: middle;
       width: 120px;
-
-      @media (max-width: @xs-max) {
-        width: 140px;
-      }
     }
     
     img {
@@ -703,7 +699,7 @@
     }
   }
 
-  // Cuando hacemos scroll y se queda la cabecera fija
+  // Fixed header when scroll down
   ////////////////////////////////////////////////////////////////
   &.fixed {
     position: fixed;
@@ -749,6 +745,11 @@
     a.status {
       .text {
         width: 140px;
+
+        @media (max-width: @md-max) {
+          font-size: 10px;
+          letter-spacing: .5px;
+        }
       }
       
       img {
@@ -786,10 +787,14 @@
       margin-top: 2px;
       position: relative;
 
+      &:hover {
+        text-decoration: none;
+      }
+
       img {
         width: auto;
         height: 16px;
-        margin: 3px 5px 3px 10px;
+        margin: 3px 10px 3px 15px;
       }
 
       .badge {
