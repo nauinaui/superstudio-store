@@ -611,15 +611,16 @@
 
 // Resume
 .resume {
+  &.fixed {
+    position: fixed;
+    top: 100px;
+  }
+
   h4 {
     color: @gris_oscuro;
     font-size: 18px;
     margin: 0 0 20px;
     padding: 10px 0px;
-  }
-
-  &.affix {
-    top: 100px;
   }
 
   .box {

@@ -455,7 +455,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     $(document).ready( function() {
 		// Show tables with products
 		showTablesWithProducts();
-
+		
 		// Init popover
 		$('[data-toggle="popover"]').popover({
 			trigger: 'hover',

@@ -48,7 +48,7 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 * EVENTS
 	 * =================
 	 */
-	 $('.toggleHeight').on('click', function() {
+	 $('.toggle-height').on('click', function() {
 	 	toggleHeight($(this).attr('data-element'), $(this).attr('data-action'));
 		$(this).parent().find('.hide').toggleClass('hide');
 		$(this).toggleClass('hide');
@@ -68,11 +68,11 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 */
 
     $(document).ready( function() {
-		toggleHeight('disenadores', 'hide');
-		toggleHeight('estilos', 'hide');
-		toggleHeight('colecciones', 'hide');
-		startCountdown('countdown1', 'June 30, 2016 15:03:26');
-		startCountdown('countdown2', 'June 24, 2016 00:00:00');
+		toggleHeight('designers', 'hide');
+		toggleHeight('styles', 'hide');
+		toggleHeight('colections', 'hide');
+		startCountdown('countdown1', 'September 01, 2016 15:03:26');
+		startCountdown('countdown2', 'October 10, 2016 00:00:00');
 		startCountdown('countdown3', 'November 13, 2016 04:30:00');
     });
 

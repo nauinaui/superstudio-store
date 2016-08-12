@@ -413,28 +413,30 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 		} else if ( $('body').is('.pack') ) { // product pack
 			var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
-			// Enviamos la info al carrito
-			$.ajax({
-				url: '/includes/web/carrito?accion=anadir' + query,
-				success: function (data) {
-					console.log('entro');
-					hideUpSelling();
-					showFeedback(ok);
-					showCrossSelling();
-					// Cargamos carrito
-					// topbar.find('#carrito').html(data).slideDown(250);
-					// cargamos carrito linia
-					// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
-				},
-				error: function() {
-					console.log('error');
-					var ok = false;
-					showFeedback(ok);
-				}
-			});
 		}
-
-		common.addProductToCart(product_id, query, type);
+		// Enviamos la info al carrito
+		$.ajax({
+			url: '/includes/web/carrito?accion=anadir' + query,
+			success: function (data) {
+				showFeedback(ok);
+				if ( !$('body').is('.pack') ) {
+					hideUpSelling();
+					setTimeout(function(){
+						showCrossSelling();
+					}, 3000);
+				}
+				// Cargamos carrito
+				common.addProductToCart(product_id, query, type);
+				// topbar.find('#carrito').html(data).slideDown(250);
+				// cargamos carrito linia
+				// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+			},
+			error: function() {
+				console.log('error');
+				var ok = false;
+				showFeedback(ok);
+			}
+		});
 	});
 
 	// Show tab content if is collapsed
