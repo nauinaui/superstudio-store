@@ -882,14 +882,14 @@
 																</select>
 															</div>
 														</div>
-														<div class="form-group">
+														<div id="inputGroupPassport" class="form-group collapsed">
 															<label for="inputPassport" class="col-sm-3 control-label">NIF/CIF*</label>
 															<div class="col-sm-9">
 																<input type="text" class="form-control" id="inputPassport" placeholder="NIF/CIF" required>
 															</div>
 														</div>
 													</div>
-													<div class="alert alert-warning alert-sm" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
+													<div id="alertPassport" class="alert alert-warning alert-sm collapsed" role="alert">Según Normativa Europea, para pedidos mayores de 400€ el comprador debe facilitar un documento identificativo.</div>
 													<div class="alert alert-warning alert-sm" role="alert">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
 													<button type="submit" class="btn btn-primary pull-right step-btn" data-step="1">Siguiente paso: ver productos</button>
 													<div class="clearfix"></div>
@@ -1035,7 +1035,7 @@
 															<option value="28" selected>28</option>
 														</select>
 													</td>
-													<td class="text-right">1.064,28€</td>
+													<td class="text-right product-total">1.064,28€</td>
 												</tr>
 												<tr>
 													<td class="warning-alert" colspan="5">
@@ -1068,7 +1068,7 @@
 															<option value="5">5</option>
 														</select>
 													</td>
-													<td class="text-right">39,00€</td>
+													<td class="text-right product-total">39,00€</td>
 												</tr>
 											</tbody>
 										</table>
@@ -1166,15 +1166,15 @@
 														<span class="last-price">38,01€</span>
 													</td>
 													<td>
-														<select class="form-control">
-															<option>1</option>
+														<select name="quantity" class="form-control">
+															<option selected>1</option>
 															<option>2</option>
 															<option>3</option>
 															<option>4</option>
 															<option>5</option>
 														</select>
 													</td>
-													<td class="text-right">1.064,28€</td>
+													<td class="text-right product-total">38,01€</td>
 												</tr>
 											</tbody>
 										</table>
@@ -1200,7 +1200,7 @@
 									</div>
 
 									<div class="footer-price">
-										<p class="subtitle">Total productos: 1.331,34€</p>
+										<p class="subtitle">Total productos: <span id="productsStepTotal">1.141,29€</span></p>
 									</div>
 									<button type="button" class="btn btn-primary pull-right step-btn" data-step="2">Siguiente paso: método de pago</button>
 									<div class="clearfix"></div>
@@ -1371,7 +1371,7 @@
 										</div>
 										
 										<div class="footer-price">
-											<p class="subtitle">Total método de pago: <span>0,00€</span></p>
+											<p class="subtitle">Total método de pago: <span id="paymentStepTotal">0,00€</span></p>
 										</div>
 										
 										<!-- FAST PAYMENT -->

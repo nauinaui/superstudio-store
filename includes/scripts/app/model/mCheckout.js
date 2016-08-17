@@ -47,6 +47,11 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		});
     }
 
+    function showNif() {
+    	$('#inputGroupPassport').collapse('hide');
+    	$('#alertPassport').collapse('hide');
+    }
+
 	// Show tables with products on document ready (other maintain collapsed)
     function showTablesWithProducts() {
     	$('#productsPanel table').each(function() {
@@ -92,6 +97,68 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		$('#productsPanel .table-header.main .delivery-time').addClass('partial'); // show correct delivery time for main table
 		$('#productsPanel .table-header.main .subtitle').show(); // show shipment number for main table
 		showTablesWithProducts();
+	}
+
+	// Refresh product total price
+	function refreshProductTotal() {
+		var total = 0,
+			isPound = false;
+		
+		$('#productsPanel .product-total').each(function() {
+			var productTotal = $(this).text();
+			if ( productTotal.charAt(0) === '&' ) {
+				productTotal = productTotal.replace('&pound;','');
+				isPound = true;
+			} else {
+				productTotal = productTotal.replace('€','');
+			}
+			productTotal = productTotal.replace('.','');
+			productTotal = parseFloat(productTotal.replace(',', '.'));
+			productTotal = parseFloat(productTotal.toFixed(2));
+			total = parseFloat(total + productTotal);
+		})
+		total = total.toFixed(2);
+		total.toString();
+		total.replace('.',',');
+		if ( isPound == true ) {
+			$('#productsStepTotal').html('&pound;'+total);
+		} else {
+			$('#productsStepTotal').html(total+'€');
+		}
+		refreshCheckoutTotal();
+	}
+
+	// Refresh total price
+	function refreshCheckoutTotal() {
+		var productsTotal = $('#productsStepTotal').text(),
+			paymentTotal = $('#paymentStepTotal').text(),
+			isPound = false,
+			total = 0;
+
+		if ( productsTotal.charAt(0) === '&' ) {
+			productsTotal = productsTotal.replace('&pound;','');
+			paymentTotal = paymentTotal.replace('&pound;','');
+			isPound = true;
+		} else {
+			productsTotal = productsTotal.replace('€','');
+			paymentTotal = paymentTotal.replace('€','');
+		}
+		productsTotal = productsTotal.replace('.','');
+		productsTotal = parseFloat(productsTotal.replace(',', '.'));
+		productsTotal = parseFloat(productsTotal.toFixed(2));
+		productsTotal = productsTotal/100;
+		paymentTotal = paymentTotal.replace('.','');
+		paymentTotal = parseFloat(paymentTotal.replace(',', '.'));
+		paymentTotal = parseFloat(paymentTotal.toFixed(2));
+		total = productsTotal + paymentTotal;
+		total.toFixed(2);
+		if ( isPound == true ) {
+			$('#lastStep .total strong').html('&pound;'+total);
+			$('.resume tr.total td strong').html('&pound;'+total);
+		} else {
+			$('#lastStep .total strong').html(total+'€');
+			$('.resume tr.total td strong').html(total+'€');
+		}
 	}
 
 	// Flip credit card to rear view and check if cvc are filled
@@ -278,6 +345,32 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		}
 	})
 
+	// Change price when a product quantity changes
+	$('#productsPanel tr.item select[name="quantity"]').on('change', function() {
+		var qty = $(this).val(),
+			pricePerUnit = $(this).parent().parent().find('.last-price').text();
+			total = 0,
+			isPound = false;
+
+		if ( pricePerUnit.charAt(0) === '&' ) {
+			pricePerUnit = pricePerUnit.replace('&pound;','');
+			isPound = true;
+		} else {
+			pricePerUnit = pricePerUnit.replace('€','');
+		}
+		pricePerUnit = parseFloat(pricePerUnit.replace(',', '.'));
+		total = (pricePerUnit * qty).toFixed(2);
+		total = total.replace('.',',');
+
+		if ( isPound == true ) {
+			$(this).parent().parent().find('.product-total').html('&pound;'+total);
+		} else {
+			$(this).parent().parent().find('.product-total').html(total+'€');
+		}
+
+		refreshProductTotal();
+	})
+
 	// Show more fields if customer wants invoice
 	$('#invoiceCheckbox').click(function() {
 		if ( $(this).is(':checked') ) {
@@ -344,6 +437,21 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	        $(this).parent().parent().find('.panel-collapse').collapse('show');
 	        $(this).parent().parent().addClass('active');
 	    }
+	    var paymentTotal = $('#paymentStepTotal').text();
+	    if ( $(this).is('#contraInput') ) {
+			if ( paymentTotal.charAt(0) === '&' ) {
+				$('#paymentStepTotal').html('&pound;5,00');
+			} else {
+				$('#paymentStepTotal').html('5,00€');
+			}
+	    } else {
+			if ( paymentTotal.charAt(0) === '&' ) {
+				$('#paymentStepTotal').html('&pound;0,00');
+			} else {
+				$('#paymentStepTotal').html('0,00€');
+			}
+	    }
+	    refreshCheckoutTotal();
 	})
 
 	// Validate delivery details
@@ -455,7 +563,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     $(document).ready( function() {
 		// Show tables with products
 		showTablesWithProducts();
-		
+
 		// Init popover
 		$('[data-toggle="popover"]').popover({
 			trigger: 'hover',

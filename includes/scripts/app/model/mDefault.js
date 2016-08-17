@@ -30,7 +30,7 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 * @param date: String Determine when countdown will be finnished
 	 */
 	function startCountdown(el, date) {
-		$('.'+el).countdown({
+		$('#'+el).countdown({
 			date: date,
 			render: function (data) {
 				var el = $(this.el);
