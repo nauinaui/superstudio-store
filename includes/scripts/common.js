@@ -18,6 +18,8 @@ require.config({
     zoom:             'zoom.min',
     recaptcha:        'https://www.google.com/recaptcha/api',
     blockui:          'blockUI',
+    modernizr:        'modernizr',
+    placeholder:      'placeholder.min',
 
   },
 	
@@ -29,6 +31,8 @@ require.config({
         "countdown":	   ["jquery"],
         "zoom":            ["jquery"],
         "recaptcha":       ["jquery"],
-        "blockui":         ["jquery"]
+        "blockui":         ["jquery"],
+        "modernizr":       ["jquery"],
+        "placeholder":     ["jquery"]
 	}
 });

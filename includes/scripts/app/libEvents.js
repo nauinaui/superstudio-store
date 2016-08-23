@@ -1,5 +1,5 @@
 //generic JS for all views
-define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon) {
+define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder) {
 
 
 	var common = new LibCommon();
@@ -35,6 +35,9 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		if ( common.detectMobile() == true ) {
 			$('.producto-box:not(.promo) .item').addClass('show mobile');
 		}
+		
+		// Placeholder effect for IE9 and older
+		$('input, textarea').placeholder();
 	});
 
 	/**
@@ -106,6 +109,20 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 		e.preventDefault();
 		e.stopPropagation();
 		common.deleteAllProductFromCart( $(this).parent().parent().attr('rel') );
+	})
+
+	// Cart - Add dark layer when cart is opened and remove it when cart is closed
+	$('#myCart').on('show.bs.collapse', function () {
+		$('body').addClass('block-content cart');
+	})
+	$('#myCart').on('hidden.bs.collapse', function () {
+		$('body').removeClass('block-content cart');
+	})
+
+	$('.dark-layer').on('click', function() {
+		$('#myCart').collapse('hide');
+		$('#subscribeNewsletter').removeClass('show');
+		$('#contactFormContent').removeClass('show');
 	})
 
 	// Cart - Add one more product (already added in cart)
@@ -199,6 +216,16 @@ define(['jquery', 'bootstrap', './libCommon'], function ($, Bootstrap, LibCommon
 	  	$('#weCallYouDropdown').dropdown('toggle');
 	  	$('#InputPhoneWeCallYou').focus();
 	})
+
+	// Super promo alert position under page footer when scrolled to bottom
+	$(window).scroll(function() {
+   		if( $(window).scrollTop() + $(window).height() == $(document).height() ) {
+			$('#superPromosAlert').addClass('in-bottom animated fadeOutDown');
+		} else {
+			$('#superPromosAlert').removeClass('in-bottom animated fadeOutDown');
+		}
+	});
+
 
 	// Hide body alert
 	$('#hidingAlertButton').on('click', function(e) {

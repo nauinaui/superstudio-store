@@ -1,0 +1,82 @@
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+
+    section {
+      padding: 0;
+
+      .title {
+        margin: 20px 0 10px;
+      }
+
+      .btn {
+        display: none;
+      }
+
+      &.footer {
+        display: none;
+      }
+
+      &.designers,
+      &.styles,
+      &.colections {
+        display: none;
+      }
+    }
+  }
+
+  .topbar, header, nav, footer, .banners-principales, .banners-especial, #scrollToTopBtn, .lateral-content, .dark-layer, .payment-methods {
+    display: none;
+  }
+
+  #subscribeNewsletter.show,
+  #contactFormContent.show {
+    display: none !important;
+    right: -350px !important;
+  }
+
+  #addToCartButton {
+    display: inline-block;
+  }
+
+  .bgDark {
+    background-color: transparent;
+  }
+
+  .we-call-you-alert,
+  .super-promos-alert {
+    display: none;
+  }
+
+  #cookiesAlert {
+    display: none;
+  }
+
+  .metodo-pago,
+  .calidad-y-confianza {
+    display: none;
+  }
+
+  .designers,
+  .styles,
+  .colections {
+    .read-more button {
+      display: none;
+    } 
+  }
+
+  @page {
+    size: 380mm 470mm;
+  }
+
+  a,
+  a:after {
+    content: normal !important;
+  }
+
+  .producto-box {
+    .view-text {
+      display: none;
+    }
+  }
+}

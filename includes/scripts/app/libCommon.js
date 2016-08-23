@@ -7,7 +7,7 @@ define(['jquery'], function ($) {
 	}
 
 	LibCommon.prototype.toggleSubmenu = function(tipo) {
-		const $tipoSubmenu = $('#'+tipo);
+		var $tipoSubmenu = $('#'+tipo);
 		this.hideSubmenu();
 		if (!$tipoSubmenu.hasClass('show')) {
 			$tipoSubmenu.addClass('show');

@@ -16,7 +16,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="imagenes/iconos/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="imagenes/iconos/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="imagenes/iconos/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -41,6 +40,9 @@
         <div class="cube c3"></div>
     </div>
 </div>
+
+<!-- Only shown when lateral content or cart is opened-->
+<div class="dark-layer"></div>
 
 <!-- Topbar -->
 <div class="topbar">
@@ -86,7 +88,56 @@
             </div>
             <div class="col-md-4 col-lg-5 right">
                 <a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="">&nbsp;&nbsp;(+34) 932 417 330</a>
-                <a href="#" class="text-bold">Iniciar sesión</a>
+                <div class="dropdown login">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Iniciar sesión</button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
+                        <div class="col-sm-6">
+                            <div class="title">Acceso clientes</div>
+                            <div class="subtitle">Ya soy cliente registrado</div>
+                            <form id="loginForm" name="loginForm">
+                                <div class="form-horizontal delivery-form">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="inputEmailLogin" name="emailLogin" placeholder="Email" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="inputPasswordLogin" name="passwordLogin" placeholder="Clave" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Recuérdame
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary btn-rounded btn-sm">Log in</button>
+                                            <div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <p>¿Has olvidado tu clave? <a href="#" title="solicita nueva clave">Clic aquí para obtener una nueva</a></p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="title">Aún no soy cliente registrado</div>
+                            <p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
+                            <a class="btn btn-secondary btn-rounded btn-sm" href="#" title="">Registro de clientes</a>
+                            <a class="btn btn-secondary btn-rounded btn-sm" href="#" title="">Registro tiendas y profesionales*</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="dropdown language navbar-right">
                     <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">ES <span class="caret"></span></button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
@@ -118,12 +169,13 @@
                 <img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
                 <img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
             </a>
+            
             <div class="cart-container">
-                <a class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
+                <a id="cartBtn" class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
                     <img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
                     <span id="cartItemsNumber" class="badge">3</span>
                 </a>
-            
+
                 <!-- My cart (opened) -->
                 <div class="collapse my-cart" id="myCart">
                     <div class="header">
@@ -131,9 +183,9 @@
                         <span class="title">tu carrito</span>
                         <img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
                     </div>
-                    <div class="item media" rel="142898" data-color="5" data-finish="" data-option="" data-type="producto">
+                    <div class="item media">
                         <div class="media-left media-middle">
-                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="media-body media">
                             <div class="media-left media-middle">
@@ -143,7 +195,7 @@
                                 <span class="nombre">Silla Wooden -Polipropileno-</span>
                                 <span class="finish">Gris claro</span>
                                 <div class="price">
-                                    <div class="last-price">58,<span class="cents">01</span><span class="currency">€</span></div>
+                                    <div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
                                     <div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
                                     <div class="discount">-50%</div>
                                 </div>
@@ -156,9 +208,9 @@
                             <button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
                         </div>
                     </div>
-                    <div class="item media" rel="6679300" data-color="46313" data-finish="" data-option="" data-type="producto">
+                    <div class="item media">
                         <div class="media-left media-middle">
-                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="media-body media">
                             <div class="media-left media-middle">
@@ -168,7 +220,7 @@
                                 <span class="nombre">Silla TEREK</span>
                                 <span class="finish">Acero cepillado</span>
                                 <div class="price">
-                                    <div class="last-price">48,<span class="cents">01</span><span class="currency">€</span></div>
+                                    <div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
                                     <div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
                                     <div class="discount">-60%</div>
                                 </div>
@@ -181,9 +233,9 @@
                             <button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
                         </div>
                     </div>
-                    <div class="item media" rel="6679256" data-color="46313" data-finish="" data-option="" data-type="producto">
+                    <div class="item media">
                         <div class="media-left media-middle">
-                            <button type="button" class="close pull-left deleteProductFromCartBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="media-body media">
                             <div class="media-left media-middle">
@@ -193,7 +245,7 @@
                                 <span class="nombre">Mesa Tendar WOOD 120</span>
                                 <span class="finish">Blanco</span>
                                 <div class="price">
-                                    <div class="last-price">69,<span class="cents">95</span><span class="currency">€</span></div>
+                                    <div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
                                     <div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
                                     <div class="discount">-50%</div>
                                 </div>
@@ -234,13 +286,6 @@
                             <div class="icon-menu-wave"></div>
                         </div>
                     </a>
-                    
-                    <div class="subcategorias">
-                        <a href="#" class="rojo">Promociones</a>
-                        <a href="#" class="azul">Diseñadores</a>
-                        <a href="#" class="verde">Colecciones</a>
-                        <a href="#" class="naranja">Estilos</a>
-                    </div>
 
                     <ul class="dropdown-menu menu-subcategorias" id="menuSubcategorias">
                         <div class="header">
@@ -709,6 +754,43 @@
                             </div>
                         </li>
                     </ul>
+                    
+                    <div class="subcategorias">
+                        <a href="#" class="rojo">Promociones</a>
+                        <a href="#" class="azul">Diseñadores</a>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle verde" type="button" id="colectionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Colecciones</button>
+                            <div class="dropdown-menu" aria-labelledby="colectionsDropdown">
+                                <ul class="colections-list">
+                                    <li><a href="categoria?camp=modernclassics">Modern Classics</a></li>
+                                    <li><a href="categoria?camp=pop">Pop</a></li>
+                                    <li><a href="categoria?camp=color">Color edition</a></li>
+                                    <li><a href="categoria?camp=transparente">Transparente</a></li>
+                                    <li><a href="categoria?camp=iluminacion">Iluminación</a></li>
+                                    <li><a href="categoria?camp=tower">Tower</a></li>
+                                    <li><a href="categoria?camp=vintage">Vintage</a></li>
+                                    <li><a href="categoria?camp=rustico">Rústico</a></li>
+                                    <li><a href="categoria?camp=industrial">Industrial</a></li>
+                                    <li><a href="categoria?camp=lienzos">Lienzos y Vinilos</a></li>
+                                    <li><a href="muebles_diseno/cojines_y_fundas_68194">Cojines y fundas</a></li>
+                                    <li><a href="categoria?camp=bano">Baño</a></li>
+                                    <li><a href="categoria?camp=cocina">Cocina</a></li>
+                                    <li><a href="categoria?camp=trabajo">Trabajo</a></li>
+                                    <li><a href="categoria?camp=descanso">Descanso</a></li>
+                                    <li><a href="categoria?camp=dormitorio">Dormitorio</a></li>
+                                    <li><a href="categoria?camp=ninos">Niños</a></li>
+                                    <li><a href="categoria?camp=verano">Especial Verano</a></li>
+                                    <li><a href="categoria?camp=navidad">Especial Navidad</a></li>
+                                    <li><a href="categoria?camp=sanvalentin">Especial San Valentín</a></li>
+                                    <li><a href="categoria?camp=nordic">Nórdico</a></li>
+                                    <li><a href="categoria?camp=newyork">New York</a></li>
+                                    <li><a href="categoria?camp=tolix">Tolix</a></li>
+                                    <li><a href="categoria?camp=decorativo">Objeto Decorativo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="naranja">Estilos</a>
+                    </div>
                 </li>
             </ul>
           
@@ -731,23 +813,9 @@
                         </span>
                     </div>
                 </form>
-
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-
-    <!-- Cabecera -->
-    <div class="categoria-menu">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="menu">
-
-                    
-                </div>
-            </div>
-        </div>
-    </div>
 </nav>
 
 <div class="container">
@@ -755,7 +823,7 @@
         <h1 class="title">Pedido confirmado</h1>
         <p>En breve recibirás mediante email los datos de tu pedido y la información para realizar el seguimiento. Por favor, revisa la bandeja de Spam de tu correo si no encuentras nuestro mensaje. Para cualquier duda, puedes ponerte en contacto con nosotros mediante este formulario o en el (+34) 93 241 73 30.</p>
         <div class="text-center">
-            <button type="button" class="btn btn-secondary"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+            <a type="button" href="javascript:window.print(); void 0;" class="btn btn-secondary"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
         </div>
     </section>
 </div>

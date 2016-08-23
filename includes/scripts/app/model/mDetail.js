@@ -336,11 +336,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 * =================
 	 */
 
-	// Show large image when clicking on secundary images thummbnails if device is not mobile
-	$('.more-images img[data-target="#largeImageModal"]').on('click', function(e) {
+	// Show large image when clicking on main image and on secondary images thummbnails if device is not mobile
+	$('.more-images img[data-target="#largeImageModal"], #mainImageLink').on('click', function(e) {
 		var common = new LibCommon();
 		if ( common.detectMobile() == false ) {
-			var source = $(this).attr('src');
+			if ( $(this).is('#mainImageLink') == true ) {
+				var source = $(this).find('#mainImage').attr('src');
+			} else {
+				var source = $(this).attr('src');
+			}
 			$('#largeImageModal .modal-content img').attr('src',source);
 		} else {
 			e.preventDefault();
