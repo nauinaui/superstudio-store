@@ -25,6 +25,25 @@
   }
 }
 
+.input-group .input-group-btn {
+  vertical-align: top;
+}
+
+label.error {
+  color: @rojo;
+  font-weight: 700;
+}
+
+input[type="checkbox"] + .error {
+  font-weight: 700;
+}
+
+input[type="radio"] + .error {
+  font-size: 13px;
+  margin-right: 5px;
+  position: inherit;
+}
+
 @media (max-width: @xs-max) {
   select.form-control {
     padding: 6px 5px;

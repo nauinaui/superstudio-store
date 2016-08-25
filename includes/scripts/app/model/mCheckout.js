@@ -146,11 +146,11 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		productsTotal = productsTotal.replace('.','');
 		productsTotal = parseFloat(productsTotal.replace(',', '.'));
 		productsTotal = parseFloat(productsTotal.toFixed(2));
-		productsTotal = productsTotal/100;
 		paymentTotal = paymentTotal.replace('.','');
 		paymentTotal = parseFloat(paymentTotal.replace(',', '.'));
 		paymentTotal = parseFloat(paymentTotal.toFixed(2));
 		total = productsTotal + paymentTotal;
+		total = total/100;
 		total.toFixed(2);
 		if ( isPound == true ) {
 			$('#lastStep .total strong').html('&pound;'+total);
@@ -267,7 +267,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 
     // Check all forms
     function checkAllForms() {
-    	debugger;
 		// check delivery details form
 		if ( $('#deliveryDetailsForm')[0].checkValidity() ) {
 			$('#collapseDeliveryDetails').collapse('hide');
@@ -381,11 +380,11 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	})
 	
 	// Show one more field if kind of customer is a company
-	$('#customerKindSelect').on('change', function() {
+	$('#selectCustomerKindInvoice').on('change', function() {
 		if ( $(this).find('option:selected').val()=='empresa' ) {
-			$('#companyNameInput').collapse('show');
+			$('#companyNameInputGroup').collapse('show');
 		} else {
-			$('#companyNameInput').collapse('hide');
+			$('#companyNameInputGroup').collapse('hide');
 		}
 	})
 	
@@ -455,10 +454,13 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	})
 
 	// Validate delivery details
-	$('#deliveryDetailsForm').submit(function(e) {
+	$('#deliveryDetailsForm .step-btn').on('click', function(e) {
 		e.preventDefault();
-		var currentStep = $('#deliveryDetailsPanel').find('.step-btn').attr('data-step');
-		nextStep(currentStep);
+		var validator = $('#deliveryDetailsForm').validate();
+		if ( validator.form() == true ) {
+			var currentStep = $('#deliveryDetailsPanel').find('.step-btn').attr('data-step');
+			nextStep(currentStep);
+		}
 	})
 
 	// Log in
@@ -482,6 +484,16 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 				}
 			}
 		});
+	})
+
+	// Show or not passport input
+	$('#inputPassport').focusout(function() {
+		var validator = $(this).validate();
+		if ( validator.form() == true ) {
+			var nif = $('#inputPassport').val();
+			console.log(nif);
+			$('#inputNifInvoice').val(nif);
+		}
 	})
 
 	// Validate products

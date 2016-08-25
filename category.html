@@ -809,16 +809,14 @@
 				
 				<li class="divider"></li>
 				
-				<form class="navbar-form search" action="#" method="post" role="search">
+				<form id="searchForm" class="navbar-form search" action="#" method="post" role="search">
 					<div class="input-group">
-				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca...">
+				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required>
 				    	<span class="input-group-btn">
-				        	<button class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
+				        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
 				      	</span>
 				    </div>
 				</form>
-
-
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
@@ -2963,7 +2961,7 @@
 				</div>
 				<div class="checkbox">
 					<label>
-						<input id="privacityCheckbox" type="checkbox" required> Acepto la <a href="#" title="política de privacidad">política de privacidad</a>
+						<input id="privacityCheckbox" name="privacityCheckbox" type="checkbox" required> Acepto la <a href="#" title="política de privacidad">política de privacidad</a>
 					</label>
 				</div>
 				<button type="submit" class="btn btn-primary subscribe-btn" value="Subscribe">Suscribirse</button>

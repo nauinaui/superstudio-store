@@ -149,9 +149,6 @@ define(['jquery'], function ($) {
 			envioCarrito = "&id=" + id_producto;
 		}
 
-		console.log('enviocarrito: '+envioCarrito);
-		console.log('query: '+query);
-
 		// Enviamos la info al carrito
 		$.ajax({
 			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + query,

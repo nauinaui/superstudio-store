@@ -1,7 +1,32 @@
 //generic JS for all views
-define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder) {
 
+// Get current language
+var domain = document.domain;
+var lang = '';
+domain = domain.split('.');
 
+switch(domain[2]) {
+    case 'com':
+        lang = 'ES';
+        break;
+    case 'co':
+    	lang = 'EN';
+    	break;
+    case 'de':
+    	lang = 'DE';
+    	break;
+    case 'fr':
+        lang = 'FR';
+        break;
+    case 'pt':
+        lang = 'PT';
+        break;
+    default:
+        lang = 'ES';
+}
+
+define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'validate', 'validate'+lang], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang) {
+	
 	var common = new LibCommon();
 	/**
 	 * =================
@@ -38,6 +63,11 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], funct
 		
 		// Placeholder effect for IE9 and older
 		$('input, textarea').placeholder();
+
+		// Form validation for non HTML5 browsers
+		$( "form" ).each( function() {
+			$(this).validate();
+		});
 	});
 
 	/**
@@ -92,6 +122,10 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], funct
 		$(this).parent().parent().find('.promo-menu').css( 'opacity', '1' );
 	});
 
+	$('#searchSubmitBtn').on('click', function() {
+		$('#searchForm').validate();	
+	})
+
 	// Product's grid - Show more info in product box's bottom while mouseover
 	$('.producto-box:not(.promo) > .content').mouseover(function() {
 		if ( common.detectMobile() == false ) {
@@ -103,6 +137,27 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], funct
 			$(this).find('.item').removeClass('show');
 		}
 	});
+
+	// Product's grid - Add to cart from product's grid
+	$('.add-product-form .btn.add-to-cart').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		var validator = $(this).closest('form').validate();
+		if ( validator.form() == true ) {
+			$(this).closest('.producto-box').find('.content .item').prepend($('#addedToCartFeedback'));
+			//common.addProductToCart(id_producto, opciones, tipo);
+		} else {
+			$(this).closest('.producto-box').find('label.error').insertAfter($(this).closest('.producto-box .add-to-cart'));
+		}
+	})
+
+	// Product's grid - Close 'add to product' alert
+	$('#addedToCartFeedback').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$('body').append($('#addedToCartFeedback'));
+	})
 
 	// Delete product from cart (all from same product)
 	$('.deleteProductFromCartBtn').on('click', function(e) {
@@ -154,36 +209,39 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], funct
 	});
 
 	// Subscribing to newslettter
-	$('#newsletterForm, #footerNewsletterForm').on('submit', function(e){
+	$('#newsletterForm .subscribe-btn, #footerNewsletterForm .btn').on('click', function(e){
 		e.preventDefault();
 		e.stopPropagation();
 
-		$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
-		$('.help-block').addClass('hidden');
+		var validator = $(this).closest('form').validate();
+		if ( validator.form() == true ) {
+			$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
+			$('.help-block').addClass('hidden');
 
-		var url = 'https://intranet.superestudio.com/newsletter';
-		$.ajax({
-			url: url,
-			type: 'post',
-			data: $(this).serialize(),
-			success: function(data) {
-				if (data === 'enviado') {
-					$('#step1').fadeOut('fast', function(){
-						$('#step2').fadeIn('fast');
-					});
-				} else {
-					if (data === 'noindicado') {
-						$('#helpBlockEmpty').removeClass('hidden');
-					} else if (data === 'yaexiste') {
-						$('#helpBlockExist').removeClass('hidden');
+			var url = 'https://intranet.superestudio.com/newsletter';
+			$.ajax({
+				url: url,
+				type: 'post',
+				data: $(this).serialize(),
+				success: function(data) {
+					if (data === 'enviado') {
+						$('#step1').fadeOut('fast', function(){
+							$('#step2').fadeIn('fast');
+						});
 					} else {
-						$('#helpBlockError').removeClass('hidden');
+						if (data === 'noindicado') {
+							$('#helpBlockEmpty').removeClass('hidden');
+						} else if (data === 'yaexiste') {
+							$('#helpBlockExist').removeClass('hidden');
+						} else {
+							$('#helpBlockError').removeClass('hidden');
+						}
+						$('#newsletterForm .form-group, #footerNewsletterForm .input-group').addClass('has-error');
 					}
-					$('#newsletterForm .form-group, #footerNewsletterForm .input-group').addClass('has-error');
 				}
-			}
-		});
-		return false;
+			});
+			return false;
+		}
 	});	
 
 	// Hide lateral contact form -newsletter-
@@ -225,7 +283,6 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder'], funct
 			$('#superPromosAlert').removeClass('in-bottom animated fadeOutDown');
 		}
 	});
-
 
 	// Hide body alert
 	$('#hidingAlertButton').on('click', function(e) {

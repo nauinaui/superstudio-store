@@ -805,11 +805,11 @@
 				
 				<li class="divider"></li>
 				
-				<form class="navbar-form search" action="#" method="post" role="search">
+				<form id="searchForm" class="navbar-form search" action="#" method="post" role="search">
 					<div class="input-group">
-				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca...">
+				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required>
 				    	<span class="input-group-btn">
-				        	<button class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
+				        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
 				      	</span>
 				    </div>
 				</form>
@@ -822,9 +822,7 @@
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
 	  <li><a href="#">Inicio</a></li>
-	  <li><a href="#">Sillas</a></li>
-	  <li><a href="#">Sillas icono del Diseño</a></li>
-	  <li class="active">Silla WOODEN -Polipropileno-</li>
+	  <li class="active">Proceso de compra</li>
 	</ol>
 	
 	<!-- Especiales -->
@@ -900,26 +898,26 @@
 													<div class="form-group">
 													    <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
 													    <div class="col-sm-9">
-													    	<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+													    	<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" required>
 													    	<span id="alreadyExist" class="collapse help-block">Este email ya está registrado. <a id="loginLink" href="javascript:void(0);" title="login">Clic aquí</a> para hacer login.</span>
 													    </div>
 													</div>
 													<div class="form-group">
 														    <label for="inputName" class="col-sm-3 control-label">Nombre completo*</label>
 														    <div class="col-sm-9">
-														      <input type="text" class="form-control" id="inputName" placeholder="Nombre completo" required>
+														      <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Nombre completo" required>
 														    </div>
 														  </div>
 														<div class="form-group">
 															<label for="inputPhone" class="col-sm-3 control-label">Teléfono*</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputPhone" placeholder="Teléfono" required>
+																<input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="Teléfono" required>
 															</div>
 														</div>
 														<div class="form-group">
 															<label for="inputAddress" class="col-sm-3 control-label">Dirección*</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputAddress" placeholder="Dirección" required>
+																<input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Dirección" required>
 															</div>
 														</div>
 														<div class="form-group">
@@ -931,7 +929,7 @@
 														<div class="form-group">
 															<label for="inputCity" class="col-sm-3 control-label">Población*</label>
 															<div class="col-sm-9">
-																<select class="form-control" id="inputCity" required>
+																<select class="form-control" id="inputCity" name="inputCity" required>
 																	<option>Andorra la Vella</option>
 																	<option>Escaldes</option>
 																	<option>Valira</option>
@@ -941,7 +939,7 @@
 														<div class="form-group">
 															<label for="inputCountry" class="col-sm-3 control-label">País*</label>
 															<div class="col-sm-9">
-																<select class="form-control" id="inputCountry" required>
+																<select class="form-control" id="inputCountry" name="inputCountry" required>
 																	<option value="AD">Andorra</option>
 																	<option value="AL">Albania</option>
 																	<option value="AS">Áustria</option>
@@ -953,7 +951,7 @@
 														<div id="inputGroupPassport" class="form-group collapsed">
 															<label for="inputPassport" class="col-sm-3 control-label">NIF/CIF*</label>
 															<div class="col-sm-9">
-																<input type="text" class="form-control" id="inputPassport" placeholder="NIF/CIF" required>
+																<input type="text" class="form-control" id="inputPassport" name="inputPassport" placeholder="NIF/CIF" required>
 															</div>
 														</div>
 													</div>
@@ -1552,16 +1550,16 @@
 						<div class="collapse" id="invoiceCollapse">
 							<form id="invoiceForm" class="invoice-form">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="NIF/CIF" required>
+									<input type="text" class="form-control" placeholder="NIF/CIF" id="inputNifInvoice" name="inputNifInvoice" required>
 								</div>
 								<div class="form-group">
-									<select class="form-control" id="customerKindSelect" required>
+									<select class="form-control" id="selectCustomerKindInvoice" name="selectCustomerKindInvoice" required>
 										<option value="particular" selected>Particular</option>
 										<option value="empresa">Empresa</option>
 									</select>
 								</div>
-								<div class="form-group collapse" id="companyNameInput">
-									<input type="text" class="form-control" placeholder="Nombre de empresa*">
+								<div class="form-group collapse" id="companyNameInputGroup">
+									<input type="text" class="form-control" id="companyNameInput" name="companyNameInput" placeholder="Nombre de empresa*">
 								</div>
 								<div class="checkbox">
 									<label>

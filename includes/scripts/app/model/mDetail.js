@@ -16,10 +16,10 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
-					.append(" <div>" + this.leadingZeros(data.days, 2) + "<span>D</span> :")
-					.append(" <div>" + this.leadingZeros(data.hours, 2) + "<span>H</span> :")
-					.append(" <div>" + this.leadingZeros(data.min, 2) + "<span>M</span> :")
-					.append(" <div>" + this.leadingZeros(data.sec, 2) + "<span>S</span>")
+				.append(" <div>" + this.leadingZeros(data.days, 2) + "<span>D</span> :")
+				.append(" <div>" + this.leadingZeros(data.hours, 2) + "<span>H</span> :")
+				.append(" <div>" + this.leadingZeros(data.min, 2) + "<span>M</span> :")
+				.append(" <div>" + this.leadingZeros(data.sec, 2) + "<span>S</span>")
 			}
 		});
 	}
@@ -242,19 +242,19 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 */
 	function calculatePrice() {
 		var nameID = "id_producto",
-		valueID = $('body').data('product-id'),
-		porcenDesc = $('#discount'),
-		moreprice = $('#productPrice'),
-		tachaprice = $('#oldPrice'),
-		nuevoPrecio = $('#unitsPrice'),
-		activos = $('#finishesList input:checked'),
-		price = $('.price'),
-		normalprice = $('.normalprice'),
-		colorID = '',
-		acabadoID = '',
-		opcionID = '',
-		cantidadInput = $('#unitsSelect').val(),
-		originalPrice = $('#priceContainer');
+			valueID = $('body').data('product-id'),
+			porcenDesc = $('#discount'),
+			moreprice = $('#productPrice'),
+			tachaprice = $('#oldPrice'),
+			nuevoPrecio = $('#unitsPrice'),
+			activos = $('#finishesList input:checked'),
+			price = $('.price'),
+			normalprice = $('.normalprice'),
+			colorID = '',
+			acabadoID = '',
+			opcionID = '',
+			cantidadInput = $('#unitsSelect').val(),
+			originalPrice = $('#priceContainer');
 
 		$.each(activos, function (i, e) {
 			var tipo = $(e).parent().data('type');
@@ -391,9 +391,13 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	});
 
 	// Show price after submitting shipment form and collapse this form
-	$('#calculateShipmentForm').submit(function() {
-		calculateShipment();
-		return false;
+	$('#calculateShipmentBtn').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var validator = $(this).closest('form').validate();
+		if ( validator.form() == true ) {
+			calculateShipment();
+		}
 	});
 
 	// Update price when product units select changes
@@ -402,45 +406,49 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	});
 
 	// Collapse other information and show cross selling when a product is added to the cart
-	$('#addMainProductForm').submit(function (e) {
+	$('#addToCartButton').on('click', function(e) {
 		e.preventDefault();
-		
-		var common 		= new LibCommon(),
-			product_id 	= $('body').attr('data-product-id'),
-			quantity	= $('#unitsSelect').val(),
-			finish 		= $('#finishesList input[type="radio"]:checked').attr('data-finish'),
-			type		= "producto";
-			finishList 	= $('.finishes:not(.collapse)'),
-			ok 			= true;
+		e.stopPropagation();
 
-		if ( !$('body').is('.pack') ) { // normal product
-			var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
-		} else if ( $('body').is('.pack') ) { // product pack
-			var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
-		}
-		// Enviamos la info al carrito
-		$.ajax({
-			url: '/includes/web/carrito?accion=anadir' + query,
-			success: function (data) {
-				showFeedback(ok);
-				if ( !$('body').is('.pack') ) {
-					hideUpSelling();
-					setTimeout(function(){
-						showCrossSelling();
-					}, 3000);
-				}
-				// Cargamos carrito
-				common.addProductToCart(product_id, query, type);
-				// topbar.find('#carrito').html(data).slideDown(250);
-				// cargamos carrito linia
-				// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
-			},
-			error: function() {
-				console.log('error');
-				var ok = false;
-				showFeedback(ok);
+		var validator = $(this).closest('form').validate();
+		if ( validator.form() == true ) {
+			var common 		= new LibCommon(),
+				product_id 	= $('body').attr('data-product-id'),
+				quantity	= $('#unitsSelect').val(),
+				finish 		= $('#finishesList input[type="radio"]:checked').attr('data-finish'),
+				type		= "producto";
+				finishList 	= $('.finishes:not(.collapse)'),
+				ok 			= true;
+
+			if ( !$('body').is('.pack') ) { // normal product
+				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
+			} else if ( $('body').is('.pack') ) { // product pack
+				var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
 			}
-		});
+			// Enviamos la info al carrito
+			$.ajax({
+				url: '/includes/web/carrito?accion=anadir' + query,
+				success: function (data) {
+					showFeedback(ok);
+					if ( !$('body').is('.pack') ) {
+						hideUpSelling();
+						setTimeout(function(){
+							showCrossSelling();
+						}, 3000);
+					}
+					// Cargamos carrito
+					common.addProductToCart(product_id, query, type);
+					// topbar.find('#carrito').html(data).slideDown(250);
+					// cargamos carrito linia
+					// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+				},
+				error: function() {
+					console.log('error');
+					var ok = false;
+					showFeedback(ok);
+				}
+			});
+		}
 	});
 
 	// Show tab content if is collapsed
