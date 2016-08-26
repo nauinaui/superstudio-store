@@ -118,8 +118,8 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			total = parseFloat(total + productTotal);
 		})
 		total = total.toFixed(2);
-		total.toString();
-		total.replace('.',',');
+		total = total.toString();
+		total = total.replace('.',',');
 		if ( isPound == true ) {
 			$('#productsStepTotal').html('&pound;'+total);
 		} else {
@@ -134,7 +134,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			paymentTotal = $('#paymentStepTotal').text(),
 			isPound = false,
 			total = 0;
-
 		if ( productsTotal.charAt(0) === '&' ) {
 			productsTotal = productsTotal.replace('&pound;','');
 			paymentTotal = paymentTotal.replace('&pound;','');
@@ -150,14 +149,25 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		paymentTotal = parseFloat(paymentTotal.replace(',', '.'));
 		paymentTotal = parseFloat(paymentTotal.toFixed(2));
 		total = productsTotal + paymentTotal;
-		total = total/100;
 		total.toFixed(2);
+		checkShowNif(total);
+		total = total.toString();
+		total = total.replace('.',',');
 		if ( isPound == true ) {
 			$('#lastStep .total strong').html('&pound;'+total);
 			$('.resume tr.total td strong').html('&pound;'+total);
 		} else {
 			$('#lastStep .total strong').html(total+'€');
 			$('.resume tr.total td strong').html(total+'€');
+		}
+	}
+
+	//Check show nif
+	function checkShowNif(total) {
+		if ( total>400 ) {
+			$('#inputGroupPassport').collapse('show');
+		} else {
+			$('#inputGroupPassport').collapse('hide');
 		}
 	}
 
@@ -575,6 +585,9 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     $(document).ready( function() {
 		// Show tables with products
 		showTablesWithProducts();
+
+		// Check if nif field has to be shown through calculating total value
+		refreshCheckoutTotal();
 
 		// Init popover
 		$('[data-toggle="popover"]').popover({

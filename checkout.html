@@ -54,13 +54,13 @@
 					<div class="dropdown-menu" aria-labelledby="weCallYouDropdown">
 					    <form id="weCallYouForm" action="/includes/web/plugin_llamadme.asp" method="post">
 							<div class="form-group">
-								<input type="text" class="form-control" id="InputPhoneWeCallYou" placeholder="Nº de teléfono" required>
+								<input type="text" name="phoneWeCallYou" class="form-control" id="InputPhoneWeCallYou" placeholder="Nº de teléfono" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" id="InputNameWeCallYou" placeholder="Nombre" required>
+								<input type="text" name="nameWeCallYou" class="form-control" id="InputNameWeCallYou" placeholder="Nombre" required>
 							</div>
 							<div class="form-group">
-								<input type="email" class="form-control" id="inputEmailWeCallYou" placeholder="Correo electrónico" required>
+								<input type="email" name="emailWeCallYou" class="form-control" id="inputEmailWeCallYou" placeholder="Correo electrónico" required>
 							</div>
 							<div class="form-group">
 								<select class="form-control" id="selectReasonWeCallYou" required>
@@ -146,6 +146,7 @@
 							<li><a href="https://www.superestudio.com?idioma=ENG">English</a></li>
 							<li><a href="http://www.superestudio.fr/?idioma=FRA">Français</a></li>
 							<li><a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a></li>
+							<li><a href="http://www.superestudio.de/?idioma=DEU">Dutch</a></li>
 							<li><a href="http://www.superestudio.pt/?idioma=POR">Português</a></li>
 						</ul>
 					</div>
@@ -1516,12 +1517,12 @@
 										Envío (<span>Rhenus</span>)<br />
 										<div class="checkbox mozo">
 											<label>
-											<input type="checkbox"> Opción mozo <span>(+60,50€) SEUR y DHL</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
+											<input type="checkbox"> Opción mozo SEUR y DHL <span> (+60,50€)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
 											</label>
 										</div>
 										<div class="checkbox mozo">
 											<label>
-											<input type="checkbox"> Opción Predict <span>(GRATIS) SEUR</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
+											<input type="checkbox"> Opción Predict SEUR <span>(GRATIS)</span> <i class="glyphicon glyphicon-question-sign" data-toggle="popover" data-placement="top" data-content="<h5>SÓLO ESPAÑA PENÍNSULA:</h5><p>Este es un servicio de subida a pisos, NO de montaje de muebles.</p><p>Este servicio no incluye grúa, por tanto:</p><ul><li>Es necesario contratar el servicio de mozo para subir artículos pesados a pisos.</li><li>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en terceros o pisos superiores con dificultades de acceso: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li><li>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li></ul><p>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</p>"></i>
 											</label>
 										</div>
 										<p><small>La selección de una de estas dos opciones puede suponer un pequeño cambio en la tarifa debido al cambio de transportista.</small></p>
