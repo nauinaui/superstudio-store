@@ -163,7 +163,7 @@ define(['jquery'], function ($) {
 					$('#myCart .item[rel="'+id_producto+'"]').find('.units .number').text(addedProductNumber);
 				} else {
 					// Add product to cart for first time
-					alert('no hi ha');
+					console.log('there is not this product in cart yet');
 				}
 				// Cargamos carrito
 				topbar.find('#carrito').html(data).slideDown(250);

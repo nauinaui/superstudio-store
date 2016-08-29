@@ -547,14 +547,30 @@
   // user cart
   ////////////////////////////////////////////////////////////////
   .my-cart {
-    background-color: @blanco;
-    border-radius: 10px;
-    .box-shadow(0 0px 12px rgba(0,0,0,0.175));
     position: absolute;
-    width: 400px;
     top: 0;
     right: 0;
-    z-index: 1010;
+    
+    .dark-layer {
+      z-index: 5;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.3);
+    }
+
+    .content {
+      background-color: @blanco;
+      border-radius: 10px;
+      .box-shadow(0 0px 12px rgba(0,0,0,0.175));
+      position: absolute;
+      width: 400px;
+      top: 0;
+      right: 0;
+      z-index: 6;
+    }
 
     .header {
       padding: 10px 20px;
@@ -565,6 +581,7 @@
       }
 
       .icon {
+        height: 25px;
         margin-right: 1px;
         margin-top: 2px;
       }
@@ -900,6 +917,7 @@
       border-radius: 0;
       display: block;
       padding: 0;
+      z-index: 4;
 
       .header {
         display: none;

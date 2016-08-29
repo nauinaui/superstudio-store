@@ -167,13 +167,6 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 	})
 
 	// Cart - Add dark layer when cart is opened and remove it when cart is closed
-	$('#myCart').on('show.bs.collapse', function () {
-		$('body').addClass('block-content cart');
-	})
-	$('#myCart').on('hidden.bs.collapse', function () {
-		$('body').removeClass('block-content cart');
-	})
-
 	$('.dark-layer').on('click', function() {
 		$('#myCart').collapse('hide');
 		$('#subscribeNewsletter').removeClass('show');
