@@ -45,8 +45,6 @@ gulp.task('Javascript', function() {
 	return combined;
 });
 
-
-
 gulp.task('CSS', function() {
 	"use strict";
 	var combined = combiner.obj([
@@ -54,6 +52,19 @@ gulp.task('CSS', function() {
 		less(),
 		minCSS(),
 		rename('superestudio.css'),
+		gulp.dest('includes/css')
+	]);
+	combined.on('error', console.error.bind(console));
+	return combined;
+});
+
+gulp.task('CSS-low', function() {
+	"use strict";
+	var combined = combiner.obj([
+		gulp.src('includes/css/less/superestudio-low.less'),
+		less(),
+		minCSS(),
+		rename('superestudio-low.css'),
 		gulp.dest('includes/css')
 	]);
 	combined.on('error', console.error.bind(console));

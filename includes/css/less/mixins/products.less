@@ -303,6 +303,10 @@
           text-transform: uppercase;
           font-size: 14px;
           width: 100%;
+
+          @media (max-width: @xs-max) {
+            margin: 10px 0 15px;
+          }
         }
 
         .acabados{
@@ -318,11 +322,21 @@
             height: 15px;
             padding-left: 0;
 
+            @media (max-width: @xs-max) {
+              margin: 5px;
+              width: 20px;
+              height: 20px;
+            }
+
             img {
               border-radius: 50%;
 
               &[src$="blanco.gif"] {
                 border: 1px solid @blanco_roto;
+              }
+
+              @media (max-width: @xs-max) {
+                width: 20px;
               }
             }
 
@@ -335,6 +349,11 @@
               &:checked + img {
                 border: 1px solid @blanco;
                 box-shadow: 0 0 0 2px @azul;
+              }
+
+              @media (max-width: @xs-max) {
+                width: 20px;
+                height: 20px;
               }
             }
           }

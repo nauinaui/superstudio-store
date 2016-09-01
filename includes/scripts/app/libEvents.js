@@ -36,7 +36,8 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 	$( document ).ready(function() {
 		console.log('initialized all common events');
 
-		var common = new LibCommon();
+		// Page view always starting from top
+		$(this).scrollTop(0);
 
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
@@ -122,6 +123,7 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		$(this).parent().parent().find('.promo-menu').css( 'opacity', '1' );
 	});
 
+	// Search form - Validate before sending request
 	$('#searchSubmitBtn').on('click', function() {
 		$('#searchForm').validate();	
 	})
