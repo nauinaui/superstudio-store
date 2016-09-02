@@ -14,13 +14,10 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 */
 	function toggleHeight(el, action) {
 		var $element = $('#' + el);
-		var heightFull = $element.css({height: 'auto'}).height() + $element.find('.read-more').outerHeight();
-		
+		var heightFull = parseInt($element.attr('data-height')) + $element.find('.read-more').outerHeight();
 		if (action === 'show') {
-			$element.css('height', "330px");
 			$element.animate({ height: heightFull }, 100);
 		} else if (action === 'hide') {
-			$element.css('height', heightFull);
 			$element.animate({ height: "330px" }, 100);
 		}
 	}
@@ -68,6 +65,9 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 */
 
     $(document).ready( function() {
+		$('#designers').attr('data-height',$('#designers').height());
+		$('#styles').attr('data-height',$('#styles').height());
+		$('#colections').attr('data-height',$('#colections').height());
 		toggleHeight('designers', 'hide');
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');

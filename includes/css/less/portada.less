@@ -185,7 +185,7 @@
     }
 
     .btn {
-      background-image: none;
+      background: transparent;
       border-color: @blanco;
       color: @blanco;
       position: absolute;
@@ -206,31 +206,28 @@
   }
 }
 
-.read-more {
-  position: absolute;
-  bottom: 0;
-  min-height: 100px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 40px 0 10px;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  .background-image(linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%));
-  
-  .toggle-height {
-    background-image: none;
-    display: block;
-    margin: 40px auto 0;
-    min-width: 120px;
-
-    &:hover {
+section {
+  .read-more {
+    position: absolute;
+    bottom: 0;
+    min-height: 100px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    .background-image(linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%));
+    
+    .toggle-height {
       background: transparent;
-      border-color: @gris;
-    }
+      display: block;
+      margin: 40px auto 0;
+      min-width: 120px;
 
-    &.hide {
-      display: none;
+      &.hide {
+        display: none;
+      }
     }
   }
 }

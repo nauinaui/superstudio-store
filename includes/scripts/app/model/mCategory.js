@@ -1,8 +1,6 @@
 define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
     var mCategory = new Base('This is the data for Page Category');
 
-	const $toggleHeight = $('.toggleHeight');
-
 	/**
 	 * =================
 	 * FUNCTIONS
@@ -89,7 +87,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 	 * =================
 	 */
 	
-	$toggleHeight.on('click', function() {
+	$('.toggleHeight').on('click', function() {
 		toggleHeight(this.getAttribute('data-element'), this.getAttribute('data-action'));
 		$(this).parent().find('.hide').toggleClass('hide');
 		$(this).toggleClass('hide');
