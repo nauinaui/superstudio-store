@@ -14,7 +14,7 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 */
 	function toggleHeight(el, action) {
 		var $element = $('#' + el);
-		var heightFull = parseInt($element.attr('data-height')) + $element.find('.read-more').outerHeight();
+		var heightFull = parseInt($element.attr('data-height'));
 		if (action === 'show') {
 			$element.animate({ height: heightFull }, 100);
 		} else if (action === 'hide') {
@@ -65,12 +65,14 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 */
 
     $(document).ready( function() {
-		$('#designers').attr('data-height',$('#designers').height());
-		$('#styles').attr('data-height',$('#styles').height());
-		$('#colections').attr('data-height',$('#colections').height());
+		setTimeout(function(){
+			$('#designers').attr('data-height',$('#designers').outerHeight());
+			$('#styles').attr('data-height',$('#styles').outerHeight());
+			$('#colections').attr('data-height',$('#colections').outerHeight());
 		toggleHeight('designers', 'hide');
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');
+		}, 1000);
 		startCountdown('countdown1', 'September 01, 2016 15:03:26');
 		startCountdown('countdown2', 'October 10, 2016 00:00:00');
 		startCountdown('countdown3', 'November 13, 2016 04:30:00');
