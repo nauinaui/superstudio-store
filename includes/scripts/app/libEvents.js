@@ -36,6 +36,9 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 	$( document ).ready(function() {
 		console.log('initialized all common events');
 
+		// Load images (Lazy loading)
+		common.loadImages();
+
 		// Page view always starting from top
 		$(this).scrollTop(0);
 

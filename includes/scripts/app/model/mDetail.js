@@ -12,7 +12,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 */
 	function startCountdown() {
 		$('.countdown1').countdown({
-			date: "August 30, 2016 15:03:26",
+			date: "October 30, 2016 15:03:26",
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
@@ -127,7 +127,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	}
 
 	/**
-	 * Detail page - Show correct delivery time for selected finish and show products with better delivery time advice and module
+	 * Show correct delivery time for selected finish and show products with better delivery time advice and module
 	 * @param this:object Selected product finish
 	 */
 	function calculatePriceUnits(tipo) {

@@ -73,7 +73,7 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');
 		}, 1000);
-		startCountdown('countdown1', 'September 01, 2016 15:03:26');
+		startCountdown('countdown1', 'September 11, 2016 15:03:26');
 		startCountdown('countdown2', 'October 10, 2016 00:00:00');
 		startCountdown('countdown3', 'November 13, 2016 04:30:00');
     });

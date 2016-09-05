@@ -179,7 +179,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		toggleHeight('seoText', 'hide');
 
 		//Category page - Price range filter with slider
-		$('#priceRange').slider({});  
+		$('#priceRange').slider();  
 
 		// Show subscribe newsletter - only if not mobile
 		var common = new LibCommon;
