@@ -130,63 +130,63 @@
   &:active:focus {
     outline: 0;
   }
-}
 
-.btn-primary {
-  background: @naranja;
-  background: linear-gradient(to bottom, lighten(@naranja, 2%) 0%, darken(@naranja, 2%) 100%);
-  border: 0;
-  color: @blanco;
-  min-width: 100px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: background .2s ease;
-  
-  &:hover,
-  &:active,
-  &:focus {
-    background: darken(@naranja, 3%);
-    background: linear-gradient(to bottom, darken(@naranja, 2%) 0%, lighten(@naranja, 2%) 100%);
-    outline: 0;
-  }
-}
-
-.btn-secondary {
-  background: @gris_claro;
-  background: linear-gradient(to bottom, lighten(@gris_claro, 2%) 0%, darken(@gris_claro, 2%) 100%);
-  border: 0;
-  color: @blanco;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: background .2s ease;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: darken(@gris_claro, 3%);
-    background: linear-gradient(to bottom, darken(@gris_claro, 2%) 0%, lighten(@gris_claro, 2%) 100%);
+  &.btn-primary {
+    background: @naranja;
+    background: linear-gradient(to bottom, lighten(@naranja, 2%) 0%, darken(@naranja, 2%) 100%);
+    border: 0;
     color: @blanco;
+    min-width: 100px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background .2s ease;
+    
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken(@naranja, 3%);
+      background: linear-gradient(to bottom, darken(@naranja, 2%) 0%, lighten(@naranja, 2%) 100%);
+      outline: 0;
+    }
   }
-}
 
-.btn-default {
-  background-color: transparent;
-  border: 1px solid @gris_claro;
-  color: @gris_claro;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+  &.btn-secondary {
+    background: @gris_claro;
+    background: linear-gradient(to bottom, lighten(@gris_claro, 2%) 0%, darken(@gris_claro, 2%) 100%);
+    border: 0;
+    color: @blanco;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background .2s ease;
 
-.btn-link {
-  color: @gris_oscuro;
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken(@gris_claro, 3%);
+      background: linear-gradient(to bottom, darken(@gris_claro, 2%) 0%, lighten(@gris_claro, 2%) 100%);
+      color: @blanco;
+    }
+  }
 
-  &:hover,
-  &:active, 
-  &:focus {
-    color: @negro;
+  &.btn-default {
+    background-color: transparent;
+    border: 1px solid @gris_claro;
+    color: @gris_claro;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &.btn-link {
+    color: @gris_oscuro;
+
+    &:hover,
+    &:active, 
+    &:focus {
+      color: @negro;
+    }
   }
 }
 
@@ -230,7 +230,7 @@
 }
 
 // Scroll to top button
-.scroll-to-top-btn {
+.btn.scroll-to-top-btn {
   position: fixed;
   background-color: @gris_claro;
   border-radius: 0;
