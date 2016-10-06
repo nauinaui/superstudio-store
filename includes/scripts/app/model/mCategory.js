@@ -136,6 +136,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 				    var range = filter[1];
 				    range = range.split('-');
 				    $('#priceRange').attr('data-slider-value', '[' + range[0] + ',' + range[1] + ']');
+				    enableFilter( range[0] + ',' + range[1], 'price', 'range');
 				} else if ( filter[0] == 'orden' ) { // sort
 					$('#sortList label.active').removeClass('active');
 					$('#sortList label > input[data-url="' + filter[1] + '"]').parent().addClass('active');
@@ -147,6 +148,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 					$('.filters-columns input[value="' + filter[1] + '"]').trigger( 'click' );
 				}
 			}
+			$('#filtersBox').collapse('show');
 		}
 	}
 
@@ -257,7 +259,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 
 		// Read paramters from url and active current filters
 		readFilters();
-		
+
 		//Category page - Price range filter with slider
 		$('#priceRange').slider();  
 
