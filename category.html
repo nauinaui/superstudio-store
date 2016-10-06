@@ -912,7 +912,7 @@
 				</div>
 			</div>
 
-			<a class="btn btn-primary btn-rounded show-filter collapsed" role="button" data-toggle="collapse" href="#filtersBox" aria-expanded="false" aria-controls="filtersBox">
+			<a class="btn btn-secondary btn-rounded show-filter collapsed" role="button" data-toggle="collapse" href="#filtersBox" aria-expanded="false" aria-controls="filtersBox">
 				<span class="more">ver filtros <i class="glyphicon glyphicon-plus"></i></span>
 				<span class="less">ocultar filtros <i class="glyphicon glyphicon-minus"></i></span>
 			</a>
@@ -921,24 +921,16 @@
 				<div class="filters-box">
 					<div class="resultados">
 						<span id="filtroInfo" class="filtro-info">Actualmente no tienes ningún filtro activo</span>
-						<span class="filtro-resultados">Mostrando 4.320 resultados</span>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-						<div class="alert alert-danger alert-dismissible active-filter" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
 					</div>
+					<a class="btn btn-primary btn-rounded apply-filters-btn" href="javascript:void(0)" disabled="disabled">
+						Aplicar filtros
+					</a>
 					<div class="filters-section intro-filter panel-body panel-light">
 
 					    <!-- subcategoría -->
-					    <div class="row">
+					    <div class="row filter-container">
 							<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-								<label>Subcategoría:</label>
+								<label data-url="cats2">Subcategoría:</label>
 							</div>
 
 							<div class="col-lg-9 col-md-11 filters-options">
@@ -1080,9 +1072,9 @@
 					    </div>
 					    
 					    <!-- precio -->
-					    <div class="row">
+					    <div class="row filter-container">
 							<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-								<label>Precio:</label>
+								<label data-url="rango">Precio:</label>
 							</div>
 							<div class="col-lg-9 col-md-11 filters-options">
 								<div class="row row-condensed filters-columns">
@@ -1101,9 +1093,9 @@
 					    </div>
 
 						<!-- estilo -->
-						<div class="row">
+						<div class="row filter-container">
 							<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-								<label>Estilo:</label>
+								<label data-url="style">Estilo:</label>
 							</div>
 
 							<div class="col-lg-9 col-md-11 filters-options">
@@ -1212,9 +1204,9 @@
 						<div class="collapse" id="allFilters">
 
 							<!-- colección -->
-							<div class="row">
+							<div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label>Colección:</label>
+									<label data-url="colection">Colección:</label>
 								</div>
 
 								<div class="col-lg-9 col-md-11 filters-options">
@@ -1314,9 +1306,9 @@
 							</div>
 						    
 						    <!-- acabado -->
-						    <div class="row">
+						    <div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label>Acabado:</label>
+									<label data-url="finish">Acabado:</label>
 								</div>
 								<div class="col-lg-9 col-md-11 filters-options">
 									<div class="row row-condensed filters-columns">
@@ -1387,9 +1379,9 @@
 						    </div>
 
 							<!-- diseñador -->
-						    <div class="row">
+						    <div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label>Diseñador:</label>
+									<label data-url="designer">Diseñador:</label>
 								</div>
 
 								<div class="col-lg-9 col-md-11 filters-options">
@@ -1489,9 +1481,9 @@
 						    </div>
 
 						    <!-- material -->
-						    <div class="row">
+						    <div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label>Material:</label>
+									<label data-url="mat">Material:</label>
 								</div>
 
 								<div class="col-lg-9 col-md-11 filters-options">
@@ -1571,9 +1563,12 @@
 					    </div>
 				  	</div>
 
-					<a class="btn btn-secondary btn-rounded show-all-filters collapsed" role="button" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">
-						<span class="more">ver más <i class="glyphicon glyphicon-triangle-bottom"></i></span>
-						<span class="less">ver menos <i class="glyphicon glyphicon-triangle-top"></i></span>
+					<a class="btn btn-secondary btn-sm btn-rounded show-all-filters collapsed" role="button" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">
+						<span class="more">ver más filtros <i class="glyphicon glyphicon-triangle-bottom"></i></span>
+						<span class="less">ver menos filtros <i class="glyphicon glyphicon-triangle-top"></i></span>
+					</a>
+					<a class="btn btn-primary btn-rounded apply-filters-btn" role="button" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters" disabled="disabled">
+						Aplicar filtros
 					</a>
 				</div>
 			</div>
@@ -1582,22 +1577,22 @@
 				<span class="sort-title">ordenar por:</span>
 				<div id="sortList" class="sort-list btn-group" data-toggle="buttons">
 				  <label class="btn btn-link active">
-				    <input type="radio" name="options" id="option1" autocomplete="off" checked> Top ventas <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option1" data-url="topventas" autocomplete="off" checked> Top ventas <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				  <label class="btn btn-link">
-				    <input type="radio" name="options" id="option3" autocomplete="off"> Nuevo <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option2" data-url="nuevos" autocomplete="off"> Nuevo <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				  <label class="btn btn-link">
-				    <input type="radio" name="options" id="option4" autocomplete="off"> Precio <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option3" data-url="precio" autocomplete="off"> Precio <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				  <label class="btn btn-link">
-				    <input type="radio" name="options" id="option4" autocomplete="off"> Stock <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option4" data-url="stock" autocomplete="off"> Stock <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				  <label class="btn btn-link">
-				    <input type="radio" name="options" id="option4" autocomplete="off"> Plazo de entrega <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option5" data-url="entrega" autocomplete="off"> Plazo de entrega <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				  <label class="btn btn-link">
-				    <input type="radio" name="options" id="option2" autocomplete="off"> Nombre <i class="glyphicon glyphicon-triangle-bottom"></i>
+				    <input type="radio" name="options" id="option6" data-url="nombre" autocomplete="off"> Nombre <i class="glyphicon glyphicon-triangle-bottom"></i>
 				  </label>
 				</div>
 				<span class="results-title"><em>4320</em> resultados</span>
