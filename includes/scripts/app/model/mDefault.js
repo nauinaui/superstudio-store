@@ -26,9 +26,10 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 	 * @param el: String Element where countdown will be placed
 	 * @param date: String Determine when countdown will be finnished
 	 */
-	function startCountdown(el, date) {
+	function startCountdown(el) {
+		var time = $('#'+el).attr('data-time');
 		$('#'+el).countdown({
-			date: date,
+			date: time,
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
@@ -73,9 +74,9 @@ define(['./Base', 'countdown'], function (Base, Countdown) {
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');
 		}, 1000);
-		startCountdown('countdown1', 'September 11, 2016 15:03:26');
-		startCountdown('countdown2', 'October 10, 2016 00:00:00');
-		startCountdown('countdown3', 'November 13, 2016 04:30:00');
+		startCountdown('countdown1');
+		startCountdown('countdown2');
+		startCountdown('countdown3');
     });
 
     return mDefault;

@@ -11,8 +11,9 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 * Detail page - Create a countdown for limited promotion time
 	 */
 	function startCountdown() {
+		var time = $('.countdown1').attr('data-time');
 		$('.countdown1').countdown({
-			date: "October 30, 2016 15:03:26",
+			date: time,
 			render: function (data) {
 				var el = $(this.el);
 				el.empty()
