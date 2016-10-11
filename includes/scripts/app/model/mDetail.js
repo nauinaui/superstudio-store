@@ -1,5 +1,6 @@
 define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Lib, Zoom, Recaptcha) {
     var mDefault = new Base('This is the data for Page Detail');
+    var common = new LibCommon();
 
 	/**
 	 * =================
@@ -41,13 +42,13 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	 */
 	function showFeedback(ok) {
 		if ( ok == true ) {
-			$('#addedProductAlert').show();
+			$('#addedProductAlert').collapse('show');
 		} else {
-			$('#addedProductAlertError').show();
+			$('#addedProductAlertError').collapse('show');
 		}
 		setTimeout(function(){
-			$('#addedProductAlert').hide();
-			$('#addedProductAlertError').hide();
+			$('#addedProductAlert').collapse('hide');
+			$('#addedProductAlertError').collapse('hide');
 		}, 3000);
 	}
 
@@ -82,30 +83,30 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	function changeDeliveryTime(selection) {
 		$('#deliveryTimeText #choose').hide();
 		$('#deliveryTimeText .value').hide();
-		var longestTime;
 		
 		if ( $('body').is('.pack') ) { // It's a pack product - check all options to get the largest time
 			var times = [],
 			i = 0;
 			$( ".finishes-list input:checked" ).each(function() {
-				times[i++] = $(this).attr('data-diasnacional');
+				times[i++] = $(this).attr('data-delivery');
 			});
-			longestTime = Math.max.apply(Math,times);
+			var longestTime = Math.max.apply(Math,times);
 		} else { // it's a normal product - get time delivery
-			longestTime = selection.attr('data-diasnacional');
+			var longestTime = selection.attr('data-delivery');
 		}
-		$('#deliveryTimeText .value#time-'+longestTime).show();
+		$('#deliveryTimeText .value').text(longestTime);
+		$('#deliveryTimeText .value').show();
 
 		// Show tip: more products with shorter time
-		if ( longestTime > 2 ) { // It's too late when delivery time exceeds 5-8 days
-			$('#deliveryTimeText').closest('.square.time').addClass('too-late');
-			$('#betterDeliveryTip').collapse('show');
-			$('#betterTimeSection').collapse('show');
-		} else {
-			$('#deliveryTimeText').closest('.square.time').removeClass('too-late');
-			$('#betterDeliveryTip').collapse('hide');
-			$('#betterTimeSection').collapse('hide');
-		}
+		// if ( longestTime > 2 ) { // It's too late when delivery time exceeds 5-8 days
+		// 	$('#deliveryTimeText').closest('.square.time').addClass('too-late');
+		// 	$('#betterDeliveryTip').collapse('show');
+		// 	$('#betterTimeSection').collapse('show');
+		// } else {
+		// 	$('#deliveryTimeText').closest('.square.time').removeClass('too-late');
+		// 	$('#betterDeliveryTip').collapse('hide');
+		// 	$('#betterTimeSection').collapse('hide');
+		// }
 	}
 
 	/**
@@ -339,7 +340,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 
 	// Show large image when clicking on main image and on secondary images thummbnails if device is not mobile
 	$('.more-images img[data-target="#largeImageModal"], #mainImageLink').on('click', function(e) {
-		var common = new LibCommon();
 		if ( common.detectMobile() == false ) {
 			if ( $(this).is('#mainImageLink') == true ) {
 				var source = $(this).find('#mainImage').attr('src');
@@ -406,42 +406,49 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		calculatePriceUnits();
 	});
 
-	// Collapse other information and show cross selling when a product is added to the cart
+	// Add to cart - Collapse other information and show cross selling
 	$('#addToCartButton').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
 		var validator = $(this).closest('form').validate();
 		if ( validator.form() == true ) {
-			var common 		= new LibCommon(),
-				product_id 	= $('body').attr('data-product-id'),
+			var product_id 	= $('body').attr('data-product-id'),
 				quantity	= $('#unitsSelect').val(),
 				finish 		= $('#finishesList input[type="radio"]:checked').attr('data-finish'),
 				type		= "producto";
 				finishList 	= $('.finishes:not(.collapse)'),
 				ok 			= true;
 
-			if ( !$('body').is('.pack') ) { // normal product
-				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
-			} else if ( $('body').is('.pack') ) { // product pack
+			// create query for ajax depending of product type
+			if ( $('body').is('.pack') ) {
+				type='pack';
 				var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
+			} else if ( $('body').is('.outlet') ) {
+				type='outlet';
+			} else {
+				type ='product';
+				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 			}
-			// Enviamos la info al carrito
+
+			// Send product info to cart
 			$.ajax({
 				url: '/includes/web/carrito?accion=anadir' + query,
 				success: function (data) {
 					showFeedback(ok);
-					if ( !$('body').is('.pack') ) {
+					if ( !type==='pack' ) {
 						hideUpSelling();
-						setTimeout(function(){
-							showCrossSelling();
-						}, 3000);
 					}
+					setTimeout(function(){
+						showCrossSelling();
+					}, 3000);
+
 					// Cargamos carrito
 					common.addProductToCart(product_id, query, type);
-					// topbar.find('#carrito').html(data).slideDown(250);
-					// cargamos carrito linia
-					// topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+					
+					//topbar.find('#carrito').html(data).slideDown(250);
+					//cargamos carrito linia
+					//topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
 				},
 				error: function() {
 					console.log('error');
@@ -449,7 +456,37 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 					showFeedback(ok);
 				}
 			});
+		} else if ( $('#finishesRadioInput-error').length ) {
+			// Position label properly if there is an error in finishes selection
+			$('#finishesRadioInput-error').insertBefore( '#finishesList' );
 		}
+	});
+
+	// Add product to wishlist
+	$('.wishlist').on('click', function() {
+		var productID 	= $('body').data('product-id'),
+			login 		= $(this).data('login'),
+			feedback	= $('#addedProductToWishlist');
+		
+		$.ajax({
+			url: '/includes/web/plugin_listadeseos.asp?p=' + productID,
+			success: function (data) {
+				feedback.html(data);
+				$('#addedProductToWishlist').collapse('show');
+				setTimeout(function(){
+					$('#addedProductToWishlist').collapse('hide');
+				}, 3000);
+				
+				if ( login === 1 ) {
+					if ( $(this).hasClass('added') ) {
+						$(this).removeClass('added');
+					} else {
+						$(this).addClass("added");
+						$(this).removeClass('removeHeart');
+					}
+				}
+			}
+		});
 	});
 
 	// Show tab content if is collapsed
@@ -521,7 +558,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		};
 
 		// Show subscribe newsletter - only if not mobile
-		var common = new LibCommon;
 		if ( common.detectMobile() == false ) {
 			setTimeout(function(){
 				showSubscribeNewsletter();

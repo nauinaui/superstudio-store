@@ -52,9 +52,11 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		// Block UI when AJAX is active
 		$(document).ajaxStart( function() {
 			$('#preloader').show();
+			common.disableScroll();
 		});
 		$(document).ajaxStop( function() {
 			$('#preloader').hide();
+			common.enableScroll();
 		});
 
 		// Show cookies alert
@@ -169,6 +171,10 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		e.preventDefault();
 		e.stopPropagation();
 		common.deleteAllProductFromCart( $(this).parent().parent().attr('rel') );
+	})
+
+	$('#cartBtn').on('click', function() {
+		common.loadCart();
 	})
 
 	// Cart - Add dark layer when cart is opened and remove it when cart is closed

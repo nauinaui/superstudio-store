@@ -1,5 +1,7 @@
 define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
     var mCategory = new Base('This is the data for Page Category');
+    var common = new LibCommon();
+    var paginateFrom = 1;
 
 	/**
 	 * =================
@@ -152,6 +154,83 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		}
 	}
 
+	// get parameters from url
+	function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+		if (!results) return '';
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
+	// infinite scroll
+	function documentoScroll() {
+		common.disableScroll();
+		var scroll = $(window).scrollTop(),
+			contentsProd = $("#productsList"),
+			contentsProdAlto = contentsProd.outerHeight(true),
+			footer = $(".footer").outerHeight(true) + 1200,
+			documentHeight = $(window).outerHeight(true);
+        
+		if ( scroll > (contentsProdAlto - footer) ) {
+			
+			$(window).off("scroll");
+
+			var camp = getParameterByName('camp');
+			var subcamp = getParameterByName('subcamp');
+			var color = getParameterByName('color');
+			var colores = getParameterByName('colores');
+			var cats1 = getParameterByName('cats1');
+			var cats2 = getParameterByName('cats2');
+			var dsd = getParameterByName('dsd');
+			var col = getParameterByName('col');
+			var rango = getParameterByName('rango');
+			var mat = getParameterByName('mat');
+			var estado = getParameterByName('estado');
+			var busqueda = getParameterByName('busqueda');
+			var orden = getParameterByName('orden');
+			var packs = getParameterByName('packs');
+
+			var urlParametros = "http://comunicaciones.superestudio.com/sillas-modernas"+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
+
+			$.ajax({
+				url: urlParametros,
+				success: function (data) {
+					if (data !== '') {
+						contentsProd.append(data);
+						$(document).find('.iconLoad').remove();
+						$(window).scroll(function () {
+							documentoScroll();
+						});
+						paginateFrom++;
+					} else {
+
+					}
+					$('#preloader').hide();
+					common.enableScroll();
+				}
+			});
+		}
+		common.enableScroll();
+	}
+
+
+	function getDocumentHeight() {
+		const body = document.body;
+		const html = document.documentElement;
+		
+		return Math.max(
+			body.scrollHeight, body.offsetHeight,
+			html.clientHeight, html.scrollHeight, html.offsetHeight
+		);
+	};
+
+	function getScrollTop() {
+		return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	}
+
 	/**
 	 * =================
 	 * EVENTS
@@ -269,7 +348,14 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 			setTimeout(function(){
 				showSubscribeNewsletter();
 			}, 10000);
-		}	
+		}
+
+		// infinite scroll event
+		let page = 0;
+		window.onscroll = function() {
+			if ( getScrollTop() < getDocumentHeight() - window.innerHeight ) return;
+				documentoScroll();
+		};
     });
 
     return mCategory;

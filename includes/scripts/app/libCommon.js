@@ -65,6 +65,39 @@ define(['jquery'], function ($) {
 		$('body').removeClass('blocked');
 	}
 
+	LibCommon.prototype.disableScroll = function() {
+	  if (window.addEventListener) // older FF
+	      window.addEventListener('DOMMouseScroll', this.preventDefault, false);
+	  window.onwheel = this.preventDefault; // modern standard
+	  window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
+	  window.ontouchmove  = this.preventDefault; // mobile
+	  document.onkeydown  = this.preventDefaultForScrollKeys;
+	}
+
+	LibCommon.prototype.enableScroll = function() {
+	    if (window.removeEventListener)
+	        window.removeEventListener('DOMMouseScroll', this.preventDefault, false);
+	    window.onmousewheel = document.onmousewheel = null; 
+	    window.onwheel = null; 
+	    window.ontouchmove = null;  
+	    document.onkeydown = null;  
+	}
+	
+	LibCommon.prototype.preventDefault = function(e) {
+	  e = e || window.event;
+	  if (e.preventDefault)
+	      e.preventDefault();
+	  e.returnValue = false;  
+	}
+
+	LibCommon.prototype.preventDefaultForScrollKeys = function(e) {
+	    if (keys[e.keyCode]) {
+	        preventDefault(e);
+	        return false;
+	    }
+	}
+
+
 	/**
 	 * Move alert to the end of document
 	 */
@@ -146,16 +179,16 @@ define(['jquery'], function ($) {
 	/**
 	 * AJAX - Add product to cart
 	 */
-	LibCommon.prototype.addProductToCart = function(id_producto, query, tipo) {
+	LibCommon.prototype.addProductToCart = function(product_id, query, type) {
 		var topbar = $('#topbar');
 		var envioCarrito = '';
 
-		if (tipo === 'outlet'){
-			envioCarrito = "&id_outlet=" + id_producto;
-		} else if (tipo === 'pack') {
-			envioCarrito = "&id_pack=" + id_producto;
+		if (type === 'outlet'){
+			envioCarrito = "&id_outlet=" + product_id;
+		} else if (type === 'pack') {
+			envioCarrito = "&id_pack=" + product_id;
 		} else {
-			envioCarrito = "&id=" + id_producto;
+			envioCarrito = "&id=" + product_id;
 		}
 
 		// Enviamos la info al carrito
@@ -165,19 +198,60 @@ define(['jquery'], function ($) {
 				console.log('added!');
 
 				// This product has been already added to cart. Just increment its number
-				if ( $('#myCart .item[rel="'+id_producto+'"]').length ) {
-					var addedProductNumber = $('#myCart .item[rel="'+id_producto+'"]').find('.units .number').text();
+				if ( $('#myCart .item[rel="'+product_id+'"]').length ) {
+					var addedProductNumber = $('#myCart .item[rel="'+product_id+'"]').find('.units .number').text();
 					addedProductNumber = parseInt(addedProductNumber);
 					addedProductNumber++;
-					$('#myCart .item[rel="'+id_producto+'"]').find('.units .number').text(addedProductNumber);
+					$('#myCart .item[rel="'+product_id+'"]').find('.units .number').text(addedProductNumber);
 				} else {
 					// Add product to cart for first time
 					console.log('there is not this product in cart yet');
 				}
 				// Cargamos carrito
-				topbar.find('#carrito').html(data).slideDown(250);
+				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
 				// cargamos carrito linia
-				topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
+			}
+		});
+	};
+
+	/**
+	* AJAX - Load current Cart
+	*/
+	LibCommon.prototype.loadCart = function() {
+		// refresh cart content
+		$('#myCart .content').html('<div class="cartitem"><img src="/imagenes/web/preloader.gif"></div>').slideDown(250).load('/includes/web/carrito.asp');
+		// refresh product number
+		$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
+	};
+
+    /**
+    * AJAX - Add product to wishlist
+    */
+    LibCommon.prototype.addToWishlist = function(productID, login) {
+		anyadirFavoritos = $(this).parent().find(".anyadirFavoritos"),
+		quitarFavoritos  = $(this).parent().find(".quitarFavoritos"),
+		elemento 	     = $(this).closest(".infoFav").find(".infoRegistro");
+        
+		$.ajax({
+			url: '/includes/web/plugin_listadeseos.asp?p=' + idProducto,
+			success: function (data) {
+				elemento.html(data);
+				elemento.fadeIn(300).delay(5000).fadeOut(300);
+				if(login ===1) {
+
+					if (_this.hasClass('added')) {
+						_this.removeClass('added');
+						_this.addClass('removeHeart');
+						anyadirFavoritos.show();
+						quitarFavoritos.hide();
+					} else {
+						_this.addClass("added");
+						_this.removeClass('removeHeart');
+						anyadirFavoritos.hide();
+						quitarFavoritos.show();
+					}
+				}
 			}
 		});
 	};
