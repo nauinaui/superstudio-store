@@ -191,7 +191,7 @@ define(['jquery'], function ($) {
 			envioCarrito = "&id=" + product_id;
 		}
 
-		// Enviamos la info al carrito
+		// Send info to cart
 		$.ajax({
 			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
@@ -208,9 +208,9 @@ define(['jquery'], function ($) {
 					console.log('there is not this product in cart yet');
 				}
 				// Cargamos carrito
-				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
+				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito-r.asp');
 				// cargamos carrito linia
-				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
+				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
 			}
 		});
 	};
@@ -222,7 +222,7 @@ define(['jquery'], function ($) {
 		// refresh cart content
 		$('#myCart .content').html('<div class="cartitem"><img src="/imagenes/web/preloader.gif"></div>').slideDown(250).load('/includes/web/carrito.asp');
 		// refresh product number
-		$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
+		$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
 	};
 
     /**
