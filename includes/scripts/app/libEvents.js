@@ -152,18 +152,58 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 
 		var validator = $(this).closest('form').validate();
 		if ( validator.form() == true ) {
-			$(this).closest('.producto-box').find('.content .item').prepend($('#addedToCartFeedback'));
-			//common.addProductToCart(id_producto, opciones, tipo);
+			
+			// prepare info for creating query for ajax
+			var objectItem	= $(this).closest('.content').find('.item');
+			var product_id 	= objectItem.attr('data-product-id'),
+				quantity	= 1,
+				finish 		= $(this).parent().find('.acabados input[type="radio"]:checked').attr('data-finish'),
+				type		= "product";
+				finishList 	= $('.finishes:not(.collapse)'),
+				ok 			= true;
+
+			// create query for ajax depending of product type
+			if ( objectItem.is('.pack') ) {
+				type='pack';
+				var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
+			} else if ( objectItem.is('.outlet') ) {
+				type='outlet';
+			} else {
+				type ='product';
+				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
+			}
+
+			// Send product info to cart
+			$.ajax({
+				url: '/includes/web/carrito-r?accion=anadir' + query,
+				success: function (data) {
+					//show feedback
+					$(this).closest('.producto-box').find('.content .item').prepend($('#addedToCartFeedback'));
+					// Cargamos carrito
+					common.addProductToCart(product_id, query, type);
+					
+					//topbar.find('#carrito').html(data).slideDown(250);
+					//cargamos carrito linia
+					//topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
+				},
+				error: function() {
+					console.log('error');
+					//show error feedback
+					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartErrorFeedback'));
+				}
+			});
 		} else {
+			//move error label to a correct place for greater visual effect
 			$(this).closest('.producto-box').find('label.error').insertAfter($(this).closest('.producto-box .add-to-cart'));
 		}
 	})
 
 	// Product's grid - Close 'add to product' alert
-	$('#addedToCartFeedback').on('click', function(e) {
+	$('#addedToCartFeedback, #addedToCartErrorFeedback').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		$('body').append($('#addedToCartFeedback'));
+		$('body').append($('#addedToCartErrorFeedback'));
 	})
 
 	// Delete product from cart (all from same product)
