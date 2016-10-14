@@ -332,6 +332,18 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		});
 	}
 
+    function isCaptchaOk(form) {
+        var v = grecaptcha.getResponse();
+        if(v.length == 0) {
+            $('#verificationGroup > div').append('<label id="textareaMessage-error" class="error" for="textareaMessage">El captcha es erróneo</label>');
+            return false;
+        }
+        if(v.length != 0) {
+            $('#verificationGroup > div .error').remove();
+            return true; 
+        }
+    }
+
 	/**
 	 * =================
 	 * EVENTS
@@ -433,7 +445,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 
 			// Send product info to cart
 			$.ajax({
-				url: '/includes/web/carrito?accion=anadir' + query,
+				url: '/includes/web/carrito-r?accion=anadir' + query,
 				success: function (data) {
 					showFeedback(ok);
 					if ( !type==='pack' ) {
@@ -489,6 +501,29 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		});
 	});
 
+	// Contact form - Send information
+	$('#contactFormButton').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		var validator = $(this).closest('form').validate();
+		if ( validator.form() == true ) {
+			if (isCaptchaOk()==true) {
+                console.log(grecaptcha.getResponse());
+	            $(this).closest('form').submit();
+            }
+		}
+
+		// var validator = $(this).closest('form').validate({
+  //           submitHandler: function(form) {
+  //               if (isCaptchaOk()==true) {
+  //                   console.log(grecaptcha.getResponse());
+  //                   alert('valido');
+  //               }
+		// 	}
+		// });
+	});
+
 	// Show tab content if is collapsed
 	$('.other-info-title-tabs li.title').on('click', function() {
 		if ( $('#otherInfoContentTabs').is(':hidden') ) {
@@ -526,6 +561,12 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		// Zoom effect
 		window.addEventListener("resize", zoomInit);
 		zoomInit();
+
+		// Change active tab for some products
+		var productID = $('body').attr('data-product-id');
+		if ( productID==='142898' || productID==='143160' ) {
+			$('.other-info-title-tabs a[href="#materialAndMeasures"]').tab('show');
+		}
 
 		// Stop auto play carousel
 		$('.carousel').carousel({

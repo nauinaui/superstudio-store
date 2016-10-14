@@ -143,7 +143,7 @@ define(['jquery'], function ($) {
 	 */
 	LibCommon.prototype.deleteAllProductFromCart = function(id_producto) {
 	    $.ajax({
-	    	url: "https://intranet.superestudio.com/includes/web/carrito.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
+	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
 	    	type: 'GET',
 	    	crossDomain: true,
 	    	datatype: 'jsonp',
@@ -162,7 +162,7 @@ define(['jquery'], function ($) {
 	 */
 	LibCommon.prototype.deleteProductFromCart = function(id_producto, opciones, tipo) {
 	    $.ajax({
-	    	url: "https://intranet.superestudio.com/includes/web/carrito.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
+	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
 	    	type: 'GET',
 	    	crossDomain: true,
 	    	datatype: 'jsonp',
@@ -193,7 +193,7 @@ define(['jquery'], function ($) {
 
 		// Send info to cart
 		$.ajax({
-			url: '/includes/web/carrito.asp?accion=anadir' + envioCarrito + query,
+			url: '/includes/web/carrito-r.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				console.log('added!');
 
@@ -220,7 +220,7 @@ define(['jquery'], function ($) {
 	*/
 	LibCommon.prototype.loadCart = function() {
 		// refresh cart content
-		$('#myCart .content').html('<div class="cartitem"><img src="/imagenes/web/preloader.gif"></div>').slideDown(250).load('/includes/web/carrito.asp');
+		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito-r.asp');
 		// refresh product number
 		$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
 	};
