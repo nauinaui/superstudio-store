@@ -90,36 +90,44 @@
 							<div class="col-sm-6">
 								<div class="title">Acceso clientes</div>
 								<div class="subtitle">Ya soy cliente registrado</div>
-								<form id="loginForm" name="loginForm">
+								<form id="loginForm" action="/includes/control/log-in" name="loginForm" method="post" target="_parent">
+									<input name="origen" type="hidden" id="origen" value="">
+									<input name="accion" type="hidden" id="accion" value="">
+									<input name="idcat" type="hidden" id="idcat" value="">
+									<input name="id" type="hidden" id="id" value="">
+									<input name="p" type="hidden" id="p" value="">
+									<input name="pet" type="hidden" id="pet" value="">
+									<input name="promorebajas" type="hidden" id="promorebajas" value="">
+									<input name="apa" type="hidden" id="apa" value="">
 									<div class="form-horizontal delivery-form">
 										<div class="form-group">
 										    <div class="col-sm-12">
-										    	<input type="email" class="form-control" id="inputEmailLogin" name="emailLogin" placeholder="Email" required="">
+										    	<input name="email" type="text" class="form-control input_clientes" id="email_login" accesskey="e" tabindex="2" value="" maxlength="255">
 										    </div>
 										</div>
 										<div class="form-group">
 										    <div class="col-sm-12">
-										    	<input type="password" class="form-control" id="inputPasswordLogin" name="passwordLogin" placeholder="Clave" required="">
+										    	<input name="clave" type="password" class="form-control input_clientes" id="clave_login" accesskey="p" tabindex="3" value="" maxlength="255">
 										    </div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-12">
 												<div class="checkbox">
 													<label>
-														<input type="checkbox"> Recuérdame
+														<input type="checkbox" name="recordar" value="si"> Recuérdame
 													</label>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-12">
-												<button type="submit" class="btn btn-primary btn-rounded btn-sm">Log in</button>
+												<button type="submit" class="btn btn-primary btn-rounded btn-sm" accesskey="s" tabindex="3">Log in</button>
 												<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-12">
-												<p>¿Has olvidado tu clave? <a href="#" title="solicita nueva clave">Clic aquí para obtener una nueva</a></p>
+												<p>¿Has olvidado tu clave? <a href="/recordar" title="solicita nueva clave">Clic aquí para obtener una nueva</a></p>
 											</div>
 											<div class="clearfix"></div>
 										</div>
@@ -176,114 +184,19 @@
 			</button>
 			<a class="navbar-brand" href="default.asp">
 				<img class="logotipo animated bounceIn" src="imagenes/logo.png" width="145" height="56" alt="SuperStudio">
-				<img class="logotipo collapsed animated flip" src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
+				<img class="logotipo collapsed animated flip" src="imagenes/loader.gif" data-src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
 			</a>
 			
 			<div class="cart-container">
 				<a id="cartBtn" class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
-					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="#">
-					<span id="cartItemsNumber" class="badge">3</span>
+					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="carrito">
+					<span id="cartItemsNumber" class="badge">0</span>
 				</a>
 
 				<!-- My cart (opened) -->
 				<div class="collapse my-cart" id="myCart">
 					<div class="dark-layer"></div>
-					<div class="content">
-						<div class="header">
-							<button type="button" class="close pull-left" data-toggle="collapse" data-target="#myCart" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<span class="title">tu carrito</span>
-							<img class="icon pull-right" src="imagenes/iconos/svg/topmenuCarrito.svg" alt="carrito">
-						</div>
-						<div class="item media">
-							<div class="media-left media-middle">
-								<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="media-body media">
-								<div class="media-left media-middle">
-									<img width="50" src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
-								</div>
-								<div class="media-body">
-									<span class="nombre">Silla Wooden -Polipropileno-</span>
-									<span class="finish">Gris claro</span>
-									<div class="price">
-										<div class="last-price" id="productPrice">58,<span class="cents">01</span><span class="currency">€</span></div>
-										<div class="old-price">116,<span class="cents">00</span><span class="currency">€</span></div>
-										<div class="discount">-50%</div>
-									</div>
-								</div>
-							</div>
-							<div class="units media-right media-middle">
-								<span class="units-title">unidades</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
-								<span class="number">4</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
-							</div>
-						</div>
-						<div class="item media">
-							<div class="media-left media-middle">
-								<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="media-body media">
-								<div class="media-left media-middle">
-									<img width="50" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/BAZ004/min/default/BAZ0041.jpg" alt="Silla Wooden -Polipropileno-">
-								</div>
-								<div class="media-body">
-									<span class="nombre">Silla TEREK</span>
-									<span class="finish">Acero cepillado</span>
-									<div class="price">
-										<div class="last-price" id="productPrice">48,<span class="cents">01</span><span class="currency">€</span></div>
-										<div class="old-price">102,<span class="cents">00</span><span class="currency">€</span></div>
-										<div class="discount">-60%</div>
-									</div>
-								</div>
-							</div>
-							<div class="units media-right media-middle">
-								<span class="units-title">unidades</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
-								<span class="number">4</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
-							</div>
-						</div>
-						<div class="item media">
-							<div class="media-left media-middle">
-								<button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="media-body media">
-								<div class="media-left media-middle">
-									<img width="50" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX022/min/categoria/SHX0221.jpg" alt="Mesa Tendar WOOD 120">
-								</div>
-								<div class="media-body">
-									<span class="nombre">Mesa Tendar WOOD 120</span>
-									<span class="finish">Blanco</span>
-									<div class="price">
-										<div class="last-price" id="productPrice">69,<span class="cents">95</span><span class="currency">€</span></div>
-										<div class="old-price">140,<span class="cents">00</span><span class="currency">€</span></div>
-										<div class="discount">-50%</div>
-									</div>
-								</div>
-							</div>
-							<div class="units media-right media-middle">
-								<span class="units-title">unidades</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded less">-</button>
-								<span class="number">4</span>
-								<button type="button" class="btn btn-default btn-xs btn-rounded more">+</button>
-							</div>
-						</div>
-						<div class="footer">
-							<div class="col-xs-6 text-right">
-								<p class="subtotal">subtotal</p>
-								<span class="price subtotal">369,08€</span>
-							</div>
-							<div class="col-xs-6 text-left">
-								<p>ahorro total</p>
-								<span class="price saved">138,29€</span>
-							</div>
-							<div class="clearfix"></div>
-							<p class="vat-text">Precio IVA incluido. Portes según destino.</p>
-							<a href="#" class="btn btn-primary btn-rounded go-checkout-btn">hacer pedido</a>
-							<button type="button" class="btn btn-link continue-shopping-btn" data-toggle="collapse" data-target="#myCart" aria-label="Close">Seguir comprando</button>
-						</div>
-					</div>
+					<div class="content"></div>
 				</div>
 			</div>
 		</div>
@@ -294,7 +207,7 @@
 				<li class="dropdown">
 					<a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías
 						<div class="icon-menu">
-							<img src="imagenes/iconos/svg/categorias.svg" width="44" height="44" alt="">
+							<img src="imagenes/iconos/svg/categorias.svg" width="44" height="44" alt="menú categorías">
 							<div class="icon-menu-wave"></div>
 						</div>
 					</a>
@@ -308,7 +221,7 @@
 						</div>
 						<li>
 							<a href="javascript:void(0);" class="category sub" data-tipo="sillas">
-								<img src="imagenes/iconos/svg/menuSillas.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
 								<div class="text">Sillas<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Sillas -->
@@ -346,7 +259,7 @@
 													<span class="promo-title">Silla WOODEN -Polipropileno-</span>
 													<div class="promo-description">Silla de diseño de estilo Tower para cocina o comedor.</div>
 													<div class="promo-image">
-														<img class="featured-product-image" src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
+														<img class="featured-product-image" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
 													</div>
 												</a>
 											</div>
@@ -360,7 +273,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category" data-tipo="taburetes">
-								<img src="imagenes/iconos/svg/menuTaburetes.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuTaburetes.svg" alt="taburetes">
 								<div class="text">Taburetes</div>
 							</a>
 							<!-- SUBMENU Taburetes -->
@@ -377,7 +290,7 @@
 													<span class="promo-title">Taburete HIGHT URAL -Metal Cepillado-</span>
 													<div class="promo-description">Taburete metálico en estilo industrial.</div>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
 													</div>
 												</a>
 											</div>
@@ -391,7 +304,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="mesas">
-								<img src="imagenes/iconos/svg/menuMesas.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuMesas.svg" alt="mesas">
 								<div class="text">Mesas<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Mesas -->
@@ -422,7 +335,7 @@
 													<span class="promo-title">Mesa TENDAR WOOD 120</span>
 													<div class="promo-description">Mesa de comedor inspirada en diseño de la Mesa DSW de Charles & Ray Eames.</div>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
 													</div>
 												</a>
 											</div>
@@ -436,7 +349,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="lamparas">
-								<img src="imagenes/iconos/svg/menuLamparas.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuLamparas.svg" alt="lámparas">
 								<div class="text">Lámparas<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Lámparas -->
@@ -464,7 +377,7 @@
 													<span class="promo-title">Lámpara AMSTI</span>
 													<div class="promo-description">Lámpara en acero tintado en negro con interior dorado.</div>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
 													</div>
 												</a>
 											</div>
@@ -478,7 +391,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="sofas">
-								<img src="imagenes/iconos/svg/menuSofas.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSofas.svg" alt="sofás">
 								<div class="text">Sofás<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Sofás -->
@@ -500,7 +413,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Sofá CHESTER PU -2 Plazas-</span>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
 													</div>
 												</a>
 											</div>
@@ -514,7 +427,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="cojines">
-								<img src="imagenes/iconos/svg/menuCojines.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCojines.svg" alt="cojines">
 								<div class="text">Cojines<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Cojines -->
@@ -544,7 +457,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Funda cojín DRINK CHAMPAGNE algodón 30x50</span>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
 													</div>
 												</a>
 											</div>
@@ -558,7 +471,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="alfombras">
-								<img src="imagenes/iconos/svg/menuAlfombras.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlfombras.svg" alt="alfombras">
 								<div class="text">Alfombras<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Alfombras -->
@@ -582,7 +495,7 @@
 													<span class="promo-title">Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-</span>
 													<div class="promo-description">Felpudo para recibir con arte a tus invitados</div>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
 													</div>
 												</a>
 											</div>
@@ -596,7 +509,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="cuadros">
-								<img src="imagenes/iconos/svg/menuCuadros.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCuadros.svg" alt="cuadros">
 								<div class="text">Cuadros<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Cuadros -->
@@ -624,7 +537,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Banderola YOURSELF</span>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
 													</div>
 												</a>
 											</div>
@@ -638,7 +551,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="vinilos">
-								<img src="imagenes/iconos/svg/menuVinilos.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuVinilos.svg" alt="vinilos">
 								<div class="text">Vinilos<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Vinilos -->
@@ -664,7 +577,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Vinilo Decorativo LIVE YOUR DREAMS</span>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
 													</div>
 												</a>
 											</div>
@@ -678,7 +591,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="almacenaje">
-								<img src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="almacenaje">
 								<div class="text">Almacenaje<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Almacenaje -->
@@ -704,7 +617,7 @@
 													<span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
 													<div class="promo-description"></div>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
 													</div>
 												</a>
 											</div>
@@ -718,7 +631,7 @@
 						</li>
 						<li>
 							<a href="javascript:void(0)" class="category sub" data-tipo="decoracion">
-								<img src="imagenes/iconos/svg/menuDecoracion.svg" alt="">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuDecoracion.svg" alt="decoración">
 								<div class="text">Decoración<span class="glyphicon glyphicon-menu-down"></span></div>
 							</a>
 							<!-- SUBMENU Decoración -->
@@ -753,7 +666,7 @@
 													<div class="featuring-menu-title">Destacamos:</div>
 													<span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
 													<div class="promo-image">
-														<img src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
 													</div>
 												</a>
 											</div>
@@ -812,7 +725,7 @@
 						Consulta el <br />
 						<strong>estado de tu pedido</strong>
 					</div>
-					<img src="imagenes/iconos/svg/status.svg" alt="">
+					<img src="imagenes/iconos/svg/status.svg" alt="icono estado de pedido">
 				</a>
 				
 				<li class="divider"></li>
@@ -821,7 +734,7 @@
 					<div class="input-group">
 				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required>
 				    	<span class="input-group-btn">
-				        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt=""></button>
+				        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
 				      	</span>
 				    </div>
 				</form>

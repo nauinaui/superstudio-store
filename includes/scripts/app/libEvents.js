@@ -59,6 +59,9 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 			common.enableScroll();
 		});
 
+		// Refresh products number in cart
+		common.loadCart();
+
 		// Show cookies alert
 		$('#cookiesAlert').collapse('show');
 
@@ -178,7 +181,7 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 				url: '/includes/web/carrito-r?accion=anadir' + query,
 				success: function (data) {
 					//show feedback
-					$(this).closest('.producto-box').find('.content .item').prepend($('#addedToCartFeedback'));
+					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartFeedback'));
 					// Cargamos carrito
 					common.addProductToCart(product_id, query, type);
 					
@@ -207,49 +210,51 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 	})
 
 	// Delete product from cart (all from same product)
-	$('.deleteProductFromCartBtn').on('click', function(e) {
+	$('#myCart .delete-product-from-cart-btn').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
+		console.log('vull borrar tot el producte');
 		common.deleteAllProductFromCart( $(this).parent().parent().attr('rel') );
 	})
 
+	// Cart - Add one more products (already added in cart)
+	$('#myCart .btn.more').on('click', function() {
+		var item = $(this).closest('.item.media');
+			productID = item.attr('data-product-id'),
+			varianteColor = item.attr('data-color-id'),
+			varianteAcabado = item.attr('data-finish-id'),
+			varianteOpcion = item.data('option'),
+			type = item.data('type'),
+			units = $(this).parent().find('.number').text(),
+			query = '&cantidad=1' + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
+		
+		common.addProductToCart(productID, query, type);
+	});
+
+	// Cart - Delete one less product from cart (already added in cart)
+	$('#myCart .btn.less').on('click', function() {
+		var item = $(this).closest('.item.media');
+			productID = item.attr('data-product-id'),
+			varianteColor = item.attr('data-color-id'),
+			varianteAcabado = item.attr('data-finish-id'),
+			varianteOpcion = item.data('option'),
+			type = item.data('type'),
+			units = $(this).parent().find('.number').text(),
+			query = '&cantidad=1' + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
+		
+		common.deleteProductFromCart(productID, query, type);
+	});
+
+	// Cart - Open cart and show all products
 	$('#cartBtn').on('click', function() {
 		common.loadCart();
-	})
+	});
 
 	// Cart - Add dark layer when cart is opened and remove it when cart is closed
 	$('.dark-layer').on('click', function() {
 		$('#myCart').collapse('hide');
 		$('#subscribeNewsletter').removeClass('show');
 		$('#contactFormContent').removeClass('show');
-	})
-
-	// Cart - Add one more product (already added in cart)
-	$('#myCart .item .btn.more').on('click', function () {
-		var product = $(this).parent().parent();
-		var qty = 1;
-		var varianteColor = product.data('color');
-		var varianteAcabado = product.data('finish');
-		var varianteOpcion = product.data('option');
-		var tipo = product.data('type');
-		var id_producto = product.attr('rel');
-		var opciones = '&cantidad=' + qty + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
-
-		common.addProductToCart(id_producto, opciones, tipo);
-	});
-
-	// Cart - Delete one product (already added in cart)
-	$('#myCart .item .btn.less').on('click', function () {
-		var product = $(this).parent().parent();
-		var qty = -1;
-		var varianteColor = product.data('color');
-		var varianteAcabado = product.data('finish');
-		var varianteOpcion = product.data('option');
-		var tipo = product.data('type');
-		var id_producto = product.attr('rel');
-		var opciones = '&cantidad=' + qty + '&color=' + varianteColor + '&acabado=' + varianteAcabado + '&opcion=' + varianteOpcion;
-
-		common.deleteProductFromCart(id_producto, opciones, tipo);
 	});
 
 	// Subscribing to newslettter
@@ -308,16 +313,6 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 	        scrollTop : 0
 	    }, 500);
 	});
-
-	// We call you fix alert link
-	$('#weCallYouLink').on('click', function(e) {
-	  	e.stopPropagation();
-		$('body,html').animate({
-			scrollTop : 0
-		}, 500);
-	  	$('#weCallYouDropdown').dropdown('toggle');
-	  	$('#InputPhoneWeCallYou').focus();
-	})
 
 	// Super promo alert position under page footer when scrolled to bottom
 	$(window).scroll(function() {

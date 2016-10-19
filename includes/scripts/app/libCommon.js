@@ -144,9 +144,6 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.deleteAllProductFromCart = function(id_producto) {
 	    $.ajax({
 	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
-	    	type: 'GET',
-	    	crossDomain: true,
-	    	datatype: 'jsonp',
 	    	success: function() { 
 	    		console.log('deleted product from cart');
 	    		$('.item[rel="'+id_producto+'"]').remove();
@@ -160,15 +157,15 @@ define(['jquery'], function ($) {
 	/**
 	 * AJAX - Delete a product from cart
 	 */
-	LibCommon.prototype.deleteProductFromCart = function(id_producto, opciones, tipo) {
+	LibCommon.prototype.deleteProductFromCart = function(productID, query, type) {
 	    $.ajax({
-	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
+	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+ productID + query + type,
 	    	type: 'GET',
 	    	crossDomain: true,
 	    	datatype: 'jsonp',
 	    	success: function() { 
 	    		console.log('deleted product from cart');
-	    		$('.item[rel="'+id_producto+'"]').remove();
+	    		$('.item[rel="'+productID+'"]').remove();
 	    		var action = 'substract';
 	    		this.refreshCartNumber(action);
 	    	},
@@ -179,38 +176,30 @@ define(['jquery'], function ($) {
 	/**
 	 * AJAX - Add product to cart
 	 */
-	LibCommon.prototype.addProductToCart = function(product_id, query, type) {
-		var topbar = $('#topbar');
+	LibCommon.prototype.addProductToCart = function(productID, query, type) {
 		var envioCarrito = '';
 
 		if (type === 'outlet'){
-			envioCarrito = "&id_outlet=" + product_id;
+			envioCarrito = "&id_outlet=" + productID;
 		} else if (type === 'pack') {
-			envioCarrito = "&id_pack=" + product_id;
+			envioCarrito = "&id_pack=" + productID;
 		} else {
-			envioCarrito = "&id=" + product_id;
+			envioCarrito = "&id=" + productID;
 		}
 
 		// Send info to cart
 		$.ajax({
 			url: '/includes/web/carrito-r.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
-				console.log('added!');
-
-				// This product has been already added to cart. Just increment its number
-				if ( $('#myCart .item[rel="'+product_id+'"]').length ) {
-					var addedProductNumber = $('#myCart .item[rel="'+product_id+'"]').find('.units .number').text();
-					addedProductNumber = parseInt(addedProductNumber);
-					addedProductNumber++;
-					$('#myCart .item[rel="'+product_id+'"]').find('.units .number').text(addedProductNumber);
-				} else {
-					// Add product to cart for first time
-					console.log('there is not this product in cart yet');
-				}
-				// Cargamos carrito
+				// Write all products into the content div
 				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito-r.asp');
-				// cargamos carrito linia
+				// cargamos carrito linia (updating number)
 				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
+				// show effect
+				$('#myCart').addClass('animated tada');
+				setTimeout(function(){
+					$('#myCart').removeClass('animated tada');
+				}, 2000);
 			}
 		});
 	};
