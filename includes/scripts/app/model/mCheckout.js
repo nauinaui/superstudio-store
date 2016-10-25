@@ -35,7 +35,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     // AJAX - Check if email is already registered
     function checkregistered() {
 		$.ajax({
-			url: '/includes/web/plugin_login_carrito',
+			url: '/includes/web/plugin_login_carrito-r',
 			type: 'POST',
 			data: 'e=' + $('#inputEmail').val() + '&p=' + $('#pass_cliente').val(),
 			success: function (data) {
@@ -321,6 +321,82 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		}
     }
 
+    // Get user info
+	function getUserInfo(data) {
+		var userName = $(data).find('nombre').text(),
+			userPhone = $(data).find('telefono').text(),
+			userAddress = $(data).find('direccion:first').text(),
+			userPostcode = $(data).find('cp:first').text(),
+			userCity = $(data).find('poblacion:first').text(),
+			userCountry = $(data).find('pais:first').text(),
+			userPassport = $(data).find('nif').text(),
+			userEmail = $('#inputEmailLogin').val();
+
+		// print info in correct place
+		$('#inputEmail').val(userEmail);
+		$('#inputName').val(userName);
+		$('#inputPhone').val(userPhone);
+		$('#inputAddress').val(userAddress);
+		$('#inputPostcode').val(userPostcode);
+		$('#inputCity').val(userCity);
+		$('#inputCountry').val(userCountry);
+		$('#inputPassport').val(userPassport);
+
+		getCities(userPostcode, userCountry);
+		
+		if ( !$(data).find('direcciones').text() == '' ) { 
+			// User has more than one address
+			$('#multipleAddressSelect').collapse('show');
+			$('#inputChooseAddress').html('');
+			var userPlaces = $(data).find('sitio');
+			userPlaces.each( function() {
+				var id = $(this).attr('id');
+				$('#inputChooseAddress').append('<option value="'+id+'">' + $(this).find('direccion').text() + '</option>');
+				$('#inputAddress').attr( 'data-id-'+id, $(this).find('direccion').text() );
+				$('#inputPostcode').attr( 'data-id-'+id, $(this).find('cp').text() );
+				$('#inputCity').attr( 'data-id-'+id, $(this).find('poblacion').text() );
+				$('#inputCountry').attr( 'data-id-'+id, $(this).find('pais').text() );
+				
+				if ( $(this).attr('preferido') == '1' ) {
+					chooseAddress(id);
+				}
+			})
+		} else {
+			// user has only one address
+			$('#multipleAddressSelect').collapse('hide');
+		}
+	}
+
+	// Select address from all different saved directions
+	function chooseAddress(id) {
+		$('#inputChooseAddress').val(id);
+		$('#inputAddress').val($('#inputAddress').attr('data-id-'+id));
+		$('#inputCountry').val($('#inputCountry').attr('data-id-'+id));
+		$('#inputPostcode').val($('#inputPostcode').attr('data-id-'+id));
+		// getCities($('#inputPostcode').val(), $('#inputCountry').val());
+		if ( $('#inputCity[data-id-'+id+']').length == 0 ) {
+			console.log('entro');
+			$('#inputCity').append('<option value="'+id+'">' + $('#inputCity').attr('data-id-'+id) + '</option>');
+		}
+		$('#inputCity').val(id);
+	}
+
+	// Get all cities related to given info and print in selector
+	function getCities(postcode, country) {
+		$.ajax({
+			url: '/includes/web/ajax/poblaciones',
+			type: 'POST',
+			data: 'zipcode=' + postcode + '&country=' + country,
+			success: function (data) {
+				var cities = data.split(',');
+				$('#inputCity').html('');
+				for (var i=0; i<cities.length; i++) {
+					$('#inputCity').append('<option value="'+ cities[i] +'">' + cities[i] + '</option>');
+				}
+			}
+		});
+	}
+
 	/**
 	 * =================
 	 * EVENTS
@@ -420,7 +496,9 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 
 	// Check if email is already registered
 	$('#inputEmail').focusout(function() {
-		checkregistered();
+		if ( !$(this).val() == '' ) {
+			checkregistered();
+		}
 	});
 
 	// Open login tab if email is already registered from delivery details form
@@ -432,10 +510,15 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		$('#inputPasswordLogin').focus();
 	})
 
-	// Print cities related to zipcode given
+	// Print cities related to postcode given
 	$('#inputPostcode').focusout(function() {
-		var zipcode = $(this).val(),
-			country = $('#inputCountry option:selected').attr('value'); // TO DO: ajax to get zipcodes from any database
+		var postcode = $(this).val(),
+			country = $('#inputCountry option:selected').attr('value'); // TO DO: ajax to get postcodes from any database
+		getCities(postcode, country);
+	})
+
+	$('#inputChooseAddress').change(function() {
+		chooseAddress($(this).val());
 	})
 
 	// Show selected payment method
@@ -477,20 +560,21 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	$('#loginForm').submit(function(e) {
 		e.preventDefault();
 		$.ajax({
-			url: '/includes/web/plugin_login_carrito',
+			url: '/includes/web/plugin_login_carrito-r',
 			type: 'POST',
 			data: 'e=' + $('#inputEmailLogin').val() + '&p=' + $('#inputPasswordLogin').val(),
 			success: function (data) {
-				if (data !== '') {
-					$('#wrongPassLoginMsg').collapse('show');
-					$('#inputPasswordLogin').focus();
-
-					if (data == 'login-ok') {
-						$('#wrongPassLoginMsg').collapse('hide');
-						$('#deliveryDetailsTab').tab('show');
-						$('#logincontent').removeClass('active');
-						$('#shippingDetailsContent').addClass('active');
-					}
+				// login ko
+				if (data === 'login-ko') {
+					$('#wrongLoginMsgCheckout').collapse('show');
+				// login ok
+				} else if ( !(data == 'email-ok' || data == 'email-ko') ) {
+					$('#wrongLoginMsgCheckout').collapse('hide');
+					$('#deliveryDetailsTab').tab('show');
+					$('#loginContent').removeClass('active');
+					$('#shippingDetailsContent').addClass('active');
+					$('.topbar .log-option').addClass('logged');
+					getUserInfo(data);
 				}
 			}
 		});

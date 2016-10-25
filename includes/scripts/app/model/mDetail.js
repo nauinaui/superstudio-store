@@ -445,7 +445,7 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 
 			// Send product info to cart
 			$.ajax({
-				url: '/includes/web/carrito-r?accion=anadir' + query,
+				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
 				success: function (data) {
 					showFeedback(ok);
 					if ( !type==='pack' ) {

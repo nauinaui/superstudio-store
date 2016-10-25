@@ -874,6 +874,13 @@
 																<input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="Teléfono" required>
 															</div>
 														</div>
+														<div class="form-group collapse" id="multipleAddressSelect">
+														<label for="inputChooseAddress" class="col-sm-3 control-label">Elije dirección*</label>
+															<div class="col-sm-9">
+																<select class="form-control" id="inputChooseAddress" name="inputChooseAddress" required>
+																</select>
+															</div>
+														</div>
 														<div class="form-group">
 															<label for="inputAddress" class="col-sm-3 control-label">Dirección*</label>
 															<div class="col-sm-9">
@@ -900,11 +907,45 @@
 															<label for="inputCountry" class="col-sm-3 control-label">País*</label>
 															<div class="col-sm-9">
 																<select class="form-control" id="inputCountry" name="inputCountry" required>
-																	<option value="AD">Andorra</option>
-																	<option value="AL">Albania</option>
-																	<option value="AS">Áustria</option>
-																	<option value="BH">Bosnia-Herzegovina</option>
-																	<option value="ES">España</option>
+																	<option value="ad">Andorra</option>
+																	<option value="al">Shqipëri (Albania)</option>
+																	<option value="at">Österreich (Austria)</option>
+																	<option value="ba">Bosna i Hercegovina (Bosnia-Herzegovina)</option>
+																	<option value="be">Belgique (Belgium)</option>
+																	<option value="ch">Sweiss (Switzerland)</option>
+																	<option value="cy">Chypre (Chypre)</option>
+																	<option value="cz">Ceská Republika (Czech Republic)</option>
+																	<option value="de">Deutschland (Germany)</option>
+																	<option value="dk">Danmark (Denmark)</option>
+																	<option value="ee">Eesti (Estonia)</option>
+																	<option value="es" selected="selected">España (Spain)</option>
+																	<option value="fi">Suomi (Finland)</option>
+																	<option value="fr">France (France)</option>
+																	<option value="fro">Føroyar (Faroe Islands)</option>
+																	<option value="gb">England -UK- (England)</option>
+																	<option value="gb-gal">Cymru -UK- (Wales)</option>
+																	<option value="gb-irn">Tuaisceart Éireann -UK- (Northern Ireland)</option>
+																	<option value="gb-irr">Éire (Ireland)</option>
+																	<option value="gb-sct">Scotland -UK- (Scotland)</option>
+																	<option value="gr">Ελλάδα (Greece)</option>
+																	<option value="hr">Hrvatska (Croatia)</option>
+																	<option value="hu">Magyarország (Hungary)</option>
+																	<option value="is">Iceland (Iceland)</option>
+																	<option value="it">Italia (Italy)</option>
+																	<option value="lt">Lietuva (Lietuva)</option>
+																	<option value="lu">Luxembourg (Luxembourg)</option>
+																	<option value="lv">Latvija (Latvia)</option>
+																	<option value="mk">Македонија (Macedonia)</option>
+																	<option value="mne">Crna Gora (Montenegro)</option>
+																	<option value="mt">Malta (Malta)</option>
+																	<option value="nl">Holland (Netherlands)</option>
+																	<option value="no">Norge (Norway)</option>
+																	<option value="pl">Polska (Poland)</option>
+																	<option value="pt">Portugal (Portugal)</option>
+																	<option value="ro">România (Romania)</option>
+																	<option value="se">Sverige (Sweden)</option>
+																	<option value="sk">Slovensko (Slovakia)</option>
+																	<option value="tr">Türkiye (Turkey)</option>
 																</select>
 															</div>
 														</div>
@@ -948,10 +989,10 @@
 																</div>
 															</div>
 														</div>
+														<div id="wrongLoginMsgCheckout" class="collapse alert alert-danger">El email y la contraseña no coinciden</div>
 														<div class="form-group">
 															<div class="col-sm-offset-3 col-sm-9">
 																<button type="submit" class="btn btn-primary">Log in</button>
-																<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contrase&#241;a incorrecta.</div>
 															</div>
 														</div>
 														<div class="form-group">

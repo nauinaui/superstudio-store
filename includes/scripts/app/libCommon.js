@@ -121,36 +121,16 @@ define(['jquery'], function ($) {
 	}
 
 	/**
-	 * Refresh cart number of items after adding one
-	 * @param action:String Add or substract item
-	 */
-	LibCommon.prototype.refreshCartNumber = function(action) {
-		var item = parseInt($('#cartItemsNumber').text(), 10);
-		if (action == 'add') {
-			item = item + 1;
-		} else if (action == 'substract') {
-			item = item - 1;
-		}
-		$('#cartItemsNumber').text(item);
-		$('#cartItemsNumber').addClass('animated rubberBand');
-		setTimeout(function(){
-			$('#cartItemsNumber').removeClass('animated rubberBand');
-		}, 2000);
-	}
-
-	/**
 	 * AJAX - Delete all same products from cart
 	 */
-	LibCommon.prototype.deleteAllProductFromCart = function(id_producto) {
+	LibCommon.prototype.deleteAllProductFromCart = function(relationID) {
 	    $.ajax({
-	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+id_producto+"&_=146729611725o9",
+	    	url: "/includes/web/plugin_accion_carrito.asp?accion=borra&idrelacion="+relationID,
 	    	success: function() { 
-	    		console.log('deleted product from cart');
-	    		$('.item[rel="'+id_producto+'"]').remove();
-	    		var action = 'substract';
-	    		this.refreshCartNumber(action);
+				// Refresh cart items
+				$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito-r.asp');
+				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
 	    	},
-	    	error: function() { console.log('Failed! delete product from cart'); },
 	    });
 	}			
 
@@ -189,16 +169,16 @@ define(['jquery'], function ($) {
 
 		// Send info to cart
 		$.ajax({
-			url: '/includes/web/carrito-r.asp?accion=anadir' + envioCarrito + query,
+			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				// Write all products into the content div
 				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito-r.asp');
 				// cargamos carrito linia (updating number)
 				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
 				// show effect
-				$('#myCart').addClass('animated tada');
+				$('#cartItemsNumber').addClass('animated rubberBand');
 				setTimeout(function(){
-					$('#myCart').removeClass('animated tada');
+					$('#cartItemsNumber').removeClass('animated rubberBand');
 				}, 2000);
 			}
 		});

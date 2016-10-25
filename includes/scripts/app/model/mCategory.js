@@ -93,6 +93,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 			var i = 0;
 			var url = window.location.pathname;
 			var filters = '';
+			
 			$('.resultados .active-filter').each(function() {
 				var type = $(this).attr('data-type');
 				if (type === 'rango') {
@@ -102,10 +103,21 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 				} else {
 					var option = $(this).attr('id');
 				}
-				if (i === 0) {
-					url = url + '?' + type + '=' + option;
-				} else {
-					url = url + '&' + type + '=' + option;
+
+				// check if this type has already any filter activated
+				if (url.indexOf(type) == -1) { // It's first value of this type
+					if (i === 0) {
+						url = url + '?' + type + '=' + option;
+					} else {
+						url = url + '&' + type + '=' + option;
+					}
+				} else { // There is another value activated of same type
+					// console.log('normal: ' + url);
+					var arr = url.split(type+'=');
+					// console.log('tallat: ' + arr);
+					url = arr[0] + type + '=' + option + ',' + arr[1];
+					// console.log('final: ' +url);
+					// alert('wait');
 				}
 				i++;
 			});
@@ -122,6 +134,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 		}
 	}
 
+	// Read all parameters from url to activate filters
 	function readFilters() {
 		var url = window.location.href;
 		url = url.split('?');
@@ -132,22 +145,38 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 
 			for ( var i = 0, l = url.length; i < l; i++ ) {
 				var filter = url[i].split('=');
-				if ( filter[0] === 'finish' ) { // it's finish filter
-					$('.filters-section .acabado div[value="'+ filter[1] +'"]').trigger('click');
-				} else if ( filter[0] === 'rango' ) { // it's price filter
-				    var range = filter[1];
-				    range = range.split('-');
-				    $('#priceRange').attr('data-slider-value', '[' + range[0] + ',' + range[1] + ']');
-				    enableFilter( range[0] + ',' + range[1], 'price', 'range');
-				} else if ( filter[0] == 'orden' ) { // sort
-					$('#sortList label.active').removeClass('active');
-					$('#sortList label > input[data-url="' + filter[1] + '"]').parent().addClass('active');
-				} else if ( filter[0] == 'asc' ) {
-					if ( filter[1] == 'true' ) {
-						$('#sortList label.active').addClass('change-sort');
+				
+				console.log(filter[1].indexOf(','));
+				console.log(filter);
+
+				if ( filter[1].indexOf(',') == -1 ) { // if current filter doesn't have more than one active value 
+					if ( filter[0] === 'finish' ) { // it's finish filter
+						$('.filters-section .acabado div[value="'+ filter[1] +'"]').trigger('click');
+					} else if ( filter[0] === 'rango' ) { // it's price filter
+					    var range = filter[1];
+					    range = range.split('-');
+					    $('#priceRange').attr('data-slider-value', '[' + range[0] + ',' + range[1] + ']');
+					    enableFilter( range[0] + ',' + range[1], 'price', 'range');
+					} else if ( filter[0] == 'orden' ) { // sort
+						$('#sortList label.active').removeClass('active');
+						$('#sortList label > input[data-url="' + filter[1] + '"]').parent().addClass('active');
+					} else if ( filter[0] == 'asc' ) { // sort direction
+						if ( filter[1] == 'true' ) {
+							$('#sortList label.active').addClass('change-sort');
+						}
+					} else { //it's a normal filter
+						$('.filters-columns input[value="' + filter[1] + '"]').trigger( 'click' );
 					}
-				} else {
-					$('.filters-columns input[value="' + filter[1] + '"]').trigger( 'click' );
+				} else { // if current filter has more than one active value 
+					var values = filter[1].split(',');
+					var j;
+					for (j = 0; j < values.length; ++j) {
+						if ( filter[0] === 'finish' ) { // it's finish filter
+							$('.filters-section .acabado div[value="'+ values[j] +'"]').trigger('click');
+						} else { //it's a normal filter
+							$('.filters-columns input[value="' + values[j] + '"]').trigger( 'click' );
+						}
+					}
 				}
 			}
 			$('#filtersBox').collapse('show');
