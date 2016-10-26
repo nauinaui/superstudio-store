@@ -170,27 +170,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		}
 	}
 
-	/**
-	 * Get image of finish selected
-	 */	
-	function changeFinishImage(finishObj) {
-		var finish_id 	= finishObj.attr('data-finish'),
-			ref			= finishObj.parent().parent().attr('data-product-ref');
-
-		$.ajax({
-			url: '/includes/web/plugin_fotos_color.asp?ref='+ref+'&id_color='+finish_id,
-			success: function (data) {
-				if ( $('body').is('.pack') ) {
-					var product_id = finishObj.parent().parent().attr('data-product-id');
-					$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
-				} else {
-					$('#mainImage').attr('src',data);
-					zoomInit();
-				}
-			}
-		});
-	}
-
 	/*
 	* Change price if finish selection has different price
 	* param:finish object - Finish selected by user
@@ -366,14 +345,25 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 
 	// Show delivery time and stock after selecting a finish and show finish image in main image place
 	$('.finishes-list input[type="radio"]').change(function() {
+		var finishID 	= $(this).attr('data-finish'),
+			productRef	= $(this).parent().parent().attr('data-product-ref'),
+			place 		= 'detail';
+
 		changeDeliveryTime($(this));
-		changeFinishImage($(this));
+		common.changeFinishImage(finishID, productRef, place);
 		changePrice($(this));
 		$('#unitsSelect').empty();
 		for (var i=0; i<$(this).attr('data-stock'); i++) {
 		    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
 		}			
 	});
+
+	// Initialize zoom effect with correct image - event triggered only by ajax request!
+	$('.finishes-list input').on('click', function() {
+		if ( $(this).is(':checked') ) {
+			zoomInit();
+		}
+	})
 
 	// Show products with better delivery and scroll
 	$('#showBetterDelivery').on('click', function() {
@@ -437,19 +427,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
 				success: function (data) {
 					showFeedback(ok);
-					if ( !type==='pack' ) {
-						hideUpSelling();
-					}
-					setTimeout(function(){
-						showCrossSelling();
-					}, 3000);
+					// if ( !type==='pack' ) {
+					// 	hideUpSelling();
+					// }
+					// setTimeout(function(){
+					// 	showCrossSelling();
+					// }, 3000);
 
 					// Cargamos carrito
 					common.addProductToCart(product_id, query, type);
-					
-					//topbar.find('#carrito').html(data).slideDown(250);
-					//cargamos carrito linia
-					//topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
 				},
 				error: function() {
 					console.log('error');
