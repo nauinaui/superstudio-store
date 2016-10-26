@@ -148,6 +148,15 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		}
 	});
 
+	// Product's grid - Change image for selected finished image
+	$('.producto-box .acabados input[type="radio"]').change(function() {
+		console.log('entro event');
+		var finishID 	= $(this).attr('data-finish'),
+			productRef	= $(this).closest('.content').find('.item').attr('data-product-ref'),
+			place 		= 'grid';
+		common.changeFinishImage(finishID, productRef, place);
+	});
+
 	// Product's grid - Add to cart from product's grid
 	$('.add-product-form .btn.add-to-cart').on('click', function(e) {
 		e.preventDefault();
@@ -182,12 +191,11 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 				success: function (data) {
 					//show feedback
 					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartFeedback'));
+					setTimeout(function(){
+						$('body').append($('#addedToCartFeedback'));
+					}, 2000);
 					// Cargamos carrito
 					common.addProductToCart(product_id, query, type);
-					
-					//topbar.find('#carrito').html(data).slideDown(250);
-					//cargamos carrito linia
-					//topbar.find('.carritoText').load('/includes/web/carrito_linea.asp');
 				},
 				error: function() {
 					console.log('error');

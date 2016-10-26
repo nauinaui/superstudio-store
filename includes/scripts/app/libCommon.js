@@ -121,6 +121,33 @@ define(['jquery'], function ($) {
 	}
 
 	/**
+	 * Product's grid - Change image when change a product finish
+	 */
+	LibCommon.prototype.changeFinishImage = function(finishID, productRef, place) {
+		console.log(finishID);
+		console.log(productRef);
+
+		$.ajax({
+			url: '/includes/web/plugin_fotos_color.asp?ref='+productRef+'&id_color='+finishID,
+			success: function (data) {
+				if ( place === 'grid' ) {
+					$('.producto-box a.item[data-product-ref="'+productRef+'"]').addClass('show');
+					$('.producto-box a.item[data-product-ref="'+productRef+'"] img').attr('src',data);
+				} else if ( place === 'detail' ) {
+					if ( $('body').is('.pack') ) {
+						var product_id = finishObj.parent().parent().attr('data-product-id');
+						$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
+					} else {
+						$('#mainImage').attr('src',data);
+						zoomInit();
+					}
+				}
+				console.log('image changed!');
+			}
+		});
+	}
+
+	/**
 	 * AJAX - Delete all same products from cart
 	 */
 	LibCommon.prototype.deleteAllProductFromCart = function(relationID) {

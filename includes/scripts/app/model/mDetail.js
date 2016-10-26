@@ -96,17 +96,6 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 		}
 		$('#deliveryTimeText .value').text(longestTime);
 		$('#deliveryTimeText .value').show();
-
-		// Show tip: more products with shorter time
-		// if ( longestTime > 2 ) { // It's too late when delivery time exceeds 5-8 days
-		// 	$('#deliveryTimeText').closest('.square.time').addClass('too-late');
-		// 	$('#betterDeliveryTip').collapse('show');
-		// 	$('#betterTimeSection').collapse('show');
-		// } else {
-		// 	$('#deliveryTimeText').closest('.square.time').removeClass('too-late');
-		// 	$('#betterDeliveryTip').collapse('hide');
-		// 	$('#betterTimeSection').collapse('hide');
-		// }
 	}
 
 	/**
@@ -184,15 +173,15 @@ define(['./Base', '../libCommon', 'bootstrap', 'countdown', '../lib', 'zoom', 'r
 	/**
 	 * Get image of finish selected
 	 */	
-	function changeFinishImage(finish) {
-		var finish_id 	= finish.attr('data-finish'),
-			ref			= finish.parent().parent().attr('data-product-ref');
+	function changeFinishImage(finishObj) {
+		var finish_id 	= finishObj.attr('data-finish'),
+			ref			= finishObj.parent().parent().attr('data-product-ref');
 
 		$.ajax({
 			url: '/includes/web/plugin_fotos_color.asp?ref='+ref+'&id_color='+finish_id,
 			success: function (data) {
 				if ( $('body').is('.pack') ) {
-					var product_id = finish.parent().parent().attr('data-product-id');
+					var product_id = finishObj.parent().parent().attr('data-product-id');
 					$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
 				} else {
 					$('#mainImage').attr('src',data);
