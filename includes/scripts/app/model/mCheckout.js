@@ -321,6 +321,11 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		}
     }
 
+    // Disable log in tab for a logged users
+    function blockLoginTab() {
+    	$('#loginTab a').attr('data-toggle','');
+    }
+
     // Get user info
 	function getUserInfo(data) {
 		var userName = $(data).find('nombre').text(),
@@ -667,6 +672,12 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	 */
 
     $(document).ready( function() {
+		// Check if user is logged to show user info
+		var common = new LibCommon();
+		if ( common.detectLogged() == true ) {
+			blockLoginTab();
+		}
+
 		// Show tables with products
 		showTablesWithProducts();
 
@@ -679,7 +690,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			html: true
 		});
 
-		var common = new LibCommon();
 		common.detectMobile();
     });
 

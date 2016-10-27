@@ -121,6 +121,18 @@ define(['jquery'], function ($) {
 	}
 
 	/**
+	 * Logged user detection
+	 */
+	LibCommon.prototype.detectLogged = function() {
+		var isLogged = false;
+
+		if ( $('body.logged').length > 0 ) {
+			isLogged = true;
+		}
+		return isLogged;
+	}
+
+	/**
 	 * Change image when change a product finish
 	 */
 	LibCommon.prototype.changeFinishImage = function(finishID, productRef, place) {
