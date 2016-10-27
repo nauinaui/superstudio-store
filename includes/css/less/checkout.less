@@ -70,8 +70,14 @@
                 color: @blanco;
                 text-transform: uppercase;
 
-                &:hover {
+                &:hover,
+                &:active,
+                &:focus {
                   background-color: @gris_claro;
+                }
+
+                .logged {
+                  display: none;
                 }
               }
 
@@ -735,6 +741,28 @@
   border: 0;
 }
 
+// is logged
+body.logged {
+  .panel-group.steps-accordion .panel-default > .panel-heading + .panel-collapse .panel-body .nav-tabs > li.login-tab > a {
+    cursor: no-drop;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+    }
+    
+    .login {
+      display: none;
+    }
+    
+    .logged {
+      display: block;
+    }
+  }
+}
+
+// media queries
 @media (max-width: @md-max) {
   .panel-group.steps-accordion .panel-default .box .shipping-company-list .company label .company-content {
     width: 175px;

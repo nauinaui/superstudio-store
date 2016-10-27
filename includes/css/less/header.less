@@ -155,24 +155,15 @@
       .user-dropdown {
         display: none;
       }
-
-      &.logged {
-        .login-dropdown {
-          display: none;
-        }
-        .user-dropdown {
-          display: block;
-        }
-      }
     }
   }
 
   .language,
-  .logged {
+  .log-option {
     .dropdown-menu {
       width: 150px;
       
-      .language-list {
+      ul {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -190,6 +181,17 @@
 
   .language {
     border: 0;
+  }
+}
+
+body.logged {
+  .topbar .log-option {
+    .login-dropdown {
+      display: none;
+    }
+    .user-dropdown {
+      display: block;
+    }
   }
 }
 
@@ -655,8 +657,12 @@
         background-color: darken(@blanco_roto, 3%);
       }
 
-      .close {
-        width: 20px;
+      .media-left {
+        padding-right: 5px;
+
+        .close {
+          width: 20px;
+        }
       }
 
       .nombre {
@@ -671,16 +677,16 @@
 
       .price {
         .price();
-        margin: 5px 0 0;
+        margin: 0;
 
         .last-price {
-          font-size: 20px;
-          line-height: 18px;
-          margin-right: 5px;
+          font-size: 18px;
+          line-height: 16px;
+          margin-right: 2px;
 
           .cents,
           .currency {
-            font-size: 16px;
+            font-size: 14px;
           }
 
           @media (max-width: @xs-max) {
@@ -690,12 +696,13 @@
         }
 
         .old-price {
-          font-size: 20px;
-          margin-right: 5px;
+          font-size: 18px;
+          line-height: 16px;
+          margin-right: 2px;
           
           .cents,
           .currency {
-            font-size: 16px;
+            font-size: 14px;
           }
           
           @media (max-width: @xs-max) {
@@ -705,8 +712,8 @@
         }
 
         .discount {
-          font-size: 14px;
-          line-height: 18px;
+          font-size: 12px;
+          line-height: 16px;
           padding: 0 5px;
 
           @media (max-width: @xs-max) {
@@ -718,6 +725,7 @@
 
       .units {
         font-size: 0;
+        padding-left: 5px;
         text-align: center;
 
         .units-title {
@@ -732,24 +740,25 @@
         button {
           font-size: 10px;
           padding: 3px;
-          line-height: 7px;
+          line-height: 6px;
           background: @blanco;
-          height: 15px;
-          width: 15px;
+          height: 13px;
+          width: 13px;
 
           &:hover {
             border-color: @gris_oscuro;
+            color: @gris_oscuro;
           }
         }
 
         .number {
           color: @gris_oscuro;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 700;
-          margin: 0 5px;
+          margin: 0 2px;
           vertical-align: bottom;
           display: inline-block;
-          line-height: 16px;
+          line-height: 13px;
         }
       }
     }
