@@ -347,13 +347,14 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		$('#inputCountry').val(userCountry);
 		$('#inputPassport').val(userPassport);
 
-		getCities(userPostcode, userCountry);
+		// getCities(userPostcode, userCountry);
 		
 		if ( !$(data).find('direcciones').text() == '' ) { 
 			// User has more than one address
 			$('#multipleAddressSelect').collapse('show');
 			$('#inputChooseAddress').html('');
 			var userPlaces = $(data).find('sitio');
+			var foundFav = false;
 			userPlaces.each( function() {
 				var id = $(this).attr('id');
 				$('#inputChooseAddress').append('<option value="'+id+'">' + $(this).find('direccion').text() + '</option>');
@@ -363,9 +364,15 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 				$('#inputCountry').attr( 'data-id-'+id, $(this).find('pais').text() );
 				
 				if ( $(this).attr('preferido') == '1' ) {
+					console.log('soc prefe');
 					chooseAddress(id);
+					foundFav = true;
 				}
 			})
+			// Select first address if there is not a favourite one
+			if ( foundFav === false ) {
+				chooseAddress($("#inputChooseAddress option:first").attr('value'));
+			}
 		} else {
 			// user has only one address
 			$('#multipleAddressSelect').collapse('hide');
@@ -374,16 +381,14 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 
 	// Select address from all different saved directions
 	function chooseAddress(id) {
+		var cityName = $('#inputCity').attr('data-id-'+id);
 		$('#inputChooseAddress').val(id);
 		$('#inputAddress').val($('#inputAddress').attr('data-id-'+id));
 		$('#inputCountry').val($('#inputCountry').attr('data-id-'+id));
 		$('#inputPostcode').val($('#inputPostcode').attr('data-id-'+id));
-		// getCities($('#inputPostcode').val(), $('#inputCountry').val());
-		if ( $('#inputCity[data-id-'+id+']').length == 0 ) {
-			console.log('entro');
-			$('#inputCity').append('<option value="'+id+'">' + $('#inputCity').attr('data-id-'+id) + '</option>');
-		}
-		$('#inputCity').val(id);
+		$('#inputCity').hide();
+		$('#inputCityWritten').val(cityName);
+		$('#inputCityWritten').show();
 	}
 
 	// Get all cities related to given info and print in selector
@@ -393,10 +398,20 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			type: 'POST',
 			data: 'zipcode=' + postcode + '&country=' + country,
 			success: function (data) {
-				var cities = data.split(',');
-				$('#inputCity').html('');
-				for (var i=0; i<cities.length; i++) {
-					$('#inputCity').append('<option value="'+ cities[i] +'">' + cities[i] + '</option>');
+				console.log(data);
+				if ( data == '' ) {
+					$('#inputCity').hide();
+					$('#inputCityWritten').show();
+					$('#inputCityWritten').focus();
+				} else {
+					$('#inputCityWritten').hide();
+					$('#inputCity').show();
+					$('#inputCity').focus();
+					var cities = data.split(',');
+					$('#inputCity').html('');
+					for (var i=0; i<cities.length; i++) {
+						$('#inputCity').append('<option value="'+ cities[i] +'">' + cities[i] + '</option>');
+					}
 				}
 			}
 		});
@@ -578,7 +593,8 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 					$('#deliveryDetailsTab').tab('show');
 					$('#loginContent').removeClass('active');
 					$('#shippingDetailsContent').addClass('active');
-					$('.topbar .log-option').addClass('logged');
+					$('body').addClass('logged');
+					blockLoginTab();
 					getUserInfo(data);
 				}
 			}

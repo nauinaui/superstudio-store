@@ -25,7 +25,7 @@
 	</style>
 </head>
 
-<body class="logged">
+<body class="">
 
 <!-- Only shown when lateral content or cart is opened-->
 <div class="dark-layer"></div>
@@ -842,7 +842,10 @@
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
 									<li id="deliveryDetailsTab" role="presentation" class="active">
-										<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">Usuario anónimo</a>
+										<a href="#shippingDetailsContent" aria-controls="shippingDetailsContent" role="tab" data-toggle="tab">
+											<span class="login">Usuario anónimo</span>
+											<span class="logged">Hola Arnau</span>
+										</a>
 									</li>
 									<li id="loginTab" class="login-tab" role="presentation">
 										<a href="#loginContent" aria-controls="loginContent" role="tab" data-toggle="tab">
@@ -899,11 +902,8 @@
 														<div class="form-group">
 															<label for="inputCity" class="col-sm-3 control-label">Población*</label>
 															<div class="col-sm-9">
-																<select class="form-control" id="inputCity" name="inputCity" required>
-																	<option>Andorra la Vella</option>
-																	<option>Escaldes</option>
-																	<option>Valira</option>
-																</select>
+																<select class="form-control" id="inputCity" name="inputCity" placeholder="Población" required></select>
+																<input type="text" class="form-control collapse input-city-written" id="inputCityWritten" placeholder="Población" required>
 															</div>
 														</div>
 														<div class="form-group">

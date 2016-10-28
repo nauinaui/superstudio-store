@@ -117,6 +117,10 @@
         .btn {
           margin-bottom: 20px;
         }
+
+        .input-city-written {
+          display: none;
+        }
       }
 
       .well.well-sm {
@@ -743,21 +747,25 @@
 
 // is logged
 body.logged {
-  .panel-group.steps-accordion .panel-default > .panel-heading + .panel-collapse .panel-body .nav-tabs > li.login-tab > a {
-    cursor: no-drop;
+  .panel-group.steps-accordion .panel-default > .panel-heading + .panel-collapse .panel-body .nav-tabs > li {           
+    &.login-tab > a {
+      cursor: no-drop;
 
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: transparent;
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: transparent;
+      }
     }
-    
-    .login {
-      display: none;
-    }
-    
-    .logged {
-      display: block;
+
+    & > a {
+      .login {
+        display: none;
+      }
+      
+      .logged {
+        display: block;
+      }
     }
   }
 }
