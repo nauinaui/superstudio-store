@@ -112,12 +112,8 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 						url = url + '&' + type + '=' + option;
 					}
 				} else { // There is another value activated of same type
-					// console.log('normal: ' + url);
 					var arr = url.split(type+'=');
-					// console.log('tallat: ' + arr);
 					url = arr[0] + type + '=' + option + ',' + arr[1];
-					// console.log('final: ' +url);
-					// alert('wait');
 				}
 				i++;
 			});
@@ -145,9 +141,6 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 
 			for ( var i = 0, l = url.length; i < l; i++ ) {
 				var filter = url[i].split('=');
-				
-				console.log(filter[1].indexOf(','));
-				console.log(filter);
 
 				if ( filter[1].indexOf(',') == -1 ) { // if current filter doesn't have more than one active value 
 					if ( filter[0] === 'finish' ) { // it's finish filter

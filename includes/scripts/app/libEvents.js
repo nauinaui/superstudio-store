@@ -150,7 +150,6 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 
 	// Product's grid - Change image for selected finished image
 	$('.producto-box .acabados input[type="radio"]').change(function() {
-		console.log('entro event');
 		var finishID 	= $(this).attr('data-finish'),
 			productRef	= $(this).closest('.content').find('.item').attr('data-product-ref'),
 			place 		= 'grid';
@@ -272,7 +271,9 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 			$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
 			$('.help-block').addClass('hidden');
 
-			var url = 'https://intranet.superestudio.com/newsletter';
+
+			var url = '/newsletter';
+			console.log($(this).serialize());
 			$.ajax({
 				url: url,
 				type: 'post',
