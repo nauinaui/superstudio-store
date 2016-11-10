@@ -1,10 +1,10 @@
 define(function (require) {
     var $           = require('jquery'),
-        lib         = require('./lib'),
-        libCommon   = require('./libCommon'),
-        libEvents   = require('./libEvents'),
-        controller  = require('./controller/cCategory'),
-        model       = require('./model/mCategory');
+        lib         = require('./lib.js'),
+        libCommon   = require('./libCommon.js'),
+        libEvents   = require('./libEvents.js'),
+        controller  = require('./controller/cCategory.js'),
+        model       = require('./model/mCategory.js');
 
     //A fabricated API to show interaction of
     //common and specific pieces.

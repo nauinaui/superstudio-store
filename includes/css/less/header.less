@@ -322,6 +322,12 @@ body.logged {
     &:hover {
       color: @azul;
     }
+
+    @media (max-width: @sm-max) and (min-width: @xs-max) {
+      & > span {
+        display: none;
+      }      
+    }
   }
   
   .icon-menu {
@@ -330,6 +336,31 @@ body.logged {
     width: 44px;
     height: 44px;
     margin-left: 10px;
+
+    .glyphicon-menu-hamburger {
+      color: @negro;
+      display: none;
+      font-size: 16px;
+    }
+
+    @media (max-width: @sm-max) and (min-width: @xs-min) {
+      background-color: @blanco;
+      border-radius: 50%;
+
+      img {
+        display: none;
+      }
+
+      .glyphicon-menu-hamburger {
+        display: block;
+        line-height: 44px;
+      }
+    }
+
+    @media (max-width: @xs-max) {
+      display: block;
+      margin: 0 auto;
+    }
     
     .icon-menu-wave {
       position: absolute;
@@ -389,6 +420,10 @@ body.logged {
       color: @gris_oscuro;
       line-height: 17px;
       padding: 0;
+
+      @media (max-width: @xs-max) {
+        line-height: 24px;
+      }
       
       &.rojo {
         color: @rojo;
@@ -938,13 +973,15 @@ body.logged {
     }
     
     .subcategorias {
+      display: block;
+      line-height: 13px;
       margin: 0;
       text-align: left;
       vertical-align: inherit;
       
       a, button {
         display: inline-block;
-        line-height: 26px;
+        line-height: 10px;
         padding-left: 5px;
         vertical-align: top;
       }

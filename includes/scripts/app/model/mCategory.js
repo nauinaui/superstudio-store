@@ -1,4 +1,4 @@
-define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
+define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
     var mCategory = new Base('This is the data for Page Category');
     var common = new LibCommon();
     var paginateFrom = 1;
@@ -215,7 +215,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 			var orden = getParameterByName('orden');
 			var packs = getParameterByName('packs');
 
-			var urlParametros = "http://comunicaciones.superestudio.com/sillas-modernas"+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
+			var urlParametros = "categoria"+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
 
 			$.ajax({
 				url: urlParametros,
@@ -267,7 +267,7 @@ define(['./Base', '../libCommon', 'bootstrap_slider', 'plugins'], function (Base
 
 	// Color selector tooltip filter
 	$('.acabado > div').mouseover(function() {
-		var colorName = $(this).attr('value');
+		var colorName = $(this).attr('data-title');
 		$(this).tooltip('hide')
 			.attr('data-original-title', colorName)
 			.tooltip('fixTitle')

@@ -1,4 +1,4 @@
-define(['./Base', 'countdown'], function (Base, Countdown) {
+define(['./Base.js', 'countdown'], function (Base, Countdown) {
     var mDefault = new Base('This is the data for Page Default');
 
 	/**

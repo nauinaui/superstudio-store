@@ -1,4 +1,4 @@
-define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
+define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
     var mCheckout = new Base('This is the data for Page Checkout');
 
 	/**
@@ -35,7 +35,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
     // AJAX - Check if email is already registered
     function checkregistered() {
 		$.ajax({
-			url: '/includes/web/plugin_login_carrito-r',
+			url: '/includes/web/plugin_login_carrito',
 			type: 'POST',
 			data: 'e=' + $('#inputEmail').val() + '&p=' + $('#pass_cliente').val(),
 			success: function (data) {
@@ -364,7 +364,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 				$('#inputCountry').attr( 'data-id-'+id, $(this).find('pais').text() );
 				
 				if ( $(this).attr('preferido') == '1' ) {
-					console.log('soc prefe');
 					chooseAddress(id);
 					foundFav = true;
 				}
@@ -398,7 +397,6 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 			type: 'POST',
 			data: 'zipcode=' + postcode + '&country=' + country,
 			success: function (data) {
-				console.log(data);
 				if ( data == '' ) {
 					$('#inputCity').hide();
 					$('#inputCityWritten').show();
@@ -417,62 +415,123 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		});
 	}
 
+	function getProductInfo(triggerObj) {
+		var element			= triggerObj.closest('.item'),
+			productRelation = element.attr('data-relation-id'),
+			quantity 		= element.find('.quantity-select').val(),
+			prevQuantity	= element.find('.quantity-select').data('prev-val'),
+			finish 			= triggerObj.find('option:selected').val(),
+			action			= 'color';
+
+		if ( triggerObj.is('.quantity-select') == true ) {
+			action = 'cantidad';
+		}
+
+		refreshDeliveryOptions(action, productRelation, finish, quantity, prevQuantity);
+	}
+
+
+	// Send new delivery info to server and print new results
+	function refreshDeliveryOptions(action, productRelation, finish, quantity, prevQuantity) {
+		$.ajax({
+			url: '/includes/web/ajax/actualizar_pedido',
+			type: 'POST',
+			data: 'action=' + action + '&relation=' + productRelation + '&finish=' + finish + '&quantity=' + quantity + '&prevquantity=' + prevQuantity,
+			success: function (data) {
+				$('#tableProductsContent').empty();
+				$('#tableProductsContent').append(data);
+
+				var otherInfo = $('#tableProductsContent #datos');
+				refreshOtherInfoFromDelivery(otherInfo);
+			}
+		});
+	}
+
+	// Write other info in correct places affected from delivery changes
+	function refreshOtherInfoFromDelivery(otherInfo) {
+		var totalPrice 		= otherInfo.find('input[name="tx_precio_total"]').val(),
+			shippingCosts 	= otherInfo.find('input[name="tx_gastos_envio"]').val(),
+			paymentCosts	= otherInfo.find('input[name="tx_gastos_pago"]').val(),
+			couponAmount	= otherInfo.find('input[name="tx_importe_cupon"]').val(),
+			showNif 		= otherInfo.find('input[name="mostrar_nif"]').val();
+		$('#totalText strong').text(totalPrice);
+		$('#shippingTotal').text(shippingCosts);
+		$('#paymentStepTotal').text(paymentCosts);
+		$('#couponAmount').text(couponAmount);
+		$('#couponAmount').text(couponAmount);
+	}
+
+	function validateCoupon() {
+		$.ajax({
+			url: '/includes/web/ajax/actualizar_cupon?cupon=' + $('#inputCoupon').val(),
+			type: 'POST',
+			success: function (data) {
+				var info = jQuery.parseJSON(data);
+				if ( info.error === 0 ) {
+					$('#textAlertCouponOk').html(info.mensaje);
+					$('#textAlertCouponOk').appendTo('<span id="couponAmount">'+info.total_actualizado+'</span>');
+					$('#couponAlertOk').collapse('show');
+					$('#couponAlertKo').collapse('hide');
+				} else if ( info.error === 1 ) {
+					$('#couponAlertOk').collapse('hide');
+					$('#couponAlertKo').collapse('show');
+				}
+			}
+		});
+	}
+
 	/**
 	 * =================
 	 * EVENTS
 	 * =================
 	 */
 
-	// Change from partial delivery to a unique delivery
-	$('input[name="deliveryType"]').on('change', function() {
-		if ( $('#deliveryType2').is(':checked') ) {
-			makeUniqueDelivery();
-		} else if ( $('#deliveryType1').is(':checked') ) {
-			makePartialDelivery();
-		}
-	});
-
 	// Refresh product tables when a finish is changed
-	$('#productsPanel tr.item select[name="finish"]').on('change', function() {
-		var time = $(this).find('option:selected').parent().attr('data-time-id'),
-			tableTime = $('#productsPanel .table-header.main').attr('data-time-id');
+	$('#productsPanel').on('change', '.finish-select', function() {
+		getProductInfo($(this));		
+	})
 
-		if ( $('#deliveryType2').is(':checked') ) {
-			makeUniqueDelivery();
-			$('#productsPanel tr.item').each(function() {
-				if ( $(this).find('select[name="finish"] option:selected').parent().attr('data-time-id') > tableTime ) {
-					tableTime = $(this).find('select[name="finish"] option:selected').parent().attr('data-time-id');
-				}
-			})
-			$('#productsPanel .table-header.main .delivery-time em.unique').html( $('#productsPanel .table-header[data-time-id="'+tableTime+'"] .delivery-time em' ).html() );
-		} else if ( $('#deliveryType1').is(':checked') ) {
-			makePartialDelivery();
+	$('#productsPanel').on('change', '.quantity-select', function() {
+		getProductInfo($(this));
+	})
+	
+
+	// get previous quantity for sendind value when a quantity changes
+	$('#productsPanel').on('focusin', '.quantity-select', function() {
+		$(this).data('prev-val',$(this).val());
+	})
+
+	// transform coupon input text to capital letters
+	$('#inputCoupon').keyup(function(){
+  		$(this).val( $(this).val().toUpperCase() );
+	})
+
+	// Validate coupon
+	$('#couponForm button').on('click', function(e) {
+		e.preventDefault();
+		var validator = $('#couponForm').validate();
+		if ( validator.form() == true ) {
+			validateCoupon();
 		}
+	})
+
+	//cancel coupon
+	$('#cancelCoupon').on('click', function() {
+		$.ajax({
+			url: '/includes/web/ajax/actualizar_cupon?anular=si',
+			type: 'POST',
+			success: function (data) {
+				if ( data.error === 0 ) {
+					console.log(data);
+					$('#productsStepTotal').html(data.total_actualizado);
+					$('#couponAlertOk').collapse('hide');
+				}
+			}
+		});
 	})
 
 	// Change price when a product quantity changes
 	$('#productsPanel tr.item select[name="quantity"]').on('change', function() {
-		var qty = $(this).val(),
-			pricePerUnit = $(this).parent().parent().find('.last-price').text();
-			total = 0,
-			isPound = false;
-
-		if ( pricePerUnit.charAt(0) === '&' ) {
-			pricePerUnit = pricePerUnit.replace('&pound;','');
-			isPound = true;
-		} else {
-			pricePerUnit = pricePerUnit.replace('€','');
-		}
-		pricePerUnit = parseFloat(pricePerUnit.replace(',', '.'));
-		total = (pricePerUnit * qty).toFixed(2);
-		total = total.replace('.',',');
-
-		if ( isPound == true ) {
-			$(this).parent().parent().find('.product-total').html('&pound;'+total);
-		} else {
-			$(this).parent().parent().find('.product-total').html(total+'€');
-		}
-
 		refreshProductTotal();
 	})
 
@@ -580,7 +639,7 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	$('#loginForm').submit(function(e) {
 		e.preventDefault();
 		$.ajax({
-			url: '/includes/web/plugin_login_carrito-r',
+			url: '/includes/web/plugin_login_carrito',
 			type: 'POST',
 			data: 'e=' + $('#inputEmailLogin').val() + '&p=' + $('#inputPasswordLogin').val(),
 			success: function (data) {
@@ -656,6 +715,13 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 	// Change focus from date inputs and decide when to check
 	$('#creditCard input').keyup(function() {
 		if ( $(this).parent().parent().is('.front') ) {
+			if ( $(this).is('#inputCardNumberBox1') && ($(this).val().length == 2) ) { //check if is AMEX card
+				if ( $(this).val()=='37' ) {
+					$('#creditCard').addClass('amex');
+				} else {
+					$('#creditCard').removeClass('amex');
+				}
+			}
 			if ( $(this).is('#inputCardMonth') && $(this).val().length > 1 && !$('#inputCardYear').val().length ) { // change focus to year input
 				$('#inputCardYear').focus();
 			}
@@ -692,6 +758,16 @@ define(['./Base', '../libCommon', 'bootstrap'], function (Base, LibCommon, Boots
 		var common = new LibCommon();
 		if ( common.detectLogged() == true ) {
 			blockLoginTab();
+		}
+
+		// Show nif if necessary
+		var total = $('#totalText strong').text();
+		total = total.replace(',','.');
+		total = total.replace('€','');
+		total = total.replace('£','');
+		console.log(total);
+		if ( $('#totalText strong').text() ) {
+			$('#inputGroupPassport').collapse('show');
 		}
 
 		// Show tables with products

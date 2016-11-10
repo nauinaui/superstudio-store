@@ -467,17 +467,33 @@
             width: 345px;
             position: relative;
 
-            .label {
+            &.amex {
+              .front {
+                .name-title {
+                  display: none;
+                }
+                .card-name-group {
+                  display: block;
+                }
+              }
+            }
+
+            .turn-card-label {
               background: @azul;
               cursor: pointer;
               font-weight: 300;
+              padding: 5px 10px;
               position: absolute;
-              top: 15px;
               right: -20px;
+              top: 15px;
+              transition: .3s;
               width: 120px;
               white-space: inherit;
               z-index: 1;
-              transition: .3s;
+
+              .media-heading {
+                font-size: 14px;
+              }
 
               &.error {
                 background-color: @rojo;
@@ -532,6 +548,7 @@
 
               .name-title {
                 color: @gris_claro;
+                display: block;
                 position: absolute;
                 bottom: 20px;
                 left: 30px;
@@ -565,8 +582,29 @@
               .card-year {
                 font-size: 12px;
                 height: 25px;
-                margin: 0 5px 0 0px;
+                margin: 0 5px 5px 0px;
                 padding: 0 5px;
+              }
+
+              .card-name-group {
+                display: none;
+                margin-left: 15px;
+                width: 200px;
+                
+                .card-name {
+                  display: block;
+                  font-size: 12px;
+                  height: 25px;
+                  text-align: left;
+                  width: 200px;
+                }
+              }
+
+              label.error {
+                background-color: @gris_claro_mas;
+                position: absolute;
+                left: 0;
+                top: 80px;
               }
             }
             

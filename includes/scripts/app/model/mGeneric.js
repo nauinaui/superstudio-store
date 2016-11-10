@@ -1,5 +1,5 @@
-define(['./Base', 'bootstrap'], function (Base, Bootstrap) {
-    var mDefault = new Base('This is the data for Page Privacy');
+define(['./Base.js', 'bootstrap'], function (Base, Bootstrap) {
+    var mGeneric = new Base('This is the data for generic pages');
 
 	/**
 	 * =================
@@ -25,5 +25,5 @@ define(['./Base', 'bootstrap'], function (Base, Bootstrap) {
 		
     });
 
-    return mDefault;
+    return mGeneric;
 });

@@ -6,7 +6,7 @@
 //except for 'app' ones, which are in a sibling
 //directory.
 require.config({
-    baseUrl: 'includes/scripts/lib',
+    baseUrl: '/new-portada/includes/scripts/lib', // /new-portada
     paths: {
       	app: 			  '../app',
         jquery:           'jquery-1.12.1.min',

@@ -166,8 +166,8 @@ define(['jquery'], function ($) {
 	    	url: "/includes/web/plugin_accion_carrito.asp?accion=borra&idrelacion="+relationID,
 	    	success: function() { 
 				// Refresh cart items
-				$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito-r.asp');
-				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
+				$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito.asp');
+				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
 	    	},
 	    });
 	}			
@@ -177,7 +177,7 @@ define(['jquery'], function ($) {
 	 */
 	LibCommon.prototype.deleteProductFromCart = function(productID, query, type) {
 	    $.ajax({
-	    	url: "/includes/web/carrito-r.asp?accion=borra&idrelacion="+ productID + query + type,
+	    	url: "/includes/web/carrito.asp?accion=borra&idrelacion="+ productID + query + type,
 	    	type: 'GET',
 	    	crossDomain: true,
 	    	datatype: 'jsonp',
@@ -210,9 +210,9 @@ define(['jquery'], function ($) {
 			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				// Write all products into the content div
-				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito-r.asp');
+				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
 				// cargamos carrito linia (updating number)
-				$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
+				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
 				// show effect
 				$('#cartItemsNumber').addClass('animated rubberBand');
 				setTimeout(function(){
@@ -227,9 +227,9 @@ define(['jquery'], function ($) {
 	*/
 	LibCommon.prototype.loadCart = function() {
 		// refresh cart content
-		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito-r.asp');
+		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito.asp');
 		// refresh product number
-		$('#cartItemsNumber').load('/includes/web/carrito_linea-r.asp');
+		$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
 	};
 
     /**
@@ -262,6 +262,41 @@ define(['jquery'], function ($) {
 			}
 		});
 	};
+
+    /**
+    * cookies - Create cookie
+    */
+	LibCommon.prototype.createCookie = function(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else var expires = "";               
+
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    /**
+    * cookies - Read cookie
+    */
+	LibCommon.prototype.readCookie = function(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    /**
+    * cookies - Erase cookie
+    */
+    LibCommon.prototype.eraseCookie = function(name) {
+        createCookie(name, "", -1);
+    }
 
 	return LibCommon;
 });

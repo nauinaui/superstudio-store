@@ -25,7 +25,7 @@ switch(domain[2]) {
         lang = 'ES';
 }
 
-define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'validate', 'validate'+lang], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang) {
+define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate', 'validate'+lang], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang) {
 	
 	var common = new LibCommon();
 	/**
@@ -62,8 +62,10 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		// Refresh products number in cart
 		common.loadCart();
 
-		// Show cookies alert
-		$('#cookiesAlert').collapse('show');
+		// Show cookies alert if user has not close cookies alert before
+		if ( !common.readCookie('cookies-accepted') == true ) {
+			$('#cookiesAlert').collapse('show');
+		}
 
 		// If device is mobile, show product grid in hover position
 		if ( common.detectMobile() == true ) {
@@ -341,5 +343,9 @@ define(['jquery', 'bootstrap', './libCommon', 'modernizr', 'placeholder', 'valid
 		e.preventDefault();
 		e.stopPropagation();
 		$('#cookiesAlert').collapse('hide');
+		var name 	= 'cookies-accepted',
+			value 	= true,
+			days 	= 30;
+		common.createCookie(name, value, days);
 	})
 });
