@@ -27,7 +27,7 @@
 </head>
 
 <!-- Body class can be 'outlet' or not-->
-<body class="category-page ">
+<body class="category-page disable-scroll">
 
 <!-- Only shown when lateral content or cart is opened-->
 <div class="dark-layer"></div>
@@ -1005,7 +1005,7 @@
 						<!-- estilo -->
 						<div class="row filter-container">
 							<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-								<label data-url="style">Estilo:</label>
+								<label data-url="col">Estilo:</label>
 							</div>
 
 							<div class="col-lg-9 col-md-11 filters-options">
@@ -1116,7 +1116,7 @@
 							<!-- colección -->
 							<div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label data-url="colection">Colección:</label>
+									<label data-url="col">Colección:</label>
 								</div>
 
 								<div class="col-lg-9 col-md-11 filters-options">
@@ -1292,7 +1292,7 @@
 							<!-- diseñador -->
 						    <div class="row filter-container">
 								<div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label text-right">
-									<label data-url="designer">Diseñador:</label>
+									<label data-url="dsn">Diseñador:</label>
 								</div>
 
 								<div class="col-lg-9 col-md-11 filters-options">
@@ -2681,6 +2681,7 @@
 				    </div>
                 </div>
 			</div>
+			<div id="productsLoader" class="products-loader row collapse"></div>
 		</section>
 	</div>
 </div>
@@ -2991,7 +2992,7 @@
 <!-- Scroll to top arrow -->
 <button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
-<script data-main="includes/scripts/category" src="includes/scripts/lib/require.min.js"></script>
+<script data-main="/new-portada/includes/scripts/category" src="/new-portada/includes/scripts/lib/require.min.js"></script>
 
 </body>
 </html>

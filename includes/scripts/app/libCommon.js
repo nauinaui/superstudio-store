@@ -64,24 +64,6 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.blockUI = function() {
 		$('body').removeClass('blocked');
 	}
-
-	LibCommon.prototype.disableScroll = function() {
-	  if (window.addEventListener) // older FF
-	      window.addEventListener('DOMMouseScroll', this.preventDefault, false);
-	  window.onwheel = this.preventDefault; // modern standard
-	  window.onmousewheel = document.onmousewheel = this.preventDefault; // older browsers, IE
-	  window.ontouchmove  = this.preventDefault; // mobile
-	  document.onkeydown  = this.preventDefaultForScrollKeys;
-	}
-
-	LibCommon.prototype.enableScroll = function() {
-	    if (window.removeEventListener)
-	        window.removeEventListener('DOMMouseScroll', this.preventDefault, false);
-	    window.onmousewheel = document.onmousewheel = null; 
-	    window.onwheel = null; 
-	    window.ontouchmove = null;  
-	    document.onkeydown = null;  
-	}
 	
 	LibCommon.prototype.preventDefault = function(e) {
 	  e = e || window.event;
@@ -196,7 +178,8 @@ define(['jquery'], function ($) {
 	 */
 	LibCommon.prototype.addProductToCart = function(productID, query, type) {
 		var envioCarrito = '';
-
+		var loaded = false;
+		
 		if (type === 'outlet'){
 			envioCarrito = "&id_outlet=" + productID;
 		} else if (type === 'pack') {
@@ -213,13 +196,17 @@ define(['jquery'], function ($) {
 				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
 				// cargamos carrito linia (updating number)
 				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
-				// show effect
-				$('#cartItemsNumber').addClass('animated rubberBand');
-				setTimeout(function(){
-					$('#cartItemsNumber').removeClass('animated rubberBand');
-				}, 2000);
+				var loaded = true;
 			}
 		});
+
+		if (loaded === true) {
+			// show effect
+			$('#cartBtn').addClass('animated tada');
+			setTimeout(function(){
+				$('#cartBtn').removeClass('animated tada');
+			}, 2000);
+		}
 	};
 
 	/**
@@ -230,6 +217,18 @@ define(['jquery'], function ($) {
 		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito.asp');
 		// refresh product number
 		$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
+		this.animateCartNumber();
+	};
+
+	/**
+	* Show number cart effect to get user attention
+	*/
+	LibCommon.prototype.animateCartNumber = function() {
+		// show effect
+		$('#cartBtn').addClass('animated tada');
+		setTimeout(function(){
+			$('#cartBtn').removeClass('animated tada');
+		}, 2000);
 	};
 
     /**

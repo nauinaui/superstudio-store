@@ -52,11 +52,9 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		// Block UI when AJAX is active
 		$(document).ajaxStart( function() {
 			$('#preloader').show();
-			common.disableScroll();
 		});
 		$(document).ajaxStop( function() {
 			$('#preloader').hide();
-			common.enableScroll();
 		});
 
 		// Refresh products number in cart
@@ -139,19 +137,19 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	})
 
 	// Product's grid - Show more info in product box's bottom while mouseover
-	$('.producto-box:not(.promo) > .content').mouseover(function() {
+	$('#productsList').on('mouseenter', '.producto-box:not(.promo) > .content', function() {
 		if ( common.detectMobile() == false ) {
 			$(this).find('.item').addClass('show');
 		}
 	});
-	$('.producto-box:not(.promo) > .content').mouseout(function() {
+	$('#productsList').on('mouseleave', '.producto-box:not(.promo) > .content', function() {
 		if ( common.detectMobile() == false ) {
 			$(this).find('.item').removeClass('show');
 		}
 	});
 
 	// Product's grid - Change image for selected finished image
-	$('.producto-box .acabados input[type="radio"]').change(function() {
+	$('#productsList').on('change', '.producto-box .acabados input[type="radio"]', function() {
 		var finishID 	= $(this).attr('data-finish'),
 			productRef	= $(this).closest('.content').find('.item').attr('data-product-ref'),
 			place 		= 'grid';

@@ -1,4 +1,4 @@
-define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap_slider, Plugins) {
+define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap, Bootstrap_slider, Plugins) {
     var mCategory = new Base('This is the data for Page Category');
     var common = new LibCommon();
     var paginateFrom = 1;
@@ -40,7 +40,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 	}
 
 	/**
-	 * Category page - Show active filter in top of filter box
+	 * Show active filter in top of filter box
 	 * @param option: String Selected option to show
 	 * @param value: String Option value as identifier
 	 * @param type: Type of filter
@@ -68,7 +68,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 	}
 	
 	/**
-	 * Category page - Show active filter in top of filter box
+	 * Show active filter in top of filter box
 	 * @param option:String Selected option to hide
 	 */
 	function disableFilter(option, value) {
@@ -87,6 +87,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 		$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
 	}
 
+	// Get all selected filters by user, write in url as a parameters and refresh page
 	function applyFilters() {
 		if ( !$(this).is('[disabled=disabled]') ) {
 			// Put filters in url parameters
@@ -189,53 +190,47 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 
 	// infinite scroll
 	function documentoScroll() {
-		common.disableScroll();
-		var scroll = $(window).scrollTop(),
-			contentsProd = $("#productsList"),
-			contentsProdAlto = contentsProd.outerHeight(true),
-			footer = $(".footer").outerHeight(true) + 1200,
-			documentHeight = $(window).outerHeight(true);
-        
-		if ( scroll > (contentsProdAlto - footer) ) {
-			
-			$(window).off("scroll");
+		$('#productsLoader').collapse('show');
 
-			var camp = getParameterByName('camp');
-			var subcamp = getParameterByName('subcamp');
-			var color = getParameterByName('color');
-			var colores = getParameterByName('colores');
-			var cats1 = getParameterByName('cats1');
-			var cats2 = getParameterByName('cats2');
-			var dsd = getParameterByName('dsd');
-			var col = getParameterByName('col');
-			var rango = getParameterByName('rango');
-			var mat = getParameterByName('mat');
-			var estado = getParameterByName('estado');
-			var busqueda = getParameterByName('busqueda');
-			var orden = getParameterByName('orden');
-			var packs = getParameterByName('packs');
+		var contentsProd = $('#productsList');
+		var loader =  $('#productsLoader');
+		var camp = getParameterByName('camp');
+		var subcamp = getParameterByName('subcamp');
+		var color = getParameterByName('color');
+		var colores = getParameterByName('colores');
+		var cats1 = getParameterByName('cats1');
+		var cats2 = getParameterByName('cats2');
+		var dsd = getParameterByName('dsd');
+		var col = getParameterByName('col');
+		var rango = getParameterByName('rango');
+		var mat = getParameterByName('mat');
+		var estado = getParameterByName('estado');
+		var busqueda = getParameterByName('busqueda');
+		var orden = getParameterByName('orden');
+		var packs = getParameterByName('packs');
 
-			var urlParametros = "categoria"+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
+		var url 		= window.location.href;
+		var index 		= url.lastIndexOf("/") + 1;
+		var category 	= url.substr(index);
+		category = category.split('?');
 
-			$.ajax({
-				url: urlParametros,
-				success: function (data) {
-					if (data !== '') {
-						contentsProd.append(data);
-						$(document).find('.iconLoad').remove();
-						$(window).scroll(function () {
-							documentoScroll();
-						});
-						paginateFrom++;
-					} else {
+		var urlParametros = category[0]+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
 
-					}
-					$('#preloader').hide();
-					common.enableScroll();
+		$.ajax({
+			url: urlParametros,
+			success: function (data) {
+				if (data !== '') {
+					contentsProd.append(data);
+					$(document).find('.iconLoad').remove();
+					paginateFrom++;
+				} else {
+
 				}
-			});
-		}
-		common.enableScroll();
+				$('#preloader').hide();
+				$('body').removeClass('disable-scroll');
+				loader.collapse('hide');
+			}
+		});
 	}
 
 
@@ -362,10 +357,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 		readFilters();
 
 		//Category page - Price range filter with slider
-		$('#priceRange').slider();  
+		var range = $('#priceRange').slider();  
 
 		// Show subscribe newsletter - only if not mobile
-		var common = new LibCommon;
 		if ( common.detectMobile() == false ) {
 			setTimeout(function(){
 				showSubscribeNewsletter();
@@ -373,10 +367,22 @@ define(['./Base.js', '../libCommon.js', 'bootstrap_slider', 'plugins'], function
 		}
 
 		// infinite scroll event
-		let page = 0;
-		window.onscroll = function() {
-			if ( getScrollTop() < getDocumentHeight() - window.innerHeight ) return;
-				documentoScroll();
+		window.onscroll = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+			var productsList = $('#productsList');
+			var offset = productsList.offset();
+			offset = offset.top;
+			var screen = window.innerHeight / 2;
+			var pixelToEvent = offset + productsList.height();
+			var currentPixel = getScrollTop() + screen;
+			// console.log('event pixel at: '+ pixelToEvent);
+			// console.log('current  pixel: '+ currentPixel);
+			if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
+			  documentoScroll();
+			  console.log('ajax');
+			}
 		};
     });
 

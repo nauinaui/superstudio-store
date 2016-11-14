@@ -74,14 +74,23 @@
     display: block;
     margin: 0 auto;
     width: 90%;
-    height: auto;
+    height: 220px;
     transition: transform 0.2s ease;
 
     &.secondary {
       display: none;
     }
     
+    @media (max-width:@md-max) {
+      height: 175px;
+    }
+
     @media (max-width:@sm-max) {
+      height: auto;
+      width: 220px;
+    }
+
+    @media (max-width:@xs-max) {
       width: 80%;
     }
   }
@@ -323,8 +332,9 @@ section .producto-box {
             img {
               border-radius: 50%;
 
-              &[src$="blanco.gif"] {
-                border: 1px solid @blanco_roto;
+              &[src$="blanco.gif"],
+              &[src$="blanco.jpg"] {
+                border: 1px solid @gris_claro_mas;
               }
 
               @media (max-width: @xs-max) {
@@ -337,6 +347,8 @@ section .producto-box {
               width: 15px;
               height: 15px;
               opacity: 0;
+
+
 
               &:checked + img {
                 border: 1px solid @blanco;

@@ -288,11 +288,10 @@ body {
           width: 25px;
           height: 25px;
           border-radius: 50%;
-          
-          &[alt="Blanco"],
-          &[alt="blanco"] {
-            border: 1px solid @gris_claro;
-            border-radius: 50%;
+
+          &[src$="blanco.gif"],
+          &[src$="blanco.jpg"] {
+            border: 1px solid @gris_claro_mas;
             box-sizing: border-box;
           }
         }
