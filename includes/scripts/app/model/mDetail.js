@@ -353,7 +353,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 		common.changeFinishImage(finishID, productRef, place);
 		changePrice($(this));
 		$('#unitsSelect').empty();
-		for (var i=0; i<$(this).attr('data-stock'); i++) {
+		// Limit unit selection at 50 as maximum
+		var maxstock = $(this).attr('data-stock');
+		if ( maxstock > 50 ) {
+			maxstock = 50;
+		}
+		for (var i=0; i<maxstock; i++) {
 		    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
 		}			
 	});
@@ -481,10 +486,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 		e.preventDefault();
 		e.stopPropagation();
 
-		var validator = $(this).closest('form').validate();
+		var validator = $('#contactForm').validate();
 		if ( validator.form() == true ) {
 			if (isCaptchaOk()==true) {
-                console.log(grecaptcha.getResponse());
 	            $(this).closest('form').submit();
             }
 		}

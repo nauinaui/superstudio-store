@@ -61,7 +61,7 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.blockUI = function() {
 		$('body').addClass('blocked');
 	}
-	LibCommon.prototype.blockUI = function() {
+	LibCommon.prototype.unblockUI = function() {
 		$('body').removeClass('blocked');
 	}
 	
@@ -141,6 +141,19 @@ define(['jquery'], function ($) {
 	}
 
 	/**
+	 * Change image when change a product finish
+	 */
+	LibCommon.prototype.autoSelectFinish = function() {
+		if ( '.products-list'.length > 0 ) {
+			$('.producto-box').each( function() {
+				if ( $(this).find('.acabados input').length < 2 ) {
+					$(this).find('.acabados input').attr('checked','checked');
+				}
+			})
+		}
+	}
+
+	/**
 	 * AJAX - Delete all same products from cart
 	 */
 	LibCommon.prototype.deleteAllProductFromCart = function(relationID) {
@@ -164,12 +177,13 @@ define(['jquery'], function ($) {
 	    	crossDomain: true,
 	    	datatype: 'jsonp',
 	    	success: function() { 
-	    		console.log('deleted product from cart');
 	    		$('.item[rel="'+productID+'"]').remove();
 	    		var action = 'substract';
 	    		this.refreshCartNumber(action);
 	    	},
-	    	error: function() { console.log('Failed! delete product from cart'); },
+	    	error: function() {
+	    		console.log('Failed! Error has occurred while deleting product from cart');
+	    	},
 	    });
 	}
 
@@ -188,7 +202,7 @@ define(['jquery'], function ($) {
 			envioCarrito = "&id=" + productID;
 		}
 
-		// Send info to cart
+		// Load info to cart
 		$.ajax({
 			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
@@ -196,17 +210,15 @@ define(['jquery'], function ($) {
 				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
 				// cargamos carrito linia (updating number)
 				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
-				var loaded = true;
+				// Show effect
+				$('#cartBtn').addClass('animated tada');
+				setTimeout(function(){
+					$('#cartBtn').removeClass('animated tada');
+				}, 2000);
+				// Open cart
+				$('#cartBtn').trigger('click');
 			}
 		});
-
-		if (loaded === true) {
-			// show effect
-			$('#cartBtn').addClass('animated tada');
-			setTimeout(function(){
-				$('#cartBtn').removeClass('animated tada');
-			}, 2000);
-		}
 	};
 
 	/**

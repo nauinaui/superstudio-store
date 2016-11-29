@@ -724,81 +724,7 @@
 	  <li><a href="#">Inicio</a></li>
 	  <li class="active">Proceso de compra</li>
 	</ol>
-	
-	<!-- Especiales -->
-	<section class="row banners-especial">
-		<div class="col-sm-6 col-md-4 banner banner-eames">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/loader.gif" data-src="imagenes/banners/eames.jpg" srcset="imagenes/banners/eames@2x.jpg 2x" alt="#">
-					<div class="titulo">Especial <span>Eames design</span></div>
-				</div>
-			</a>
-		</div>
-		<div class="col-sm-6 col-md-4 banner banner-tolix">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/loader.gif" data-src="imagenes/banners/tolix.jpg" srcset="imagenes/banners/tolix@2x.jpg 2x" alt="#">
-					<div class="titulo">Especial <span>Tolix design</span></div>
-				</div>
-			</a>
-		</div>
-		<div class="hidden-sm col-md-4 banner banner-pop">
-			<a href="#">
-				<div class="banner-img">
-					<img class="img-responsive" src="imagenes/loader.gif" data-src="imagenes/banners/preciominimo3.jpg" srcset="imagenes/banners/preciominimo3@2x.jpg 2x" alt="#">
-					<div class="titulo">Precio mínimo <span>garantizado</span></div>
-					<span class="footer-text">en más de 60 productos</span>
-				</div>
-			</a>
-		</div>
-	</section>
 </div>
-
-<!-- Load deferred styles-->
-<noscript id="deferred-styles">
-	<link rel="stylesheet" type="text/css" href="includes/css/superestudio.css">
-	<link rel="stylesheet" type="text/css" href="https://www.superestudio.com/includes/css/main.css?v=0709201623">
-</noscript>
-<script>
-    // code for running requestAnimationFrame in old browsers
-    (function() {
-        var lastTime = 0;
-        var vendors = ['ms', 'moz', 'webkit', 'o'];
-        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
-                                       || window[vendors[x]+'CancelRequestAnimationFrame'];
-        }
-     
-        if (!window.requestAnimationFrame)
-            window.requestAnimationFrame = function(callback, element) {
-                var currTime = new Date().getTime();
-                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
-                  timeToCall);
-                lastTime = currTime + timeToCall;
-                return id;
-            };
-     
-        if (!window.cancelAnimationFrame)
-            window.cancelAnimationFrame = function(id) {
-                clearTimeout(id);
-            };
-    }());
-    
-	var loadDeferredStyles = function() {
-	var addStylesNode = document.getElementById("deferred-styles");
-	var replacement = document.createElement("div");
-	replacement.innerHTML = addStylesNode.textContent;
-	document.body.appendChild(replacement)
-	addStylesNode.parentElement.removeChild(addStylesNode);
-	};
-	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-	webkitRequestAnimationFrame || msRequestAnimationFrame;
-	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-	else window.addEventListener('load', loadDeferredStyles);
-</script>
 
 <!-- Old checkout -->
 <div id="checkout" class="maincontainer">  
@@ -1045,7 +971,7 @@
 						</tr>
 					</tbody>
 				</table>
-				
+
 				<table class="carrito-opciones">
 					<thead class="legend">
 						<tr>
@@ -1224,6 +1150,51 @@
 		</form>
 	</div>
 </div>
+
+<!-- Load deferred styles-->
+<noscript id="deferred-styles">
+	<link rel="stylesheet" type="text/css" href="includes/css/superestudio.css">
+	<link rel="stylesheet" type="text/css" href="https://www.superestudio.com/includes/css/main.css?v=0709201623">
+</noscript>
+<script>
+    // code for running requestAnimationFrame in old browsers
+    (function() {
+        var lastTime = 0;
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
+        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                       || window[vendors[x]+'CancelRequestAnimationFrame'];
+        }
+     
+        if (!window.requestAnimationFrame)
+            window.requestAnimationFrame = function(callback, element) {
+                var currTime = new Date().getTime();
+                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                  timeToCall);
+                lastTime = currTime + timeToCall;
+                return id;
+            };
+     
+        if (!window.cancelAnimationFrame)
+            window.cancelAnimationFrame = function(id) {
+                clearTimeout(id);
+            };
+    }());
+    
+	var loadDeferredStyles = function() {
+	var addStylesNode = document.getElementById("deferred-styles");
+	var replacement = document.createElement("div");
+	replacement.innerHTML = addStylesNode.textContent;
+	document.body.appendChild(replacement)
+	addStylesNode.parentElement.removeChild(addStylesNode);
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+	webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+	else window.addEventListener('load', loadDeferredStyles);
+</script>
 
 <!-- Footer -->
 <section class="footer">
@@ -1425,6 +1396,6 @@
 <!-- Scroll to top arrow -->
 <button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
-<script async data-main="includes/scripts/checkout" src="includes/scripts/lib/require.min.js"></script>
+<script async data-main="includes/scripts/checkout-old" src="includes/scripts/lib/require.min.js"></script>
 </body>
 </html>

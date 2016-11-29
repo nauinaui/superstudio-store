@@ -223,12 +223,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 					contentsProd.append(data);
 					$(document).find('.iconLoad').remove();
 					paginateFrom++;
-				} else {
-
 				}
 				$('#preloader').hide();
 				$('body').removeClass('disable-scroll');
 				loader.collapse('hide');
+				common.autoSelectFinish();
 			}
 		});
 	}
@@ -357,7 +356,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		readFilters();
 
 		//Category page - Price range filter with slider
-		var range = $('#priceRange').slider();  
+		// setTimeout(function(){
+		  var range = $('#priceRange').slider();  
+		// }, 3000);
+		
 
 		// Show subscribe newsletter - only if not mobile
 		if ( common.detectMobile() == false ) {
@@ -372,16 +374,18 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
             e.stopPropagation();
 
 			var productsList = $('#productsList');
-			var offset = productsList.offset();
-			offset = offset.top;
-			var screen = window.innerHeight / 2;
-			var pixelToEvent = offset + productsList.height();
-			var currentPixel = getScrollTop() + screen;
-			// console.log('event pixel at: '+ pixelToEvent);
-			// console.log('current  pixel: '+ currentPixel);
-			if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
-			  documentoScroll();
-			  console.log('ajax');
+
+			if ( productsList.find('.full-products').length == 0 ) {
+				var offset = productsList.offset();
+				offset = offset.top;
+				var screen = window.innerHeight / 2;
+				var pixelToEvent = offset + productsList.height();
+				var currentPixel = getScrollTop() + screen;
+				// console.log('event pixel at: '+ pixelToEvent);
+				// console.log('current  pixel: '+ currentPixel);
+				if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
+				  documentoScroll();
+				}
 			}
 		};
     });

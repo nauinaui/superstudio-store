@@ -47,127 +47,23 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		});
     }
 
+    // Show nif and alert
     function showNif() {
     	$('#inputGroupPassport').collapse('hide');
     	$('#alertPassport').collapse('hide');
     }
-
-	// Show tables with products on document ready (other maintain collapsed)
-    function showTablesWithProducts() {
-    	$('#productsPanel table').each(function() {
-    		var time = $(this).attr('data-time-id');
-    		if ( $(this).find('tr.item').length > 0 ) {
-    			$(this).parent().collapse('show');
-    			$('#productsPanel .table-header[data-time-id="'+time+'"]').collapse('show');
-    		} else {
-    			$(this).parent().collapse('hide');
-    			$('#productsPanel .table-header[data-time-id="'+time+'"]').collapse('hide');
-    		}
-    	})
-    	var count = 1;
-    	$('#productsPanel .table-header[aria-expanded="true"').each(function() {
-    		$(this).find('.subtitle span').html(count); // give shipment number for every table
-    		count++;
-    	})
+    // Hide nif and alert
+    function hideNif() {
+    	$('#inputGroupPassport').collapse('hide');
+    	$('#alertPassport').collapse('hide');
     }
-
-    // Change from partial delivery to a unique delivery
-    function makeUniqueDelivery() {
-		$('#productsPanel table tbody tr:not(.item)').remove(); //delete alerts
-		$('#productsPanel table.main tbody').append($('#productsPanel table:not(main) tbody tr.item')); // move products from other tables to first table
-		$('#productsPanel .table-header.main .delivery-time').removeClass('partial');
-		$('#productsPanel .table-header.main .delivery-time em.unique').html( $('#productsPanel .table-header[aria-expanded="true"]:last .delivery-time em' ).html() ); // change delivery time getting time from last table
-		$('#productsPanel table:not(.main)').parent().collapse('hide'); // hide all tables and table headers except main table
-		$('#productsPanel .table-header:not(.main)').collapse('hide'); 
-		$('#productsPanel .table-header.main .subtitle').hide(); // hide subtitle for main table
-		$('#productsPanel table.main').parent().collapse('show');
-		$('#productsPanel .table-header.main').collapse('show');
-	}
-
-	// Change from unique delivery to a partial delivery
-	function makePartialDelivery() {
-		$('#productsPanel table tbody tr:not(.item)').remove(); //delete alerts
-		$('#productsPanel table tbody tr.item').each(function() {
-			var time = $(this).find('option:selected').parent().attr('data-time-id'), // get time-id from every item
-				currentTable = $('#productsPanel table[data-time-id="'+time+'"]'),
-				currentHeader = $('#productsPanel .table-header[data-time-id="'+time+'"]');
-
-			currentTable.append( $(this) ); // move element inside table with same time
-		})
-		$('#productsPanel .table-header.main .delivery-time').addClass('partial'); // show correct delivery time for main table
-		$('#productsPanel .table-header.main .subtitle').show(); // show shipment number for main table
-		showTablesWithProducts();
-	}
-
-	// Refresh product total price
-	function refreshProductTotal() {
-		var total = 0,
-			isPound = false;
-		
-		$('#productsPanel .product-total').each(function() {
-			var productTotal = $(this).text();
-			if ( productTotal.charAt(0) === '&' ) {
-				productTotal = productTotal.replace('&pound;','');
-				isPound = true;
-			} else {
-				productTotal = productTotal.replace('€','');
-			}
-			productTotal = productTotal.replace('.','');
-			productTotal = parseFloat(productTotal.replace(',', '.'));
-			productTotal = parseFloat(productTotal.toFixed(2));
-			total = parseFloat(total + productTotal);
-		})
-		total = total.toFixed(2);
-		total = total.toString();
-		total = total.replace('.',',');
-		if ( isPound == true ) {
-			$('#productsStepTotal').html('&pound;'+total);
-		} else {
-			$('#productsStepTotal').html(total+'€');
-		}
-		refreshCheckoutTotal();
-	}
-
-	// Refresh total price
-	function refreshCheckoutTotal() {
-		var productsTotal = $('#productsStepTotal').text(),
-			paymentTotal = $('#paymentStepTotal').text(),
-			isPound = false,
-			total = 0;
-		if ( productsTotal.charAt(0) === '&' ) {
-			productsTotal = productsTotal.replace('&pound;','');
-			paymentTotal = paymentTotal.replace('&pound;','');
-			isPound = true;
-		} else {
-			productsTotal = productsTotal.replace('€','');
-			paymentTotal = paymentTotal.replace('€','');
-		}
-		productsTotal = productsTotal.replace('.','');
-		productsTotal = parseFloat(productsTotal.replace(',', '.'));
-		productsTotal = parseFloat(productsTotal.toFixed(2));
-		paymentTotal = paymentTotal.replace('.','');
-		paymentTotal = parseFloat(paymentTotal.replace(',', '.'));
-		paymentTotal = parseFloat(paymentTotal.toFixed(2));
-		total = productsTotal + paymentTotal;
-		total.toFixed(2);
-		checkShowNif(total);
-		total = total.toString();
-		total = total.replace('.',',');
-		if ( isPound == true ) {
-			$('#lastStep .total strong').html('&pound;'+total);
-			$('.resume tr.total td strong').html('&pound;'+total);
-		} else {
-			$('#lastStep .total strong').html(total+'€');
-			$('.resume tr.total td strong').html(total+'€');
-		}
-	}
 
 	//Check show nif
 	function checkShowNif(total) {
-		if ( total>400 ) {
-			$('#inputGroupPassport').collapse('show');
+		if ( total > 40000 ) {
+			showNif();
 		} else {
-			$('#inputGroupPassport').collapse('hide');
+			hideNif();
 		}
 	}
 
@@ -762,19 +658,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 
 		// Show nif if necessary
 		var total = $('#totalText strong').text();
-		total = total.replace(',','.');
+		total = total.replace(',','');
 		total = total.replace('€','');
 		total = total.replace('£','');
-		console.log(total);
-		if ( $('#totalText strong').text() ) {
-			$('#inputGroupPassport').collapse('show');
-		}
-
-		// Show tables with products
-		showTablesWithProducts();
-
-		// Check if nif field has to be shown through calculating total value
-		refreshCheckoutTotal();
+		total = parseInt(total);
+		checkShowNif(total);
 
 		// Init popover
 		$('[data-toggle="popover"]').popover({

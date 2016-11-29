@@ -1509,7 +1509,7 @@
 				<span class="results-title"><em>4320</em> resultados</span>
 			</div>
 
-			<div class="row productos" id="productsList">
+			<div class="row productos products-list" id="productsList">
 				<div class="col-sm-6 col-md-3 producto-box">
                 	<div class="content">
                         <a href="/silla-wooden-polipropileno-eames" class="item" title="Oferta por tiempo limitado">
@@ -2680,6 +2680,8 @@
 					    </div>
 				    </div>
                 </div>
+                <!-- flag element to know there are no more product to show -->
+                <span class="full-products"></span>
 			</div>
 			<div id="productsLoader" class="products-loader row collapse"></div>
 		</section>
@@ -2992,7 +2994,7 @@
 <!-- Scroll to top arrow -->
 <button id="scrollToTopBtn" class="btn scroll-to-top-btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
-<script data-main="/new-portada/includes/scripts/category" src="/new-portada/includes/scripts/lib/require.min.js"></script>
+<script async data-main="/new-portada/includes/scripts/category" src="/new-portada/includes/scripts/lib/require.min.js"></script>
 
 </body>
 </html>

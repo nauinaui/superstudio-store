@@ -69,6 +69,9 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		if ( common.detectMobile() == true ) {
 			$('.producto-box:not(.promo) .item').addClass('show mobile');
 		}
+
+		// product's grid - auto select finish when there is only one
+		common.autoSelectFinish();
 		
 		// Placeholder effect for IE9 and older
 		$('input, textarea').placeholder();
@@ -137,19 +140,19 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	})
 
 	// Product's grid - Show more info in product box's bottom while mouseover
-	$('#productsList').on('mouseenter', '.producto-box:not(.promo) > .content', function() {
+	$('.products-list').on('mouseenter', '.producto-box:not(.promo) > .content', function() {
 		if ( common.detectMobile() == false ) {
 			$(this).find('.item').addClass('show');
 		}
 	});
-	$('#productsList').on('mouseleave', '.producto-box:not(.promo) > .content', function() {
+	$('.products-list').on('mouseleave', '.producto-box:not(.promo) > .content', function() {
 		if ( common.detectMobile() == false ) {
 			$(this).find('.item').removeClass('show');
 		}
 	});
 
 	// Product's grid - Change image for selected finished image
-	$('#productsList').on('change', '.producto-box .acabados input[type="radio"]', function() {
+	$('.products-list').on('change', '.producto-box .acabados input[type="radio"]', function() {
 		var finishID 	= $(this).attr('data-finish'),
 			productRef	= $(this).closest('.content').find('.item').attr('data-product-ref'),
 			place 		= 'grid';
@@ -157,7 +160,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	});
 
 	// Product's grid - Add to cart from product's grid
-	$('.add-product-form .btn.add-to-cart').on('click', function(e) {
+	$('.products-list').on('click', '.add-product-form .btn.add-to-cart', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
@@ -192,12 +195,11 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartFeedback'));
 					setTimeout(function(){
 						$('body').append($('#addedToCartFeedback'));
-					}, 2000);
+					}, 4000);
 					// Cargamos carrito
 					common.addProductToCart(product_id, query, type);
 				},
 				error: function() {
-					console.log('error');
 					//show error feedback
 					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartErrorFeedback'));
 				}
@@ -273,7 +275,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 
 			var url = '/newsletter';
-			console.log($(this).serialize());
 			$.ajax({
 				url: url,
 				type: 'post',
