@@ -1,4 +1,4 @@
-define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Lib, Zoom, Recaptcha) {
+define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Zoom, Recaptcha) {
     var mDefault = new Base('This is the data for Page Detail');
     var common = new LibCommon();
 
