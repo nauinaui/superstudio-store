@@ -9,7 +9,7 @@ define(function () {
         },
 
         render: function (bodyDom) {
-            console.log(this.id + ' says "' + this.model.getTitle());
+            console.log(this.model.getTitle());
         }
     };
 

@@ -1,5 +1,5 @@
 define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap, Bootstrap_slider, Plugins) {
-    var mCategory = new Base('This is the data for Page Category');
+    var mCategory = new Base('data for Page Category loaded');
     var common = new LibCommon();
     var paginateFrom = 1;
 

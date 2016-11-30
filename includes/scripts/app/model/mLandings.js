@@ -1,5 +1,5 @@
 define(['./Base.js', 'bootstrap'], function (Base, Bootstrap) {
-    var mDefault = new Base('This is the data for Page Landings');
+    var mDefault = new Base('data for Page Landings loaded');
 
 	/**
 	 * =================

@@ -1,5 +1,5 @@
 define(['./Base.js', 'countdown'], function (Base, Countdown) {
-    var mDefault = new Base('This is the data for Page Default');
+    var mDefault = new Base('data for Page Default loaded');
 
 	/**
 	 * =================

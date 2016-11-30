@@ -1,5 +1,5 @@
 define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
-    var mCheckout = new Base('This is the data for Page Checkout');
+    var mCheckout = new Base('data for Page Checkout loaded');
 
 	/**
 	 * =================
