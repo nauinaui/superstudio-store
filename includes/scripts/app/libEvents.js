@@ -49,14 +49,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		    common.fixedNav(stickyNavTop);
 		});
 
-		// Block UI when AJAX is active
-		$(document).ajaxStart( function() {
-			$('#preloader').show();
-		});
-		$(document).ajaxStop( function() {
-			$('#preloader').hide();
-		});
-
 		// Refresh products number in cart
 		common.loadCart();
 
@@ -187,6 +179,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 			}
 
+			common.blockUI();
 			// Send product info to cart
 			$.ajax({
 				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
@@ -204,6 +197,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartErrorFeedback'));
 				}
 			});
+			common.unblockUI();
 		} else {
 			//move error label to a correct place for greater visual effect
 			$(this).closest('.producto-box').find('label.error').insertAfter($(this).closest('.producto-box .add-to-cart'));
@@ -229,9 +223,12 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			relationID = item.attr('data-relation-id'),
 			query = '&idrelacion=' + relationID;
 		
+		common.blockUI();
+
 		$.ajax({
 			url: '/includes/web/plugin_accion_carrito?accion=mas1' + query,
 			success: function (data) {
+				common.unblockUI();
 				common.loadCart();
 			},
 		});
@@ -243,9 +240,12 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			relationID = item.attr('data-relation-id'),
 			query = '&idrelacion=' + relationID;
 		
+		common.blockUI();
+
 		$.ajax({
 			url: '/includes/web/plugin_accion_carrito?accion=menos1' + query,
 			success: function (data) {
+				common.unblockUI();
 				common.loadCart();
 			},
 		});
@@ -273,13 +273,15 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
 			$('.help-block').addClass('hidden');
 
-
 			var url = '/newsletter';
+
+			common.blockUI();
 			$.ajax({
 				url: url,
 				type: 'post',
 				data: $(this).serialize(),
 				success: function(data) {
+					common.unblockUI();
 					if (data === 'enviado') {
 						$('#step1').fadeOut('fast', function(){
 							$('#step2').fadeIn('fast');

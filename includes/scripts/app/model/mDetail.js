@@ -107,9 +107,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 			units 	= $('#inputUnits').val(), // To implement when added units in backend
 			id 		= $('body').attr('data-product-id');
 
+		common.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_calcula_portes.asp?id=' + id + '&cp=' + zipcode + '&pais=' + country,
 			success: function (data) {
+				common.unblockUI();
 				$('#showShipmentBtn .show-price').html('x'+units+' = '+data+' <i class="glyphicon glyphicon-refresh"></i>');
 				$('#calculateShipment').collapse('hide');
 				$('#showShipmentBtn').addClass('active');
@@ -239,9 +241,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 			}
 		});
 
+		common.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_precio_detalle.asp?' + nameID + '=' + valueID + '&color=' + colorID + '&acabado=' + acabadoID + '&opcion=' + opcionID,
 			success: function (data) {
+				common.unblockUI();
 				var precio = data.split("|"),
 						precioPrint,
 						precioPrintOld,
@@ -428,9 +432,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 			}
 
 			// Send product info to cart
+			common.blockUI();
 			$.ajax({
 				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
 				success: function (data) {
+					common.unblockUI();
 					showFeedback(ok);
 					// if ( !type==='pack' ) {
 					// 	hideUpSelling();
@@ -443,6 +449,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 					common.addProductToCart(product_id, query, type);
 				},
 				error: function() {
+					common.unblockUI();
 					console.log('error');
 					var ok = false;
 					showFeedback(ok);
@@ -460,9 +467,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', '../lib', 'zoo
 			login 		= $(this).data('login'),
 			feedback	= $('#addedProductToWishlist');
 		
+		common.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_listadeseos.asp?p=' + productID,
 			success: function (data) {
+				common.unblockUI();
 				feedback.html(data);
 				$('#addedProductToWishlist').collapse('show');
 				setTimeout(function(){

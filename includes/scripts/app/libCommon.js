@@ -118,9 +118,12 @@ define(['jquery'], function ($) {
 	 * Change image when change a product finish
 	 */
 	LibCommon.prototype.changeFinishImage = function(finishID, productRef, place) {
+		var thisFile = this;
+		this.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_fotos_color.asp?ref='+productRef+'&id_color='+finishID,
 			success: function (data) {
+				thisFile.unblockUI();
 				if ( place === 'grid' ) {
 					// Change in product's grid
 					$('.producto-box a.item[data-product-ref="'+productRef+'"]').addClass('show');
@@ -193,6 +196,7 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.addProductToCart = function(productID, query, type) {
 		var envioCarrito = '';
 		var loaded = false;
+		var thisFile = this;
 		
 		if (type === 'outlet'){
 			envioCarrito = "&id_outlet=" + productID;
@@ -201,11 +205,13 @@ define(['jquery'], function ($) {
 		} else {
 			envioCarrito = "&id=" + productID;
 		}
-
+		
+		this.blockUI();
 		// Load info to cart
 		$.ajax({
 			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
+				thisFile.unblockUI();
 				// Write all products into the content div
 				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
 				// cargamos carrito linia (updating number)
@@ -250,10 +256,13 @@ define(['jquery'], function ($) {
 		anyadirFavoritos = $(this).parent().find(".anyadirFavoritos"),
 		quitarFavoritos  = $(this).parent().find(".quitarFavoritos"),
 		elemento 	     = $(this).closest(".infoFav").find(".infoRegistro");
-        
+        var thisFile = this;
+
+        this.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_listadeseos.asp?p=' + idProducto,
 			success: function (data) {
+				thisFile.unblockUI();
 				elemento.html(data);
 				elemento.fadeIn(300).delay(5000).fadeOut(300);
 				if(login ===1) {

@@ -17,11 +17,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	}
 
 	function checkRegistrado() {
+		common.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_login_carrito',
 			type: 'POST',
 			data: 'e=' + $('#envio_email').val() + '&p=' + $('#pass_cliente').val(),
 			success: function (data) {
+				common.unblockUI();
 				if (data !== '') {
 					$('input[name="envio_email"]').after(data).slideDown('fast');
 					$('#pass_cliente').focus();
@@ -34,12 +36,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	function checkPassRegistrado() {
 		var passCliente = $('#pass_cliente').val();
 		if (passCliente !== '') {
+			common.blockUI();
 			$.ajax({
 				url: '/includes/web/plugin_login_carrito',
 				type: 'POST',
 				data: 'e=' + $('#envio_email').val() + '&p=' + passCliente,
 				success: function (data) {
-					$.unblockUI();
+					common.unblockUI();
 					if (data === "login-ok") {
 						$('#checkoutForm').submit();
 					} else {
@@ -79,7 +82,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	});
 
 	$("#envio_pais, #envio_cp, #envio_direccion_sel, #envio_direccion_sel_ant").on('change', function() {
-		common.blockUI();
 		var dir = $("#envio_direccion_sel").val();
 		var dir_ant = $("#envio_direccion_sel_ant").val();
 		var cp = $("#envio_cp").val();
@@ -88,6 +90,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		var pais_ant = $("#envio_pais_ant").val();
 		var form = $("#checkoutForm");
 
+		common.blockUI();
 		$.ajax({
 			url: 'includes/web/plugin_iva_pedido?dir='+dir+'&dir_ant='+dir_ant+'&cp='+cp+'&cp_ant='+cp_ant+'&pais='+pais+'&pais_ant='+pais_ant,
 			success: function (data) {
@@ -145,9 +148,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 			type: 'POST',
 			data: 'datos=1&auto=1&email_recordar=' + $('#envio_email').val(),
 			success: function (data) {
+				common.unblockUI();
 				$('.recordar').parent().addClass('success').html(data);
 				$('#pass_cliente').focus();
-				common.unblockUI();
 			}
 		});
 	});
