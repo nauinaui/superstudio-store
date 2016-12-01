@@ -28,7 +28,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 					$('input[name="envio_email"]').after(data).slideDown('fast');
 					$('#pass_cliente').focus();
 				}
-				$.unblockUI();
 			}
 		});
 	}
@@ -108,11 +107,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 
 	$('#checkout').on('focusout keypress', '.checkRegistrado', function(e){
 		if ( e.type === 'focusout' || e.keyCode === 13 ) {
-
+			console.log('entro');
 			common.blockUI();
-			var $emailinfo = $('#emailinfo');
-			if ( $emailinfo.length) {
-				$emailinfo.remove();
+			var emailinfo = $('#emailinfo');
+			if ( emailinfo.length) {
+				emailinfo.remove();
 			}
 			checkRegistrado();
 		}
@@ -159,8 +158,16 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		$('#enviar_factura').trigger('click');
 	});
 
-    $('body').on('click', '.login_toggle', function(){
-        $('.login-hidden').toggleClass('login-visible');
+    $('body').on('click', '.login_toggle', function(e){
+    	e.stopPropagation();
+    	e.preventDefault();
+		if ( $('.login-dropdown').is('.open') ) {
+			$('.login-dropdown').removeClass('open');
+			$('#loginDropdown').attr('aria-expanded','false').focus();;
+		} else {
+			$('.login-dropdown').addClass('open');
+			$('#loginDropdown').attr('aria-expanded','true').focus();;
+		}
     });
 
 	$('.btn_print').on("click", function(){
@@ -174,7 +181,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	 */
 
     $(document).ready( function() {
-
+		$('.dropdown-toggle').dropdown()
     });
 
     return mCheckoutOld;
