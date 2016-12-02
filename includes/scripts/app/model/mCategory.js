@@ -89,46 +89,50 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 
 	// Get all selected filters by user, write in url as a parameters and refresh page
 	function applyFilters() {
-		if ( !$(this).is('[disabled=disabled]') ) {
-			// Put filters in url parameters
-			var i = 0;
-			var url = window.location.pathname;
-			var filters = '';
-			
-			$('.resultados .active-filter').each(function() {
-				var type = $(this).attr('data-type');
-				if (type === 'rango') {
-					var option = $(this).find('.text').text();
-					option = option.slice(0,-1);
-					option = option.replace(',','-');
-				} else {
-					var option = $(this).attr('id');
-				}
-
-				// check if this type has already any filter activated
-				if (url.indexOf(type) == -1) { // It's first value of this type
-					if (i === 0) {
-						url = url + '?' + type + '=' + option;
-					} else {
-						url = url + '&' + type + '=' + option;
-					}
-				} else { // There is another value activated of same type
-					var arr = url.split(type+'=');
-					url = arr[0] + type + '=' + option + ',' + arr[1];
-				}
-				i++;
-			});
-			// Put sort order in url parameters
-			var sort = $('#sortList label.active > input').attr('data-url');
-			if ( $('#sortList label.active').is('.change-sort') ) {
-				var asc = true;
+		// Put filters in url parameters
+		var i = 0;
+		var url = window.location.pathname;
+		var filters = '';
+		
+		$('.resultados .active-filter').each(function() {
+			var type = $(this).attr('data-type');
+			if (type === 'rango') {
+				var option = $(this).find('.text').text();
+				option = option.slice(0,-1);
+				option = option.replace(',','-');
 			} else {
-				var asc = false;
+				var option = $(this).attr('id');
 			}
-			url = url + '&orden=' + sort + '&asc=' + asc;
-			// refresh page with parameters
-			window.location.href = url;
+
+			// check if this type has already any filter activated
+			if (url.indexOf(type) == -1) { // It's first value of this type
+				if (i === 0) {
+					url = url + '?' + type + '=' + option;
+				} else {
+					url = url + '&' + type + '=' + option;
+				}
+			} else { // There is another value activated of same type
+				var arr = url.split(type+'=');
+				url = arr[0] + type + '=' + option + ',' + arr[1];
+			}
+			i++;
+		});
+		// Put sort order in url parameters
+		var sort = $('#sortList label.active > input').attr('data-url');
+		if ( $('#sortList label.active').is('.change-sort') ) {
+			var asc = true;
+		} else {
+			var asc = false;
 		}
+		// if there is not any filter active and it's only sort order
+		if ( i === 0 ) {
+			url = '?orden=' + sort + '&asc=' + asc;
+		} else {
+			url = url + '&orden=' + sort + '&asc=' + asc;
+		}
+		// refresh page with parameters
+		common.blockUI();
+		window.location.href = url;
 	}
 
 	// Read all parameters from url to activate filters
@@ -142,7 +146,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 
 			for ( var i = 0, l = url.length; i < l; i++ ) {
 				var filter = url[i].split('=');
-
 				if ( filter[1].indexOf(',') == -1 ) { // if current filter doesn't have more than one active value 
 					if ( filter[0] === 'finish' ) { // it's finish filter
 						$('.filters-section .acabado div[value="'+ filter[1] +'"]').trigger('click');
@@ -275,6 +278,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		} else {
 			$(this).removeClass('change-sort');
 		}
+		setTimeout(function(){
+			applyFilters();
+		}, 500);
 	});
 
 	// Show active filters (checkbox type)
@@ -313,8 +319,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	});
 
 	// Refresh page with parameters in URL to filter
-	$('.apply-filters-btn').on('click', function() {
-		applyFilters();
+	$('.apply-filters-btn').on('click', function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		if ( !$(this).is('[disabled=disabled]') ) {
+			applyFilters($(this));
+		}
+
 	});
 
 	// Hide lateral contact form -newsletter-
@@ -352,14 +363,25 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
     $(document).ready( function() {
 		toggleHeight('seoText', 'hide');
 
-		// Read paramters from url and active current filters
+		// Read parameters from url and active current filters
 		readFilters();
 
 		//Category page - Price range filter with slider
 		// setTimeout(function(){
 		  var range = $('#priceRange').slider();  
 		// }, 3000);
-		
+
+// console.log('bootstrap 1: '+Bootstrap);
+// console.log('bootstrap: '+Bootstrap);
+// var range = $('#priceRange').slider();
+// 		if ( typeof Bootstrap == 'undefined' ) {
+//  			require.undef(Bootstrap);
+//             require(["../lib/bootstrap.min.js"], function (file) {
+//                 $contents.empty();
+//                 $contents.append(file);
+//             });
+//             console.log('bootstrap 2: '+Bootstrap);
+// 		}
 
 		// Show subscribe newsletter - only if not mobile
 		if ( common.detectMobile() == false ) {
