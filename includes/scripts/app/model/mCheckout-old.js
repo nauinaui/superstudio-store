@@ -173,6 +173,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	$('.btn_print').on("click", function(){
 		changeTitle();
 	});
+
+	// Disable open cart to avoid desynchronization with changes from cart with checkout page
+	$('#cartBtn').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	});
 	
 	/**
 	 * =================
@@ -181,7 +187,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	 */
 
     $(document).ready( function() {
-		$('.dropdown-toggle').dropdown()
+		$('.dropdown-toggle').dropdown();
     });
 
     return mCheckoutOld;
