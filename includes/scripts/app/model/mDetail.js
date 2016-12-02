@@ -104,12 +104,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	function calculateShipment() {
 		var country = $('#selectCountry').val(),
 			zipcode = $('#inputZipcode').val(),
-			units 	= $('#inputUnits').val(), // To implement when added units in backend
+			units 	= $('#inputUnits').val(),
 			id 		= $('body').attr('data-product-id');
 
 		common.blockUI();
 		$.ajax({
-			url: '/includes/web/plugin_calcula_portes.asp?id=' + id + '&cp=' + zipcode + '&pais=' + country,
+			url: '/includes/web/plugin_calcula_portes.asp?id=' + id + '&cp=' + zipcode + '&pais=' + country + '&qty=' + units,
 			success: function (data) {
 				common.unblockUI();
 				$('#showShipmentBtn .show-price').html('x'+units+' = '+data+' <i class="glyphicon glyphicon-refresh"></i>');
@@ -120,23 +120,23 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	}
 
 	/**
-	 * Show correct delivery time for selected finish and show products with better delivery time advice and module
-	 * @param this:object Selected product finish
+	 * Show calculated price according to number of units selected
 	 */
-	function calculatePriceUnits(tipo) {
-		var price = $('#productPrice').text();
-		price = Number(price.replace(/[^0-9\.]+/g,""));
-		price = price / 100;
-		price = $('#unitsSelect').val() * price;
-		price = price.toFixed(2);
+	function calculatePriceUnits() {
+		var productID 	= $('body').attr('data-product-id'),
+			finishID 	= $('#finishesList input[type="radio"]:checked').attr('data-finish');
+			quantity 	= $('#unitsSelect').val();
 
-		if (tipo === 'uk') { // Es UK
-			$('#unitsPrice').text( '&pound; '+price);
-		} else if (tipo === 'nl') { // Es NL
-			$('#unitsPrice').text( '&pound;'+price);
-		} else { // Son €
-			$('#unitsPrice').text( price + '€');
-		}
+		common.blockUI();
+		$.ajax({
+			url: '/includes/web/plugin_precio_detalle.asp?id_producto=' + productID + '&cantidad=' + quantity + '&id_color=' + finishID,
+			success: function (data) {
+				common.unblockUI();
+				var info = data.split('|');
+				console.log(info);
+				$('#unitsPrice').html(info[1]);
+			}
+		});
 	}
 
 	/**
@@ -177,36 +177,25 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	* param:finish object - Finish selected by user
 	*/
 	function changePrice(finish) {
-		var difference 		= finish.parent().find('.option-price').attr('data-price'),
-			originalPrice 	= $('#priceContainer').attr('data-product-price');
-		if ( difference === undefined ) {
-			var total = originalPrice.replace(',','.');
-			if ( total.charAt(0) === '&' ) {
-				total = total.replace('&pound;','');
-			} else {
-				total = total.replace('€','');
+		var productID 	= $('body').attr('data-product-id'),
+			finishID 	= $('#finishesList input[type="radio"]:checked').attr('data-finish');
+			quantity 	= 1;
+
+		common.blockUI();
+		$.ajax({
+			url: '/includes/web/plugin_precio_detalle.asp?id_producto=' + productID + '&cantidad=' + quantity + '&id_color=' + finishID,
+			success: function (data) {
+				common.unblockUI();
+				var info = data.split('|');
+				console.log(info);
+				// refresh new price per unit in unit price
+				$('#unitsPrice').html(info[1]);
+				// refresh new values to main price section
+				$('#oldPrice').html(oldPrice[0]);
+				$('#productPrice').html(info[1]);
+				$('#discount').html(info[2]);
 			}
-		} else {
-			difference 		= difference.replace('€', '');
-			originalPrice	= originalPrice.replace('€', '');
-			// add or substract
-			if ( difference.charAt(0) === '+' ) {
-				difference = difference.replace('+', '');
-				difference = parseFloat(difference.replace(',', '.'));
-				originalPrice = parseFloat(originalPrice.replace(',', '.'));
-				var total = originalPrice+difference;
-			} else {
-				difference = difference.replace('-', '');
-				difference = parseFloat(difference.replace(',', '.'));
-				originalPrice = parseFloat(originalPrice.replace(',', '.'));
-				var total = originalPrice-difference;
-			}
-		}
-		//print final price
-		total = total.toString();
-		$('#unitsPrice').text(total+'€');
-		total = total.split('.');
-		$('#productPrice').html(total[0]+',<span class="cents">'+total[1]+'</span><span class="currency">€</span>');
+		});
 	}
 
 	/**
@@ -353,9 +342,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			productRef	= $(this).parent().parent().attr('data-product-ref'),
 			place 		= 'detail';
 
-		changeDeliveryTime($(this));
+		// changeDeliveryTime($(this));
 		common.changeFinishImage(finishID, productRef, place);
 		changePrice($(this));
+		// Refresh unit selector according to stock of finish selected
 		$('#unitsSelect').empty();
 		// Limit unit selection at 50 as maximum
 		var maxstock = $(this).attr('data-stock');
@@ -498,18 +488,33 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		var validator = $('#contactForm').validate();
 		if ( validator.form() == true ) {
 			if (isCaptchaOk()==true) {
-	            $(this).closest('form').submit();
+	            var productID 	= $('body').attr('data-product-id'),
+	            	name 		= $('#inputName').val(),
+	            	email		= $('#inputEmail').val(),
+	            	phone		= $('#inputPhone').val(),
+	            	message 	= $('#textareaMessage').val();
+
+	            common.blockUI();
+	            $.ajax({
+					type:'GET',
+					url:'/includes/web/plugin_contacto.asp',
+					data:'nombre=' + name + '&email=' + email + '&telefono=' + phone + '&mensaje=' + message,
+					success: function(data){
+						common.unblockUI();
+						console.log(data);
+						if (data == 'true') {
+							$('#sentContactInfoAlert').collapse('show');							
+						} else {
+							$('#sentContactInfoAlertError').collapse('show');
+						}
+						setTimeout(function(){
+							$('#sentContactInfoAlert').collapse('hide');
+							$('#sentContactInfoAlertError').collapse('hide');
+						}, 5000);
+					}
+			   	});
             }
 		}
-
-		// var validator = $(this).closest('form').validate({
-  //           submitHandler: function(form) {
-  //               if (isCaptchaOk()==true) {
-  //                   console.log(grecaptcha.getResponse());
-  //                   alert('valido');
-  //               }
-		// 	}
-		// });
 	});
 
 	// Show tab content if is collapsed
