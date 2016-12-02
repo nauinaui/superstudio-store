@@ -133,7 +133,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			success: function (data) {
 				common.unblockUI();
 				var info = data.split('|');
-				console.log(info);
 				$('#unitsPrice').html(info[1]);
 			}
 		});
@@ -187,13 +186,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			success: function (data) {
 				common.unblockUI();
 				var info = data.split('|');
-				console.log(info);
 				// refresh new price per unit in unit price
 				$('#unitsPrice').html(info[1]);
 				// refresh new values to main price section
-				$('#oldPrice').html(oldPrice[0]);
-				$('#productPrice').html(info[1]);
-				$('#discount').html(info[2]);
+				$('#priceContainer').find('#oldPrice').html(info[0]);
+				$('#priceContainer').find('#productPrice').html(info[1]);
+				$('#priceContainer').find('#discount').html(info[2]);
 			}
 		});
 	}
