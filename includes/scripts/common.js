@@ -32,8 +32,8 @@ require.config({
 	
 	shim: {
     	"app":             ["jquery"],
-        "bootstrap":       ["jquery"],
-        "bootstrap_slider":["jquery", "bootstrap"],
+        "bootstrap":       { "deps" :['jquery'] },
+        "bootstrap_slider":{ "deps" :['jquery', 'bootstrap'] },
         "plugins": 		   ["jquery"],
         "countdown":	   ["jquery"],
         "zoom":            ["jquery"],
