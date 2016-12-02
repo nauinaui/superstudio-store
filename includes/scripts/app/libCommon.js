@@ -124,20 +124,22 @@ define(['jquery'], function ($) {
 			url: '/includes/web/plugin_fotos_color.asp?ref='+productRef+'&id_color='+finishID,
 			success: function (data) {
 				thisFile.unblockUI();
-				if ( place === 'grid' ) {
-					// Change in product's grid
-					$('.producto-box a.item[data-product-ref="'+productRef+'"]').addClass('show');
-					$('.producto-box a.item[data-product-ref="'+productRef+'"] img').attr('src',data);
-				} else if ( place === 'detail' ) {
-					// Change in detail page
-					if ( $('body').is('.pack') ) {
-						var product_id = finishObj.parent().parent().attr('data-product-id');
-						$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
-					} else {
-						$('#mainImage').attr('src',data);
-					}
-					// trigger event to execute zoominit function
-					$('.finishes-list input:checked').trigger('click');
+				if ( !data == '' ) {
+					if ( place === 'grid' ) {
+						// Change in product's grid
+						$('.producto-box a.item[data-product-ref="'+productRef+'"]').addClass('show');
+						$('.producto-box a.item[data-product-ref="'+productRef+'"] img').attr('src',data);
+					} else if ( place === 'detail' ) {
+						// Change in detail page
+						if ( $('body').is('.pack') ) {
+							var product_id = finishObj.parent().parent().attr('data-product-id');
+							$('.product-pack-item[data-product-id="' + product_id + '"] img').attr('src',data);
+						} else {
+							$('#mainImage').attr('src',data);
+						}
+						// trigger event to execute zoominit function
+						$('.finishes-list input:checked').trigger('click');
+					}	
 				}
 			}
 		});
