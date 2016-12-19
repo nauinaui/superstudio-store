@@ -56,6 +56,11 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		if ( !common.readCookie('cookies-accepted') == true ) {
 			$('#cookiesAlert').collapse('show');
 		}
+		
+		// Hide super promo alert if user has closed cookies alert before
+		if ( common.readCookie('cookies-superpromo-closed') == 'true' ) {
+			$('#superPromosAlert').addClass('unshow');
+		}
 
 		// If device is mobile, show product grid in hover position
 		if ( common.detectMobile() == true ) {
@@ -332,12 +337,16 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		}
 	});
 
-	// Hide body alert
+	// Close super promos alert
 	$('#hidingAlertButton').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		$('#superPromosAlert').addClass('unshow');
-	})
+		var name 	= 'cookies-superpromo-closed',
+			value 	= true,
+			days 	= 30;
+		common.createCookie(name, value, days);
+	});
 
 	// Close cookies alert
 	$('#closeCookiesAlertButton').on('click', function(e) {
@@ -348,5 +357,5 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			value 	= true,
 			days 	= 30;
 		common.createCookie(name, value, days);
-	})
+	});
 });
