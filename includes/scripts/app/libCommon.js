@@ -162,6 +162,7 @@ define(['jquery'], function ($) {
 	 * AJAX - Delete all same products from cart
 	 */
 	LibCommon.prototype.deleteAllProductFromCart = function(relationID) {
+	    $('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>');
 	    $.ajax({
 	    	url: "/includes/web/plugin_accion_carrito.asp?accion=borra&idrelacion="+relationID,
 	    	success: function() { 
