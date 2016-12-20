@@ -184,21 +184,29 @@
         height: 60px;
         margin-top: 0;
         margin-bottom: 0;
+      }
 
-        label {
-          color: @gris_oscuro;
-          font-size: 14px;
-          line-height: 15px;
-          padding-top: 20px;
-          padding-bottom: 20px;
-        }
+      label {
+        color: @gris_oscuro;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 15px;
+        margin-right: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
       }
 
       span {
-        display: block;
         font-size: 14px;
         padding-top: 20px;
         padding-bottom: 20px;
+      }
+
+      input {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 10px;
+        max-width: 80px;
       }
 
       .slider.slider-horizontal {
@@ -269,7 +277,7 @@
 
   .show-more {
     font-size: 18px;
-    margin: 11px 0 10px;
+    margin: 0;
     text-decoration: none;
 
     & > div {
@@ -282,17 +290,28 @@
     
     &:before {
       content: '-';
+      @media (min-width:@md-min) {
+        color: @naranja;
+        font-size: 28px;
+        font-weight: 700;
+      }
     }
 
     &.collapsed {
       &:before {
         content: '+';  
+        @media (min-width:@md-min) {
+          color: @naranja;
+          font-size: 28px;
+          font-weight: 700;
+        }
       }
     }
 
     &:hover,
     &:active,
     &:focus {
+      color: @negro;
       text-decoration: none;
     }
   }

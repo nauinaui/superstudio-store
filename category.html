@@ -27,7 +27,7 @@
 </head>
 
 <!-- Body class can be 'outlet' or not-->
-<body class="category-page disable-scroll">
+<body class="category-page">
 
 <!-- Only shown when lateral content or cart is opened-->
 <div class="dark-layer"></div>
@@ -987,15 +987,16 @@
 								<label data-url="rango">Precio:</label>
 							</div>
 							<div class="col-lg-9 col-md-11 filters-options">
-								<div class="row row-condensed filters-columns">
-									<div class="col-xs-12 col-sm-8 col-md-10 col-sm-push-2 col-md-push-1">
-										<input id="priceRange" type="text" class="span2" data-slider-min="0" data-slider-max="1500" data-slider-step="10" data-slider-value="[0,1500]"/>
+								<div class="row row-condensed filters-columns" id="priceRange">
+									<div class="col-xs-6">
+										<label for="priceMin">Desde:</label>
+										<input id="priceMinInput" type="number" class="form-control" name="priceMin" placeholder="0">
+										<span>€</span>
 									</div>
-									<div class="col-xs-6 col-sm-2 col-md-1 col-sm-pull-8 col-md-pull-10">
-										<span>0€</span>
-									</div>
-									<div class="col-xs-6 col-sm-2 col-md-1 text-right">
-										<span>1500€</span>
+									<div class="col-xs-6">
+										<label for="priceMin">Hasta:</label>
+										<input id="priceMaxInput" type="number" class="form-control" name="priceMax" placeholder="2000">
+										<span>€</span>
 									</div>
 								</div>
 							</div>

@@ -68,7 +68,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	}
 	
 	/**
-	 * Show active filter in top of filter box
+	 * Disable active filter from top of filter box and reset values
 	 * @param option:String Selected option to hide
 	 */
 	function disableFilter(option, value) {
@@ -81,7 +81,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			$('input[value="'+value+'"]').attr('checked', false);
 		}
 		if ( value == "price" ) {
-			$('#priceRange').data('slider').refresh();
+			$('#priceRange input').val('');
 		}
 
 		$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
@@ -152,7 +152,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 					} else if ( filter[0] === 'rango' ) { // it's price filter
 					    var range = filter[1];
 					    range = range.split('-');
-					    $('#priceRange').attr('data-slider-value', '[' + range[0] + ',' + range[1] + ']');
+					    $('#priceMinInput').val(range[0]);
+					    $('#priceMaxInput').val(range[1]);
 					    enableFilter( range[0] + ',' + range[1], 'price', 'range');
 					} else if ( filter[0] == 'orden' ) { // sort
 						$('#sortList label.active').removeClass('active');
@@ -294,10 +295,23 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	});
 
 	// Show active filters (price type)
-	$('#priceRange').on('slideStop', function() {
-		var value = "price";
-	    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
-		enableFilter( $(this).attr('value'), value, type);
+	$('#priceRange input').keyup(function() {
+		var priceMin = $('#priceMinInput').val();
+		var priceMax = $('#priceMaxInput').val();
+		if ( !priceMin == '' || !priceMax == '' ) {
+			if (priceMin == '') {
+				priceMin = '0';
+			}
+			if ( priceMax == '' ) {
+				priceMax = '2000';
+			}
+			var option = priceMin + ',' + priceMax;
+			var value = "price";
+		    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
+			enableFilter( option, value, type);	
+		} else {
+			disableFilter(option, 'price')
+		}
 	});
 
 	// Show active filters (color/material type)
@@ -368,20 +382,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 
 		//Category page - Price range filter with slider
 		// setTimeout(function(){
-		  var range = $('#priceRange').slider();  
+		  // var range = $('#priceRange').slider();  
 		// }, 3000);
-
-// console.log('bootstrap 1: '+Bootstrap);
-// console.log('bootstrap: '+Bootstrap);
-// var range = $('#priceRange').slider();
-// 		if ( typeof Bootstrap == 'undefined' ) {
-//  			require.undef(Bootstrap);
-//             require(["../lib/bootstrap.min.js"], function (file) {
-//                 $contents.empty();
-//                 $contents.append(file);
-//             });
-//             console.log('bootstrap 2: '+Bootstrap);
-// 		}
 
 		// Show subscribe newsletter - only if not mobile
 		if ( common.detectMobile() == false ) {
