@@ -284,7 +284,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$.ajax({
 				url: url,
 				type: 'post',
-				data: $(this).serialize(),
+				data: $(this).closest('form').serialize(),
 				success: function(data) {
 					common.unblockUI();
 					if (data === 'enviado') {
