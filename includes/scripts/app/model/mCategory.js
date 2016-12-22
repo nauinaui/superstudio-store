@@ -18,11 +18,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		var heightFull = $element.css({height: 'auto'}).height() + $element.find('.read-more').outerHeight();
 		
 		if (action === 'show') {
-			$element.css('height', "60px");
+			$element.css('height', "90px");
 			$element.animate({ height: heightFull }, 500);
 		} else if (action === 'hide') {
 			$element.css('height', heightFull);
-			$element.animate({ height: "60px" }, 500);
+			$element.animate({ height: "90px" }, 500);
 		}
 	}
 
@@ -48,6 +48,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	function enableFilter(option, value, type) {
 		var $resultados = $('.resultados');
 		$('#filtroInfo').hide();
+		$('.delete-all-filters-btn').show();
 		$('.apply-filters-btn').removeAttr('disabled');
 		// modify price filter to new values
 		if ( value === "price" && $resultados.find('.active-filter#price').length > 0 ) {
@@ -75,6 +76,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		$('.resultados').find('#'+value).remove();
 		if ( $('.resultados').find('.active-filter').length == 0 ) {
 			$('#filtroInfo').show();
+			$('.delete-all-filters-btn').hide();
 			$('.apply-filters-btn').attr('disabled', 'disabled');
 		}
 		if ( $('input[value="'+value+'"]').is(':checked') ) {
@@ -142,6 +144,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		url = url[1];
 
 		if ( !url == '' ) {
+			$('html, body').animate({
+		        scrollTop: $(".read-more").offset().top -100
+		    }, 1000);
+
 			url = url.split('&');
 
 			for ( var i = 0, l = url.length; i < l; i++ ) {
@@ -332,6 +338,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		disableFilter(null, $(this).parent().attr('id'))
 	});
 
+	// Disable all filters
+	$('.delete-all-filters-btn').on('click', function() {
+		$('.resultados .active-filter').each(function() {
+			$(this).find('.close').trigger('click');
+		});
+	});
+
 	// Refresh page with parameters in URL to filter
 	$('.apply-filters-btn').on('click', function(e) {
 		e.stopPropagation();
@@ -375,15 +388,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	 */
 
     $(document).ready( function() {
-		toggleHeight('seoText', 'hide');
+		// toggleHeight('seoText', 'hide');
 
 		// Read parameters from url and active current filters
 		readFilters();
-
-		//Category page - Price range filter with slider
-		// setTimeout(function(){
-		  // var range = $('#priceRange').slider();  
-		// }, 3000);
 
 		// Show subscribe newsletter - only if not mobile
 		if ( common.detectMobile() == false ) {

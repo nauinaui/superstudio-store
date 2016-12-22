@@ -831,6 +831,8 @@
 				<div class="filters-box">
 					<div class="resultados">
 						<span id="filtroInfo" class="filtro-info">Actualmente no tienes ningún filtro activo</span>
+						<button class="btn btn-sm btn-secondary btn-rounded delete-all-filters-btn">Borrar filtros <span class="glyphicon glyphicon glyphicon-trash"></span>
+                        </button>
 					</div>
 					<button class="btn btn-primary btn-rounded apply-filters-btn" disabled="disabled">
 						Aplicar filtros
@@ -988,7 +990,7 @@
 							</div>
 							<div class="col-lg-9 col-md-11 filters-options">
 								<div class="row row-condensed filters-columns" id="priceRange">
-									<div class="col-xs-6">
+									<div class="col-xs-6 text-right">
 										<label for="priceMin">Desde:</label>
 										<input id="priceMinInput" type="number" class="form-control" name="priceMin" placeholder="0">
 										<span>€</span>
