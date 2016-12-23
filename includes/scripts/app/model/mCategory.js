@@ -41,24 +41,33 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 
 	/**
 	 * Show active filter in top of filter box
-	 * @param option: String Selected option to show
-	 * @param value: String Option value as identifier
+	 * @param option: String Selected option's text to show
 	 * @param type: Type of filter
+	 * @param value: String Option value
 	 */
-	function enableFilter(option, value, type) {
+	function enableFilter(option, type, value) {
 		var $resultados = $('.resultados');
 		$('#filtroInfo').hide();
 		$('.delete-all-filters-btn').show();
 		$('.apply-filters-btn').removeAttr('disabled');
-		// modify price filter to new values
-		if ( value === "price" && $resultados.find('.active-filter#price').length > 0 ) {
-			$resultados.find('#price span.text').remove();
-			$resultados.find('#price').append('<span class="text">'+option+'</span>');
+		
+		if ( type === "price" ) {
+			if ( $resultados.find('.active-filter#price').length > 0 ) {
+				// modify price filter to new values
+				$resultados.find('#price span.text').remove();
+				$resultados.find('#price').append('<span class="text">'+option+'</span>');
+			} else {
+				// create price filter
+				$('#filtersBox .resultados').append('<div class="alert alert-danger alert-dismissible active-filter active" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>')
+				$resultados.find('.active-filter:not([id])').attr('id', 'price');
+				$resultados.find('.active-filter#price').append('<span class="text">'+option+'</span>');
+				$resultados.append($('#price'));
+			}
 		} else { // create new filter although is price value or not
 			$('#filtersBox .resultados').append('<div class="alert alert-danger alert-dismissible active-filter active" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>')
-			$resultados.find('.active-filter:not([id])').attr('id', value);
-			$resultados.find('.active-filter#'+value).append('<span class="text">'+option+'</span>');
-			$resultados.append($('#'+value));
+			$resultados.find('.active-filter:not([id])').attr('id', type+'-'+value);
+			$resultados.find('.active-filter#'+type+'-'+value).append('<span class="text">'+option+'</span>');
+			$resultados.append($('#'+type+'-'+value));
 		}
 		// Add coin symbol
 		if ( value === "price" ) {
@@ -70,23 +79,34 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	
 	/**
 	 * Disable active filter from top of filter box and reset values
-	 * @param option:String Selected option to hide
+	 * @param type: String Selected name of filter to hide (i.e: material, designer, price,..)
+	 * @param value:String Selected value of filter to hide (i.e: 4, 6,..)
 	 */
-	function disableFilter(option, value) {
-		$('.resultados').find('#'+value).remove();
+	function disableFilter(type, value) {
+		console.log('type: '+ type);
+		console.log('value: '+ value);
+
+		// Delete active label
+		if ( type == 'price' ) {
+			$('.resultados').find('#'+type).remove();
+		} else {
+			$('.resultados').find('#'+type+'-'+value).remove();
+		}
 		if ( $('.resultados').find('.active-filter').length == 0 ) {
 			$('#filtroInfo').show();
 			$('.delete-all-filters-btn').hide();
 			$('.apply-filters-btn').attr('disabled', 'disabled');
 		}
-		if ( $('input[value="'+value+'"]').is(':checked') ) {
-			$('input[value="'+value+'"]').attr('checked', false);
-		}
-		if ( value == "price" ) {
+		
+		// Delete checked or selected input from filterbox
+		if ( type == "price" ) {
 			$('#priceRange input').val('');
+		} else if ( type == "finish") {
+			$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
+		} else {
+			var labelType = $('label[data-url="'+type+'"]');
+			var checkbox = labelType.parent().next().find('input[value="'+value+'"]').prop('checked',false);
 		}
-
-		$('.color[value="'+value+'"].selected, .material[value="'+value+'"].selected').removeClass('selected');
 	}
 
 	// Get all selected filters by user, write in url as a parameters and refresh page
@@ -294,9 +314,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	$('#filtersBox input[type="checkbox"]').change(function() {
 	    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
 	    if(this.checked) {
-	        enableFilter($(this).parent().attr('title'), $(this).val(), type);
+	        enableFilter($(this).parent().attr('title'), type, $(this).val());
 	    } else {
-	    	disableFilter($(this).parent().attr('title'), $(this).val());
+	    	disableFilter(type, $(this).val());
 	    }
 	});
 
@@ -312,21 +332,21 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 				priceMax = '2000';
 			}
 			var option = priceMin + ',' + priceMax;
-			var value = "price";
-		    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
-			enableFilter( option, value, type);	
+			var type = 'price';
+		    // var value = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
+			enableFilter( option, type, option );	
 		} else {
-			disableFilter(option, 'price')
+			disableFilter('price', null)
 		}
 	});
 
 	// Show active filters (color/material type)
 	$('.acabado .color, .acabado .material').on('click', function() {
 		if ( $(this).hasClass('selected') ) {
-			disableFilter( $(this).attr('data-title'), $(this).attr('value') );
+			disableFilter( 'finish', $(this).attr('value') );
 		} else {
 		    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
-			enableFilter( $(this).attr('data-title'), $(this).attr('value'), type );
+			enableFilter( $(this).attr('data-title'), type, $(this).attr('value') );
 			$(this).addClass('selected');
 		}
 	});
@@ -335,7 +355,16 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	$('.resultados').on('click', '.active-filter .close', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		disableFilter(null, $(this).parent().attr('id'))
+		if ( $(this).parent().is('#price') == true ) {
+			var type = $(this).parent().attr('id');
+			var value = null;
+		} else {
+			var identifier = $(this).parent().attr('id');
+			identifier = identifier.split('-');
+			var type = identifier[0];
+			var value = identifier[1];
+		}
+		disableFilter(type, value);
 	});
 
 	// Disable all filters
@@ -413,8 +442,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 				var screen = window.innerHeight / 2;
 				var pixelToEvent = offset + productsList.height();
 				var currentPixel = getScrollTop() + screen;
-				// console.log('event pixel at: '+ pixelToEvent);
-				// console.log('current  pixel: '+ currentPixel);
 				if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
 				  documentoScroll();
 				}
