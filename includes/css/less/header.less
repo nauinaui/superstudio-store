@@ -146,6 +146,19 @@
 
       .user-dropdown {
         display: none;
+
+        .dropdown-toggle {
+          text-overflow: ellipsis;
+          max-width: 90px;
+          overflow-x: hidden;
+          padding-right: 10px;
+
+          .caret {
+            position: absolute;
+            right: 3px;
+            top: 9px;
+          }
+        }
       }
     }
   }
