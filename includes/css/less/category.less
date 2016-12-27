@@ -111,13 +111,12 @@
     margin-bottom: 10px;
     min-height: 40px;
     text-align: center;
-    padding: 0 150px;
     position: relative;
 
     .delete-all-filters-btn {
       display: none;
-      position: absolute;
-      right: 0;
+      margin: 0 auto 20px;
+      position: initial;
     }
 
     .active-filter {
@@ -761,6 +760,19 @@ body.category-page {
       float: none;
       text-align: center;
       padding: 10px 0 0;
+    }
+  }
+}
+
+@media (min-width: @md-min) {
+  .filters-box {
+    .resultados {
+      padding: 0 150px;
+
+      .delete-all-filters-btn {
+        position: absolute;
+        right: 0;
+      }
     }
   }
 }

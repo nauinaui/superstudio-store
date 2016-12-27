@@ -48,7 +48,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	function enableFilter(option, type, value) {
 		var $resultados = $('.resultados');
 		$('#filtroInfo').hide();
-		$('.delete-all-filters-btn').show();
+		$('.delete-all-filters-btn').css('display','block');
 		$('.apply-filters-btn').removeAttr('disabled');
 		
 		if ( type === "price" ) {
@@ -83,9 +83,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	 * @param value:String Selected value of filter to hide (i.e: 4, 6,..)
 	 */
 	function disableFilter(type, value) {
-		console.log('type: '+ type);
-		console.log('value: '+ value);
-
 		// Delete active label
 		if ( type == 'price' ) {
 			$('.resultados').find('#'+type).remove();
@@ -117,25 +114,27 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		var filters = '';
 		
 		$('.resultados .active-filter').each(function() {
-			var type = $(this).attr('data-type');
-			if (type === 'rango') {
+			var type = $(this).attr('id');
+			type = type.split('-');
+			if (type[0] === 'price') {
+				type[0] = 'rango';
 				var option = $(this).find('.text').text();
-				option = option.slice(0,-1);
+				// option = option.slice(0,-1); // this line only is used to delete the currency if there is written in label
 				option = option.replace(',','-');
 			} else {
-				var option = $(this).attr('id');
+				var option = type[1];
 			}
 
 			// check if this type has already any filter activated
-			if (url.indexOf(type) == -1) { // It's first value of this type
+			if (url.indexOf(type[0]) == -1) { // It's first value of this type
 				if (i === 0) {
-					url = url + '?' + type + '=' + option;
+					url = url + '?' + type[0] + '=' + option;
 				} else {
-					url = url + '&' + type + '=' + option;
+					url = url + '&' + type[0] + '=' + option;
 				}
 			} else { // There is another value activated of same type
-				var arr = url.split(type+'=');
-				url = arr[0] + type + '=' + option + ',' + arr[1];
+				var arr = url.split(type[0]+'=');
+				url = arr[0] + type[0] + '=' + option + ',' + arr[1];
 			}
 			i++;
 		});
