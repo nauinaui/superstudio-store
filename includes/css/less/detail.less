@@ -500,6 +500,12 @@ body {
         -webkit-appearance: none;
         background: url('../../imagenes/select-bg.svg') no-repeat 55px center;
         background-position: right center;
+
+        &.disabled {
+          background-color: @blanco_roto;
+          color: @gris_claro;
+          cursor: no-drop;
+        }
       }
 
       .units-price {
@@ -765,6 +771,10 @@ body {
 
       .category-carpet {
         .categoryCarpet();
+      }
+
+      .category-frame {
+        .categoryFrame();
       }
     }
   }

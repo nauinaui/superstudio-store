@@ -196,10 +196,11 @@ define(['jquery'], function ($) {
 	/**
 	 * AJAX - Add product to cart
 	 */
-	LibCommon.prototype.addProductToCart = function(productID, query, type) {
+	LibCommon.prototype.addProductToCart = function(productID, query, type, isDetail) {
 		var envioCarrito = '';
 		var loaded = false;
 		var thisFile = this;
+		var isOk = true;
 		
 		if (type === 'outlet'){
 			envioCarrito = "&id_outlet=" + productID;
@@ -215,17 +216,37 @@ define(['jquery'], function ($) {
 			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
 			success: function (data) {
 				thisFile.unblockUI();
-				// Write all products into the content div
-				$('#myCart .content').html(data).slideDown(250).load('/includes/web/carrito.asp');
-				// cargamos carrito linia (updating number)
-				$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
-				// Show effect
-				$('#cartBtn').addClass('animated tada');
-				setTimeout(function(){
-					$('#cartBtn').removeClass('animated tada');
-				}, 2000);
-				// Open cart
-				$('#cartBtn').trigger('click');
+				console.log(data);
+
+				if (data == '0') { // added
+
+					// if ( !type==='pack' ) {
+					// 	hideUpSelling();
+					// }
+					// setTimeout(function(){
+					// 	showCrossSelling();
+					// }, 3000);
+
+					// Open cart
+					$('#cartBtn').trigger('click');
+				} else { // error adding
+					var error = data.split('-');
+					if ( error[0]== '1' ) {
+						error = error[1];
+						isOk = false;
+						console.log(error);
+					}
+				}
+				
+				// Show feedback
+				thisFile.showFeedback(isOk, isDetail, productID, error);
+			},
+			error: function () {
+				thisFile.unblockUI();
+				console.log('connection error');
+				isOk = false;
+				// Show feedback
+				thisFile.showFeedback(isOk, isDetail, productID, null);
 			}
 		});
 	};
@@ -285,6 +306,37 @@ define(['jquery'], function ($) {
 			}
 		});
 	};
+
+	/**
+	 * Show alert for 3 seconds and hide again after adding a product to cart
+	 */
+	LibCommon.prototype.showFeedback = function(isOk, isDetail, productID, error) {
+		// Positive feedback
+		if ( isOk == true ) {
+			if ( isDetail == true ) { // Detail page
+				$('#addedProductAlert').collapse('show');
+				setTimeout(function(){
+					$('#addedProductAlert').collapse('hide');
+				}, 3000);
+			} else { // Product's grid
+				$('.item[data-product-id="'+productID+'"]').prepend($('#addedToCartFeedback'));
+				setTimeout(function(){
+					$('body').append($('#addedToCartFeedback'));
+				}, 4000);
+			}
+		// Negative feedback
+		} else {
+			if ( isDetail == true ) { // Detail page
+				$('#addedProductAlertError').html(error);
+				$('#addedProductAlertError').collapse('show');
+				setTimeout(function(){
+					$('#addedProductAlertError').collapse('hide');
+				}, 3000);
+			} else { // Product's grid
+				$('.item[data-product-id="'+productID+'"]').prepend($('#addedToCartErrorFeedback'));
+			}
+		}
+	}
 
     /**
     * cookies - Create cookie

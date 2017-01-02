@@ -27,6 +27,7 @@ require.config({
         validateIT:       'localization/messages_it.min',
         validateDE:       'localization/messages_de.min',
         validateNL:       'localization/messages_nl.min',
+        validatePL:       'localization/messages_pl', 
         validatePT:       'localization/messages_pt_PT.min',
   },
 	
@@ -47,6 +48,7 @@ require.config({
         "validateIT":      ["jquery", "validate"],
         "validateDE":      ["jquery", "validate"],
         "validateNL":      ["jquery", "validate"],
+        "validatePL":      ["jquery", "validate"],
         "validatePT":      ["jquery", "validate"]
 	}
 });

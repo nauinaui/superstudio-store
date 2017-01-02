@@ -1,6 +1,45 @@
 define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Zoom, Recaptcha) {
     var mDefault = new Base('data for Page Detail loaded');
     var common = new LibCommon();
+	var errorTextFinish = '';
+	var errorTextCaptcha = '';
+	switch(domain[2]) {
+	    case 'com':
+	        errorTextFinish = 'Debes seleccionar un acabado para continuar';
+	        errorTextCaptcha= 'El captcha es erróneo';
+	        break;
+	    case 'co':
+	    	errorTextFinish = 'You must select a finish to continue';
+	    	errorTextCaptcha= 'The captcha is wrong';
+	    	break;
+	    case 'de':
+	    	errorTextFinish = 'Sie müssen eine Ausführung auswählen, um fortzufahren';
+	    	errorTextCaptcha= 'Das Captcha ist falsch';
+	    	break;
+	    case 'fr':
+	        errorTextFinish = 'Vous devez choisir une finition pour continuer';
+	        errorTextCaptcha= 'Le captcha est erroné';
+	        break;
+	    case 'pt':
+	        errorTextFinish = 'Você deverá selecionar um acabamento para continuar';
+	        errorTextCaptcha= 'O captcha está errado';
+	        break;
+        case 'nl':
+        	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
+        	errorTextCaptcha= 'De captcha is verkeerd';
+        	break;
+        case 'it':
+        	errorTextFinish = 'Selezionare una finitura per continuare';
+        	errorTextCaptcha= 'Il captcha è sbagliato';
+        	break;
+        case 'pl':
+        	errorTextFinish = 'Należy wybrać wykończenie żeby kontynuować';
+        	errorTextCaptcha= 'Obraz captcha jest źle';
+        	break;
+	    default:
+	        errorTextFinish = 'Debes seleccionar un acabado para continuar';
+	        errorTextCaptcha= 'El captcha es erróneo';
+	}
 
 	/**
 	 * =================
@@ -35,21 +74,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		selected.addClass('active');
 		var src = selected.attr('src');
 		$('.product-to-add img').attr( 'src', src );
-	}
-
-	/**
-	 * Show alert for 3 seconds and hide again
-	 */
-	function showFeedback(ok) {
-		if ( ok == true ) {
-			$('#addedProductAlert').collapse('show');
-		} else {
-			$('#addedProductAlertError').collapse('show');
-		}
-		setTimeout(function(){
-			$('#addedProductAlert').collapse('hide');
-			$('#addedProductAlertError').collapse('hide');
-		}, 3000);
 	}
 
 	/**
@@ -168,6 +192,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	function autoSelectFinish() {
 		if ( $('#finishesList input[name=finishesRadioInput]').length === 1 ) {
 			$('#finishesList input[name=finishesRadioInput]').attr('checked', 'checked');
+			$('#unitsSelect').removeClass('disabled');
 		}
 	}
 
@@ -294,7 +319,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
     function isCaptchaOk(form) {
         var v = grecaptcha.getResponse();
         if(v.length == 0) {
-            $('#verificationGroup > div').append('<label id="textareaMessage-error" class="error" for="textareaMessage">El captcha es erróneo</label>');
+            $('#verificationGroup > div').append('<label id="textareaMessage-error" class="error" for="textareaMessage">'+errorTextCaptcha+'</label>');
             return false;
         }
         if(v.length != 0) {
@@ -345,6 +370,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		changePrice($(this));
 		// Refresh unit selector according to stock of finish selected
 		$('#unitsSelect').empty();
+		$('#unitsSelect').removeClass('disabled');
 		// Limit unit selection at 50 as maximum
 		var maxstock = $(this).attr('data-stock');
 		if ( maxstock > 50 ) {
@@ -394,6 +420,20 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		calculatePriceUnits();
 	});
 
+	// Show 'choose a finish' alert if there isn't any selected
+	$('#unitsSelect').on('mousedown', function(e) {
+		if ( $(this).is('.disabled') ) {
+			e.preventDefault();
+			var validator = $( '#addMainProductForm' ).validate();
+			validator.element( 'input[name="finishesRadioInput"]' );
+			// write error in current language
+			validator.showErrors({
+	  			"finishesRadioInput": errorTextFinish
+			});
+			$('#finishesRadioInput-error').insertBefore( '#finishesList' );
+		}
+	});
+
 	// Add to cart - Collapse other information and show cross selling
 	$('#addToCartButton').on('click', function(e) {
 		e.preventDefault();
@@ -407,6 +447,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 				type		= "producto";
 				finishList 	= $('.finishes:not(.collapse)'),
 				ok 			= true;
+				isDetail	= true;
 
 			// create query for ajax depending of product type
 			if ( $('body').is('.pack') ) {
@@ -414,36 +455,20 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 				var query = '&id='+product_id+'&cantidad=' + quantity + '&color=&colores=' + finish + '&acabado=&opcion=';
 			} else if ( $('body').is('.outlet') ) {
 				type='outlet';
+				product_id = $('body').attr('data-product-outlet-id');
+				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 			} else {
 				type ='product';
 				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 			}
 
 			// Send product info to cart
-			common.blockUI();
-			$.ajax({
-				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
-				success: function (data) {
-					common.unblockUI();
-					showFeedback(ok);
-					// if ( !type==='pack' ) {
-					// 	hideUpSelling();
-					// }
-					// setTimeout(function(){
-					// 	showCrossSelling();
-					// }, 3000);
+			common.addProductToCart(product_id, query, type, isDetail);
 
-					// Cargamos carrito
-					common.addProductToCart(product_id, query, type);
-				},
-				error: function() {
-					common.unblockUI();
-					console.log('error');
-					var ok = false;
-					showFeedback(ok);
-				}
-			});
 		} else if ( $('#finishesRadioInput-error').length ) {
+			validator.showErrors({
+	  			"finishesRadioInput": errorText
+			});
 			// Position label properly if there is an error in finishes selection
 			$('#finishesRadioInput-error').insertBefore( '#finishesList' );
 		}
@@ -492,14 +517,20 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	            	phone		= $('#inputPhone').val(),
 	            	message 	= $('#textareaMessage').val();
 
+	            if ( $('body').is('outlet') ) {
+	            	productID = $('body').attr('data-product-outlet-id');
+	            	productID = 'id_outlet=' + productID;
+	            } else {
+	            	productID = 'id=' + productID;
+	            }
+
 	            common.blockUI();
 	            $.ajax({
 					type:'GET',
 					url:'/includes/web/plugin_contacto.asp',
-					data:'nombre=' + name + '&email=' + email + '&telefono=' + phone + '&mensaje=' + message,
+					data: productID + '&nombre=' + name + '&email=' + email + '&telefono=' + phone + '&mensaje=' + message,
 					success: function(data){
 						common.unblockUI();
-						console.log(data);
 						if (data == 'true') {
 							$('#sentContactInfoAlert').collapse('show');							
 						} else {
@@ -508,6 +539,47 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 						setTimeout(function(){
 							$('#sentContactInfoAlert').collapse('hide');
 							$('#sentContactInfoAlertError').collapse('hide');
+						}, 5000);
+					}
+			   	});
+            }
+		}
+	});
+
+	// Contact form for outlet products - Send information
+	$('#submitOutletContactForm').on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		var validator = $('#formulario').validate();
+		if ( validator.form() == true ) {
+			if (isCaptchaOk()==true) {
+	            var productID 	= $('body').attr('data-product-outlet-id'),
+	            	name 		= $('#inputNameContact').val(),
+	            	email		= $('#inputEmailContact').val(),
+	            	phone		= $('#inputPhoneContact').val(),
+	            	day 		= $('#inputDateContact').val(),
+	            	time 		= $('#inputTimeContact').val(),
+	            	message 	= $('#inputMessageContact').val();
+
+            	productID = 'id_outlet=' + productID;
+
+	            common.blockUI();
+	            $.ajax({
+					type:'GET',
+					url:'/includes/web/plugin_contacto.asp',
+					data: productID + '&nombre=' + name + '&email=' + email + '&telefono=' + phone + '&dia=' + day + '&hora=' + time + '&mensaje=' + message,
+					success: function(data){
+						common.unblockUI();
+						console.log(data);
+						if (data == 'true') {
+							$('#sentOutletContactAlert').collapse('show');							
+						} else {
+							$('#sentOutletContactAlertError').collapse('show');
+						}
+						setTimeout(function(){
+							$('#sentOutletContactAlert').collapse('hide');
+							$('#sentOutletContactAlertError').collapse('hide');
 						}, 5000);
 					}
 			   	});
@@ -527,6 +599,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		if ( !$('#contactFormContent').is('.show') ) {
 			$('#contactFormContent').addClass('show');
 			$('body').addClass('block-content');
+			// move recaptcha to this form
+			$('form#formulario').find('.form-group').last().after( $('#verificationGroup') );
+			$('#verificationGroup label').removeClass('col-sm-4 hidden-md hidden-lg control-label');
+			$('#verificationGroup > div').removeClass('col-sm-8 col-lg-11 col-lg-offset-1');
 		}
 	});
 
@@ -534,6 +610,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	$('#cancelOutletContactForm, #outletContactFormCloseButton, .dark-layer').on('click', function() {
 		$('#contactFormContent').removeClass('show');
 		$('body').removeClass('block-content');
+		// move back recaptcha to contact form
+		$('#verificationGroup').prependTo($('form#contactForm').find('.col-md-4').last());
+		$('#verificationGroup label').addClass('col-sm-4 hidden-md hidden-lg control-label');
+		$('#verificationGroup > div').addClass('col-sm-8 col-lg-11 col-lg-offset-1');
 	});
 
 	/**
@@ -573,7 +653,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			alert(response);
 		};
 		var widgetId1;
-		var widgetId2;
 		var onloadCallback = function() {
 			// Renders the HTML element with id 'example1' as a reCAPTCHA widget.
 			// The id of the reCAPTCHA widget is assigned to 'widgetId1'.
@@ -592,7 +671,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		// Show subscribe newsletter - only if not mobile
 		if ( common.detectMobile() == false ) {
 			setTimeout(function(){
-				showSubscribeNewsletter();
+				if ( !$('#contactFormContent').is('.show') ) {
+					showSubscribeNewsletter();
+				}
 			}, 10000);
 		}
     });

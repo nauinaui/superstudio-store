@@ -424,6 +424,12 @@ body.logged {
       line-height: 17px;
       padding: 0;
 
+      @media (max-width: @md-max) and (min-width: @xs-min) {
+        max-width: 100px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
+
       @media (max-width: @xs-max) {
         line-height: 24px;
       }

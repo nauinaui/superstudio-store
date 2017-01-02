@@ -21,6 +21,15 @@ switch(domain[2]) {
     case 'pt':
         lang = 'PT';
         break;
+    case 'nl':
+        lang = 'NL';
+        break;
+    case 'it':
+        lang = 'IT';
+        break;
+    case 'pl':
+        lang = 'PL';
+        break;
     default:
         lang = 'ES';
 }
@@ -171,7 +180,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				finish 		= $(this).parent().find('.acabados input[type="radio"]:checked').attr('data-finish'),
 				type		= "product";
 				finishList 	= $('.finishes:not(.collapse)'),
-				ok 			= true;
+				ok 			= true,
+				isDetail	= false;
 
 			// create query for ajax depending of product type
 			if ( objectItem.is('.pack') ) {
@@ -184,25 +194,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				var query = '&cantidad=' + quantity + '&color=' + finish + '&acabado=&opcion=';
 			}
 
-			common.blockUI();
 			// Send product info to cart
-			$.ajax({
-				url: '/includes/web/plugin_accion_carrito?accion=anadir' + query,
-				success: function (data) {
-					//show feedback
-					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartFeedback'));
-					setTimeout(function(){
-						$('body').append($('#addedToCartFeedback'));
-					}, 4000);
-					// Cargamos carrito
-					common.addProductToCart(product_id, query, type);
-				},
-				error: function() {
-					//show error feedback
-					$('.item[data-product-id="'+product_id+'"]').prepend($('#addedToCartErrorFeedback'));
-				}
-			});
-			common.unblockUI();
+			common.addProductToCart(product_id, query, type, isDetail);
 		} else {
 			//move error label to a correct place for greater visual effect
 			$(this).closest('.producto-box').find('label.error').insertAfter($(this).closest('.producto-box .add-to-cart'));

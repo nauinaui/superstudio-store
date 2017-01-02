@@ -340,3 +340,38 @@
     }
   }
 }
+
+.categoryFrame() {
+  background: url('../../imagenes/iconos/svg/measures-frame.svg') no-repeat top center;
+  height: 95px;
+  position: relative;
+
+ span {
+    position: absolute;
+
+    &.width {
+      top: 85px;
+      left: 117px;
+    }
+
+    &.height {
+      top: 35px;
+      left: 175px;
+    }
+  }
+
+  @media (max-width: @md-max) {
+    background-position: left top;
+    margin-left: 10px;
+
+    span {
+      &.width {
+        left: 45px;
+      }
+
+      &.height {
+        left: 100px;
+      }
+    }
+  }
+}
