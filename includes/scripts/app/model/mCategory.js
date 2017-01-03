@@ -163,9 +163,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		url = url[1];
 
 		if ( !url == '' ) {
-			$('html, body').animate({
-		        scrollTop: $(".read-more").offset().top -100
-		    }, 1000);
+			if ( $('.read-more').length > 0 ) {
+				$('html, body').animate({
+			        scrollTop: $(".read-more").offset().top -100
+			    }, 1000);	
+			}
 
 			url = url.split('&');
 
@@ -263,8 +265,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 
 
 	function getDocumentHeight() {
-		const body = document.body;
-		const html = document.documentElement;
+		var body = document.body;
+		var html = document.documentElement;
 		
 		return Math.max(
 			body.scrollHeight, body.offsetHeight,

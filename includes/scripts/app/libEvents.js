@@ -78,9 +78,18 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// product's grid - auto select finish when there is only one
 		common.autoSelectFinish();
+
+		// Change 'CAS' to 'ES' language in topbar language selection
+		if ( $('#languageDropdown').text()=='CAS ' ) {
+			$('#languageDropdown').html('ES <span class="caret"></span>');
+		}
 		
 		// Placeholder effect for IE9 and older
-		$('input, textarea').placeholder();
+	    var ua 	= window.navigator.userAgent,
+    		msie= ua.indexOf("MSIE ");
+	    if ( msie > 0 && msie < 10 ) { // If Internet Explorer, and if IE is 9 or older
+	        $('input, textarea').placeholder();
+	    }
 
 		// Form validation for non HTML5 browsers
 		$( "form" ).each( function() {

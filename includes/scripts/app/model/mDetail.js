@@ -467,7 +467,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 
 		} else if ( $('#finishesRadioInput-error').length ) {
 			validator.showErrors({
-	  			"finishesRadioInput": errorText
+	  			"finishesRadioInput": errorTextFinish
 			});
 			// Position label properly if there is an error in finishes selection
 			$('#finishesRadioInput-error').insertBefore( '#finishesList' );

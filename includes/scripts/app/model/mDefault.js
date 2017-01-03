@@ -74,9 +74,12 @@ define(['./Base.js', 'countdown'], function (Base, Countdown) {
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');
 		}, 1000);
-		startCountdown('countdown1');
-		startCountdown('countdown2');
-		startCountdown('countdown3');
+
+		// Init countdowns from every promo
+		var timers = $('.countdown').length;
+		for (j = 0; j < timers; j++) {
+			startCountdown('countdown'+(j+1));
+		}
     });
 
     return mDefault;

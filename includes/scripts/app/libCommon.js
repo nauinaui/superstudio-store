@@ -214,6 +214,7 @@ define(['jquery'], function ($) {
 		// Load info to cart
 		$.ajax({
 			url: '/includes/web/plugin_accion_carrito.asp?accion=anadir' + envioCarrito + query,
+			type: 'POST',
 			success: function (data) {
 				thisFile.unblockUI();
 				console.log(data);
@@ -255,11 +256,28 @@ define(['jquery'], function ($) {
 	* AJAX - Load current Cart
 	*/
 	LibCommon.prototype.loadCart = function() {
+		var thisFile = this;
+
 		// refresh cart content
-		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250).load('/includes/web/carrito.asp');
+		$('#myCart .content').html('<img class="loader" src="imagenes/loader.gif"/>').slideDown(250);
+		
+		$.ajax({
+			url: '/includes/web/carrito.asp',
+			type: 'POST',
+			success: function (data) {
+				$('#myCart .content').html(data);
+			}
+		});
+		
 		// refresh product number
-		$('#cartItemsNumber').load('/includes/web/carrito_linea.asp');
-		this.animateCartNumber();
+		$.ajax({
+			url: '/includes/web/carrito_linea.asp',
+			type: 'POST',
+			success: function (data) {
+				$('#cartItemsNumber').html(data);
+				thisFile.animateCartNumber();
+			}
+		});
 	};
 
 	/**
