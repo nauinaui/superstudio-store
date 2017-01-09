@@ -1,6 +1,9 @@
 define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Zoom, Recaptcha) {
     var mDefault = new Base('data for Page Detail loaded');
     var common = new LibCommon();
+	// console.log('aplazame:');
+	// console.log(Aplazame);
+
 	var errorTextFinish = '';
 	var errorTextCaptcha = '';
 	switch(domain[2]) {
@@ -177,7 +180,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	 * Show subscribing newsletter in lateral content
 	 */
 	function showSubscribeNewsletter() {
-		if ( !$('#subscribeNewsletter').is('.show') ) {
+		var cookie = common.readCookie('email-subscription');
+		console.log(cookie);
+		if ( !$('#subscribeNewsletter').is('.show') && !$('body').is('.logged') && cookie == null ) {
 			$('#subscribeNewsletter').addClass('show');
 			setTimeout(function(){
 				$('#subscribeNewsletter .coupon-image').addClass('animated tada');
@@ -475,7 +480,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	});
 
 	// Add product to wishlist
-	$('.wishlist').on('click', function() {
+	$('.favourite-btn').on('click', function() {
 		var productID 	= $('body').data('product-id'),
 			login 		= $(this).data('login'),
 			feedback	= $('#addedProductToWishlist');
@@ -633,14 +638,31 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		window.addEventListener("resize", zoomInit);
 		zoomInit();
 
+		// // Aplazame
+		// var dataAplazame = '4c726ea1597febeee7505410a6b6b23addcd8a21';
+		// var dataVersion = '1.2';
+		// var dataSandbox = 'true';
+		// var aplazame new Aplazame();
+		
+		// window.launchCheckout = function (aplazame) {
+		//   	aplazame.checkout({
+		// 		"merchant": {
+		// 			"public_api_key": dataAplazame,
+		// 			"confirmation_url": "/confirm?order_id=test3232321",
+		// 			"cancel_url": "/demo-cancel.html",
+		// 			"success_url": "/demo-success.html"
+		// 		},
+		// 	});
+		// }
+
 		// Change active tab for some products
 		var productID = $('body').attr('data-product-id');
 		if ( productID==='142898' || productID==='143160' ) {
 			$('.other-info-title-tabs a[href="#materialAndMeasures"]').tab('show');
 		}
 
-		// Stop auto play carousel
-		$('.carousel').carousel({
+		// Stop auto play cross selling carousel
+		$('#crossSellingSection .carousel').carousel({
 		  interval: false
 		})
 

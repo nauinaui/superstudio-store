@@ -30,7 +30,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	 * Show subscribing newsletter in lateral content
 	 */
 	function showSubscribeNewsletter() {
-		if ( !$('#subscribeNewsletter').is('.show') ) {
+		var cookie = common.readCookie('email-subscription');
+		console.log(cookie);
+		if ( !$('#subscribeNewsletter').is('.show') && !$('body').is('.logged') && cookie == null ) {
 			$('#subscribeNewsletter').addClass('show');
 			setTimeout(function(){
 				$('#subscribeNewsletter .coupon-image').addClass('animated tada');

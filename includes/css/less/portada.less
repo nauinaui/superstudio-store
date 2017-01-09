@@ -2,15 +2,24 @@
   a {
     display: block;
     margin-bottom: 15px;
+  }
 
+  .row:first-child {
     @media (min-width: @md-min) and (max-width: @md-max) {
-      margin-bottom: 2px;
+      margin-bottom: 10px;
+    }
+    
+    a {
+      @media (min-width: @md-min) and (max-width: @md-max) {
+        margin-bottom: 2px;
+      }
     }
 
     & > img {
       margin: 0 auto;
     }
   }
+  
   .countdown {
     display: inline-block;
     width: 100%;
@@ -20,6 +29,7 @@
     font-weight: 700;
     text-align: center;
     color: @rojo;
+    
     span {
       display: block;
       font-size: 11px;
@@ -28,10 +38,15 @@
       color: @gris_oscuro;
       border-top: 1px solid @gris_claro;
     }
+    
     div {
       display: inline-block;
       margin-right: 10px;
     }
+  }
+  
+  .no-countdown {
+    margin-bottom: 63px;
   }
 }
 

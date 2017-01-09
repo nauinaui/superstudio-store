@@ -206,7 +206,7 @@ body {
       letter-spacing: 0;
       line-height: normal;
       margin: 0;
-      padding: 10px 10px 0;
+      padding: 10px 10px;
       text-align: left;
       text-transform: uppercase;
     }
@@ -803,36 +803,6 @@ body {
           }
         }
       }
-      
-      .btn {
-        width: 50px;
-
-        &.left {
-          margin-right: 10px;
-        }
-
-        &.right {
-          margin-left: 10px;
-        }
-      }
-
-      .carousel-indicators {
-        display: inline;
-        position: initial;
-        margin: 0 auto;
-        left: auto;
-        top: auto;
-        vertical-align: -webkit-baseline-middle;
-
-        li {
-          background-color: @blanco_roto;
-          margin: 3px;
-
-          &.active {
-            background-color: @azul;
-          }
-        }
-      }
     }
 
     .nav-tabs {
@@ -1005,6 +975,20 @@ body {
       color: @gris_oscuro;
       display: block;
       margin-bottom: 10px;
+    }
+  }
+}
+
+.products-list {
+  .carousel {
+    .carousel-inner {
+      .btn {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+    .title-btn {
+      margin: 25px auto;
     }
   }
 }

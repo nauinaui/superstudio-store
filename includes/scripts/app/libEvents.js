@@ -91,6 +91,10 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	        $('input, textarea').placeholder();
 	    }
 
+	    // Detect current url to write value to origin parameter for login redirect
+	    var path = window.location.pathname;
+	    $('#loginForm #origen').val(path);
+
 		// Form validation for non HTML5 browsers
 		$( "form" ).each( function() {
 			$(this).validate();
@@ -309,11 +313,18 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		}
 	});	
 
-	// Hide lateral contact form -newsletter-
+	// Hide subscribe to newsletter lateral content
 	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton, #closeWindowButton').on('click', function() {
-		$('#subscribeNewsletter').removeClass('show');
-		$('#subscribeNewsletter .coupon-image').removeClass('animated tada');
-		$('body').removeClass('block-content');
+		if ( $('#subscribeNewsletter').is('.show') ) {
+			$('#subscribeNewsletter').removeClass('show');
+			$('#subscribeNewsletter .coupon-image').removeClass('animated tada');
+			$('body').removeClass('block-content');
+		}
+		// create cookie to avoid open again
+		var name 	= 'email-subscription',
+			value 	= true,
+			days 	= 1;
+		common.createCookie(name, value, days);
 	});
 
 	// Scroll to top button

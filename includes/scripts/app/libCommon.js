@@ -230,6 +230,12 @@ define(['jquery'], function ($) {
 
 					// Open cart
 					$('#cartBtn').trigger('click');
+					// Scroll if it's mobile device
+					if ( thisFile.detectMobile() == true ) {
+						$('html, body').animate({
+					        scrollTop: $('body').offset().top
+					    }, 1000);
+					}
 				} else { // error adding
 					var error = data.split('-');
 					if ( error[0]== '1' ) {
