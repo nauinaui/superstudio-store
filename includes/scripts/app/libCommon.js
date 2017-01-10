@@ -297,40 +297,6 @@ define(['jquery'], function ($) {
 		}, 2000);
 	};
 
-    /**
-    * AJAX - Add product to wishlist
-    */
-    LibCommon.prototype.addToWishlist = function(productID, login) {
-		anyadirFavoritos = $(this).parent().find(".anyadirFavoritos"),
-		quitarFavoritos  = $(this).parent().find(".quitarFavoritos"),
-		elemento 	     = $(this).closest(".infoFav").find(".infoRegistro");
-        var thisFile = this;
-
-        this.blockUI();
-		$.ajax({
-			url: '/includes/web/plugin_listadeseos.asp?p=' + idProducto,
-			success: function (data) {
-				thisFile.unblockUI();
-				elemento.html(data);
-				elemento.fadeIn(300).delay(5000).fadeOut(300);
-				if(login ===1) {
-
-					if (_this.hasClass('added')) {
-						_this.removeClass('added');
-						_this.addClass('removeHeart');
-						anyadirFavoritos.show();
-						quitarFavoritos.hide();
-					} else {
-						_this.addClass("added");
-						_this.removeClass('removeHeart');
-						anyadirFavoritos.hide();
-						quitarFavoritos.show();
-					}
-				}
-			}
-		});
-	};
-
 	/**
 	 * Show alert for 3 seconds and hide again after adding a product to cart
 	 */

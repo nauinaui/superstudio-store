@@ -7,7 +7,7 @@
 //directory.
 require.config({
     waitSeconds: 20,
-    baseUrl: '/new-portada/includes/scripts/lib', // /new-portada
+    baseUrl: '/includes/scripts/lib', // /new-portada
     paths: {
       	app: 			  '../app',
         jquery:           'jquery-1.12.1.min',
@@ -21,6 +21,8 @@ require.config({
         blockui:          'blockUI',
         modernizr:        'modernizr',
         placeholder:      'placeholder.min',
+        // aplazame:         'aplazame.min',
+        // stripe:           'stripe-v2.min',
         validate:         'jquery.validate.min',
         validateES:       'localization/messages_es.min',
         validateFR:       'localization/messages_fr.min',
@@ -42,6 +44,8 @@ require.config({
         "blockui":         ["jquery"],
         "modernizr":       ["jquery"],
         "placeholder":     ["jquery"],
+        "aplazame":        ["jquery"],
+        // "stripe":          ["jquery"],
         "validate":        ["jquery"],
         "validateES":      ["jquery", "validate"],
         "validateFR":      ["jquery", "validate"],

@@ -4,10 +4,11 @@
 
 
 .breadcrumb {
-  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
-  margin-bottom: @line-height-computed;
   list-style: none;
   border-radius: @border-radius-base;
+  background-color: transparent;
+  margin: 20px 0;
+  padding: 0;
 
   > li {
     display: inline-block;
@@ -21,5 +22,15 @@
 
   > .active {
     color: @breadcrumb-active-color;
+  }
+
+  & + .banners-especial {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: @xs-max) {
+  .breadcrumb {
+    margin: 10px 0;
   }
 }

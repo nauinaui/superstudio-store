@@ -181,7 +181,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	 */
 	function showSubscribeNewsletter() {
 		var cookie = common.readCookie('email-subscription');
-		console.log(cookie);
 		if ( !$('#subscribeNewsletter').is('.show') && !$('body').is('.logged') && cookie == null ) {
 			$('#subscribeNewsletter').addClass('show');
 			setTimeout(function(){
@@ -332,6 +331,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
             return true; 
         }
     }
+	
+	function startAplazame(dataAplazame, dataVersion, dataSandbox) {
+		this.dataAplazame = dataAplazame;
+		this.dataVersion = dataVersion;
+		this.dataSandbox = dataSandbox;
+	}
 
 	/**
 	 * =================
@@ -439,7 +444,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		}
 	});
 
-	// Add to cart - Collapse other information and show cross selling
+	// Add product to cart - Collapse other information and show cross selling
 	$('#addToCartButton').on('click', function(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -482,26 +487,31 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 	// Add product to wishlist
 	$('.favourite-btn').on('click', function() {
 		var productID 	= $('body').data('product-id'),
-			login 		= $(this).data('login'),
-			feedback	= $('#addedProductToWishlist');
+			btn 		= $('.favourite-btn');
 		
 		common.blockUI();
 		$.ajax({
 			url: '/includes/web/plugin_listadeseos.asp?p=' + productID,
 			success: function (data) {
 				common.unblockUI();
-				feedback.html(data);
-				$('#addedProductToWishlist').collapse('show');
-				setTimeout(function(){
-					$('#addedProductToWishlist').collapse('hide');
-				}, 3000);
-				
-				if ( login === 1 ) {
-					if ( $(this).hasClass('added') ) {
-						$(this).removeClass('added');
-					} else {
-						$(this).addClass("added");
-						$(this).removeClass('removeHeart');
+				if ( data == '1' ) { // error
+					$('#addedToWishlistAlertError').collapse('show');
+					setTimeout(function(){
+						$('#addedToWishlistAlertError').collapse('hide');
+					}, 3000);
+				} else if (data == '0' ) { // added/removed succesfully
+					if ( $('.favourite-btn.added').length > 0 ) { // has to remove
+						$('#removedFromWishlistAlert').collapse('show');
+						setTimeout(function(){
+							$('#removedFromWishlistAlert').collapse('hide');
+						}, 3000);
+						btn.removeClass('added');
+					} else { // has to add
+						$('#addedToWishlistAlert').collapse('show');
+						setTimeout(function(){
+							$('#addedToWishlistAlert').collapse('hide');
+						}, 3000);
+						btn.addClass('added');
 					}
 				}
 			}
@@ -638,22 +648,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		window.addEventListener("resize", zoomInit);
 		zoomInit();
 
-		// // Aplazame
-		// var dataAplazame = '4c726ea1597febeee7505410a6b6b23addcd8a21';
+		// Aplazame
+		// var dataAplazame = 'publicKey: 4c726ea1597febeee7505410a6b6b23addcd8a21';
 		// var dataVersion = '1.2';
 		// var dataSandbox = 'true';
-		// var aplazame new Aplazame();
-		
-		// window.launchCheckout = function (aplazame) {
-		//   	aplazame.checkout({
-		// 		"merchant": {
-		// 			"public_api_key": dataAplazame,
-		// 			"confirmation_url": "/confirm?order_id=test3232321",
-		// 			"cancel_url": "/demo-cancel.html",
-		// 			"success_url": "/demo-success.html"
-		// 		},
-		// 	});
-		// }
+		// var aplazame  = new Aplazame(dataAplazame, dataVersion, dataSandbox)
+		// $('body').append('<script type="text/javascript" src="https://aplazame.com/static/aplazame.js" data-aplazame="publicKey: 4c726ea1597febeee7505410a6b6b23addcd8a21" data-sandbox="true"></script>');
 
 		// Change active tab for some products
 		var productID = $('body').attr('data-product-id');

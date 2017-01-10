@@ -1,7 +1,6 @@
 define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
     var mCheckoutOld = new Base('data for Page Checkout-old loaded');
 	var common = new LibCommon();
-	
 	/**
 	 * =================
 	 * FUNCTIONS
@@ -56,6 +55,53 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		window.parent.document.title ="Superestudio";
 	}
 
+	function stripeGetToken(){
+		Stripe.card.createToken({
+		  number: $('#card-number').val(),
+		  cvc: $('#card-cvc').val(),
+		  exp_month: $('#card-exp-month').val(),
+		  exp_year: $('#card-exp-year').val()
+		},stripeResponseHandler);
+	}
+
+	function stripeResponseHandler(status, response) {
+		if (response.error) {
+			common.unblockUI();
+			$('#stripe-error').show();
+			// Enviar el error al servidor
+			//alert(response.error);
+		} else {
+			// response contains id and card, which contains additional card details
+			var token = response.id;
+			// Insert the token into the form so it gets submitted to the server
+			var $myForm = $('#checkoutForm');
+			$myForm.append($('<input type="hidden" name="stripeToken" />').val(token));
+			// and submit
+			$myForm[0].submit();
+		}
+	};
+
+	function verificarAmex(){
+		var cod = $("#card-number").val().substr(0,2);
+		//console.log('cod:'+cod);
+		if (cod=="34" || cod=="37"){
+			$("#textoAmex").show();
+			$("#recargoAmex").val("1");
+		}
+		else{
+			$("#textoAmex").hide();
+			$("#recargoAmex").val("");
+		}
+	}
+
+	function avisoStripe(){
+		// Aviso para que pongan primero sus datos personales, para que no se pierdan los datos de la tarjeta
+		// El aviso se muestra sólo si falta algun dato
+		if($("#envio_email").val()==""){
+			$("#aviso-stripe").show();
+			$("#envio_email").focus();
+		}
+	}
 	
 	/**
 	 * =================
@@ -153,6 +199,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 			}
 		});
 	});
+	
 	// forzar click en checkbox - quiero recebir factura
 	$('.pedido-factura').on('click', function(){
 		$('#enviar_factura').trigger('click');
@@ -179,6 +226,14 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		e.preventDefault();
 		e.stopPropagation();
 	});
+
+	This identifies your website in the createToken call below
+	// alert('hi there1!');
+	Stripe.setPublishableKey('pk_test_jcWN81rA6zmzpbRVs5d0t2hi');
+	
+	// $('#submit_pedido').click(function(e) {
+	// 	$('#preloader-texto').show();
+	// });
 	
 	/**
 	 * =================

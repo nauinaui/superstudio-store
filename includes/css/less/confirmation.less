@@ -1,4 +1,4 @@
-.confirmation {
+body.confirmation {
 	section {
 		.btn {
 			margin: 0 0 20px;
@@ -22,6 +22,33 @@
 	&.bank-transfer {
 		.bank-transfer-info {
 			display: block;
+		}
+	}
+
+	table.confirmation {
+		margin: 0 auto;
+		width: 100%;
+
+		h1, h2 {
+			letter-spacing: 8px !important;
+			text-transform: uppercase;
+			margin: 50px 0 20px !important;
+			font-family: @mainFont;
+			font-size: @font_xbig !important;
+			font-weight: 700;
+			line-height: 31px !important;
+			color: @gris_oscuro;
+			text-align: center !important;
+		}
+
+		table {
+			width: 100%;
+
+			td {
+				font-size: 13px !important;
+				line-height: 20px;
+				padding: 5px;
+			}
 		}
 	}
 }

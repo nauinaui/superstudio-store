@@ -67,9 +67,9 @@ define(['./Base.js', 'countdown'], function (Base, Countdown) {
 
     $(document).ready( function() {
 		setTimeout(function(){
-			$('#designers').attr('data-height',$('#designers').outerHeight());
-			$('#styles').attr('data-height',$('#styles').outerHeight());
-			$('#colections').attr('data-height',$('#colections').outerHeight());
+			$('#designers').attr('data-height',$('#designers').outerHeight() + 50);
+			$('#styles').attr('data-height',$('#styles').outerHeight() + 50);
+			$('#colections').attr('data-height',$('#colections').outerHeight() + 50);
 		toggleHeight('designers', 'hide');
 		toggleHeight('styles', 'hide');
 		toggleHeight('colections', 'hide');
