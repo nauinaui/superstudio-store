@@ -285,8 +285,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$('.help-block').addClass('hidden');
 
 			var url = '/newsletter';
-
 			common.blockUI();
+			
 			$.ajax({
 				url: url,
 				type: 'post',

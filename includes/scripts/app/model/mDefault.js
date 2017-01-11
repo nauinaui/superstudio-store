@@ -46,18 +46,12 @@ define(['./Base.js', 'countdown'], function (Base, Countdown) {
 	 * EVENTS
 	 * =================
 	 */
+	 
 	 $('.toggle-height').on('click', function() {
 	 	toggleHeight($(this).attr('data-element'), $(this).attr('data-action'));
 		$(this).parent().find('.hide').toggleClass('hide');
 		$(this).toggleClass('hide');
 	 });
-
-	//Hide lateral contact form
-	$('#SubscribeNewsletterCloseButton, .dark-layer, #alreadySubscribedButton').on('click', function() {
-		$('#subscribeNewsletter').removeClass('show');
-		$('body').removeClass('block-content');
-	});
-
 
 	/**
 	 * =================

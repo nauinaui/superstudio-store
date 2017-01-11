@@ -89,7 +89,14 @@
         }     
       }
 
+      li a {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
       a {
+        border: 0;
         color: @gris_claro_mas;
 
         &:hover,
@@ -99,13 +106,6 @@
           color: @blanco_roto;
           text-decoration: none;
         }
-      }
-
-      a {
-        border: 0;
-        display: block;
-        font-size: 13px;
-        margin-bottom: 10px;
       }
 
       .franja-horaria {
@@ -148,6 +148,7 @@
           }
 
           .btn {
+            letter-spacing: 0.5px;
             margin-bottom: 20px;
             padding: 6px 12px;
           }
@@ -159,9 +160,13 @@
 
         .dropdown-toggle {
           max-width: 130px;
-          overflow-x: auto;
           padding: 0 10px 0 0;
+          overflow: visible;
+          overflow-x: hidden;
+          overflow-y: hidden;
           text-overflow: ellipsis;
+          width: auto;
+          -ms-overflow-style: none;
 
           .caret {
             position: absolute;
@@ -431,7 +436,8 @@ body.logged {
       font-size: 13px;
       font-weight: 700;
       color: @gris_oscuro;
-      line-height: 17px;
+      line-height: 10px;
+      margin-bottom: 8px;
       padding: 0;
 
       @media (max-width: @md-max) {
@@ -502,6 +508,7 @@ body.logged {
   }
 
   .cart-container {
+    display: inline-block;
     position: relative;
   }
   
