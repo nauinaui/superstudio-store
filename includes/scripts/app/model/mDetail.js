@@ -1,8 +1,6 @@
-define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recaptcha'], function (Base, LibCommon, Bootstrap, Countdown, Zoom, Recaptcha) {
+define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recaptcha', 'aplazame'], function (Base, LibCommon, Bootstrap, Countdown, Zoom, Recaptcha, Aplazame) {
     var mDefault = new Base('data for Page Detail loaded');
     var common = new LibCommon();
-	// console.log('aplazame:');
-	// console.log(Aplazame);
 
 	var errorTextFinish = '';
 	var errorTextCaptcha = '';
@@ -649,12 +647,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		zoomInit();
 
 		// Aplazame
-		// var dataAplazame = 'publicKey: 4c726ea1597febeee7505410a6b6b23addcd8a21';
-		// var dataVersion = '1.2';
-		// var dataSandbox = 'true';
-		// var aplazame  = new Aplazame(dataAplazame, dataVersion, dataSandbox)
-		// $('body').append('<script type="text/javascript" src="https://aplazame.com/static/aplazame.js" data-aplazame="publicKey: 4c726ea1597febeee7505410a6b6b23addcd8a21" data-sandbox="true"></script>');
-
+		aplazame.init({
+			sandbox: true,
+			publicKey: '4c726ea1597febeee7505410a6b6b23addcd8a21'
+		});
+		
 		// Change active tab for some products
 		var productID = $('body').attr('data-product-id');
 		if ( productID==='142898' || productID==='143160' ) {

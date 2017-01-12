@@ -7,7 +7,7 @@
 //directory.
 require.config({
     waitSeconds: 20,
-    baseUrl: '/new-portada/includes/scripts/lib', // /new-portada
+    baseUrl: '/includes/scripts/lib', // /new-portada
     paths: {
       	app: 			  '../app',
         jquery:           'jquery-1.12.1.min',
@@ -21,7 +21,7 @@ require.config({
         blockui:          'blockUI',
         modernizr:        'modernizr',
         placeholder:      'placeholder.min',
-        // aplazame:         'aplazame.min',
+        aplazame:         'https://dev.aplazame.com/static/aplazame.js',
         // stripe:           'stripe-v2.min',
         validate:         'jquery.validate.min',
         validateES:       'localization/messages_es.min',
