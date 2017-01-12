@@ -17,10 +17,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	
 	// Show large image when clicking on main image and on secondary images thummbnails if device is not mobile
 	$('.photogallery button[data-target="#largeImageModal"]').on('click', function(e) {
-		console.log('entro');
 		if ( common.detectMobile() == false ) {
 			var source = $(this).find('img').attr('src');
-			console.log(source);
 			source = source.replace('/min/','/max/');
 			source = source.replace('m.jpg','.jpg');
 			$('#largeImageModal .modal-content img').attr('src',source);
