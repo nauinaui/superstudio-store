@@ -24,12 +24,14 @@
     }
   }
   
-  a, .dropdown {
+  a,
+  .dropdown {
     display: inline-block;
     color: @blanco_roto;
     padding: 0 7px 0 0;
     margin: 0 7px 0 0;
     border-right: 1px solid @blanco;
+    text-decoration: none;
     
     &:hover {
       color: @blanco;
@@ -236,6 +238,10 @@ body.logged {
     @media (max-width:@xxs-max) {
       margin-top: 0;
     }
+  }
+
+  a {
+    text-decoration: none;
   }
 
   .navbar-header {   
@@ -509,7 +515,6 @@ body.logged {
 
   .cart-container {
     display: inline-block;
-    position: relative;
   }
   
   .btn-menu {

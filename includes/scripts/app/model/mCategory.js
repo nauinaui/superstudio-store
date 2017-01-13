@@ -507,7 +507,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			if ( productsList.find('.full-products').length == 0 && productsList.find('.no-results').length == 0 ) {
 				var offset = productsList.offset();
 				offset = offset.top;
-				var screen = window.innerHeight / 2;
+				var screen = window.innerHeight * 2;
 				var pixelToEvent = offset + productsList.height();
 				var currentPixel = getScrollTop() + screen;
 				if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
