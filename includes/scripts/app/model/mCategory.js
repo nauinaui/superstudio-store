@@ -141,11 +141,15 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			i++;
 		});
 
-		// Detect if current page has been previously filtered by a category/style
+		// Detect if current page has been previously filtered by a collection/style
 		if ( !currentPage == '' ) {
 			url = url.split('?');
-			url = url[0] + '?camp='+ currentPage + '&' + url[1]
-			i = i++;
+			if ( i>0 ) { // there is any filter to active
+				url = url[0] + '?camp='+ currentPage + '&' + url[1];
+			} else{ // there isn't any filter to active but there is a 'camp' filter
+				url = url[0] + '?camp='+ currentPage;
+				i = i++;
+			}
 		}
 
 		// Put sort order in url parameters
