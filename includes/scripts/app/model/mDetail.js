@@ -2,46 +2,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
     var mDefault = new Base('data for Page Detail loaded');
     var common = new LibCommon();
 
-	var errorTextFinish = '';
-	var errorTextCaptcha = '';
-	switch(domain[2]) {
-	    case 'com':
-	        errorTextFinish = 'Debes seleccionar un acabado para continuar';
-	        errorTextCaptcha= 'El captcha es erróneo';
-	        break;
-	    case 'co':
-	    	errorTextFinish = 'You must select a finish to continue';
-	    	errorTextCaptcha= 'The captcha is wrong';
-	    	break;
-	    case 'de':
-	    	errorTextFinish = 'Sie müssen eine Ausführung auswählen, um fortzufahren';
-	    	errorTextCaptcha= 'Das Captcha ist falsch';
-	    	break;
-	    case 'fr':
-	        errorTextFinish = 'Vous devez choisir une finition pour continuer';
-	        errorTextCaptcha= 'Le captcha est erroné';
-	        break;
-	    case 'pt':
-	        errorTextFinish = 'Você deverá selecionar um acabamento para continuar';
-	        errorTextCaptcha= 'O captcha está errado';
-	        break;
-        case 'nl':
-        	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
-        	errorTextCaptcha= 'De captcha is verkeerd';
-        	break;
-        case 'it':
-        	errorTextFinish = 'Selezionare una finitura per continuare';
-        	errorTextCaptcha= 'Il captcha è sbagliato';
-        	break;
-        case 'pl':
-        	errorTextFinish = 'Należy wybrać wykończenie żeby kontynuować';
-        	errorTextCaptcha= 'Obraz captcha jest źle';
-        	break;
-	    default:
-	        errorTextFinish = 'Debes seleccionar un acabado para continuar';
-	        errorTextCaptcha= 'El captcha es erróneo';
-	}
-
 	/**
 	 * =================
 	 * FUNCTIONS
@@ -479,6 +439,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			});
 			// Position label properly if there is an error in finishes selection
 			$('#finishesRadioInput-error').insertBefore( '#finishesList' );
+			$('#addedProductAlertErrorForm').collapse('show'); // Show error form alert
+			setTimeout(function(){
+				$('#addedProductAlertErrorForm').collapse('hide');
+			}, 3000);
 		}
 	});
 

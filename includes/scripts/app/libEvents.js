@@ -1,40 +1,71 @@
 //generic JS for all views
 
-// Get current language
-var domain = document.domain;
-var lang = '';
+// Get current language and set doofinder and error phrases
+var domain = document.domain,
+	lang = '',
+	hashId = '',
+	errorTextFinish = '',
+	errorTextCaptcha = '';
+
 domain = domain.split('.');
 
 switch(domain[2]) {
     case 'com':
         lang = 'ES';
+        hashId = 'c85616e94cdf5a841ae9709026705445';
+        errorTextFinish = 'Selecciona un acabado para continuar';
+        errorTextCaptcha= 'El captcha es erróneo';
         break;
     case 'co':
     	lang = 'EN';
+    	hashId = '91e72f6b02263af887fe3479675521d4';
+    	errorTextFinish = 'Select a finishing to continue';
+    	errorTextCaptcha= 'The captcha is wrong';
     	break;
     case 'de':
     	lang = 'DE';
+    	hashId = 'ae7e683662be4de33ddba7892d968654';
+    	errorTextFinish = 'Wählen Sie eine Ausführung aus, um fortzufahren';
+    	errorTextCaptcha= 'Das Captcha ist falsch';
     	break;
     case 'fr':
-        lang = 'FR';
+        errorTextFinish = 'Sélectionnez une finition pour continuer';
+        errorTextCaptcha= 'Le captcha est erroné';
         break;
     case 'pt':
-        lang = 'PT';
+        errorTextFinish = 'Deverá selecionar um acabamento para continuar';
+        errorTextCaptcha= 'O captcha está errado';
         break;
     case 'nl':
-        lang = 'NL';
+    	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
+    	errorTextCaptcha= 'De captcha is verkeerd';
         break;
     case 'it':
         lang = 'IT';
+        hashId = '8dda2e869819aab8c152111693e61a2f';
+    	errorTextFinish = 'Selezionare una finitura per continuare';
+    	errorTextCaptcha= 'Il captcha è sbagliato';
         break;
     case 'pl':
         lang = 'PL';
+        hashId = '';
+    	errorTextFinish = 'Wybierz wykończenie, aby kontynuować';
+    	errorTextCaptcha= 'Obraz captcha jest źle';
         break;
+    case 'design':
+    	lang = 'EN';
+    	hashid = 'bce3349b894c082c5c827ebcd783267c';
+    	errorTextFinish = 'Select a finishing to continue';
+    	errorTextCaptcha= 'The captcha is wrong';
+    	break;
     default:
         lang = 'ES';
+        hashId = 'c85616e94cdf5a841ae9709026705445';
+        errorTextFinish = 'Selecciona un acabado para continuar';
+        errorTextCaptcha= 'El captcha es erróneo';
 }
 
-define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate', 'validate'+lang], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang) {
+define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate', 'validate'+lang, 'doofinder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang, Doofinder) {
 	
 	var common = new LibCommon();
 	/**
@@ -47,9 +78,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// Load images (Lazy loading)
 		common.loadImages();
-
-		// Page view always starting from top
-		$(this).scrollTop(0);
 
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
@@ -99,7 +127,23 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		$( "form" ).each( function() {
 			$(this).validate();
 		});
-	});
+
+		// Doofinder - Search engine plugin
+		lang = lang.toLowerCase();
+		var dfClassicLayers = [{
+			queryInput: "input[name='busqueda']",
+			display: {
+				facets: {
+					width: '300px'
+				},
+				lang: lang
+			},
+			hashid: hashId,
+			zone: 'eu1'
+		}];
+
+		Doofinder.classic.init(dfClassicLayers[0]);
+	})
 
 	/**
 	 * =================
@@ -212,6 +256,9 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		} else {
 			//move error label to a correct place for greater visual effect
 			$(this).closest('.producto-box').find('label.error').insertAfter($(this).closest('.producto-box .add-to-cart'));
+			validator.showErrors({
+	  			"finishesRadioInput": errorTextFinish
+			});
 		}
 	})
 
