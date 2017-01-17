@@ -52,7 +52,16 @@
           border: 1px solid @gris_claro_mas;
           border-top: 0;
           box-shadow: none;
-          position: inherit;  
+          position: inherit;
+
+          label.error {
+            position: absolute;
+            top: 0px;
+          }
+
+          .acabados {
+            height: 63px;
+          }
         }
       }
     }
@@ -299,7 +308,7 @@ section .producto-box {
       z-index: 5;
 
       .add-product-form {
-        margin: 0 20px;
+        margin: 0 15px;
         position: relative;
 
         .btn.add-to-cart {

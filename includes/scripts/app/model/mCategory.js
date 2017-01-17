@@ -31,7 +31,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	 */
 	function showSubscribeNewsletter() {
 		var cookie = common.readCookie('email-subscription');
-		console.log(cookie);
 		if ( !$('#subscribeNewsletter').is('.show') && !$('body').is('.logged') && cookie == null ) {
 			$('#subscribeNewsletter').addClass('show');
 			setTimeout(function(){
@@ -114,7 +113,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		var i = 0;
 		var url = window.location.pathname;
 		var filters = '';
-		
+		var currentPage = getParameterByName('camp', window.location.href);
+
 		$('.resultados .active-filter').each(function() {
 			var type = $(this).attr('id');
 			type = type.split('-');
@@ -140,6 +140,14 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			}
 			i++;
 		});
+
+		// Detect if current page has been previously filtered by a category/style
+		if ( !currentPage == '' ) {
+			url = url.split('?');
+			url = url[0] + '?camp='+ currentPage + '&' + url[1]
+			i = i++;
+		}
+
 		// Put sort order in url parameters
 		var sort = $('#sortList label.active > input').attr('data-url');
 		if ( $('#sortList label.active').is('.change-sort') ) {
@@ -147,6 +155,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		} else {
 			var asc = false;
 		}
+
 		// if there is not any filter active and it's only sort order
 		if ( i === 0 ) {
 			url = '?orden=' + sort + '&asc=' + asc;
@@ -176,23 +185,31 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			for ( var i = 0, l = url.length; i < l; i++ ) {
 				var filter = url[i].split('=');
 				if ( filter[1].indexOf(',') == -1 ) { // if current filter doesn't have more than one active value 
-					if ( filter[0] === 'finish' ) { // it's finish filter
+					
+					if ( filter[0] === 'camp' ) { // it's a category page previously filtered by a collection/style
+						$('label[data-url="col"]').closest('.filter-container').hide();
+					
+					} else if ( filter[0] === 'finish' ) { // it's finish filter
 						$('.filters-section .acabado div[value="'+ filter[1] +'"]').trigger('click');
+					
 					} else if ( filter[0] === 'rango' ) { // it's price filter
 					    var range = filter[1];
 					    range = range.split('-');
 					    $('#priceMinInput').val(range[0]);
 					    $('#priceMaxInput').val(range[1]);
-					    enableFilter( range[0] + ',' + range[1], 'price', 'range');
+					    enableFilter( range[0] + '-' + range[1], 'price', 'range');
+					
 					} else if ( filter[0] == 'orden' ) { // sort
 						$('#sortList label.active').removeClass('active');
 						$('#sortList label > input[data-url="' + filter[1] + '"]').parent().addClass('active');
+					
 					} else if ( filter[0] == 'asc' ) { // sort direction
 						if ( filter[1] == 'true' ) {
 							$('#sortList label.active').addClass('change-sort');
 						}
 					} else { //it's a normal filter
-						$('.filters-columns input[value="' + filter[1] + '"]').trigger( 'click' );
+						var filterType = $('#filtersBox label[data-url="'+filter[0]+'"]').parent();
+						filterType.next().find($('.filters-columns input[value="' + filter[1] + '"]')).trigger( 'click' );
 					}
 				} else { // if current filter has more than one active value 
 					var values = filter[1].split(',');
@@ -201,7 +218,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 						if ( filter[0] === 'finish' ) { // it's finish filter
 							$('.filters-section .acabado div[value="'+ values[j] +'"]').trigger('click');
 						} else { //it's a normal filter
-							$('.filters-columns input[value="' + values[j] + '"]').trigger( 'click' );
+							var filterType = $('#filtersBox label[data-url="'+filter[0]+'"]').parent();
+							filterType.next().find($('.filters-columns input[value="' + values[j] + '"]')).trigger( 'click' );
 						}
 					}
 				}
@@ -334,7 +352,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			if ( priceMax == '' ) {
 				priceMax = '2000';
 			}
-			var option = priceMin + ',' + priceMax;
+			var option = priceMin + '-' + priceMax;
 			var type = 'price';
 		    // var value = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
 			enableFilter( option, type, option );	
