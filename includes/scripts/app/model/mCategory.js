@@ -2,6 +2,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
     var mCategory = new Base('data for Page Category loaded');
     var common = new LibCommon();
     var paginateFrom = 1;
+    var dependency1 = require('plugins');
 
 	/**
 	 * =================
@@ -138,7 +139,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 				var arr = url.split(type[0]+'=');
 				url = arr[0] + type[0] + '=' + option + ',' + arr[1];
 			}
-			i++;
+			i = i+1;
 		});
 
 		// Detect if current page has been previously filtered by a collection/style
@@ -148,7 +149,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 				url = url[0] + '?camp='+ currentPage + '&' + url[1];
 			} else{ // there isn't any filter to active but there is a 'camp' filter
 				url = url[0] + '?camp='+ currentPage;
-				i = i++;
+				i = i+1;
 			}
 		}
 
@@ -160,12 +161,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			var asc = false;
 		}
 
-		// if there is not any filter active and it's only sort order
+		// if there isn't any active filter and it's only sort order
 		if ( i === 0 ) {
 			url = '?orden=' + sort + '&asc=' + asc;
 		} else {
 			url = url + '&orden=' + sort + '&asc=' + asc;
 		}
+		
 		// refresh page with parameters
 		common.blockUI();
 		window.location.href = url;
@@ -276,6 +278,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			success: function (data) {
 				if (data !== '') {
 					contentsProd.append(data);
+					if ( common.detectMobile() == true ) {
+						contentsProd.find('.producto-box:not(.promo) .item:not(.mobile)').addClass('show mobile');
+					}
 					$(document).find('.iconLoad').remove();
 					paginateFrom++;
 				}

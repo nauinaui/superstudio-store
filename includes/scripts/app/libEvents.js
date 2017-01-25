@@ -68,82 +68,6 @@ switch(domain[2]) {
 define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate', 'validate'+lang, 'doofinder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang, Doofinder) {
 	
 	var common = new LibCommon();
-	/**
-	 * =================
-	 * TO EXECUTE WHEN INIT
-	 * =================
-	 */
-	$( document ).ready(function() {
-		console.log('initialized all common events');
-
-		// Load images (Lazy loading)
-		common.loadImages();
-
-		// Fixed header	 
-		var stickyNavTop = $('.topmenu').offset().top;
-		common.fixedNav(stickyNavTop);
-		$(window).scroll(function() {
-		    common.fixedNav(stickyNavTop);
-		});
-
-		// Refresh products number in cart
-		common.loadCart();
-
-		// Show cookies alert if user has not close cookies alert before
-		if ( !common.readCookie('cookies-accepted') == true ) {
-			$('#cookiesAlert').collapse('show');
-		}
-		
-		// Hide super promo alert if user has closed cookies alert before
-		if ( common.readCookie('cookies-superpromo-closed') == 'true' ) {
-			$('#superPromosAlert').addClass('unshow');
-		}
-
-		// If device is mobile, show product grid in hover position
-		if ( common.detectMobile() == true ) {
-			$('.producto-box:not(.promo) .item').addClass('show mobile');
-		}
-
-		// product's grid - auto select finish when there is only one
-		common.autoSelectFinish();
-
-		// Change 'CAS' to 'ES' language in topbar language selection
-		if ( $('#languageDropdown').text()=='CAS ' ) {
-			$('#languageDropdown').html('ES <span class="caret"></span>');
-		}
-		
-		// Placeholder effect for IE9 and older
-	    var ua 	= window.navigator.userAgent,
-    		msie= ua.indexOf("MSIE ");
-	    if ( msie > 0 && msie < 10 ) { // If Internet Explorer, and if IE is 9 or older
-	        $('input, textarea').placeholder();
-	    }
-
-	    // Detect current url to write value to origin parameter for login redirect
-	    var path = window.location.pathname;
-	    $('#loginForm #origen').val(path);
-
-		// Form validation for non HTML5 browsers
-		$( "form" ).each( function() {
-			$(this).validate();
-		});
-
-		// Doofinder - Search engine plugin
-		lang = lang.toLowerCase();
-		var dfClassicLayers = [{
-			queryInput: "input[name='busqueda']",
-			display: {
-				facets: {
-					width: '300px'
-				},
-				lang: lang
-			},
-			hashid: hashId,
-			zone: 'eu1'
-		}];
-
-		Doofinder.classic.init(dfClassicLayers[0]);
-	})
 
 	/**
 	 * =================
@@ -200,7 +124,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	// Search form - Validate before sending request
 	$('#searchSubmitBtn').on('click', function() {
 		$('#searchForm').validate();	
-	})
+	});
 
 	// Product's grid - Show more info in product box's bottom while mouseover
 	$('.products-list').on('mouseenter', '.producto-box:not(.promo) > .content', function() {
@@ -260,7 +184,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	  			"finishesRadioInput": errorTextFinish
 			});
 		}
-	})
+	});
 
 	// Product's grid - Close 'add to product' alert
 	$('#addedToCartFeedback, #addedToCartErrorFeedback').on('click', function(e) {
@@ -268,12 +192,12 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		e.stopPropagation();
 		$('body').append($('#addedToCartFeedback'));
 		$('body').append($('#addedToCartErrorFeedback'));
-	})
+	});
 
 	// Delete product from cart (all from same product)
 	$('#myCart').on('click', '.delete-product-from-cart-btn', function() {
 		common.deleteAllProductFromCart( $(this).parent().parent().attr('data-relation-id') );
-	})
+	});
 
 	// Cart - Add one more products (already added in cart)
 	$('#myCart').on('click', '.btn.more', function() {
@@ -382,7 +306,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	        $('#scrollToTopBtn').fadeOut(200);
 	    }
 	});
-	$('#scrollToTopBtn').click(function() {
+	$('#scrollToTopBtn').on('click', function() {
 	    $('body,html').animate({
 	        scrollTop : 0
 	    }, 500);
@@ -417,5 +341,82 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			value 	= true,
 			days 	= 30;
 		common.createCookie(name, value, days);
+	});
+	
+	/**
+	 * =================
+	 * TO EXECUTE WHEN INIT
+	 * =================
+	 */
+	$( document ).ready(function() {
+		console.log('initialized all common events');
+
+		// Load images (Lazy loading)
+		common.loadImages();
+
+		// Fixed header	 
+		var stickyNavTop = $('.topmenu').offset().top;
+		common.fixedNav(stickyNavTop);
+		$(window).scroll(function() {
+		    common.fixedNav(stickyNavTop);
+		});
+
+		// Refresh products number in cart
+		common.loadCart();
+
+		// Show cookies alert if user has not close cookies alert before
+		if ( !common.readCookie('cookies-accepted') == true ) {
+			$('#cookiesAlert').collapse('show');
+		}
+		
+		// Hide super promo alert if user has closed cookies alert before
+		if ( common.readCookie('cookies-superpromo-closed') == 'true' ) {
+			$('#superPromosAlert').addClass('unshow');
+		}
+
+		// If device is mobile, show product grid in hover position
+		if ( common.detectMobile() == true ) {
+			$('.producto-box:not(.promo) .item').addClass('show mobile');
+		}
+
+		// product's grid - auto select finish when there is only one
+		common.autoSelectFinish();
+
+		// Change 'CAS' to 'ES' language in topbar language selection
+		if ( $('#languageDropdown').text()=='CAS ' ) {
+			$('#languageDropdown').html('ES <span class="caret"></span>');
+		}
+		
+		// Placeholder effect for IE9 and older
+	    var ua 	= window.navigator.userAgent,
+    		msie= ua.indexOf("MSIE ");
+	    if ( msie > 0 && msie < 10 ) { // If Internet Explorer, and if IE is 9 or older
+	        $('input, textarea').placeholder();
+	    }
+
+	    // Detect current url to write value to origin parameter for login redirect
+	    var path = window.location.pathname;
+	    $('#loginForm #origen').val(path);
+
+		// Form validation for non HTML5 browsers
+		$( "form" ).each( function() {
+			$(this).validate();
+		});
+
+		// Doofinder - Search engine plugin
+		lang = lang.toLowerCase();
+		var dfClassicLayers = [{
+			queryInput: "input[name='busqueda']",
+			display: {
+				facets: {
+					width: '300px'
+				},
+				lang: lang
+			},
+			hashid: hashId,
+			zone: 'eu1'
+		}];
+
+		Doofinder.classic.init(dfClassicLayers[0]);
 	});
 });

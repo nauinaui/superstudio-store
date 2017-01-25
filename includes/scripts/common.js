@@ -7,7 +7,7 @@
 //directory.
 require.config({
     waitSeconds: 20,
-    baseUrl: '/includes/scripts/lib', // /new-portada
+    baseUrl: '/new-portada/includes/scripts/lib', // /new-portada
     paths: {
       	app: 			  '../app',
         jquery:           'jquery-1.12.1.min',
@@ -23,7 +23,7 @@ require.config({
         placeholder:      'placeholder.min',
         aplazame:         'https://aplazame.com/static/aplazame.js',
         // stripe:           'stripe-v2.min',
-        doofinder:        'https://cdn.doofinder.com/media/js/doofinder-classic.latest.min.js',
+        doofinder:        'https://cdn.doofinder.com/media/js/doofinder-classic.latest.min', // .js
         validate:         'jquery.validate.min',
         validateES:       'localization/messages_es.min',
         validateFR:       'localization/messages_fr.min',
@@ -32,7 +32,7 @@ require.config({
         validateNL:       'localization/messages_nl.min',
         validatePL:       'localization/messages_pl', 
         validatePT:       'localization/messages_pt_PT.min',
-  },
+    },
 	
 	shim: {
     	"app":             ["jquery"],
@@ -55,5 +55,5 @@ require.config({
         "validateNL":      ["jquery", "validate"],
         "validatePL":      ["jquery", "validate"],
         "validatePT":      ["jquery", "validate"]
-	}
+	},
 });

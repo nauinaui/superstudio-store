@@ -45,8 +45,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 			$mainList = $(".mainList"),
 			$avisoLista = $(".avisoLista"),
 			$clearAll = $(".clearAll"),
-			$abrirLista = $(".abrirLista"),
-			$cerrarLista = $(".cerrarLista"),
+			$abrirLista = $("#openList"),
+			$cerrarLista = $("#closeList"),
 			BoxDlista = $(".BoxDlista").length;
 
 		$mainList.animate({"height": listHg}, 300);
@@ -99,7 +99,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 
 	});
 
-	$(".listaTop").on("click", ".listToggle", function () {
+	$(".listaTop").on("click", ".list-toggle", function () {
 		var elem = $(this);
 		listaToogleAlto(elem);
 	});
