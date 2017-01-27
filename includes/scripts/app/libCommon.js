@@ -217,7 +217,6 @@ define(['jquery'], function ($) {
 			type: 'POST',
 			success: function (data) {
 				thisFile.unblockUI();
-				console.log(data);
 
 				if (data == '0') { // added
 
