@@ -224,7 +224,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
             e.stopPropagation();
 
 			var productsList = $('#productsList');
-
 			if ( productsList.find('.full-products').length == 0 && productsList.find('.no-results').length == 0 ) {
 				var offset = productsList.offset();
 				offset = offset.top;
@@ -517,7 +516,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 						$(document).find('.iconLoad').remove();
 						paginateFrom++;
 					}
-					$('#preloader').hide();
 					$('body').removeClass('disable-scroll');
 					loader.collapse('hide');
 					common.autoSelectFinish();

@@ -400,7 +400,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 				productRef	= $(this).parent().parent().attr('data-product-ref'),
 				place 		= 'detail';
 
-			// changeDeliveryTime($(this));
+			changeDeliveryTime($(this));
 			common.changeFinishImage(finishID, productRef, place);
 			changePrice($(this));
 			// Refresh unit selector according to stock of finish selected
