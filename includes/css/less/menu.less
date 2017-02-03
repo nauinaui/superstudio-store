@@ -16,11 +16,12 @@
     .dropdown-menu.menu-subcategorias {
       width: 100%;
       height: auto;
-      padding: 20px 0;
+      padding: 10px 0;
       background: @blanco;
       text-align: center;
       border: 0;
       border-radius: 0;
+      margin: 0;
       
       .header {
         padding: 0;
@@ -67,10 +68,19 @@
           }
         }
 
+        &.special {
+          display: none;
+        }
+
+        &.divider {
+          display: none;
+        }
+
         & > a {
           padding: 0;
 
-          &:hover {
+          &:hover,
+          &:focus {
             background: transparent;
           }
 
@@ -116,12 +126,43 @@
               display: none;
             }
           }
+
+          &.special {
+            display: block;
+
+            a .text {
+              color: @azul;
+
+              .glyphicon {
+                font-size: 11px;
+              }
+            }
+          }
+
+          &.divider {
+            display: block;
+
+            .divider {
+              margin: 0;
+            }
+          }
+
+          & > a .text .glyphicon {
+            display: inline-block;
+            font-size: 8px;
+            margin-left: 5px;
+          }
         }
       }
 
       @media (max-width: @xs-max) {
-        position: absolute;
+        border: 1px solid @gris_claro_mas;
+        border-width: 1px 0 0 0;
         box-shadow:  0 10px 10px fadeout(@negro, 80%);
+        height: 450px;
+        overflow: scroll;
+        padding: 0;
+        position: absolute;
         z-index: 1000;
       }
     }
@@ -136,7 +177,7 @@
     top: 100%;
     left: 0;
     font-family: @mainFont;
-    margin: 2px 0 0 0;
+    margin: 0;
     background: @blanco;
     padding: 10px 0;
     text-align: center;
@@ -214,7 +255,7 @@
     }
 
     .see-all-category-btn {
-      margin: 15px 0 0;
+      margin: 15px 0 10px;
     }
     
     .item {

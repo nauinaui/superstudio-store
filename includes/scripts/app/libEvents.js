@@ -87,6 +87,11 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		    common.fixedNav(stickyNavTop);
 		});
 
+		// 100% height of category menu for mobile devices
+		if ( $(window).width() < 768 ) {
+			$('#menuSubcategorias').height($(window).height() - $('.navbar').height());
+		}
+
 		// Refresh products number in cart
 		common.loadCart();
 
@@ -132,7 +137,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		// Doofinder - Search engine plugin
 		lang = lang.toLowerCase();
 		var dfClassicLayers = [{
-			queryInput: "input[name='busqueda']",
+			queryInput: "input[name='input-buscar']",
 			display: {
 				facets: {
 					width: '300px'
@@ -177,6 +182,17 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				e.preventDefault();
 				e.stopPropagation();
 				$(this).parent().parent().find('.submenu').toggle();
+			}
+		});
+
+		// Header - Abrir submenú de login al hacer click en versión movil
+		$('#moreOptionsDropdown li a.toggle-info').on('click', function(e) {
+			if ( $(window).width() < 768 ) {
+				e.preventDefault();
+				e.stopPropagation();
+				var subject = $(this).parent().attr('id');
+				$('#moreOptionsDropdown .submenu').hide();
+				$(this).parent().find('div[aria-labelledby="'+subject+'"]').toggle();
 			}
 		});
 
