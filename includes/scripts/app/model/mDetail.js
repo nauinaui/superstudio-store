@@ -216,12 +216,13 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		}
 
 		/**
-		 * Auto select finish when there is just one product option
+		 * Auto select finish when there is just one product option. Wait for 0.1s to detect event click to refresh delivery time
 		 */	
 		function autoSelectFinish() {
 			if ( $('#finishesList input[name=finishesRadioInput]').length === 1 ) {
-				$('#finishesList input[name=finishesRadioInput]').attr('checked', 'checked');
-				$('#unitsSelect').removeClass('disabled');
+				setTimeout(function(){
+					$('.finishes-list input[type="radio"]').trigger('click');
+				}, 100);
 			}
 		}
 

@@ -144,6 +144,30 @@ define(['jquery'], function ($) {
 	}
 
 	/**
+	 * Product's grid - Toggle to show or collapse product's finishes in tablet device (larger than 767px)
+	 */
+	LibCommon.prototype.showInfoInTablet = function(element) {
+		var product = element.closest('.producto-box');
+		var productHeight = element.closest('.producto-box').height();
+		var heightFinishesCollapsed = product.find('.acabados').height();
+		
+		if ( !product.find('.item').is('.show') ) {
+			product.find('.acabados').css('height','initial');
+			var heightFinishesOpened = product.find('.acabados').height();
+			product.find('.acabados').height(heightFinishesCollapsed);
+			product.find('.acabados').height(heightFinishesOpened);
+			product.find('.item').addClass('show');
+			product.height(productHeight);
+		} else {
+			product.find('.acabados').attr('style','');
+			setTimeout(function(){
+				product.attr('style','');
+				product.find('.item').removeClass('show');
+			}, 500);
+		}
+	}
+
+	/**
 	 * Change image when change a product finish
 	 */
 	LibCommon.prototype.autoSelectFinish = function() {

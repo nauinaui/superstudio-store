@@ -205,8 +205,8 @@ body {
       font-size: 13px;
       letter-spacing: 0;
       line-height: normal;
-      margin: 0;
-      padding: 10px 10px;
+      margin: 10px 0 0;
+      padding: 0px 10px 0;
       text-align: left;
       text-transform: uppercase;
     }
@@ -214,7 +214,21 @@ body {
     p {
       color: @gris;
       font-size: 12px;
+      font-weight: 400;
       padding: 0 10px;
+      text-align: left;
+
+      span {
+        color: @gris;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 0 10px;
+        text-align: left;
+      }
+    }
+
+    .no-detail {
+      display: none;
     }
 
     .countdown-group {
@@ -330,7 +344,7 @@ body {
         
         i{
           display: block;
-          font-size: 17px;
+          font-size: 14px;
           font-weight: 700;
           font-style: normal;
           letter-spacing: 0; 
@@ -340,13 +354,12 @@ body {
 
       &.vat {
         span {
-          font-size: 13px;
-          letter-spacing: 1px;
+          font-size: 12px;
           line-height: 21px;
-
-          i{
-            font-size: 21px;
-            letter-spacing: 5px;
+          
+          strong {
+            display: block;
+            font-size: 13px;  
           }
         }
       }
@@ -638,7 +651,7 @@ body {
       background-color: @blanco;
       bottom: -10px;
       color: @gris_claro;
-      font-size: 13px;
+      font-size: 11px;
       position: absolute;
       left: 50%;
       padding: 0 10px;
@@ -985,7 +998,7 @@ body {
 .products-list {
   .carousel {
     .carousel-inner {
-      .btn {
+      & > .btn {
         margin-top: 20px;
         margin-bottom: 20px;
       }

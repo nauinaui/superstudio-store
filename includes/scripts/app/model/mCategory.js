@@ -2,6 +2,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 	var mCategory = new Base('data for Page Category loaded');
     var common = new LibCommon();
     var paginateFrom = 1;
+    var xivato = false;
 
     $(document).ready( function() {
 		/**
@@ -222,19 +223,29 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 		window.onscroll = function(e) {
             e.preventDefault();
             e.stopPropagation();
-
-			var productsList = $('#productsList');
+            var productsList = $('#productsList');
 			if ( productsList.find('.full-products').length == 0 && productsList.find('.no-results').length == 0 ) {
 				var offset = productsList.offset();
 				offset = offset.top;
 				var screen = window.innerHeight * 2;
 				var pixelToEvent = offset + productsList.height();
 				var currentPixel = getScrollTop() + screen;
-				if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
-				  documentoScroll();
-				}
+				setTimeout(function(){
+					if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
+						documentoScroll();
+					} else if ( xivato == false ) {
+						$('#productsLoader').collapse('hide');
+					}
+				}, 100);
 			}
 		};
+
+		$( document ).ajaxStart(function() {
+			xivato = true;
+		});
+		$( document ).ajaxStop(function() {
+			xivato = false;
+		});
 
 		/**
 		 * =================
@@ -511,7 +522,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 					if (data !== '') {
 						contentsProd.append(data);
 						if ( common.detectMobile() == true ) {
-							contentsProd.find('.producto-box:not(.promo) .item:not(.mobile)').addClass('show mobile');
+							contentsProd.find('.producto-box:not(.promo) .item:not(.mobile)').addClass('mobile');
 						}
 						$(document).find('.iconLoad').remove();
 						paginateFrom++;

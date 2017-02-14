@@ -58,6 +58,12 @@ switch(domain[2]) {
     	errorTextFinish = 'Select a finishing to continue';
     	errorTextCaptcha= 'The captcha is wrong';
     	break;
+    case 'norge':
+    	lang = 'NO';
+    	hashid = 'bce3349b894c082c5c827ebcd783267c';
+    	errorTextFinish = 'Du må velge en finish på produktet for å fortsette';
+    	errorTextCaptcha= 'captcha er feil';
+    	break;
     default:
         lang = 'ES';
         hashId = 'c85616e94cdf5a841ae9709026705445';
@@ -65,7 +71,7 @@ switch(domain[2]) {
         errorTextCaptcha= 'El captcha es erróneo';
 }
 
-define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate', 'validate'+lang, 'doofinder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, Validate, ValidateLang, Doofinder) {
+define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'validate'+lang, 'doofinder'], function ($, Bootstrap, LibCommon, Modernizr, Placeholder, ValidateLang, Doofinder) {
 	
 	var common = new LibCommon();
 	
@@ -87,7 +93,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		    common.fixedNav(stickyNavTop);
 		});
 
-		// 100% height of category menu for mobile devices
+		// Header - 100% height of category menu for mobile devices
 		if ( $(window).width() < 768 ) {
 			$('#menuSubcategorias').height($(window).height() - $('.navbar').height());
 		}
@@ -107,11 +113,16 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// If device is mobile, show product grid in hover position
 		if ( common.detectMobile() == true ) {
-			$('.producto-box:not(.promo) .item').addClass('show mobile');
+			$('.producto-box:not(.promo) .item').addClass('mobile');
 		}
 
 		// product's grid - auto select finish when there is only one
 		common.autoSelectFinish();
+
+		// Show 'other country' modal
+		if ( $('#otherCountryModal').length > 0 ) {
+			$('#otherCountryModal').modal('show');
+		}
 
 		// Change 'CAS' to 'ES' language in topbar language selection
 		if ( $('#languageDropdown').text()=='CAS ' ) {
@@ -122,7 +133,11 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 	    var ua 	= window.navigator.userAgent,
     		msie= ua.indexOf("MSIE ");
 	    if ( msie > 0 && msie < 10 ) { // If Internet Explorer, and if IE is 9 or older
-	        $('input, textarea').placeholder();
+			try {
+				$('input, textarea').placeholder();
+			} catch (e) {
+				console.log('Error in IE placeholder init');
+			}
 	    }
 
 	    // Detect current url to write value to origin parameter for login redirect
@@ -131,13 +146,21 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// Form validation for non HTML5 browsers
 		$( "form" ).each( function() {
-			$(this).validate();
+			try {
+				$(this).validate();
+			} catch (e) {
+				console.log('Error in form validation init');
+			}
 		});
 
 		// Doofinder - Search engine plugin
 		lang = lang.toLowerCase();
+		var inputSelector = "input[name='busqueda']";
+		if ( $(window).width() < 768 ) {
+			inputSelector = "input[name='input-buscar-mbl']";
+		}
 		var dfClassicLayers = [{
-			queryInput: "input[name='input-buscar']",
+			queryInput: inputSelector,
 			display: {
 				facets: {
 					width: '300px'
@@ -148,7 +171,11 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			zone: 'eu1'
 		}];
 
-		Doofinder.classic.init(dfClassicLayers[0]);
+		try {
+			Doofinder.classic.init(dfClassicLayers[0]);
+		} catch (e) {
+			console.log('Error in Doofinder init');
+		}
 
 		/**
 		 * =================
@@ -177,7 +204,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		});
 
 		// Header - Abrir submenú al hacer click en versión movil
-		$('#menuSubcategorias > li a .text').on('click', function(e) {
+		$('#menuSubcategorias > li:not(.special) a .text').on('click', function(e) {
 			if ( $(window).width() < 768 ) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -213,11 +240,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$(this).parent().parent().find('.promo-menu').css( 'opacity', '1' );
 		});
 
-		// Search form - Validate before sending request
-		$('#searchSubmitBtn').on('click', function() {
-			$('#searchForm').validate();	
-		});
-
 		// Product's grid - Show more info in product box's bottom while mouseover
 		$('.products-list').on('mouseenter', '.producto-box:not(.promo) > .content', function() {
 			if ( common.detectMobile() == false ) {
@@ -228,6 +250,13 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			if ( common.detectMobile() == false ) {
 				$(this).find('.item').removeClass('show');
 			}
+		});
+
+		// Product's grid - Show more info in product box's bottom while click on 'view more' button (only mobile)
+		$('.products-list').on('click', '.producto-box .more-finishes-btn', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			common.showInfoInTablet($(this));
 		});
 
 		// Product's grid - Change image for selected finished image

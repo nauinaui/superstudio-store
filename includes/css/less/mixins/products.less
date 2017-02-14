@@ -37,54 +37,148 @@
     }
   }
 
-  &.show:not(.promo) {
-    border: 1px solid @gris_claro;
-    box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+  &.mobile {
+    border: 1px solid @gris_claro_mas;
+    border-bottom: 0;
+    box-shadow: none;
 
-    &.mobile {
-      border: 1px solid @gris_claro_mas;
-      box-shadow: none;
+    & + .folding {
+      height: auto;
 
-      & + .folding {
-        height: auto;
+      .caja {
+        border: 1px solid @gris_claro_mas;
+        border-width: 0 1px;
+        position: inherit;
 
-        .caja {
+        label.error {
+          position: absolute;
+          top: 0px;
+          width: 100%;
+          text-align: center;
+          height: 32px;
+          line-height: 26px;
+        }
+
+        .acabados {
+          height: 22px;
+          margin-bottom: 5px;
+          overflow-y: hidden;
+          position: relative;
+          transition: 0.5s;
+
+          @media (max-width: @xs-max) {
+            height: auto;
+          }
+        }
+
+        .view-more-finishes {
+          background-color: white;
           border: 1px solid @gris_claro_mas;
-          border-top: 0;
-          box-shadow: none;
-          position: inherit;
+          border-width: 1px 0 0 0 ;
+          display: block;
+          margin-bottom: 10px;
+          text-align: center;
+          width: 100%;
+          z-index: 1;
 
-          label.error {
-            position: absolute;
-            top: 0px;
-            width: 100%;
-            text-align: center;
-            height: 32px;
-            line-height: 26px;
+          button {
+            background-color: @blanco;
+            border: 1px solid @gris_claro_mas;
+            border-radius: 0 0 5px 5px;
+            border-width: 0 1px 1px 1px;
+            color: @gris_claro;
+            font-size: 11px;
+            margin-top: -2px;
+            padding: 3px 5px;
+            text-transform: uppercase;
+            width: initial;
+
+            &:focus,
+            &:active,
+            &:hover {
+              outline: 0;
+              text-decoration: none;
+            }
+
+            &.more {
+              display: inline-block;
+            }
+
+            &.less {
+              display: none;
+            }
+
+            .glyphicon {
+              font-size: 10px;
+              vertical-align: top;
+              line-height: 10px;
+            }
           }
 
-          .acabados {
-            height: 63px;
+          @media (max-width: @xs-max) {
+            display: none;
+          }
+        }
+      }
+    }
 
-            @media (max-width: @xs-max) {
-              height: auto;
+    &.show:not(.promo) {
+      @media (min-width: @sm-min) {
+        & + .folding {
+          overflow: visible;
+
+          .caja {
+            border: 1px solid @gris_claro;
+            border-width: 0 1px;
+            position: absolute;
+
+            label.error {
+              position: absolute;
+              top: 0px;
+              width: 100%;
+              text-align: center;
+              height: 32px;
+              line-height: 26px;
+            }
+
+            .acabados {
+              
+            }
+
+            .view-more-finishes {
+              button {
+                &.more {
+                  display: none;
+                }
+
+                &.less {
+                  display: inline-block;
+                }
+              }
             }
           }
         }
       }
     }
-    
-    & + .folding {
-      overflow: visible;
-    }
-    // change image on hover effect
-    // & > img.primary {
-    //   display: none;
-    // }
+  }
 
-    // & > img.secondary {
-    //   display: block;
-    // }
+  &.show:not(.promo) {
+    @media (min-width: @sm-min) {
+      border: 1px solid @gris_claro;
+      box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
+      
+      & + .folding {
+        overflow: visible;
+      }
+      // change image on hover effect
+      // & > img.primary {
+      //   display: none;
+      // }
+
+      // & > img.secondary {
+      //   display: block;
+      // }
+    }
   }
   
   & > img {
@@ -335,6 +429,7 @@ section .producto-box {
           font-size: 0;
           margin-bottom: 10px;
           padding: 0;
+          text-align: left;
 
           .color {
             display: inline-block;
@@ -389,6 +484,10 @@ section .producto-box {
         .tooltip {
           position: absolute;
         }
+      }
+
+      .view-more-finishes {
+        display: none;
       }
     }
 

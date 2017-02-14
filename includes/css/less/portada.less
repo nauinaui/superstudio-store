@@ -2,6 +2,10 @@
   a {
     display: block;
     margin-bottom: 15px;
+
+    img {
+      margin: 0 auto;
+    }
   }
 
   .row:first-child {
@@ -65,32 +69,45 @@
       
       .titulo {
         .tituloBanner();
-        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        height: 100%;
         left: 50%;
-        top: 40%;
-        .translate(-50%, -50%);
+        padding-top: 10px;
+        position: absolute;
+        top: 0%;
+        .translate(-50%, 0%);
         width: 100%;
         .textoSombra();
         
         span {
           display: block;
           font-size: 30px;
+
+          @media (min-width: @md-min) and (max-width: @md-max) {
+            font-size: 22px;
+            line-height: 20px;
+          }
         }
 
-      }
+        .footer-text {
+          background-color: rgba(0,0,0,.5);
+          color: @blanco;
+          display: block;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 20px;
+          .textoSombra();
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          text-transform: uppercase;
+          width: 100%;
+        }
 
-      .footer-text {
-        background-color: rgba(0,0,0,.5);
-        color: @blanco;
-        display: block;
-        font-size: 12px;
-        line-height: 20px;
-        .textoSombra();
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        text-transform: uppercase;
-        width: 100%;
+        @media (min-width: @md-min) and (max-width: @md-max) {
+          padding-top: 5px;
+        }
+
       }
 
       @media (max-width: @sm-max) {

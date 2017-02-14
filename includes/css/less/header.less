@@ -239,7 +239,10 @@ body {
   width: 100%;
   z-index: 2;
 
-  a {
+  a,
+  a:hover,
+  a:active,
+  a:focus {
     text-decoration: none;
   }
 
@@ -696,6 +699,10 @@ body {
     margin: 8px 5px;
     font-size: 0;
     width: 160px;
+
+    label.error { // hide error label
+      display: none !important;
+    }
 
     .input-group {
       display: flex;
@@ -1207,6 +1214,15 @@ body {
     }
     & + .container .breadcrumb {
       padding-top: 100px;
+    }
+
+    @media (max-width: @xs-max) {
+      & + .container section:first-child {
+        padding-top: 100px;
+      }
+      & + .container .breadcrumb {
+        padding-top: 100px;
+      }      
     }
 
     // con la cabecera fija, el submenu debajo y fijo también
