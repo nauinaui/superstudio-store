@@ -4,9 +4,31 @@ body {
       margin: 0px 0 10px;
     }
 
+    .countdown {
+      display: none;
+    }
+
     &.landing-promo {
-      .seo-text .text {
-        text-align: center;
+      .seo-text {
+        height: auto;
+        margin: 0;
+        
+        .text {
+          text-align: center;
+
+          .gradient {
+            display: none;
+          }
+        }
+      }
+
+      .countdown {
+        display: block;
+        margin: 0 0 20px;
+      }
+      
+      .no-category {
+        display: none;
       }
     }
   }

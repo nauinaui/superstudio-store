@@ -29,14 +29,17 @@ switch(domain[2]) {
     	errorTextCaptcha= 'Das Captcha ist falsch';
     	break;
     case 'fr':
+    	lang = 'FR';
         errorTextFinish = 'Sélectionnez une finition pour continuer';
         errorTextCaptcha= 'Le captcha est erroné';
         break;
     case 'pt':
+    	lang = 'PT';
         errorTextFinish = 'Deverá selecionar um acabamento para continuar';
         errorTextCaptcha= 'O captcha está errado';
         break;
     case 'nl':
+    	lang = 'NL';
     	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
     	errorTextCaptcha= 'De captcha is verkeerd';
         break;
@@ -111,9 +114,10 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$('#superPromosAlert').addClass('unshow');
 		}
 
-		// If device is mobile, show product grid in hover position
+		// If device is mobile, show product grid in hover position and block link of first category level to avoid unexpected link
 		if ( common.detectMobile() == true ) {
 			$('.producto-box:not(.promo) .item').addClass('mobile');
+			$('.category.sub').attr('href','javascript:void(0)');
 		}
 
 		// product's grid - auto select finish when there is only one
@@ -124,20 +128,26 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			$('#otherCountryModal').modal('show');
 		}
 
+		// Show 'new web' modal
+		if ( $('#newWebModal').length > 0 && !common.readCookie('cookies-new-web') == true ) {
+			$('#newWebModal').modal('show');
+		}
+
 		// Change 'CAS' to 'ES' language in topbar language selection
 		if ( $('#languageDropdown').text()=='CAS ' ) {
 			$('#languageDropdown').html('ES <span class="caret"></span>');
 		}
 		
-		// Placeholder effect for IE9 and older
-	    var ua 	= window.navigator.userAgent,
-    		msie= ua.indexOf("MSIE ");
-	    if ( msie > 0 && msie < 10 ) { // If Internet Explorer, and if IE is 9 or older
-			try {
-				$('input, textarea').placeholder();
-			} catch (e) {
-				console.log('Error in IE placeholder init');
-			}
+		// If browser is IE9 or older, show 'update browser' modal and block screen
+	    var ua = window.navigator.userAgent;
+	    var msie = ua.indexOf("MSIE ");
+
+	    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+	        if ( parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))) < 10 ) {
+				console.log('old browser');
+				$('#oldBrowserModal').modal({backdrop: 'static', keyboard: false});
+				$('body').addClass('blocked');
+	        }
 	    }
 
 	    // Detect current url to write value to origin parameter for login redirect
@@ -177,6 +187,9 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			console.log('Error in Doofinder init');
 		}
 
+		// Show update browser alert for old browsers
+
+
 		/**
 		 * =================
 		 * DOM EVENTS
@@ -209,6 +222,16 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				e.preventDefault();
 				e.stopPropagation();
 				$(this).parent().parent().find('.submenu').toggle();
+			}
+		});
+
+		// Header - Abrir submenú de categorias al hacer click en categoria principal en versión tablet
+		$('.category.sub').click('click', function(e) {
+			if ( common.detectMobile() == true ) {
+				e.preventDefault();
+				e.stopPropagation();
+				var a = $(this).closest('li');
+				a.addClass('asd');
 			}
 		});
 
@@ -461,6 +484,15 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			var name 	= 'cookies-accepted',
 				value 	= true,
 				days 	= 30;
+			common.createCookie(name, value, days);
+		});
+
+		// Close new web alert
+		$('#newWebModal .btn').on('click', function() {
+			$('#newWebModal').show('false');
+			var name 	= 'cookies-new-web',
+				value 	= true,
+				days 	= 1;
 			common.createCookie(name, value, days);
 		});
 	});

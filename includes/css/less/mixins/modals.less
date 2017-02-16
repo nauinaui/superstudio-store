@@ -53,6 +53,32 @@
       }
     }
   }
+
+  &.new-web-modal {
+    .modal-header {
+      border: 0;
+      text-align: center;
+    }
+
+    .modal-footer {
+      text-align: center;
+    }
+  }
+
+  &.old-browser-modal {
+    z-index: 999999;
+
+    .modal-header {
+      border: 0;
+      text-align: center;
+    }
+    .modal-body {
+      text-align: center;
+      .browser-link {
+        margin: 50px 0 20px;
+      }
+    }
+  }
 }
 
 @media (max-width: @xs-max ) {

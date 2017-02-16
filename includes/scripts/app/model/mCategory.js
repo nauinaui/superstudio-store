@@ -1,4 +1,4 @@
-define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugins'], function (Base, LibCommon, Bootstrap, Bootstrap_slider, Plugins) {
+define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon, Countdown) {
 	var mCategory = new Base('data for Page Category loaded');
     var common = new LibCommon();
     var paginateFrom = 1;
@@ -16,6 +16,12 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 			$(this).parent().find('.hide').toggleClass('hide');
 			$(this).toggleClass('hide');
 		});
+
+		// Init countdowns from every promo
+		var timers = $('.countdown').length;
+		for (j = 0; j < timers; j++) {
+			startCountdown('countdown'+(j+1));
+		}
 
 		// Color selector tooltip filter
 		$('.acabado > div').mouseover(function() {
@@ -268,6 +274,29 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'bootstrap_slider', 'plugin
 				$element.css('height', heightFull);
 				$element.animate({ height: "60px" }, 500);
 			}
+		}
+
+		 /* Start countdown
+		 * @param el: String Element where countdown will be placed
+		 * @param date: String Determine when countdown will be finnished
+		 */
+		function startCountdown(el) {
+			var time = $('#'+el).attr('data-time');
+			var daysTxt = $('#'+el).find('.days span').text(),
+				hoursTxt = $('#'+el).find('.hours span').text();			
+				minutesTxt = $('#'+el).find('.minutes span').text();
+				secondsTxt = $('#'+el).find('.seconds span').text();
+			$('#'+el).countdown({
+				date: time,
+				render: function (data) {
+					var el = $(this.el);
+					el.empty()
+						.append("<div>" + this.leadingZeros(data.days, 2) + "<span>"+ daysTxt +"</span>")
+						.append("<div>" + this.leadingZeros(data.hours, 2) + "<span>"+ hoursTxt +"</span>")
+						.append("<div>" + this.leadingZeros(data.min, 2) + "<span>"+ minutesTxt +"</span>")
+						.append("<div>" + this.leadingZeros(data.sec, 2) + "<span>"+ secondsTxt +"</span>")
+				}
+			});
 		}
 
 		/**

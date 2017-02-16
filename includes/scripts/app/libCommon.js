@@ -338,6 +338,7 @@ define(['jquery'], function ($) {
 					$('#addedProductAlertError').collapse('hide');
 				}, 3000);
 			} else { // Product's grid
+				$('#addedToCartErrorFeedback').html(error);
 				$('.item[data-product-id="'+productID+'"]').prepend($('#addedToCartErrorFeedback'));
 			}
 		}
