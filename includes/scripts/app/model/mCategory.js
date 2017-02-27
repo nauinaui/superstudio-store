@@ -44,6 +44,10 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			}, 500);
 		});
 
+		$('#sortSelectMbl').on('change', function() {
+			applyFilters();
+		});
+
 		// Show active filters (checkbox type)
 		$('#filtersBox input[type="checkbox"]').change(function() {
 		    var type = $(this).closest('.filter-container').find('.filter-label label').attr('data-url');
@@ -426,11 +430,16 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			}
 
 			// Put sort order in url parameters
-			var sort = $('#sortList label.active > input').attr('data-url');
-			if ( $('#sortList label.active').is('.change-sort') ) {
-				var asc = true;
-			} else {
-				var asc = false;
+			if ( $(window).width() > 767 ) { // desktop view
+				var sort = $('#sortList label.active > input').attr('data-url');
+				if ( $('#sortList label.active').is('.change-sort') ) {
+					var asc = true;
+				} else {
+					var asc = false;
+				}
+			} else { // mobile view
+				var sort = $('#sortSelectMbl option:selected').attr('data-url');
+				var asc = $('#sortSelectMbl option:selected').attr('data-asc');
 			}
 
 			// if there isn't any active filter and it's only sort order
@@ -480,11 +489,17 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 						} else if ( filter[0] == 'orden' ) { // sort
 							$('#sortList label.active').removeClass('active');
 							$('#sortList label > input[data-url="' + filter[1] + '"]').parent().addClass('active');
+							var sortForSelect = filter[1];
 						
 						} else if ( filter[0] == 'asc' ) { // sort direction
+							// set desktop list
 							if ( filter[1] == 'true' ) {
 								$('#sortList label.active').addClass('change-sort');
 							}
+							// set mobile select
+							var selectedValue = $('#sortSelectMbl option[data-url="'+sortForSelect+'"][data-asc="'+filter[1]+'"]').val();
+							$('#sortSelectMbl').val(selectedValue);
+						
 						} else { //it's a normal filter
 							var filterType = $('#filtersBox label[data-url="'+filter[0]+'"]').parent();
 							filterType.next().find($('.filters-columns input[value="' + filter[1] + '"]')).trigger( 'click' );

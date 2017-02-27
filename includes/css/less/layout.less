@@ -47,6 +47,15 @@ section {
   &.less-padding-bottom {
     padding: 50px 0 25px;
   }
+
+  @media (max-width: @xs-max) {
+    padding: 20px 0;
+  }
+}
+
+select {
+  background: url(../../imagenes/select-bg.svg) right center no-repeat;
+  background-image: url(../../imagenes/select-bg.svg) !important;
 }
 
 button {
@@ -63,6 +72,10 @@ button {
   line-height: 31px;
   color: @gris_oscuro;
   text-align: center;
+
+  @media (max-width: @xs-max) {
+    margin: 10px 0 20px;
+  }
 }
 
 // Preloader ======================== //
@@ -228,10 +241,21 @@ a,abbr,acronym,address,blockquote,button,caption,cite,code,dd,del,dfn,dl,dt,em,f
   }
 }
 
+.contents-pasos .box_pasos:after {
+  @media (min-width: @lg-min) {
+    margin-left: 170px !important;
+  }
+}
+
 .login .yacliente {
   @media (max-width: @xs-max) {
     margin-bottom: 50px;
   }
+}
+
+#registro select,
+.direccion_envio select {
+  width: 262px;
 }
 
 #checkout .select_opcion {

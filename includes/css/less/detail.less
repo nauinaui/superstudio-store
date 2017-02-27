@@ -76,9 +76,9 @@ body {
       bottom: 0;
       color: @blanco;
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       line-height: 16px;
       margin: 0 auto;
       width: 100px;
@@ -305,7 +305,10 @@ body {
           border-radius: 50%;
 
           &[src$="blanco.gif"],
-          &[src$="blanco.jpg"] {
+          &[src$="blanco.jpg"],
+          &[src$="blanco_mate.jpg"],
+          &[src$="transparente.jpg"],
+          &[src$="laca-blanca.jpg"] {
             border: 1px solid @gris_claro_mas;
             box-sizing: border-box;
           }
@@ -340,7 +343,7 @@ body {
         font-size: 12px;
         line-height: 19px;
         text-align: center;
-        margin: 10px 0;
+        margin: 5px 0;
         
         i{
           display: block;
@@ -355,7 +358,7 @@ body {
       &.vat {
         span {
           font-size: 12px;
-          line-height: 21px;
+          line-height: 16px;
           
           strong {
             display: block;
@@ -495,6 +498,7 @@ body {
   .actions {
     font-size: 0;
     margin-bottom: 30px;
+    text-align: center;
 
     .select-group {
       display: inline-block;
@@ -537,6 +541,12 @@ body {
       margin-right: 5px;
       position: relative;
       vertical-align: top;
+
+      .btn-lg {
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 24px;
+      }
 
       .last-units {
         color: @rojo;
@@ -643,6 +653,12 @@ body {
         }
         &.amazon {
           background-position: -400px -30px;
+        }
+        &.ekomi {
+          background-position: -450px 0;
+        }
+        &.trustpilot {
+          background-position: -450px -30px;
         }
       }
     }

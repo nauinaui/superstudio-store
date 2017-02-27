@@ -1,67 +1,61 @@
 //generic JS for all views
 
 // Get current language and set doofinder and error phrases
-var domain = document.domain,
-	lang = '',
+var lang = '',
 	hashId = '',
 	errorTextFinish = '',
 	errorTextCaptcha = '';
 
-domain = domain.split('.');
-
-switch(domain[2]) {
-    case 'com':
+switch(idioma_sesion) {
+    case 'CAS':
         lang = 'ES';
         hashId = 'c85616e94cdf5a841ae9709026705445';
         errorTextFinish = 'Selecciona un acabado para continuar';
         errorTextCaptcha= 'El captcha es erróneo';
         break;
-    case 'co':
-    	lang = 'EN';
+    case 'ENG':
+    	lang = '';
     	hashId = '91e72f6b02263af887fe3479675521d4';
     	errorTextFinish = 'Select a finishing to continue';
     	errorTextCaptcha= 'The captcha is wrong';
     	break;
-    case 'de':
+    case 'DEU':
     	lang = 'DE';
     	hashId = 'ae7e683662be4de33ddba7892d968654';
     	errorTextFinish = 'Wählen Sie eine Ausführung aus, um fortzufahren';
     	errorTextCaptcha= 'Das Captcha ist falsch';
     	break;
-    case 'fr':
+    case 'FRA':
     	lang = 'FR';
+    	hashId = '272d01ac4e915de0f9f33a4ff9a758af';
         errorTextFinish = 'Sélectionnez une finition pour continuer';
         errorTextCaptcha= 'Le captcha est erroné';
         break;
-    case 'pt':
+    case 'POR':
     	lang = 'PT';
+    	hashId = 'aec257995db63b99dddea57024d346be';
         errorTextFinish = 'Deverá selecionar um acabamento para continuar';
         errorTextCaptcha= 'O captcha está errado';
         break;
-    case 'nl':
+    case 'NED':
     	lang = 'NL';
+    	hashId = 'c2e403086ba1dd6ff223c56a291e1962';
     	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
     	errorTextCaptcha= 'De captcha is verkeerd';
         break;
-    case 'it':
+    case 'ITA':
         lang = 'IT';
         hashId = '8dda2e869819aab8c152111693e61a2f';
     	errorTextFinish = 'Selezionare una finitura per continuare';
     	errorTextCaptcha= 'Il captcha è sbagliato';
         break;
-    case 'pl':
+    case 'POL':
         lang = 'PL';
         hashId = '';
     	errorTextFinish = 'Wybierz wykończenie, aby kontynuować';
     	errorTextCaptcha= 'Obraz captcha jest źle';
         break;
-    case 'design':
-    	lang = 'EN';
-    	hashid = 'bce3349b894c082c5c827ebcd783267c';
-    	errorTextFinish = 'Select a finishing to continue';
-    	errorTextCaptcha= 'The captcha is wrong';
-    	break;
-    case 'norge':
+    case 'NOR':
     	lang = 'NO';
     	hashid = 'bce3349b894c082c5c827ebcd783267c';
     	errorTextFinish = 'Du må velge en finish på produktet for å fortsette';
@@ -96,11 +90,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		    common.fixedNav(stickyNavTop);
 		});
 
-		// Header - 100% height of category menu for mobile devices
-		if ( $(window).width() < 768 ) {
-			$('#menuSubcategorias').height($(window).height() - $('.navbar').height());
-		}
-
 		// Refresh products number in cart
 		common.loadCart();
 
@@ -117,7 +106,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		// If device is mobile, show product grid in hover position and block link of first category level to avoid unexpected link
 		if ( common.detectMobile() == true ) {
 			$('.producto-box:not(.promo) .item').addClass('mobile');
-			$('.category.sub').attr('href','javascript:void(0)');
+			$('li:not(.special) .category.sub').attr('href','javascript:void(0)');
 		}
 
 		// product's grid - auto select finish when there is only one
@@ -126,11 +115,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		// Show 'other country' modal
 		if ( $('#otherCountryModal').length > 0 ) {
 			$('#otherCountryModal').modal('show');
-		}
-
-		// Show 'new web' modal
-		if ( $('#newWebModal').length > 0 && !common.readCookie('cookies-new-web') == true ) {
-			$('#newWebModal').modal('show');
 		}
 
 		// Change 'CAS' to 'ES' language in topbar language selection
@@ -216,22 +200,27 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			};
 		});
 
+		// Header - 100% height of category menu for mobile devices
+		$('#showMenu').on('click', function() {
+			if ( $(window).width() < 768 ) {
+				$('#menuSubcategorias').height($(window).height() - $('.navbar').height());
+			}
+		})
+		
+		// Header - Block body scroll when category menu for mobile devices is opened to avoid iphone's scroll bug
+		$('#menuDropdown').on('shown.bs.dropdown', function () {
+			$('body').css('overflow-y', 'hidden');
+		})
+		$('#menuDropdown').on('hidden.bs.dropdown', function () {
+			$('body').removeAttr( 'style' );
+		})
+
 		// Header - Abrir submenú al hacer click en versión movil
 		$('#menuSubcategorias > li:not(.special) a .text').on('click', function(e) {
 			if ( $(window).width() < 768 ) {
 				e.preventDefault();
 				e.stopPropagation();
 				$(this).parent().parent().find('.submenu').toggle();
-			}
-		});
-
-		// Header - Abrir submenú de categorias al hacer click en categoria principal en versión tablet
-		$('.category.sub').click('click', function(e) {
-			if ( common.detectMobile() == true ) {
-				e.preventDefault();
-				e.stopPropagation();
-				var a = $(this).closest('li');
-				a.addClass('asd');
 			}
 		});
 

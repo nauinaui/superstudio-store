@@ -359,7 +359,7 @@ body {
   margin: 0 auto;
 }
 
-// Result bar over products list (sort by and nesult number)
+// Result bar over products list (sort by and result number)
 ////////////////////////////////////////////////////////////////
 .result-bar {
   background-color: @blanco;
@@ -416,16 +416,26 @@ body {
       }
     }
   }
-  
-  .results-title {
-    float: right;
-    text-transform: uppercase;
-    vertical-align: middle;
 
-    em {
-      font-weight: 700;
-      font-style: normal;
-    }
+  @media (max-width: @xs-max) {
+    margin-bottom: 20px;
+  }
+}
+
+.results-title {
+  float: right;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  em {
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @media (max-width: @xs-max) {
+    display: block;
+    float: none;
+    margin-bottom: 20px;
   }
 }
 

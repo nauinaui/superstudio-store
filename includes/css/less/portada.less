@@ -1,7 +1,9 @@
 .banners-principales {
+  padding-bottom: 0;
+
   a {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 
     img {
       margin: 0 auto;
@@ -10,12 +12,12 @@
 
   .row:first-child {
     @media (min-width: @md-min) and (max-width: @md-max) {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     
     a {
       @media (min-width: @md-min) and (max-width: @md-max) {
-        margin-bottom: 2px;
+        margin-bottom: 12px;
       }
     }
 
@@ -41,6 +43,12 @@
     text-align: center;
     color: @rojo;
     
+    div {
+      display: inline-block;
+      margin-right: 10px;
+      line-height: 25px;
+    }
+    
     span {
       display: block;
       font-size: 11px;
@@ -48,11 +56,7 @@
       text-transform: uppercase;
       color: @gris_oscuro;
       border-top: 1px solid @gris_claro;
-    }
-    
-    div {
-      display: inline-block;
-      margin-right: 10px;
+      line-height: 17px;
     }
   }
 }
@@ -72,7 +76,6 @@
       
       .titulo {
         .tituloBanner();
-        background-color: rgba(0,0,0,0.3);
         height: 100%;
         left: 50%;
         padding-top: 10px;
@@ -85,8 +88,13 @@
         span {
           display: block;
           font-size: 30px;
+          font-weight: 700;
 
           @media (min-width: @md-min) and (max-width: @md-max) {
+            font-size: 22px;
+            line-height: 20px;
+          }
+          @media (max-width: @xs-max) {
             font-size: 22px;
             line-height: 20px;
           }
@@ -110,7 +118,9 @@
         @media (min-width: @md-min) and (max-width: @md-max) {
           padding-top: 5px;
         }
-
+        @media (max-width: @xs-max) {
+          padding-top: 5px;
+        }
       }
 
       @media (max-width: @sm-max) {
@@ -144,6 +154,10 @@
 .title {
   & + .btn.title-btn {
     margin: -30px auto 30px;
+
+    @media (max-width: @xs-max) {
+      margin-top: 0;
+    }
   }
 }
 

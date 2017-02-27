@@ -456,6 +456,17 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			calculatePriceUnits();
 		});
 
+		// Show finishing name in tooltip
+		$('#finishesList > label').mouseover(function() {
+			if ( common.detectMobile() == false ) {
+				var finishName = $(this).find('input').attr('value');
+				$(this).tooltip('hide')
+					.attr('data-original-title', finishName)
+					.tooltip('fixTitle')
+					.tooltip('show');
+			}
+		});
+
 		// Show 'choose a finish' alert if there isn't any selected
 		$('#unitsSelect').on('mousedown', function(e) {
 			if ( $(this).is('.disabled') ) {

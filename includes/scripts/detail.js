@@ -1,4 +1,4 @@
 //Load common code that includes config, then load the app logic for this page.
 requirejs(['./common'], function (common) {
-    requirejs(['/new-portada/includes/scripts/app/mainDetail.js']);
+    requirejs(['/new-portada/includes/scripts/app/mainDetail.js']); // /new-portada
 });
