@@ -90,6 +90,14 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		    common.fixedNav(stickyNavTop);
 		});
 
+		// Show only first word of user name in topbar
+		if ( $('body').is('.logged') ) {
+			var username = $('#loggedDropdown').html();
+			username = username.split('&nbsp;');
+			var onlyName = username[1].replace(/(\w+).*/,"$1");
+			$('#loggedDropdown').html(username[0]+'&nbsp;'+onlyName+' <span class="caret"></span>');
+		}
+
 		// Refresh products number in cart
 		common.loadCart();
 
@@ -173,7 +181,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		 * =================
 		 */
 
-		// Header - Reposicionar el submenú según el espacio en pantalla
+		// Header - Reposicionar el submenú según el espacio en pantalla (Desktop)
 		$('.menu-subcategorias li').hover(function() {
 			var position = $(this).position();
 			var spaceDerecha = $(window).width() - position.left;
@@ -193,14 +201,14 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			};
 		});
 
-		// Header - 100% height of category menu for mobile devices
+		// Header - 100% height of main menu for mobile devices
 		$('#showMenu').on('click', function() {
 			if ( $(window).width() < 768 ) {
 				$('#menuSubcategorias').height($(window).height() - $('.navbar').height());
 			}
 		})
 		
-		// Header - Block body scroll when category menu for mobile devices is opened to avoid iphone's scroll bug
+		// Header - Block body scroll when main menu for mobile devices is opened to avoid iphone's scroll bug
 		$('#menuDropdown').on('shown.bs.dropdown', function () {
 			if ( $(window).width() < 768 ) {
 				$('body').css('overflow-y', 'hidden');
