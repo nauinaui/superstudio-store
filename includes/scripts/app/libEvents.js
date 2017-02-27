@@ -116,11 +116,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		if ( $('#otherCountryModal').length > 0 ) {
 			$('#otherCountryModal').modal('show');
 		}
-
-		// Change 'CAS' to 'ES' language in topbar language selection
-		if ( $('#languageDropdown').text()=='CAS ' ) {
-			$('#languageDropdown').html('ES <span class="caret"></span>');
-		}
 		
 		// If browser is IE9 or older, show 'update browser' modal and block screen
 	    var ua = window.navigator.userAgent;
@@ -171,8 +166,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			console.log('Error in Doofinder init');
 		}
 
-		// Show update browser alert for old browsers
-
 
 		/**
 		 * =================
@@ -209,18 +202,24 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		
 		// Header - Block body scroll when category menu for mobile devices is opened to avoid iphone's scroll bug
 		$('#menuDropdown').on('shown.bs.dropdown', function () {
-			$('body').css('overflow-y', 'hidden');
+			if ( $(window).width() < 768 ) {
+				$('body').css('overflow-y', 'hidden');
+				$('body').css('position', 'fixed');
+				$('body').css('width', '100%');
+			}
 		})
 		$('#menuDropdown').on('hidden.bs.dropdown', function () {
-			$('body').removeAttr( 'style' );
+			if ( $(window).width() < 768 ) {
+				$('body').removeAttr( 'style' );
+			}
 		})
 
 		// Header - Abrir submenú al hacer click en versión movil
-		$('#menuSubcategorias > li:not(.special) a .text').on('click', function(e) {
+		$('#menuSubcategorias > li:not(.special) .category.sub').on('click touchstart', function(e) {
 			if ( $(window).width() < 768 ) {
 				e.preventDefault();
 				e.stopPropagation();
-				$(this).parent().parent().find('.submenu').toggle();
+				$(this).parent().find('.submenu').toggle();
 			}
 		});
 
