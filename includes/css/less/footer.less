@@ -11,7 +11,7 @@
     font-size: 14px;
     padding: 0 40px;
     margin-top: 10px;
-    @media (max-width:@xxs) {
+    @media (max-width: @screen-xxs-max) {
       padding: 0;
       margin-bottom: 40px;
     }
@@ -147,7 +147,7 @@
       }
     }
     
-    @media (max-width:@xs) {
+    @media (max-width: @screen-xs-max) {
       margin-bottom: 20px;
     }
   }
@@ -172,7 +172,7 @@ section.footer {
   max-width: none;
   padding: 25px 0 0;
   
-  @media (max-width:@xs) {
+  @media (max-width: @screen-xs-max) {
     padding: 0;
     text-align: center;
   }
@@ -187,7 +187,7 @@ section.footer {
     margin-bottom: 20px;
     
     .enlaces {
-      @media ( min-width: @sm-min ) and ( max-width: @sm-max ) {
+      @media ( min-width: @screen-sm-min ) and ( max-width: @screen-sm-max ) {
         &:first-child,
         &:nth-child(2) {
           height: 510px;
@@ -240,7 +240,7 @@ section.footer {
     padding: 8px 0;
     font-size: 12px;
     
-    @media (max-width:@xs) {
+    @media (max-width: @screen-xs-max) {
       font-size: 11px;
     }
     
@@ -255,7 +255,7 @@ section.footer {
     
     .left {
       text-align: left;
-      @media (max-width:@xs) {
+      @media (max-width: @screen-xs-max) {
         text-align: center;
         margin-bottom: 5px;
       }
@@ -264,7 +264,7 @@ section.footer {
     .right {
       text-align: right;
       
-      @media (max-width:@xs) {
+      @media (max-width: @screen-xs-max) {
         text-align: center;
       }
     }

@@ -9,11 +9,11 @@
   text-align: center;
   text-decoration: none;
   
-  @media (max-width:@xs-max) {
+  @media (max-width:@screen-xxs-max) {
     padding: 10px 7px;
   }
 
-  @media (max-width: @xs-max) {
+  @media (max-width: @screen-xxs-max) {
     padding: 20px 15px;
   }
 
@@ -66,7 +66,7 @@
           position: relative;
           transition: 0.5s;
 
-          @media (max-width: @xs-max) {
+          @media (max-width: @screen-xxs-max) {
             height: auto;
           }
         }
@@ -115,7 +115,7 @@
             }
           }
 
-          @media (max-width: @xs-max) {
+          @media (max-width: @screen-xxs-max) {
             display: none;
           }
         }
@@ -123,7 +123,7 @@
     }
 
     &.show:not(.promo) {
-      @media (min-width: @sm-min) {
+      @media (min-width: @screen-xs-min) {
         & + .folding {
           overflow: visible;
 
@@ -139,10 +139,6 @@
               text-align: center;
               height: 32px;
               line-height: 26px;
-            }
-
-            .acabados {
-              
             }
 
             .view-more-finishes {
@@ -163,7 +159,7 @@
   }
 
   &.show:not(.promo) {
-    @media (min-width: @sm-min) {
+    @media (min-width: @screen-xs-min) {
       border: 1px solid @gris_claro;
       box-shadow: 0 .6em 1em rgba(0,0,0,0.25);
       
@@ -192,16 +188,16 @@
       display: none;
     }
     
-    @media (max-width:@md-max) {
+    @media (max-width:@screen-md-max) {
       height: 175px;
     }
 
-    @media (max-width:@sm-max) {
+    @media (max-width:@screen-sm-max) {
       height: auto;
       width: 220px;
     }
 
-    @media (max-width:@xs-max) {
+    @media (max-width:@screen-xs-max) {
       width: 80%;
     }
   }
@@ -223,6 +219,7 @@
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   height: 43px;
+  margin-bottom: 5px;
   overflow: hidden;
   text-transform: none;
   line-height: 20px;
@@ -234,12 +231,12 @@
 
 .infoProducto() {
   margin-bottom: 15px;
-  @media (max-width:@xxs-max) {
+  @media (max-width:@screen-xxs-max) {
     margin-bottom: 10px;
   }
   .nombre {
     .nombre();
-    @media (max-width:@xxs-max) {
+    @media (max-width:@screen-xxs-max) {
       font-size: 18px;
       line-height: 19px;
       height: 40px;
@@ -254,10 +251,13 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    @media (max-width:@xxs-max) {
-      font-size: 12px;
-      line-height: 13px;
-      letter-spacing: 4px;
+    
+    @media (max-width: @screen-xxs-max) {
+      letter-spacing: 3px;
+    }
+    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+      font-size: 10px;
+      letter-spacing: 2px;
     }
   }
 }
@@ -268,10 +268,6 @@
   display: block;
   font-size: 28px;
   margin-top: 5px;
-  
-  @media (@xxs, @xs) {
-    font-size: 18px;
-  }
 }
 
 .delivery-time() {
@@ -420,7 +416,7 @@ section .producto-box {
           font-size: 14px;
           width: 100%;
 
-          @media (max-width: @xs-max) {
+          @media (max-width: @screen-xs-max) {
             margin: 10px 0 15px;
           }
         }
@@ -439,12 +435,6 @@ section .producto-box {
             height: 15px;
             padding-left: 0;
 
-            @media (max-width: @xs-max) {
-              margin: 5px;
-              width: 20px;
-              height: 20px;
-            }
-
             img {
               border-radius: 50%;
               height: 15px;
@@ -458,9 +448,9 @@ section .producto-box {
                 border: 1px solid @gris_claro_mas;
               }
 
-              @media (max-width: @xs-max) {
-                width: 20px;
-                height: 20px;
+              @media (max-width: @screen-xs-max) {
+                width: 18px;
+                height: 18px;
               }
             }
 
@@ -479,10 +469,16 @@ section .producto-box {
                 box-shadow: 0 0 0 2px @azul;
               }
 
-              @media (max-width: @xs-max) {
-                width: 20px;
-                height: 20px;
+              @media (max-width: @screen-xs-max) {
+                width: 18px;
+                height: 18px;
               }
+            }
+
+            @media (max-width: @screen-xs-max) {
+              margin: 0 5px 5px;
+              width: 18px;
+              height: 18px;
             }
           }
         }
@@ -581,7 +577,7 @@ section .producto-box {
         transition: .3s;
         width: 100%;
 
-        @media (max-width: @sm-max) {
+        @media (max-width: @screen-sm-max) {
           width: 90%;
         }
       }

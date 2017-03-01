@@ -315,7 +315,7 @@ body {
     
     &:before {
       content: '-';
-      @media (min-width:@md-min) {
+      @media (min-width: @screen-md-min) {
         color: @naranja;
         font-size: 28px;
         font-weight: 700;
@@ -325,7 +325,7 @@ body {
     &.collapsed {
       &:before {
         content: '+';  
-        @media (min-width:@md-min) {
+        @media (min-width:@screen-md-min) {
           color: @naranja;
           font-size: 28px;
           font-weight: 700;
@@ -417,7 +417,7 @@ body {
     }
   }
 
-  @media (max-width: @xs-max) {
+  @media (max-width: @screen-xs-max) {
     margin-bottom: 20px;
   }
 }
@@ -432,7 +432,7 @@ body {
     font-style: normal;
   }
 
-  @media (max-width: @xs-max) {
+  @media (max-width: @screen-xs-max) {
     display: block;
     float: none;
     margin-bottom: 20px;
@@ -771,13 +771,13 @@ body.category-page {
   }
 }
 
-@media (max-width: @md-max) {
+@media (max-width: @screen-md-max) {
   .eames-menu .category-list li button {
     letter-spacing: 0px;
   }
 }
 
-@media (max-width: @sm-max) {
+@media (max-width: @screen-sm-max) {
   .eames-menu .category-list li {
     box-shadow: none;
 
@@ -791,7 +791,7 @@ body.category-page {
   }
 }
 
-@media (max-width: @xs-max) {
+@media (max-width: @screen-xs-max) {
   .productcontainer {
     width: 100%;
   }
@@ -808,7 +808,7 @@ body.category-page {
 
 // Media queries
 ////////////////////////////////////////////////////////////////
-@media (max-width: @md-max) {
+@media (max-width: @screen-md-max) {
   .filters-box {
     .filter-label {
       text-align: left;
@@ -832,7 +832,7 @@ body.category-page {
   }
 }
 
-@media (max-width: @sm-max) {
+@media (max-width: @screen-sm-max) {
   .seo-text .text {
     .column-count(1);
   }
@@ -866,7 +866,7 @@ body.category-page {
   }
 }
 
-@media (max-width: @xs-max) {
+@media (max-width: @screen-xs-max) {
   .filters-box {
     .resultados {
       text-align: center;
@@ -913,7 +913,7 @@ body.category-page {
   }
 }
 
-@media (min-width: @md-min) {
+@media (min-width: @screen-md-min) {
   .filters-box {
     .resultados {
       padding: 0 150px;
