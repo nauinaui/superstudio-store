@@ -183,6 +183,19 @@
     &:hover {
       opacity: 1;
     }
+
+    img {
+      height: 77px;
+      margin: 0 auto;
+
+      @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+        height: 59px;
+      }
+      
+      @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+        height: 64px;
+      }
+    }
   }
   
   h6 {
