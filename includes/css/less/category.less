@@ -10,6 +10,7 @@ body {
 
     &.landing-promo {
       .seo-text {
+        display: block;
         height: auto;
         margin: 0;
         
@@ -99,6 +100,10 @@ body {
         vertical-align: middle;
       }
     }
+  }
+
+  @media ( max-width: @screen-xxs-max ) {
+    display: none;
   }
 }
 
