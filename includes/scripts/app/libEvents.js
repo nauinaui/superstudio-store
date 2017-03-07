@@ -244,19 +244,20 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// Header - Show featured product for each subcategory when hover
 		$('.submenu a.item').mouseenter(function() {
-			var genericTitle = $(this).parent().parent().find('.promo-menu .promo-title').text();
-			var genericDesc = $(this).parent().parent().find('.promo-menu .promo-description').text();
-			var genericImage = $(this).parent().parent().find('.promo-menu .promo-image img').attr('src');
-			var genericLink = $(this).parent().parent().find('.promo-menu').attr('href');
+			var promoMenuObject = $(this).parent().parent().find('.promo-menu');
+			var genericTitle = promoMenuObject.find('.promo-title').text();
+			var genericDesc = promoMenuObject.find('.promo-description').text();
+			var genericImage = promoMenuObject.find('.promo-image img').attr('src');
+			var genericLink = promoMenuObject.attr('href');
 			var featureTitle = $(this).attr('data-feature-title');
 			var featureDesc = $(this).attr('data-feature-desc');
 			var featureImage = $(this).attr('data-feature-img');
 			var featureLink = $(this).attr('data-feature-link');
-			$(this).parent().parent().find('.promo-menu').attr('href', featureLink);
-			$(this).parent().parent().find('.promo-menu .promo-title').text(featureTitle);
-			$(this).parent().parent().find('.promo-menu .promo-description').text(featureDesc);
-			$(this).parent().parent().find('.promo-menu .promo-image img').attr('src', featureImage);
-			$(this).parent().parent().find('.promo-menu').css( 'opacity', '1' );
+			promoMenuObject.attr('href', featureLink);
+			promoMenuObject.find('.promo-title').text(featureTitle);
+			promoMenuObject.find('.promo-description').text(featureDesc);
+			promoMenuObject.find('.promo-image img').attr('src', featureImage);
+			promoMenuObject.css( 'opacity', '1' );
 		});
 
 		// Product's grid - Show more info in product box's bottom while mouseover
