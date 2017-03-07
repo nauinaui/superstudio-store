@@ -25,11 +25,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			publicKey: '4c726ea1597febeee7505410a6b6b23addcd8a21'
 		});
 		
-		// Change active tab for some products
-		var productID = $('body').attr('data-product-id');
-		if ( productID==='142898' || productID==='143160' ) {
-			$('.other-info-title-tabs a[href="#materialAndMeasures"]').tab('show');
-		}
+		// Change default active tab
+		$('.other-info-title-tabs a[href="#materialAndMeasures"]').tab('show');
 
 		// Stop auto play cross selling carousel
 		$('#crossSellingSection .carousel').carousel({
