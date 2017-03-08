@@ -24,9 +24,6 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			sandbox: true,
 			publicKey: '4c726ea1597febeee7505410a6b6b23addcd8a21'
 		});
-		
-		// Change default active tab
-		$('.other-info-title-tabs a[href="#materialAndMeasures"]').tab('show');
 
 		// Stop auto play cross selling carousel
 		$('#crossSellingSection .carousel').carousel({
