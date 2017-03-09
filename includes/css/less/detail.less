@@ -687,65 +687,8 @@ body {
 }
 
 .nav-tabs.other-info-title-tabs {
-  border-bottom: 3px solid  @gris_oscuro;
-  overflow: hidden;
-  padding-left: 50px;
-
   & > li {
-    display: block;
-    margin: 5px 56px 0 0;
-    z-index: 1;
-    position: relative;
-
-    &.active {
-      z-index: 3;
-
-      & > a {
-        background-color: @gris_oscuro;
-        border: 0;
-        color: @blanco;
-
-        & > .icon {
-          color: @blanco;
-        }
-
-        &:hover,
-        &:active,
-        &:focus {
-          background-color: @gris_oscuro;
-          border: 0;
-          color: @blanco;
-        }
-        
-        &:before, &:after {
-          background-color: @gris_oscuro;
-          color: #fff;
-        }
-      }
-
-      @media (max-width: @screen-xs-max) {
-        background-color: @gris_oscuro;
-
-        &:after {
-          content: "";
-          width: 0; 
-          height: 0; 
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-top: 10px solid @gris_oscuro;
-          position: absolute;
-          bottom: -10px;
-          transform: translateX(-50%);
-          left: 50%;
-        }
-      }
-    }
-
     & > a {
-      background-color: @blanco;
-      border: 0;    
-      padding: 10px 24px;
-      transition: all 250ms ease;
       .subtitle();
       margin: 0;
 
@@ -757,61 +700,6 @@ body {
 
         @media (min-width: @screen-sm-min) {
           display: none;
-        }
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: @blanco;
-        color: @gris_oscuro;
-
-        &:before {
-          box-shadow: rgba(0,0,0,.3) 3px 2px 5px, inset rgba(255,255,255,.09) -1px 0;
-        }
-        &:after {
-          box-shadow: rgba(0,0,0,.3) -3px 2px 5px, inset rgba(255,255,255,.09) 1px 0;
-        }
-      }
-    
-      &:before, &:after {
-        display: block;
-        content: " ";
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 44px;
-        background-color: #FFF;
-        border-radius: 8px 8px 0 0;
-        transition: all 250ms ease;
-        
-        @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-          width: 20px;
-        }
-        @media (max-width: @screen-xs-max) {
-          display: none;
-        }
-      }
-
-      &:before {
-        right: -24px;
-        transform: skew(30deg, 0deg);
-        box-shadow: rgba(0,0,0,.1) 3px 2px 5px, inset rgba(255,255,255,.09) -1px 0;
-
-        @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-          right: -15px;
-          transform: skew(10deg, 0deg);
-        }
-      }
-
-      &:after {
-        left: -24px;
-        transform: skew(-30deg, 0deg);
-        box-shadow: rgba(0,0,0,.1) -3px 2px 5px, inset rgba(255,255,255,.09) 1px 0;
-        
-        @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-          left: -15px;
-          transform: skew(-10deg, 0deg);
         }
       }
 
@@ -830,16 +718,39 @@ body {
         }
       }
 
-      @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-        padding: 10px;
-      }
-
       @media (max-width: @screen-xs-max) {
         border-radius: 0;
         font-size: 12px;
         letter-spacing: 0;
         line-height: 14px;
         padding: 0;
+      }
+    }
+
+    &.active {
+      & > a {
+        color: @blanco !important;
+
+        & > .icon {
+          color: @blanco;
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        background-color: @gris_oscuro;
+
+        &:after {
+          content: "";
+          width: 0; 
+          height: 0; 
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid @gris_oscuro;
+          position: absolute;
+          bottom: -10px;
+          transform: translateX(-50%);
+          left: 50%;
+        }
       }
     }
 
@@ -874,10 +785,6 @@ body {
       z-index: 2;
     }
 
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      margin-right: 30px;
-    }
-
     @media (max-width: @screen-xs-max) {
       background-color: @blanco;
       display: inline-block;
@@ -887,10 +794,6 @@ body {
       vertical-align: top;
       width: 94px;
     }
-  }
-  
-  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    padding-left: 30px;
   }
 
   @media (max-width: @screen-xs-max) {
