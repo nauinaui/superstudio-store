@@ -16,6 +16,14 @@
     }
     
     a {
+      &.no-countdown {
+        padding-bottom: 52px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
         margin-bottom: 12px;
       }
@@ -24,10 +32,6 @@
     & > img {
       margin: 0 auto;
     }
-  }
-  
-  .no-countdown {
-    margin-bottom: 63px;
   }
 }
 
