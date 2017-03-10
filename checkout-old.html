@@ -20,7 +20,8 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-	<link href="https://intranet.superestudio.com/includes/css/main.css" rel="stylesheet" type="text/css">
+	<!-- <link href="https://intranet.superestudio.com/includes/css/main.css" rel="stylesheet" type="text/css"> -->
+	<script>require = { urlArgs: "v=" + (new Date()).getTime() };</script>
 	<script async data-main="includes/scripts/checkout-old" src="includes/scripts/lib/require.min.js"></script>
 	<script>var idioma_sesion = 'CAS';</script>
 	<style>
@@ -143,7 +144,7 @@
 		<div class="navbar-header">
 			
 			<!-- categorias dropdown -->
-			<div class="dropdown">
+			<div class="dropdown" id="menuDropdown">
 				<a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					<span>Categorías</span>
 					<div class="icon-menu">
@@ -195,16 +196,6 @@
 											<a href="#" class="item" data-feature-link="/silla-acapulco-chair-color-edition" data-feature-title="Silla MÉXICO -Color Edition-" data-feature-desc="Silla Acapulco, durabilidad, calidad y diseño" data-feature-img="https://www.superestudio.com/imagenes/productos/WIW003/WIW0031.jpg">Sillas para exterior <span>(1)</span></a>
 											<a href="#" class="item" data-feature-link="/banco-eco-batten" data-feature-title="Banco ECO BATTEN" data-feature-desc="Inspirado en el Banco Platform de George Nelson" data-feature-img="https://www.superestudio.com/imagenes/productos/XSG027/38/XSG027-38_1.jpg">Bancos <span>(1)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
-											<a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Silla WOODEN -Polipropileno-">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -214,6 +205,16 @@
 													<img class="featured-product-image" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
+											<a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
+											<a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -280,13 +281,6 @@
 											<a href="#" class="item">Mesas de exterior <span>(4)</span></a>
 											<a href="#" class="item">Mobiliario de oficina <span>(1)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Mesitas de café <span>(47)</span></a>
-											<a href="#" class="item">Mesas de bar <span>(10)</span></a>
-											<a href="#" class="item">Mesas de TV <span>(39)</span></a>
-											<a href="#" class="item">Barras <span>(39)</span></a>
-											<a href="#" class="item">Consolas <span>(4)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/mesa-dsw-tendar-wood-120-tendar-wood-eames">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -296,6 +290,13 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Mesitas de café <span>(47)</span></a>
+											<a href="#" class="item">Mesas de bar <span>(10)</span></a>
+											<a href="#" class="item">Mesas de TV <span>(39)</span></a>
+											<a href="#" class="item">Barras <span>(39)</span></a>
+											<a href="#" class="item">Consolas <span>(4)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -327,11 +328,6 @@
 											<a href="#" class="item">Apliques <span>(4)</span></a>
 											<a href="#" class="item">Bombillas <span>(13)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Lámparas de pie <span>(47)</span></a>
-											<a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
-											<a href="#" class="item">Iluminación creativa <span>(39)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/lampara-amsti" title="Lámpara AMSTI">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -341,6 +337,11 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Lámparas de pie <span>(47)</span></a>
+											<a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
+											<a href="#" class="item">Iluminación creativa <span>(39)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -369,9 +370,6 @@
 										<div class="col-sm-4">
 											<a href="#" class="item">Sofás <span>(18)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Sofás cama <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/sofa-chester-pu-2-plazas" title="Sofá CHESTER PU -2 Plazas-">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -380,6 +378,9 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Sofás cama <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -412,13 +413,6 @@
 											<a href="#" class="item">Países <span>(12)</span></a>
 											<a href="#" class="item">Cómic <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Apalabrados <span>(12)</span></a>
-											<a href="#" class="item">Divertidos <span>(12)</span></a>
-											<a href="#" class="item">Rellenos <span>(12)</span></a>
-											<a href="#" class="item">Animales <span>(12)</span></a>
-											<a href="#" class="item">Pop <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/funda-cojin-drink-champagne-algodon-30x50" title="Funda cojín DRINK CHAMPAGNE algodón 30x50">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -427,6 +421,13 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Apalabrados <span>(12)</span></a>
+											<a href="#" class="item">Divertidos <span>(12)</span></a>
+											<a href="#" class="item">Rellenos <span>(12)</span></a>
+											<a href="#" class="item">Animales <span>(12)</span></a>
+											<a href="#" class="item">Pop <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -456,9 +457,6 @@
 											<a href="#" class="item">Felpudos <span>(18)</span></a>
 											<a href="#" class="item">Alfombras infantiles <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Alfombras <span>(71)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/alfombra-felpudo-aqui-dentro-hay-mucho-amor-60x40cm" title="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -468,6 +466,9 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Alfombras <span>(71)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -499,12 +500,6 @@
 											<a href="#" class="item">Lienzos pirámide 5 piezas <span>(12)</span></a>
 											<a href="#" class="item">Chapas decorativas <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
-											<a href="#" class="item">Cuadros con marco <span>(71)</span></a>
-											<a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
-											<a href="#" class="item">Portafotos <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/banderola-yourself" title="Banderola YOURSELF">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -513,6 +508,12 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
+											<a href="#" class="item">Cuadros con marco <span>(71)</span></a>
+											<a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
+											<a href="#" class="item">Portafotos <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -543,11 +544,6 @@
 											<a href="#" class="item">Vinilos luminiscentes <span>(18)</span></a>
 											<a href="#" class="item">Vinilos infantiles <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
-											<a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
-											<a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/vinilo-decorativo-live-your-dreams" title="Vinilo Decorativo LIVE YOUR DREAMS">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -556,6 +552,11 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
+											<a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
+											<a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -586,10 +587,6 @@
 											<a href="#" class="item">Joyeros <span>(18)</span></a>
 											<a href="#" class="item">Camas <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Estanterías <span>(71)</span></a>
-											<a href="#" class="item">Cajoneras <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/baul-almacenaje-plegable-40-x-255-x-24-cm" title="Baúl almacenaje plegable 40 x 25,5 x 24 cm">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -599,6 +596,10 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Estanterías <span>(71)</span></a>
+											<a href="#" class="item">Cajoneras <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -634,15 +635,6 @@
 											<a href="#" class="item">Paneles decorativos <span>(12)</span></a>
 											<a href="#" class="item">Portafotos <span>(12)</span></a>
 										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Percheros <span>(71)</span></a>
-											<a href="#" class="item">Plantas decorativas <span>(71)</span></a>
-											<a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
-											<a href="#" class="item">Pizarras <span>(71)</span></a>
-											<a href="#" class="item">Cajas de madera <span>(12)</span></a>
-											<a href="#" class="item">Menaje <span>(12)</span></a>
-											<a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
-										</div>
 										<div class="col-sm-4 hidden-xs">
 											<a class="promo-menu" href="/muebles_de_diseno/_mantel_pvc_43x30_picnik_green_-uso_1_persona-_141775" title="Mantel PVC 43x30 PICNIK Green -uso 1 persona-">
 												<div class="featuring-menu-title">Destacamos:</div>
@@ -651,6 +643,15 @@
 													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
 												</div>
 											</a>
+										</div>
+										<div class="col-sm-4">
+											<a href="#" class="item">Percheros <span>(71)</span></a>
+											<a href="#" class="item">Plantas decorativas <span>(71)</span></a>
+											<a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
+											<a href="#" class="item">Pizarras <span>(71)</span></a>
+											<a href="#" class="item">Cajas de madera <span>(12)</span></a>
+											<a href="#" class="item">Menaje <span>(12)</span></a>
+											<a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
 										</div>
 									</div>
 									<div class="text col-md-12">
@@ -715,18 +716,18 @@
 					</div>
 				</a>
 
-				<ul class="dropdown-menu dropdown-search">
+				<div class="dropdown-menu dropdown-search">
 					<form id="searchFormDropdown" class="navbar-form search" action="#" method="post" role="search" novalidate="novalidate">
 						<div class="col-xs-12">
 							<div class="input-group">
-						    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required="" aria-required="true">
+						    	<input type="text" class="form-control input-search" name="input-buscar-mbl" placeholder="Busca..." required="" aria-required="true">
 						    	<span class="input-group-btn">
-						        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
+						        	<button id="searchSubmitBtnMbl" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
 						      	</span>
 						    </div>
 					    </div>
 					</form>
-				</ul>
+				</div>
 	        </div>
 
 	        <!-- logo -->
@@ -813,8 +814,8 @@
 									<a href="javascript:void(0)" class="toggle-info">Registro</a>
 									<div class="submenu col-xs-12" aria-labelledby="loginRegisterDropdown">
 										<p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
-										<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a>
-										<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
+										<a class="btn btn-primary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a><br />
+										<a class="btn btn-primary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
 									</div>
 								</li>
 								<li><a href="#">Consultar estado de tu pedido</a></li>
@@ -864,306 +865,745 @@
 </div>
 
 <!-- Old checkout -->
-<div id="checkout" class="maincontainer">  
-	<div class="title">Completa tu pedido</div>
-	<div class="wrapper">
-		<form id="checkoutForm" action="https://www.superestudio.com/pedido" method="post" name="valores" class="clearfix">
-			<input type="hidden" name="reqpass" id="reqpass" value="">
-			<div class="col1_cart">
- 				<input name="chkentrparcial" id="chkentrparcial" type="hidden" value="null">
- 				<div class="table-responsive">
-					<table class="table carrito-productos noBorder">
-						<thead class="legend">
-							<tr>
-								<th class="product" colspan="2">Producto</th>
-								<th class="price">Precio unidad</th>
-								<th class="qty">Cantidad</th>
-								<th class="price">Total</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="item">
-								<td rowspan="2">
-									<img class="product" src="https://www.superestudio.com/imagenes/productos/BIA001/2307/min/categoria/BIA001-2307_1.jpg" alt="Silla TULIP WHITE -Tapizado PU-" title="Silla TULIP WHITE -Tapizado PU-" width="100">
-								</td>
-								<td class="product">
-									<a href="https://www.superestudio.com/silla-tulip-tapizado-pu-saarinen">Silla TULIP WHITE -Tapizado PU-</a>
-									<input type="hidden" name="es_pack" value="0">
-								</td>
-								<td class="price unit">
-									<span class="text-oferta">OFERTA</span>
-									<div class="boxPrice">
-										<span class="text-tachado text-gris">127,05&nbsp;€</span>
-									</div>
-									<div class="boxPrice">
-										<span class="text-strong">65,00&nbsp;€</span>
-									</div>
-								</td>
-								<td class="qty">
-									<input type="hidden" name="idrelacion" id="idrelacion" value="6959071">
-									<input type="hidden" name="cantidad_ant" id="cantidad_ant" value="1">
-									<select name="cantidad" onchange="$('#checkoutForm').submit();" class="input" id="input">
-										<option value="1" selected="">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-									</select>
-									<a href="https://www.superestudio.com/pedido?accion=borra&amp;idrelacion=6959071">
-										<img src="https://www.superestudio.com/imagenes/web/cart-del.png" alt="borrar">
-										<div>Eliminar producto</div>
-									</a>
-								</td>
-								<td class="price">
-									<div class="boxtextSpan">
-										<span>65,00&nbsp;€</span>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="4">
-									<input type="hidden" name="id_producto" value="143468">
-									<input type="hidden" name="id_outlet" value="NULL">
-									<input type="hidden" name="id_pack" value="">
-									<div class="select_color">
-										<input type="hidden" name="id_color_ant" id="id_color_ant" value="2307">
-										<select name="id_color" id="id_color" onchange="$('#checkoutForm').submit();">
-											<option value="2308">Cojín negro&nbsp;
-												(Entrega: entre&nbsp;18&nbsp;y&nbsp;21&nbsp;días)
-											</option>
-											<option value="2307" selected="selected">Cojín rojo&nbsp;
-												(Entrega: entre&nbsp;8&nbsp;y&nbsp;11&nbsp;días)
-											</option>
-										</select>
-									</div> 
-									<input type="hidden" name="id_acabado" value=" ">
-									<input type="hidden" name="id_acabado_ant" value=" ">
-									<input type="hidden" name="id_opcion" value=" ">
-									<input type="hidden" name="id_opcion_ant" value=" ">
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<input name="peso_total" type="hidden" value="8,8">
-				<input name="volumen_total" type="hidden" value="0,12">
-				<input name="gastos_envio" type="hidden" value="6,61">
-				<table class="carrito-opciones">
-					<thead>
-						<tr>
-							<th colspan="2">Método de envío</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="2">
-								<p>
-									<span style="font-weight: normal;"></span>
-									<span style="font-size: 10pt;"><span style="font-weight: normal;">Estos son los gastos de envío por defecto. Indica tu </span><span style="color: #da373a;"><strong>código postal de entrega</strong></span> en la columna derecha para <strong>ajustar este precio</strong>:</span>
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div>
-									<input type="hidden" name="portes_gratis" value="0">
-									<input name="peso_total_parcial" type="hidden" value="8,8">
-									<label class="mozo">
-										<input type="radio" style="border:0px;" name="sel_transporte" value="ASM_NACIONAL" onclick="$('#checkoutForm').submit();">
-										<strong>ASM (16,85&nbsp;€*)</strong>
-									</label>
-									<label class="mozo">
-										<input type="radio" style="border:0px;" name="sel_transporte" value="SEUR_NACIONAL" checked="checked" onclick="$('#checkoutForm').submit();">
-										<strong>Seur (8,00&nbsp;€*)</strong>
-									</label>
-									<label class="mozo">
-										<input type="radio" style="border:0px;" name="sel_transporte" value="DHL_NACIONAL" onclick="$('#checkoutForm').submit();">
-										<strong>Dhl (19,30&nbsp;€*)</strong>
-									</label>
-									<input name="gastos_envio_parcial" type="hidden" value="6,61">
-									<input name="envio_especial" type="hidden" value="">
-								</div>
-							</td>
-							<td class="price">
-								<strong>8,00&nbsp;€</strong>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div>
-									<br>
-									<label class="mozo">
-										<input name="mozo00" id="mozosi" type="checkbox" onclick="$('#checkoutForm').submit();" value="1">
-										Opción mozo (+60,50&nbsp;€<span class="mobile" style="display:inline">**</span>) <img src="https://www.superestudio.com/imagenes/web/iconos/masinfo.png" width="16" height="16" alt="">
-										<div id="descripcion_mozo">SÓLO ESPAÑA PENÍNSULA:<br>
-											<br>
-											Este es un servicio de subida a pisos, NO de montaje de muebles.<br>
-											<br>
-											Este servicio no incluye grúa, por tanto:<br>
-											<ul>
-												<li>Es necesario contratar el servicio de mozo para subir <strong>artículos pesados</strong> a pisos.</li>
-												<li><span style="font-weight: normal;">Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en </span><strong>terceros o pisos superiores con dificultades de acceso</strong>: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li>
-												<li style="font-weight: normal;">No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li>
-											</ul>
-											<p><small>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</small></p>
-										</div>
-									</label>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="notas">
-									<small>(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</small>
-									<div class="mobile">
-										<br>
-										(**)Opción mozo:
-										<p><small>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</small></p>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="carrito-opciones">
-					<thead>
-						<tr>	
-							<th class="product" colspan="2">Forma de pago</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="2"><p>Selecciona la forma de pago para realizar tu pedido.</p></td>
-						</tr>
-						<tr>
-							<td>
-								<label id="tarjeta" class="labelPago">
-									<input type="radio" style="border:0px;" name="forma_de_pago" value="visa" checked="checked" onclick="$('#checkoutForm').submit();">
-									<strong>Tarjeta de crédito, débito o prepago (plataforma externa BBVA)</strong>
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/visa.png" width="32" height="20" alt="Visa">
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/mastercard.png" width="32" height="20" alt="MasterCard">
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/americanexpress.png" width="32" height="20" alt="American Express">
-									<p>Haz clic en CONFIRMAR LA COMPRA y serás redirigido a nuestro TPV para introducir los datos de tu tarjeta.</p>
-								</label>
-								
-								<hr class="hrPago">
-								
-								<label id="trans-bancaria" class="labelPago">
-									<input type="radio" style="border:0px;" name="forma_de_pago" value="trans" onclick="$('#checkoutForm').submit();">
-									<strong>Transferencia bancaria</strong>
-									<p>Haz clic en CONFIRMAR LA COMPRA y te facilitaremos nuestros datos bancarios para realizar la transferencia. También los recibirás por email. Reservamos tu pedido 48 horas (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</p>
-								</label>
-								
-								<hr class="hrPago">
-								
-								<label class="labelPago">
-									<input type="radio" style="border:0px;" name="forma_de_pago" value="contra" onclick="$('#checkoutForm').submit();">
-									<strong>Contra reembolso (+5%, sólo España peninsular)</strong>
-									<p>Haz clic en CONFIRMAR LA COMPRA y te enviaremos un email para confirmar tu aceptación del pago contrareembolso (pedido mínimo sin incluir los costes de envío: 35€ / pedido máximo: 500€).</p>
-								</label>
-								
-								<hr class="hrPago">
-								
-								<label id="aplazame" class="labelPago">
-									<input type="radio" style="border:0px;" name="forma_de_pago" value="aplazame" onclick="$('#checkoutForm').submit();">
-									<strong>Pago a plazos (Aplazame)</strong>
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/aplazame.png" width="50" height="20" alt="Aplazame">
-									<p>Haz clic en CONFIRMAR LA COMPRA para iniciar el proceso de financiación de tu pedido. Necesitaremos tu DNI y un número de tarjeta de crédito. Importe máximo por compra: 1.000€.</p>
-								</label>
-								
-								<hr class="hrPago">
-								
-								<label id="skrill" class="labelPago">
-									<input type="radio" style="border:0px;" name="forma_de_pago" value="skrill" onclick="$('#checkoutForm').submit();">
-									<strong>Skrill, Skrill Direct, Trustly y Sofort Banking</strong>
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/skrill.png" width="32" height="20" alt="Skrill">
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/trustly.png" width="32" height="20" alt="Trustly">
-									<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/sofort.png" width="32" height="20" alt="Sofort">
-									<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web de Skrill donde podrás elegir entre las diferentes opciones de pago.</p>
-								</label>
-								<br>
-								<br>
-							</td>
-						</tr>
-						<tr>
-							<td class="price">
-								<strong>0,00&nbsp;€</strong>
-								<input type="hidden" value="0" name="gastos_pago">
-							</td>
-						</tr>
-					</tbody>
-				</table>
+<div id="checkout" class="container">
+	<h1 class="title">Completa tu pedido</h1>
 
-				<table class="carrito-opciones">
-					<thead class="legend">
-						<tr>
-							<th class="product" colspan="3"><div class="subtitle">Cupón de descuento</div></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<p>El importe mínimo de compra del cupón <span style="color: #da373a;">no incluye</span> los gastos de envío.</p>
-								<p>El cupón descuento queda vinculado al pedido realizado, aunque no esté pagado. Por favor, tenlo en cuenta especialmente&nbsp;<span style="color: #da373a;">si vas a realizar un pedido mediante transferencia bancaria</span>.</p>
-								<input type="text" id="txtdescuento" name="txtdescuento" maxlength="30" size="25" value="" placeholder="Código del cupón" onchange="$('#checkoutForm').submit();" class="placeholder cupon"> <button class="validar">Validar</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
- 
-				<div class="carritoFondo">
-					<table class="carrito-total">
+	<form id="checkoutForm" action="https://www.superestudio.com/pedido" method="post" name="valores" class="clearfix">
+		<input type="hidden" name="reqpass" id="reqpass" value="">
+		<div class="col-sm-8 col-md-8 col-lg-9">
+			<!-- Opcion de entrega parcial -->					
+			<table class="carrito-opciones">
+				<tbody>
+					<tr>
+						<th style="color:#DA373A">ELIGE OPCIONES DE ENVÍO</th>
+					</tr>				
+					<tr>
+						<td>
+							<label class="opc-parcial">
+								<input name="chkentrparcial" id="chkentrparcial" type="radio" value="1" checked="checked" onclick="$('#checkoutForm').submit();"> <strong>REALIZAR ENTREGA PARCIAL</strong>: Sin coste añadido (Recomendado). Se realizarán 3  envíos en este pedido SEGÚN EL PLAZO DE ENTREGA INDICADO PARA CADA PRODUCTO (ver a continuación).
+							</label>
+							<label class="opc-parcial">
+								<input name="chkentrparcial" id="chkentrparcial" type="radio" value="0" onclick="$('#checkoutForm').submit();"><strong>DESEO QUE SE ENVÍE TODO JUNTO</strong>: En este caso, prevalece el plazo de entrega más largo. Hasta que no se complete la totalidad del pedido, éste no será enviado.
+							</label>
+						</td>
+					</tr>
+				</tbody>
+			</table>				
+
+			<style>
+				.envioParcialBlock {counter-reset: my-counter;}
+				.envio-parcial {position:relative;padding:10px 10px 1px;margin-bottom:20px;border:1px solid #cfcfcf/*background-color:#f2f2f2;*/}
+				.envio-parcial:last-child {margin-bottom:30px;}
+				.envio-parcial:before {content:counter(my-counter);counter-increment: my-counter;position:absolute;left:-36px;top:-7px;font-size:70px;color:#dfdfdf;}
+			</style>
+
+			<div class="envioParcialBlock">				
+
+			<!-- Productos 2 -->
+				<div class="col-xxs-1">
+					<span>1</span>
+				</div>
+			
+				<div class="col-xxs-11">
+					<div class="envio-parcial table-responsive">
+						<table class="carrito-productos noBorder table" style="margin-bottom: 5px;"> 
+							<thead class="legend">
+								<tr>
+									<th class="product" colspan="2">Producto</th>
+									<th class="price">Precio unidad</th>
+									<th class="qty">Cantidad</th>
+									<th class="price">Total</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr class="item">
+									<td rowspan="2">
+										<img class="product" src="http://www.superestudio.com/imagenes/productos/TRN001/212/min/categoria/TRN001-212_1.jpg" alt="Silla WOODEN -High Quality Color Edition-" title="Silla WOODEN -High Quality Color Edition-" width="100">
+									</td> 
+
+									<td class="product">
+										<a href="https://intranet.superestudio.com/silla-wooden-color-edition-charles-ray-eames">Silla WOODEN -High Quality Color Edition-</a>
+										<input type="hidden" name="es_pack" value="0">
+									</td> 
+
+									<td class="price unit">
+										<span class="text-oferta">OFERTA</span>
+										<div class="boxPrice">
+											<span class="text-tachado text-gris">£147.89</span>
+											<!--span class="text-tachado text-gris">&pound;170.47</span-->
+										</div>
+
+										<div class="boxPrice"> 
+											<span class="text-strong">£54.90</span>
+											<!--span class="text-strong">&pound;63.28</span-->
+										</div>
+									</td>
+
+									<td class="qty">
+										<input type="hidden" name="idrelacion" id="idrelacion" value="8019378">
+
+										<!-- prod.unidadesMax: 210 -->
+										<input type="hidden" name="cantidad_ant" id="cantidad_ant" value="1">
+											<select name="cantidad" onchange="$('#checkoutForm').submit();" class="input" id="input">
+												<option value="1" selected="">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+											</select>
+										<a href="https://intranet.superestudio.com/pedido?accion=borra&amp;idrelacion=8019378" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar producto">
+											<img src="https://intranet.superestudio.com/imagenes/web/cart-del.png" alt="borrar">
+										</a>
+									</td>
+
+									<td class="price">
+										<div class="boxtextSpan">
+											<span>£54.90</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<input type="hidden" name="id_producto" value="93063">
+										<input type="hidden" name="id_outlet" value="NULL">
+										<input type="hidden" name="id_pack" value="">
+											<div class="select_color">
+											<input type="hidden" name="id_color_ant" id="id_color_ant" value="212">
+											<select name="id_color" id="id_color" onchange="$('#checkoutForm').submit();">
+												<option value="3">
+													Verde&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="5">
+													Negro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;11&nbsp;semanas)
+												</option>
+												<option value="8">
+													Rojo&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="11">
+													Blanco&nbsp;(Entrega: entre&nbsp;14&nbsp;y&nbsp;16&nbsp;días)
+												</option>
+												<option value="15">
+													Crema&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="16">
+													Naranja&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="76">
+													Gris claro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="150">
+													Rosa fucsia&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="151">
+													Beige&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="158">
+													Turquesa&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="188">
+													Verde oscuro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="212" selected="selected">
+													Gris antracita&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="258">
+													Rosa claro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46294">
+													Naranja oscuro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46297">
+													Índigo&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46298">
+													Verde caqui&nbsp;(Entrega: entre&nbsp;14&nbsp;y&nbsp;16&nbsp;días)
+												</option>
+												<option value="46311">
+													Amarillo claro P32&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46313">
+													Azul petróleo&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46319">
+													Azul surfin&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46336">
+													Amarillo trigo&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46337">
+													Marrón ladrillo&nbsp;(Entrega: entre&nbsp;14&nbsp;y&nbsp;16&nbsp;días)
+												</option>
+												<option value="46339">
+													Mostaza&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46344">
+													Gris pizarra&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46345">
+													Salmón oscuro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46346">
+													Amarillo ocre&nbsp;(Entrega: entre&nbsp;14&nbsp;y&nbsp;16&nbsp;días)
+												</option>
+												<option value="46355">
+													Azul surfin y patas oscuras&nbsp;(Entrega: entre&nbsp;12&nbsp;y&nbsp;13&nbsp;semanas)
+												</option>
+												<option value="46363">
+													Gris oscuro y patas oscuras&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46383">
+													Marrón y patas oscuras&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+											</select>
+										</div>
+										<input type="hidden" name="id_acabado" value=" ">
+										<input type="hidden" name="id_acabado_ant" value=" ">
+										<input type="hidden" name="id_opcion" value=" ">
+										<input type="hidden" name="id_opcion_ant" value=" ">
+									</td>
+								</tr>
+
+								<tr class="item">
+									<td rowspan="2">
+										<img class="product" src="http://www.superestudio.com/imagenes/productos/BAZ015/3/min/categoria/BAZ015-3_1.jpg" alt="Silla DIMERO -Color Edition-" title="Silla DIMERO -Color Edition-" width="100">
+									</td> 
+
+									<td class="product">
+										<a href="https://intranet.superestudio.com/silla-daw-dimero-color-edition-eames">Silla DIMERO -Color Edition-</a>
+										<input type="hidden" name="es_pack" value="0">
+									</td> 
+
+									<td class="price unit">
+										<span class="text-oferta">OFERTA</span>
+										<div class="boxPrice">
+											<span class="text-tachado text-gris">£124.06</span>
+											<!--span class="text-tachado text-gris">&pound;143.00</span-->
+										</div>
+										<div class="boxPrice"> 
+											<span class="text-strong">£54.99</span>
+										</div>
+									</td>
+
+									<td class="qty">
+										<input type="hidden" name="idrelacion" id="idrelacion" value="8020323">
+										<input type="hidden" name="cantidad_ant" id="cantidad_ant" value="1">
+										<select name="cantidad" onchange="$('#checkoutForm').submit();" class="input" id="input">
+											<option value="1" selected="">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+										</select>
+										<a href="https://intranet.superestudio.com/pedido?accion=borra&amp;idrelacion=8020323" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar producto">
+											<img src="https://intranet.superestudio.com/imagenes/web/cart-del.png" alt="borrar">
+										</a>
+									</td>
+
+									<td class="price">
+										<div class="boxtextSpan">
+											<span>£54.99</span>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td colspan="4">
+										<input type="hidden" name="id_producto" value="143847">
+										<input type="hidden" name="id_outlet" value="NULL">					
+										<input type="hidden" name="id_pack" value="">
+										<div class="select_color">
+											<input type="hidden" name="id_color_ant" id="id_color_ant" value="3">
+											<select name="id_color" id="id_color" onchange="$('#checkoutForm').submit();">
+												<option value="2">
+													Azul&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="3" selected="selected">
+													Verde&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="4">
+													Amarillo&nbsp;(Entrega: entre&nbsp;15&nbsp;y&nbsp;16&nbsp;semanas)
+												</option>
+												<option value="5">
+													Negro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="6">
+													Gris oscuro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="8">
+													Rojo&nbsp;(Entrega: entre&nbsp;8&nbsp;y&nbsp;9&nbsp;semanas)
+												</option>
+												<option value="11">
+													Blanco&nbsp;(Entrega: entre&nbsp;8&nbsp;y&nbsp;9&nbsp;semanas)
+												</option>
+												<option value="16">
+													Naranja&nbsp;(Entrega: entre&nbsp;8&nbsp;y&nbsp;9&nbsp;semanas)
+												</option>
+												<option value="76">
+													Gris claro&nbsp;(Entrega: entre&nbsp;8&nbsp;y&nbsp;9&nbsp;semanas)
+												</option>
+												<option value="151">
+													Beige&nbsp;(Entrega: entre&nbsp;8&nbsp;y&nbsp;9&nbsp;semanas)
+												</option>
+												<option value="258">
+													Rosa claro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46309">
+													Gris medio P82&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+												<option value="46313">
+													Azul petróleo&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;13&nbsp;días)
+												</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+						
+					<table class="carrito-opciones">
 						<tbody>
 							<tr>
-								<td class="total">Total (IVA incluido):</td>
-								<td class="price total">
-									<input type="hidden" value="60,33" name="base">
-									<input type="hidden" value="12,67" name="total_iva">
-									<input type="hidden" value="73" name="total_pedido">
-									<strong>73,00&nbsp;€</strong>
+								<td>
+									<label class="mozo">
+										<input name="mozo1" id="mozosi" type="checkbox" onclick="$('#checkoutForm').submit();" value="1">Opción mozo (+60,50€<span class="mobile" style="display:inline">**</span>)
+										<img src="https://intranet.superestudio.com/imagenes/web/iconos/masinfo.png" width="16" height="16" alt="" data-toggle="popover" data-placement="right" data-content="
+											<div id='descripcion_mozo'>
+												SÓLO ESPAÑA PENÍNSULA:<br><br>
+												Este es un servicio de subida a pisos, NO de montaje de muebles.<br><br>
+												Este servicio no incluye grúa, por tanto:<br>
+												<p></p>
+												<ul>
+												     <li>Es necesario contratar el servicio de mozo para subir <strong>artículos pesados</strong> a pisos.</li>
+												     <li><span style='font-weight: normal;'>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en </span><strong>terceros o pisos superiores con dificultades de acceso</strong>: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li>
+												     <li style='font-weight: normal;'>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li>
+												</ul>
+												<p><small>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</small></p>
+											</div>
+										">
+									</label>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="bxinfo_envio">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
-			</div>
- 
- 			<div class="col2_cart">
-				<div class="formBlock">
-					<div class="subtitle"> Datos de envío</div>
-					<div class="subtext">
-						* Obligatorio | ¿Ya estás registrado? <a href="javascript:void(0);" class="login_toggle">Log in</a>
+
+				<!-- Productos 2 -->
+				<div class="col-xxs-1">
+					<span>2</span>
+				</div>
+				<div class="col-xxs-11">
+					<div class="envio-parcial table-responsive">
+						<table class="carrito-productos noBorder table" style="margin-bottom: 5px;"> 
+
+							<thead class="legend">
+
+								<tr>
+
+									<th class="product" colspan="2">Producto</th>
+
+									<th class="price">Precio unidad</th>
+
+									<th class="qty">Cantidad</th>
+
+									<th class="price">Total</th>
+
+								</tr>
+
+							</thead>
+
+							<tbody>
+								<tr class="item">
+
+									<td rowspan="2">
+
+										<img class="product" src="http://www.superestudio.com/imagenes/productos/TRN001/158/min/categoria/TRN001-158_1.jpg" alt="Silla WOODEN -High Quality Color Edition-" title="Silla WOODEN -High Quality Color Edition-" width="100">
+
+									</td> 
+
+									<td class="product">
+
+										<a href="https://intranet.superestudio.com/silla-wooden-color-edition-charles-ray-eames">Silla WOODEN -High Quality Color Edition-</a>
+
+										
+
+										<input type="hidden" name="es_pack" value="0">
+
+									</td> 
+
+									<td class="price unit">
+										<span class="text-oferta">OFERTA</span>
+
+										<div class="boxPrice">
+
+											<span class="text-tachado text-gris">127,88&nbsp;€</span>
+											<!--span class="text-tachado text-gris">127,88&nbsp;&euro;</span-->
+
+										</div>
+
+										<div class="boxPrice"> 
+
+											<span class="text-strong">44,90&nbsp;€</span>
+											<!--span class="text-strong">44,90&nbsp;&euro;</span-->
+
+										</div>
+									</td>
+
+									<td class="qty">
+
+										<input type="hidden" name="idrelacion" id="idrelacion" value="7999827">
+
+										<!-- prod.unidadesMax: 147 -->
+
+										<input type="hidden" name="cantidad_ant" id="cantidad_ant" value="1">
+										<select name="cantidad" onchange="$('#checkoutForm').submit();" class="input" id="input">
+											<option value="1" selected="">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+										</select>
+
+										<a href="https://intranet.superestudio.com/pedido?accion=borra&amp;idrelacion=7999827" data-toggle="tooltip" data-placement="top" data-original-title="Eliminar producto">
+											<img src="https://intranet.superestudio.com/imagenes/web/cart-del.png" alt="borrar">
+										</a>
+									</td>
+									
+									<td class="price">
+										<div class="boxtextSpan">
+											<span>44,90&nbsp;€</span>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td colspan="4">
+										<input type="hidden" name="id_producto" value="93063">
+										<input type="hidden" name="id_outlet" value="NULL">
+										<input type="hidden" name="id_pack" value="">
+										<div class="select_color">
+											<input type="hidden" name="id_color_ant" id="id_color_ant" value="158">
+											<select name="id_color" id="id_color" onchange="$('#checkoutForm').submit();">
+												<option value="3">Verde&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="5">Negro&nbsp;(Entrega: entre&nbsp;10&nbsp;y&nbsp;11&nbsp;semanas)</option>
+												<option value="8">Rojo&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="11">Blanco&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="15">Crema&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="16">Naranja&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="76">Gris claro&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="150">Rosa fucsia&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="151">Beige&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="158" selected="selected">Turquesa&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="188">Verde oscuro&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="212">Gris antracita&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="258">Rosa claro&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46294">Naranja oscuro&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46297">Índigo&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46298">Verde caqui&nbsp;(Entrega: entre&nbsp;11&nbsp;y&nbsp;14&nbsp;días)</option>
+												<option value="46311">Amarillo claro P32&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46313">Azul petróleo&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46319">Azul surfin&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46336">Amarillo trigo&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46337">Marrón ladrillo&nbsp;(Entrega: entre&nbsp;11&nbsp;y&nbsp;14&nbsp;días)</option>
+												<option value="46339">Mostaza&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46344">Gris pizarra&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46345">Salmón oscuro&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46346">Amarillo ocre&nbsp;(Entrega: entre&nbsp;11&nbsp;y&nbsp;14&nbsp;días)</option>
+												<option value="46355">Azul surfin y patas oscuras&nbsp;(Entrega: entre&nbsp;12&nbsp;y&nbsp;13&nbsp;semanas)</option>
+												<option value="46363">Gris oscuro y patas oscuras&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+												<option value="46383">Marrón y patas oscuras&nbsp;(Entrega: entre&nbsp;3&nbsp;y&nbsp;7&nbsp;días)</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					<div class="checkoutEnvioForm">
-						<input type="hidden" name="Actualiza_Gastos_Envio" value="False">
-						<input name="envio_email" type="text" id="envio_email" class="checkRegistrado noEnterSubmit" value="" placeholder="E-mail *" size="44" maxlength="240">
-						<input name="envio_nombre" type="text" id="envio_nombre" value="" placeholder="Nombre y apellidos *" size="44" maxlength="240">
-						<input name="envio_telefono" type="text" id="envio_telefono" value="" placeholder="Teléfono *" size="44" maxlength="19">
-						<input name="envio_direccion" type="text" id="envio_direccion" value="" placeholder="Dirección de envío *" size="44" maxlength="240">
-						<input name="envio_direccion_ant" type="hidden" id="envio_direccion_ant" value="">
-						<input name="envio_cp" type="text" id="envio_cp" value="" placeholder="Código postal *" size="44" maxlength="8">
-						<input name="envio_cp_ant" type="hidden" id="envio_cp_ant" value="">
-						<select name="envio_poblacion" id="envio_poblacion">
+						
+					<table class="carrito-opciones">
+						<tbody>
+							<tr>
+								<td>
+									<label class="mozo">
+										<input name="mozo1" id="mozosi" type="checkbox" onclick="$('#checkoutForm').submit();" value="1">Opción mozo (+60,50€<span class="mobile" style="display:inline">**</span>)
+										<img src="https://intranet.superestudio.com/imagenes/web/iconos/masinfo.png" width="16" height="16" alt="" data-toggle="popover" data-placement="right" data-content="
+											<div id='descripcion_mozo'>
+												SÓLO ESPAÑA PENÍNSULA:<br><br>
+												Este es un servicio de subida a pisos, NO de montaje de muebles.<br><br>
+												Este servicio no incluye grúa, por tanto:<br>
+												<p></p>
+												<ul>
+												     <li>Es necesario contratar el servicio de mozo para subir <strong>artículos pesados</strong> a pisos.</li>
+												     <li><span style='font-weight: normal;'>Es necesario contratar 2 mozos para la entrega de cualquier artículo pesado en </span><strong>terceros o pisos superiores con dificultades de acceso</strong>: sin ascensor, ascensor con un anchura inferior a 80 cm., escaleras muy estrechas, etc.</li>
+												     <li style='font-weight: normal;'>No es obligatorio contratar estos servicios si el cliente se encarga él mismo de la subida de su pedido a su domicilio.</li>
+												</ul>
+												<p><small>Disponible para España peninsular. Para contratarla en otras zonas, indícalo en las 'Notas para tu pedido' y cotizaremos el servicio.</small></p>
+											</div>
+										">
+									</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			<input name="peso_total" type="hidden" value="8,8">
+			<input name="volumen_total" type="hidden" value="0,12">
+			<input name="gastos_envio" type="hidden" value="6,61">
+		</div>
+		
+			<table class="carrito-opciones">
+				<thead>
+					<tr>
+						<th colspan="2">Método de envío</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2">
+							<p>
+								<span style="font-weight: normal;"></span>
+								<span style="font-size: 10pt;"><span style="font-weight: normal;">Estos son los gastos de envío por defecto. Indica tu </span><span style="color: #da373a;"><strong>código postal de entrega</strong></span> en la columna derecha para <strong>ajustar este precio</strong>:</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<input type="hidden" name="portes_gratis" value="0">
+								<input name="peso_total_parcial" type="hidden" value="8,8">
+								<label class="mozo">
+									<input type="radio" style="border:0px;" name="sel_transporte" value="ASM_NACIONAL" onclick="$('#checkoutForm').submit();">
+									<strong>ASM (16,85&nbsp;€*)</strong>
+								</label>
+								<label class="mozo">
+									<input type="radio" style="border:0px;" name="sel_transporte" value="SEUR_NACIONAL" checked="checked" onclick="$('#checkoutForm').submit();">
+									<strong>Seur (8,00&nbsp;€*)</strong>
+								</label>
+								<label class="mozo">
+									<input type="radio" style="border:0px;" name="sel_transporte" value="DHL_NACIONAL" onclick="$('#checkoutForm').submit();">
+									<strong>Dhl (19,30&nbsp;€*)</strong>
+								</label>
+								<input name="gastos_envio_parcial" type="hidden" value="6,61">
+								<input name="envio_especial" type="hidden" value="">
+							</div>
+						</td>
+						<td class="price">
+							<strong>8,00&nbsp;€</strong>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<div class="notas">
+								<small>(*) Servicio estándar entrega puerta a puerta: no incluye la subida a pisos, salvo contratación de mozo. Montaje no incluido.</small>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="carrito-opciones">
+				<thead>
+					<tr>	
+						<th class="product" colspan="2">Forma de pago</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2"><p>Selecciona la forma de pago para realizar tu pedido.</p></td>
+					</tr>
+					<tr>
+						<td>
+							<label id="tarjeta" class="labelPago">
+								<input type="radio" style="border:0px;" name="forma_de_pago" value="visa" checked="checked" onclick="$('#checkoutForm').submit();">
+								<strong>Tarjeta de crédito, débito o prepago (plataforma externa BBVA)</strong>
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/visa.png" width="32" height="20" alt="Visa">
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/mastercard.png" width="32" height="20" alt="MasterCard">
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/americanexpress.png" width="32" height="20" alt="American Express">
+								<p>Haz clic en CONFIRMAR LA COMPRA y serás redirigido a nuestro TPV para introducir los datos de tu tarjeta.</p>
+							</label>
+							
+							<hr class="hrPago">
+							
+							<label id="trans-bancaria" class="labelPago">
+								<input type="radio" style="border:0px;" name="forma_de_pago" value="trans" onclick="$('#checkoutForm').submit();">
+								<strong>Transferencia bancaria</strong>
+								<p>Haz clic en CONFIRMAR LA COMPRA y te facilitaremos nuestros datos bancarios para realizar la transferencia. También los recibirás por email. Reservamos tu pedido 48 horas (máximo 50 unidades por producto). En caso de no recibir el pago en ese periodo de tiempo, la reserva será anulada y el plazo de entrega podrá variar.</p>
+							</label>
+							
+							<hr class="hrPago">
+							
+							<label class="labelPago">
+								<input type="radio" style="border:0px;" name="forma_de_pago" value="contra" onclick="$('#checkoutForm').submit();">
+								<strong>Contra reembolso (+5%, sólo España peninsular)</strong>
+								<p>Haz clic en CONFIRMAR LA COMPRA y te enviaremos un email para confirmar tu aceptación del pago contrareembolso (pedido mínimo sin incluir los costes de envío: 35€ / pedido máximo: 500€).</p>
+							</label>
+							
+							<hr class="hrPago">
+							
+							<label id="aplazame" class="labelPago">
+								<input type="radio" style="border:0px;" name="forma_de_pago" value="aplazame" onclick="$('#checkoutForm').submit();">
+								<strong>Pago a plazos (Aplazame)</strong>
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/aplazame.png" width="50" height="20" alt="Aplazame">
+								<p>Haz clic en CONFIRMAR LA COMPRA para iniciar el proceso de financiación de tu pedido. Necesitaremos tu DNI y un número de tarjeta de crédito. Importe máximo por compra: 1.000€.</p>
+							</label>
+							
+							<hr class="hrPago">
+							
+							<label id="skrill" class="labelPago">
+								<input type="radio" style="border:0px;" name="forma_de_pago" value="skrill" onclick="$('#checkoutForm').submit();">
+								<strong>Skrill, Skrill Direct, Trustly y Sofort Banking</strong>
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/skrill.png" width="32" height="20" alt="Skrill">
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/trustly.png" width="32" height="20" alt="Trustly">
+								<img src="https://www.superestudio.com/imagenes/web/iconospagos/pedido/sofort.png" width="32" height="20" alt="Sofort">
+								<p>Cuando pulses CONFIRMAR LA COMPRA serás redirigido a la plataforma web de Skrill donde podrás elegir entre las diferentes opciones de pago.</p>
+							</label>
+							<br>
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td class="price">
+							<strong>0,00&nbsp;€</strong>
+							<input type="hidden" value="0" name="gastos_pago">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="carrito-opciones">
+				<thead class="legend">
+					<tr>
+						<th class="product" colspan="3"><div class="subtitle">Cupón de descuento</div></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p>El importe mínimo de compra del cupón <span style="color: #da373a;">no incluye</span> los gastos de envío.</p>
+							<p>El cupón descuento queda vinculado al pedido realizado, aunque no esté pagado. Por favor, tenlo en cuenta especialmente&nbsp;<span style="color: #da373a;">si vas a realizar un pedido mediante transferencia bancaria</span>.</p>
+							<div class="form-inline">
+								<div class="form-group">
+								    <label class="sr-only" for="txtdescuento">Email address</label>
+								    <input type="text" id="txtdescuento" name="txtdescuento" maxlength="30" size="25" value="" placeholder="Código del cupón" onchange="$('#checkoutForm').submit();" class="form-control placeholder cupon">
+								</div>
+								<button class="validar btn btn-secondary">Validar</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="carritoFondo">
+				<table class="carrito-total">
+					<tbody>
+						<tr>
+							<td class="total">Total (IVA incluido):</td>
+							<td class="price total">
+								<input type="hidden" value="60,33" name="base">
+								<input type="hidden" value="12,67" name="total_iva">
+								<input type="hidden" value="73" name="total_pedido">
+								<strong>73,00&nbsp;€</strong>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="bxinfo_envio">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
+		</div>
+
+		<div class="col-sm-4 col-md-4 col-lg-3">
+			<h4 class="subtitle"> Datos de envío</h4>
+			<p>* Obligatorio | ¿Ya estás registrado? <a href="javascript:void(0);" class="login_toggle">Log in</a></p>
+			<div class="formBlock">
+				<div class="checkoutEnvioForm">
+					<input type="hidden" name="Actualiza_Gastos_Envio" value="False">
+					<div class="form-group">
+						<label class="sr-only" for="envio_email">E-mail *</label>
+						<input name="envio_email" type="text" id="envio_email" class="checkRegistrado noEnterSubmit form-control" value="" placeholder="E-mail *" size="44" maxlength="240">
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="envio_nombre">Nombre y apellidos *</label>
+						<input name="envio_nombre" type="text" id="envio_nombre" value="" class="form-control" placeholder="Nombre y apellidos *" size="44" maxlength="240">
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="envio_telefono">Teléfono *</label>
+						<input name="envio_telefono" type="text" id="envio_telefono" value="" placeholder="Teléfono *" size="44" maxlength="19" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="envio_direccion">Dirección de envío *</label>
+						<input name="envio_direccion" type="text" id="envio_direccion" value="" placeholder="Dirección de envío *" size="44" maxlength="240" class="form-control">
+					</div>
+					<input name="envio_direccion_ant" type="hidden" id="envio_direccion_ant" value="">
+					<div class="form-group">
+						<label class="sr-only" for="envio_cp">Código postal *</label>
+						<input name="envio_cp" type="text" id="envio_cp" value="" placeholder="Código postal *" size="44" maxlength="8" class="form-control">
+					</div>
+					<input name="envio_cp_ant" type="hidden" id="envio_cp_ant" value="">
+					<div class="form-group">
+						<select name="envio_poblacion" id="envio_poblacion" class="form-control">
 							<option value="">Población *</option>
 						</select>
-						<input name="envio_poblacion_ant" type="hidden" id="envio_poblacion_ant" value="">
-						<select name="envio_pais" id="envio_pais">
+					</div>
+					<input name="envio_poblacion_ant" type="hidden" id="envio_poblacion_ant" value="">
+					<div class="form-group">
+						<select name="envio_pais" id="envio_pais" class="form-control">
 							<option value="ad">Andorra</option>
 							<option value="al">Shqipëri (Albania)</option>
 							<option value="at">Österreich (Austria)</option>
@@ -1204,88 +1644,82 @@
 							<option value="sk">Slovensko (Slovakia)</option>
 							<option value="tr">Türkiye (Turkey)</option>
 						</select>
-						<input name="envio_pais_ant" type="hidden" id="envio_pais_ant" value="es">
 					</div>
-				</div> 
-				<div class="formBlock">
- 					<div class="subtext factura">
- 						<input type="checkbox" id="enviar_factura" name="enviar_factura" value="true" onclick="$('#checkoutForm').submit();"> <span class="pedido-factura">Quiero que me hagáis llegar factura</span>
- 					</div>
-					<div>
-						<span style="font-size: 11px;">(La factura es necesaria para solicitar la devolución del IVA)</span>
-					</div>
-				</div> 
-				<div class="formBlock" style="margin-top:-10px">
-<!-- 					<textarea placeholder="Notas para tu pedido..." id="Notas" rows="3" cols="35" name="Notas" class="placeholder clearfix"></textarea> -->
-					<input type="hidden" name="accion" value="modifica">
-					<input type="hidden" name="confirma" value="si">
-					<label>
-						<input name="novedades" type="checkbox" id="novedades" value="si" checked="">
-						Quiero recibir promociones en mi email (podrás cancelar las notificaciones en cualquier momento).
-					</label>
-					<label>
-						<input name="acepta_condiciones" type="checkbox" id="acepta_condiciones" value="si">
-						Comprendo y acepto las <a rel="nofollow" href="/articulos?a=8" class="lightbox fancybox.iframe" data-fancybox-width="600">condiciones de uso</a> y la <a rel="nofollow" href="/articulos?a=9" class="lightbox fancybox.iframe" data-fancybox-width="600">política de privacidad</a>
-					</label>
-					<input type="submit" name="submit_pedido" value="Confirmar la compra" class="botonComprar" onclick="">
-					<div class="pagoicons" style="padding-bottom:40px">
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/visa_bg.png" width="59" alt="">
-							<div class="tooltip">VISA</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/visa-electron_bg.png" width="59" alt="">
-							<div class="tooltip">Visa Electron</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/mastercard_bg.png" width="59" alt="">
-							<div class="tooltip">MasterCard</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/maestro_bg.png" width="59" alt="">
-							<div class="tooltip">Maestro</div>
-						</a>	
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/americanexpress_bg.png" width="59" alt="">
-							<div class="tooltip">American Express</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/skrill_bg.png" width="59" alt="">
-							<div class="tooltip">Skrill </div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/trustly_bg.png" width="59" alt="">
-							<div class="tooltip">Trustly </div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/sofort_bg.png" width="59" alt="">
-							<div class="tooltip">Sofort Banking</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/nordea_bg.png" width="59" alt="">
-							<div class="tooltip">Nordea</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/aplazame_bg.png" width="59" alt="">
-							<div class="tooltip">Aplazame</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/contrareembolso_bg.png" width="59" alt="">
-							<div class="tooltip">Pago contra reembolso</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/transferencia_bg.png" width="59" alt="">
-							<div class="tooltip large">Pago por transferencia</div>
-						</a>
-						<a href="javascript:void(0)">
-							<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/comercioseguro_bg.png" width="59" alt="">
-							<div class="tooltip large">Comercio seguro</div>
-						</a>
-					</div>
+					<input name="envio_pais_ant" type="hidden" id="envio_pais_ant" value="es">
 				</div>
-			</div> 
-		</form>
-	</div>
+			</div>
+			
+			<div class="formBlock">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" id="enviar_factura" name="enviar_factura" value="true" onclick="$('#checkoutForm').submit();"> <span class="label label-warning">Quiero que me hagáis llegar factura</span>
+					</label>
+				</div>
+				<div class="clearfix"></div>
+				<small>(La factura es necesaria para solicitar la devolución del IVA)</small>
+			</div>
+
+			<div class="formBlock">
+<!-- 					<textarea placeholder="Notas para tu pedido..." id="Notas" rows="3" cols="35" name="Notas" class="placeholder clearfix"></textarea> -->
+				<input type="hidden" name="accion" value="modifica">
+				<input type="hidden" name="confirma" value="si">
+				<div class="checkbox">
+					<label>
+						<input name="novedades" type="checkbox" id="novedades" value="si" checked=""> Quiero recibir promociones en mi email (podrás cancelar las notificaciones en cualquier momento).
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input name="acepta_condiciones" type="checkbox" id="acepta_condiciones" value="si"> <strong>Comprendo y acepto las <a rel="nofollow" href="/articulos?a=8" class="lightbox fancybox.iframe" data-fancybox-width="600">condiciones de uso</a> y la <a rel="nofollow" href="/articulos?a=9" class="lightbox fancybox.iframe" data-fancybox-width="600">política de privacidad</a>.</strong>
+					</label>
+				</div>
+				
+				<input type="submit" name="submit_pedido" value="Confirmar la compra" class="botonComprar btn btn-primary btn-lg btn-rounded" onclick="">
+				
+				<ul class="pagoicons">
+					<li data-toggle="tooltip" data-placement="top" title="Visa">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/visa_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Visa Electron">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/visa-electron_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="MasterCard">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/mastercard_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Maestro">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/maestro_bg.png" width="59" alt="">
+					</li>	
+					<li data-toggle="tooltip" data-placement="top" title="American Express">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/americanexpress_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Skrill">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/skrill_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Trustly">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/trustly_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Sofort Banking">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/sofort_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Nordea">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/nordea_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Aplazame">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/aplazame_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Pago contra reembolso">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/contrareembolso_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Pago por transferencia">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/transferencia_bg.png" width="59" alt="">
+					</li>
+					<li data-toggle="tooltip" data-placement="top" title="Comercio seguro">
+						<img src="https://www.superestudio.com/imagenes/web/iconospagos/detalle/comercioseguro_bg.png" width="59" alt="">
+					</li>
+				</ul>
+			</div>
+		</div> 
+	</form>
 </div>
 
 <!-- Load deferred styles-->
