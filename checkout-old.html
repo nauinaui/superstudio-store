@@ -870,6 +870,8 @@
 
 	<form id="checkoutForm" action="https://www.superestudio.com/pedido" method="post" name="valores" class="clearfix">
 		<input type="hidden" name="reqpass" id="reqpass" value="">
+		
+		<!-- Left column -->
 		<div class="col-sm-8 col-md-8 col-lg-9">
 			<!-- Opcion de entrega parcial -->					
 			<table class="carrito-opciones">
@@ -894,15 +896,13 @@
 				.envioParcialBlock {counter-reset: my-counter;}
 				.envio-parcial {position:relative;padding:10px 10px 1px;margin-bottom:20px;border:1px solid #cfcfcf/*background-color:#f2f2f2;*/}
 				.envio-parcial:last-child {margin-bottom:30px;}
-				.envio-parcial:before {content:counter(my-counter);counter-increment: my-counter;position:absolute;left:-36px;top:-7px;font-size:70px;color:#dfdfdf;}
+				.number-shipment:before {content:counter(my-counter);counter-increment: my-counter;font-size:70px;color:#dfdfdf;}
 			</style>
 
 			<div class="envioParcialBlock">				
 
-			<!-- Productos 2 -->
-				<div class="col-xxs-1">
-					<span>1</span>
-				</div>
+				<!-- Productos 2 -->
+				<div class="col-xxs-1 number-shipment"></div>
 			
 				<div class="col-xxs-11">
 					<div class="envio-parcial table-responsive">
@@ -1220,9 +1220,7 @@
 				</div>
 
 				<!-- Productos 2 -->
-				<div class="col-xxs-1">
-					<span>2</span>
-				</div>
+				<div class="col-xxs-1 number-shipment"></div>
 				<div class="col-xxs-11">
 					<div class="envio-parcial table-responsive">
 						<table class="carrito-productos noBorder table" style="margin-bottom: 5px;"> 
@@ -1403,10 +1401,10 @@
 					</table>
 				</div>
 
-			<input name="peso_total" type="hidden" value="8,8">
-			<input name="volumen_total" type="hidden" value="0,12">
-			<input name="gastos_envio" type="hidden" value="6,61">
-		</div>
+				<input name="peso_total" type="hidden" value="8,8">
+				<input name="volumen_total" type="hidden" value="0,12">
+				<input name="gastos_envio" type="hidden" value="6,61">
+			</div>
 		
 			<table class="carrito-opciones">
 				<thead>
@@ -1568,40 +1566,51 @@
 			<div class="bxinfo_envio">Para envíos a Ceuta, Melilla, Islas Canarias, Andorra, Suiza, Noruega y Liechtenstein, los precios en la factura están exentos de IVA. Una vez el pedido ha llegado a destino, el cliente deberá pagar el despacho de importación de aduanas y los impuestos aplicables en cada caso.</div>
 		</div>
 
+		<!-- Right column -->
 		<div class="col-sm-4 col-md-4 col-lg-3">
 			<h4 class="subtitle"> Datos de envío</h4>
 			<p>* Obligatorio | ¿Ya estás registrado? <a href="javascript:void(0);" class="login_toggle">Log in</a></p>
 			<div class="formBlock">
 				<div class="checkoutEnvioForm">
 					<input type="hidden" name="Actualiza_Gastos_Envio" value="False">
+					
 					<div class="form-group">
 						<label class="sr-only" for="envio_email">E-mail *</label>
 						<input name="envio_email" type="text" id="envio_email" class="checkRegistrado noEnterSubmit form-control" value="" placeholder="E-mail *" size="44" maxlength="240">
 					</div>
+					
 					<div class="form-group">
 						<label class="sr-only" for="envio_nombre">Nombre y apellidos *</label>
 						<input name="envio_nombre" type="text" id="envio_nombre" value="" class="form-control" placeholder="Nombre y apellidos *" size="44" maxlength="240">
 					</div>
+					
 					<div class="form-group">
 						<label class="sr-only" for="envio_telefono">Teléfono *</label>
 						<input name="envio_telefono" type="text" id="envio_telefono" value="" placeholder="Teléfono *" size="44" maxlength="19" class="form-control">
 					</div>
+					
 					<div class="form-group">
 						<label class="sr-only" for="envio_direccion">Dirección de envío *</label>
 						<input name="envio_direccion" type="text" id="envio_direccion" value="" placeholder="Dirección de envío *" size="44" maxlength="240" class="form-control">
 					</div>
+					
 					<input name="envio_direccion_ant" type="hidden" id="envio_direccion_ant" value="">
+					
 					<div class="form-group">
 						<label class="sr-only" for="envio_cp">Código postal *</label>
 						<input name="envio_cp" type="text" id="envio_cp" value="" placeholder="Código postal *" size="44" maxlength="8" class="form-control">
 					</div>
+					
 					<input name="envio_cp_ant" type="hidden" id="envio_cp_ant" value="">
+					
 					<div class="form-group">
 						<select name="envio_poblacion" id="envio_poblacion" class="form-control">
 							<option value="">Población *</option>
 						</select>
 					</div>
+
 					<input name="envio_poblacion_ant" type="hidden" id="envio_poblacion_ant" value="">
+					
 					<div class="form-group">
 						<select name="envio_pais" id="envio_pais" class="form-control">
 							<option value="ad">Andorra</option>
@@ -1645,6 +1654,7 @@
 							<option value="tr">Türkiye (Turkey)</option>
 						</select>
 					</div>
+
 					<input name="envio_pais_ant" type="hidden" id="envio_pais_ant" value="es">
 				</div>
 			</div>
@@ -1663,11 +1673,13 @@
 <!-- 					<textarea placeholder="Notas para tu pedido..." id="Notas" rows="3" cols="35" name="Notas" class="placeholder clearfix"></textarea> -->
 				<input type="hidden" name="accion" value="modifica">
 				<input type="hidden" name="confirma" value="si">
+				
 				<div class="checkbox">
 					<label>
 						<input name="novedades" type="checkbox" id="novedades" value="si" checked=""> Quiero recibir promociones en mi email (podrás cancelar las notificaciones en cualquier momento).
 					</label>
 				</div>
+				
 				<div class="checkbox">
 					<label>
 						<input name="acepta_condiciones" type="checkbox" id="acepta_condiciones" value="si"> <strong>Comprendo y acepto las <a rel="nofollow" href="/articulos?a=8" class="lightbox fancybox.iframe" data-fancybox-width="600">condiciones de uso</a> y la <a rel="nofollow" href="/articulos?a=9" class="lightbox fancybox.iframe" data-fancybox-width="600">política de privacidad</a>.</strong>

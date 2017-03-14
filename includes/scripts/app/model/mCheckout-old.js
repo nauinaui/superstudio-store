@@ -96,15 +96,18 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 			var pais = $("#envio_pais")[0].value;
 			var pais_ant = $("#envio_pais_ant").val();
 			var form = $("#checkoutForm");
+			var objectChanged = $(this);
 
 			common.blockUI();
 			$.ajax({
 				url: 'includes/web/plugin_iva_pedido?dir='+dir+'&dir_ant='+dir_ant+'&cp='+cp+'&cp_ant='+cp_ant+'&pais='+pais+'&pais_ant='+pais_ant,
 				success: function (data) {
 					common.unblockUI();
-					data = data.split('|');
-					var saltoLinea = data[1].replace('.', '.<br><br>');
-					if(data !=="") {
+					if ((data) && (objectChanged.is('#envio_pais'))) {
+						data = data.split('|');
+						var saltoLinea = data[1].replace('.', '.<br><br>');
+					}
+					if (data !=="") {
 						$("#checkoutForm").prepend("<div id='modal-envio'><p class='text-msn'>"+saltoLinea+" <input type='submit' name='submit_pedido' id='btn' value='"+data[0]+"'></p></div>");
 						modalCenter();
 					} else {
@@ -188,6 +191,15 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 			e.preventDefault();
 			e.stopPropagation();
 		});
+
+		$('[data-toggle="tooltip"]').tooltip({
+			html: true
+		});
+		
+		$('[data-toggle="popover"]').popover({
+			html: true,
+			trigger: 'hover'
+		})
     });
 
     return mCheckoutOld;

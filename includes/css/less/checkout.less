@@ -1020,7 +1020,6 @@ body.checkout {
 			    text-decoration: none;
 			    font-size: 14px;
 			    font-weight: 700;
-			    margin-right: 30px;
 		    }
 		}
   	}
@@ -1037,7 +1036,8 @@ body.checkout {
 		    text-decoration: none;
 		    font-size: 14px;
 		    font-weight: 700;
-		    margin-right: 30px;
+		    min-width: 200px;
+		    white-space: normal;
 
 		    a {
 			    display: block;
@@ -1045,12 +1045,10 @@ body.checkout {
 			    text-decoration: none;
 			    font-size: 14px;
 			    font-weight: 700;
-			    margin-right: 30px;
 		    }
 	    }
 
 	    &.price {
-	    	padding-right: 5px;
 	    	text-align: center;
 
 			.unit {
@@ -1064,7 +1062,8 @@ body.checkout {
 	    	select {
 			    width: auto;
 			    display: inline-block;
-			    padding: 3px 0;
+		        min-width: 35px;
+			    padding: 3px;
 			    text-align: center;
 	    	}
 	    }
@@ -1096,19 +1095,58 @@ body.checkout {
   	}
   }
 
+  .number-shipment:before {
+    content: counter(my-counter);
+    counter-increment: my-counter;
+    font-size: 70px;
+    color: #dfdfdf;
+
+    @media (max-width: @screen-xs-max) {
+		font-size: 40px;
+    }
+  }
+
   .envio-parcial {
     position: relative;
     padding: 10px 10px 1px;
     margin-bottom: 20px;
     border: 1px solid #cfcfcf;
   }
+
+  .pagoStripe {
+  	margin-top: 20px;
+
+  	.form-group {
+  		margin-right: 10px;
+  	}
+
+  	label {
+  		display: block;
+  		font-weight: 700;
+  		width: auto;
+  	}
+  }
   
   .formBlock {
+    margin-bottom: 20px;
     text-align: center;
 
     .checkbox {
       font-size: 12px;
       text-align: left;
+
+      .label {
+      	background-color: @gris_claro;
+      	font-size: 12px;
+      }
+
+      &.accept-conditions {
+	  	font-size: 13px;
+	  }
+    }
+
+    .alert {
+    	font-size: 12px;
     }
     
     small {
@@ -1180,6 +1218,36 @@ body.checkout {
     border-radius: 20px;
     font-weight: 700;
     box-shadow: 0 0 12px #E4E2E2;
+  }
+
+  .error,
+  .minierror,
+  .success {
+    display: block;
+    margin: 2px 0 0;
+    background-color: #da373a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: left;
+    width: auto;
+    padding: 3px 0 3px .5%;
+  }
+
+  .success {
+  	background-color: green;
+  }
+}
+
+#checkout {
+  .subtitle {
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-top: 0;
+    text-align: left;
   }
 }
 
