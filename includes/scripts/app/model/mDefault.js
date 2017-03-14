@@ -61,13 +61,15 @@ define(['./Base.js', 'countdown'], function (Base, Countdown) {
 		 * @param date: String Determine when countdown will be finnished
 		 */
 		function startCountdown(el) {
-			var time = $('#'+el).attr('data-time');
-			var daysTxt = $('#'+el).find('.days span').text(),
-				hoursTxt = $('#'+el).find('.hours span').text();			
-				minutesTxt = $('#'+el).find('.minutes span').text();
+			var time = $('#'+el).attr('data-time'),
+				hours = $('#'+el).attr('data-hours'),
+				d = new Date(time +' '+hours);
+				daysTxt = $('#'+el).find('.days span').text(),
+				hoursTxt = $('#'+el).find('.hours span').text(),
+				minutesTxt = $('#'+el).find('.minutes span').text(),
 				secondsTxt = $('#'+el).find('.seconds span').text();
 			$('#'+el).countdown({
-				date: time,
+				date: d,
 				render: function (data) {
 					var el = $(this.el);
 					el.empty()
@@ -77,6 +79,7 @@ define(['./Base.js', 'countdown'], function (Base, Countdown) {
 						.append("<div>" + this.leadingZeros(data.sec, 2) + "<span>"+ secondsTxt +"</span>")
 				}
 			});
+
 		}
     });
 
