@@ -996,6 +996,13 @@ body.checkout {
 	    width: 48%;
 	    min-height: 26px;
 	    float: none;
+
+	    &.mozo {
+	    	@media (max-width: @screen-xs-max) {
+	    		display: block;
+	    		width: auto;
+	    	}
+	    }
   	}
   }
 
@@ -1157,6 +1164,10 @@ body.checkout {
   
   .botonComprar {
     margin-bottom: 20px;
+
+    @media (max-width: @screen-sm-max) {
+    	font-size: 15px;
+    }
   }
   
   .pagoicons {
@@ -1205,6 +1216,10 @@ body.checkout {
   .bxinfo_envio {
 	font-size: 11px;
     line-height: 14px;
+    
+    @media (max-width: @screen-xs-max) {
+    	margin-bottom: 40px;
+    }
   }
 
   .premio {
