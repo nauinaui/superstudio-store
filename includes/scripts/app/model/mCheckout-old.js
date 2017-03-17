@@ -103,19 +103,23 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 				url: 'includes/web/plugin_iva_pedido?dir='+dir+'&dir_ant='+dir_ant+'&cp='+cp+'&cp_ant='+cp_ant+'&pais='+pais+'&pais_ant='+pais_ant,
 				success: function (data) {
 					common.unblockUI();
-					if ((data) && (objectChanged.is('#envio_pais'))) {
-						data = data.split('|');
-						var saltoLinea = data[1].replace('.', '.<br><br>');
-					}
-					if (data !=="") {
-						$("#checkoutForm").prepend("<div id='modal-envio'><p class='text-msn'>"+saltoLinea+" <input type='submit' name='submit_pedido' id='btn' value='"+data[0]+"'></p></div>");
-						modalCenter();
+					if(data !=="") {
+						if ( objectChanged.is('#envio_pais') || objectChanged.is('#envio_cp') ) {
+							data = data.split('|');
+							var saltoLinea = data[1].replace('.', '.<br><br>');
+							$("#checkoutForm").prepend("<section id='vatModal' class='modal fade new-web-modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><img src='imagenes/logo.png' width='100' alt='SuperStudio'></div><div class='modal-body'><h5 class='text-center'>"+saltoLinea+"<br /></h5></div><div class='modal-footer text-center'><button type='button' class='btn btn-primary btn-rounded' data-dismiss='modal'>"+data[0]+"</button></div></div></div></section>");
+							$('#vatModal').modal('show');
+						}
 					} else {
 						$("#checkoutForm").submit();
 					}
 				}
 			});
 		});
+
+		$('body').on('hidden.bs.modal', '#vatModal', function (e) {
+		  $("#checkoutForm").submit();
+		})
 
 		$('#checkout').on('focusout keypress', '.checkRegistrado', function(e){
 			if ( e.type === 'focusout' || e.keyCode === 13 ) {
