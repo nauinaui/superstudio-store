@@ -21,6 +21,7 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<link rel="stylesheet" type="text/css" href="includes/css/superestudio.css">
 	<script>require = { urlArgs: "v=" + (new Date()).getTime() };</script>
 	<script async data-main="includes/scripts/checkout" src="includes/scripts/lib/require.min.js"></script>
 	<script>var idioma_sesion = 'CAS';</script>
@@ -863,50 +864,6 @@
 	  <li class="active">Proceso de compra</li>
 	</ol>
 </div>
-
-<!-- Load deferred styles-->
-<noscript id="deferred-styles">
-	<link rel="stylesheet" type="text/css" href="includes/css/superestudio.css">
-</noscript>
-<script>
-    // code for running requestAnimationFrame in old browsers
-    (function() {
-        var lastTime = 0;
-        var vendors = ['ms', 'moz', 'webkit', 'o'];
-        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
-                                       || window[vendors[x]+'CancelRequestAnimationFrame'];
-        }
-     
-        if (!window.requestAnimationFrame)
-            window.requestAnimationFrame = function(callback, element) {
-                var currTime = new Date().getTime();
-                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
-                  timeToCall);
-                lastTime = currTime + timeToCall;
-                return id;
-            };
-     
-        if (!window.cancelAnimationFrame)
-            window.cancelAnimationFrame = function(id) {
-                clearTimeout(id);
-            };
-    }());
-    
-	var loadDeferredStyles = function() {
-	var addStylesNode = document.getElementById("deferred-styles");
-	var replacement = document.createElement("div");
-	replacement.innerHTML = addStylesNode.textContent;
-	document.body.appendChild(replacement)
-	addStylesNode.parentElement.removeChild(addStylesNode);
-	};
-	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-	webkitRequestAnimationFrame || msRequestAnimationFrame;
-	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-	else window.addEventListener('load', loadDeferredStyles);
-</script>
 
 <section class="bgDark">
 	<div class="container">
