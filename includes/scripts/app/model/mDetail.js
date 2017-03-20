@@ -31,7 +31,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		})
 
 		// Enable button for adding to cart and save to favourite's list
-		$('#addToCartButton, .favourite-btn').removeAttr('disabled');
+		$('#addToCartButton, .favourite-btn, .finishes input[type="radio"]').removeAttr('disabled');
 
 		// Init tooltip for different options price and payment methods
 		$('[data-toggle="tooltip"]').tooltip({
