@@ -51,7 +51,7 @@ switch(idioma_sesion) {
         break;
     case 'POL':
         lang = 'PL';
-        hashId = '';
+        hashId = '13445ed56a72ade05e2824c46387fecd';
     	errorTextFinish = 'Wybierz wykończenie, aby kontynuować';
     	errorTextCaptcha= 'Obraz captcha jest źle';
         break;
@@ -151,6 +151,10 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		});
 
 		// Doofinder - Search engine plugin
+		if ( lang=='PL' ) {
+			lang = 'EN';
+			var reinitLang = true;
+		}
 		lang = lang.toLowerCase();
 		var inputSelector = "input[name='busqueda']";
 		if ( $(window).width() < 768 ) {
@@ -167,6 +171,10 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			hashid: hashId,
 			zone: 'eu1'
 		}];
+
+		if ( reinitLang == true ) {
+			lang = 'PL';
+		}
 
 		try {
 			Doofinder.classic.init(dfClassicLayers[0]);
