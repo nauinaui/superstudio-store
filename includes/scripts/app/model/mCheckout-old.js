@@ -177,13 +177,14 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 	    $('body').on('click', '.login_toggle', function(e){
 	    	e.stopPropagation();
 	    	e.preventDefault();
-			if ( $('.login-dropdown').is('.open') ) {
-				$('.login-dropdown').removeClass('open');
-				$('#loginDropdown').attr('aria-expanded','false').focus();;
-			} else {
-				$('.login-dropdown').addClass('open');
-				$('#loginDropdown').attr('aria-expanded','true').focus();;
-			}
+	    	if ( $(window).width() < 768 ) {
+				$('#moreOptionsDropdown').dropdown('toggle');
+				$('#loginIniciarSesionDropdown .submenu').toggle();
+	    	} else {
+				if ( !$('.login-dropdown').is('.open') ) {
+					$('#loginDropdown').dropdown('toggle');
+				}
+	    	}
 	    });
 
 		$('.btn_print').on("click", function(){
