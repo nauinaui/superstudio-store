@@ -389,10 +389,11 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 		// Get all selected filters by user, write in url as a parameters and refresh page
 		function applyFilters() {
 			// Put filters in url parameters
-			var i = 0;
-			var url = window.location.pathname;
-			var filters = '';
-			var currentPage = getParameterByName('camp', window.location.href);
+			var i = 0,
+				url = window.location.pathname,
+				filters = '',
+				currentPage = getParameterByName('camp', window.location.href),
+				busqueda = getParameterByName('busqueda');
 
 			$('.resultados .active-filter').each(function() {
 				var type = $(this).attr('id');
@@ -429,6 +430,14 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 					url = url[0] + '?camp='+ currentPage;
 					i = i+1;
 				}
+			} else if ( !busqueda == '' ) { // Then current page is maybe a search page
+				url = url.split('?');
+				if ( i>0 ) { // there is any filter to active
+					url = url[0] + '?busqueda='+ busqueda + '&' + url[1];
+				} else{ // there isn't any filter to active but there is a 'busqueda' filter
+					url = url[0] + '?busqueda='+ busqueda;
+					i = i+1;
+				}
 			}
 
 			// Put sort order in url parameters
@@ -450,7 +459,7 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			} else {
 				url = url + '&orden=' + sort + '&asc=' + asc;
 			}
-			
+
 			// refresh page with parameters
 			common.blockUI();
 			window.location.href = url;
