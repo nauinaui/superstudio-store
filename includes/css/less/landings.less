@@ -1,3 +1,107 @@
+.banner-bottom-text {
+	font-size: 16px;
+    line-height: 22px;
+    background: @negro;
+    margin: 5px 0 0;
+    padding: 5px;
+    color: #FFF;
+    text-align: center;
+}
+
+.main-text {
+    font-size: 28px;
+    line-height: 38px;
+    margin: auto;
+    color: @gris;
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+
+    &:after {
+	    content: "";
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-style: solid;
+	    border-width: 10px 10px 0;
+	    border-color: #BD232D transparent transparent;
+	    top: 0;
+	    left: 50%;
+	    margin-left: -5px;
+	    margin-top: 146px;
+    }
+
+    @media (max-width: @screen-xs-max) {
+    	font-size: 19px;
+    	line-height: 20px;
+    }
+}
+
+.coupon {
+    border: 1px solid #D8D7D7;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 2px 34px -13px #545454;
+    padding: 15px;
+    text-align: center;
+
+    .desc {
+	    text-transform: uppercase;
+	    font-size: 20px;
+	    margin: 10px 0 -4px;
+	    letter-spacing: 2px;
+    }
+
+    .val-desc {
+	    font-size: 60px;
+	    line-height: 65px;
+	    font-weight: 900;
+	    color: #DA373A;
+	    margin: 0;
+    }
+
+    .cod-coupon {
+	    background: #DA373A;
+	    padding: 5px 20px;
+	    color: #fff;
+	    font-weight: 700;
+	    font-size: 24px;
+	    text-transform: uppercase;
+	    line-height: 27px;
+	    border-radius: 8px;
+    }
+
+    .info {
+		font-size: 10px;
+    	margin: 5px 0;
+    }
+
+    @media ( max-width: @screen-xs-max ) {
+	    margin-bottom: 20px;
+	    
+    	.desc {
+    		font-size: 12px;
+    	}
+
+    	.val-desc {
+    		font-size: 25px;
+    	}
+
+    	.cod-coupon {
+    		font-size: 14px;
+    		padding: 5px 10px;
+    	}
+    }
+}
+
+.info-cod {
+	p {
+		margin: 15px 0;
+	}
+}
+
 .infographic {
 	.draw {
 		img {
