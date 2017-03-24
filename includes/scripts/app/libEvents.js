@@ -231,12 +231,19 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		})
 
 		// Header - Abrir submenú al hacer click en versión movil
-		$('#menuSubcategorias > li:not(.special) .category.sub').on('click touchstart', function(e) {
+		$('#menuSubcategorias > li:not(.special) .category').bind('click touchstart', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var obj = $(this);
+			obj.removeClass('category');
 			if ( $(window).width() < 768 ) {
-				e.preventDefault();
-				e.stopPropagation();
 				$(this).parent().find('.submenu').toggle();
+			} else if ( common.detectMobile() == true ) {
+				obj.parent().find('.submenu').toggle();
 			}
+			setTimeout(function() {
+				obj.addClass('category');
+			}, 500);
 		});
 
 		// Header - Abrir submenú de login al hacer click en versión movil
