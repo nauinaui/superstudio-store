@@ -588,7 +588,7 @@ body {
       font-size: 0;
 
       li {
-        background-image: url('../../imagenes/iconos/payment-methods.png');
+        background-image: url('../../imagenes/iconos/partner-logos.png');
         display: inline-block;
         .filter(grayscale(1));
         height: 30px;
@@ -659,6 +659,11 @@ body {
         }
         &.trustpilot {
           background-position: -450px -30px;
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+          background-image: url('../../imagenes/iconos/partner-logos@2x.png');
+          background-size: 600px 60px;
         }
       }
     }
