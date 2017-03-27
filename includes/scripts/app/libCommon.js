@@ -25,6 +25,26 @@ define(['jquery'], function ($) {
 		}
 	};
 
+	LibCommon.prototype.repositionSubmenu = function(that) {
+		console.log(that);
+		var position = that.position();
+		var spaceDerecha = $(window).width() - position.left;
+		var spaceIzquierda = position.left;
+		var submenu = that.find('.submenu');
+		var ancho = submenu.width();
+
+		if ( spaceDerecha > ancho ) {
+			submenu.css('left','0');
+			submenu.css('right','auto');
+		} else if ( spaceIzquierda > ancho ) {
+			submenu.css('left','auto');
+			submenu.css('right','0');
+		} else {
+			submenu.css('left', '-'+spaceIzquierda+'px');
+			submenu.css('right','auto');
+		};
+	}
+
 	/**
 	 * Menu categorías (toggle)
 	 */
@@ -50,6 +70,10 @@ define(['jquery'], function ($) {
 		    $('.topmenu').addClass('fixed');
 		} else {
 		    $('.topmenu').removeClass('fixed'); 
+		}
+		if ( $('#menuSubcategorias li .submenu').is(':visible') ) {
+			var openedMenu = $('#menuSubcategorias li .submenu:visible').parent();
+			this.repositionSubmenu(openedMenu);
 		}
 	}
 

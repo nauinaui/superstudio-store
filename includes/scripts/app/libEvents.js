@@ -190,23 +190,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		 */
 
 		// Header - Reposicionar el submenú según el espacio en pantalla (Desktop)
-		$('.menu-subcategorias li').hover(function() {
-			var position = $(this).position();
-			var spaceDerecha = $(window).width() - position.left;
-			var spaceIzquierda = position.left;
-			var submenu = $(this).find('.submenu');
-			var ancho = submenu.width();
-
-			if ( spaceDerecha > ancho ) {
-				submenu.css('left','0');
-				submenu.css('right','auto');
-			} else if ( spaceIzquierda > ancho ) {
-				submenu.css('left','auto');
-				submenu.css('right','0');
-			} else {
-				submenu.css('left', '-'+spaceIzquierda+'px');
-				submenu.css('right','auto');
-			};
+		$('#menuSubcategorias li').hover(function() {
+			common.repositionSubmenu($(this));
 		});
 
 		// Header - 100% height of main menu for mobile devices
@@ -231,19 +216,35 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		})
 
 		// Header - Abrir submenú al hacer click en versión movil
-		$('#menuSubcategorias > li:not(.special) .category').bind('click touchstart', function(e) {
+		$('#menuSubcategorias > li:not(.special .avoid)').on('click touchstart', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 			var obj = $(this);
-			obj.removeClass('category');
+			obj.addClass('avoid'); // Avoid duplicate event (touchscreen)
 			if ( $(window).width() < 768 ) {
-				$(this).parent().find('.submenu').toggle();
+				$(this).find('.submenu').toggle();
 			} else if ( common.detectMobile() == true ) {
-				obj.parent().find('.submenu').toggle();
+				if ( !obj.is('.pressed') ) {
+					$('#menuSubcategorias > li').removeClass('pressed');
+					obj.addClass('pressed');
+					$('#menuSubcategorias li .submenu').hide();
+					obj.find('.submenu').show();
+				} else {
+					obj.removeClass('pressed');
+					$('#menuSubcategorias li .submenu').hide();
+				}
+				common.repositionSubmenu($(this));
+				// if ( $(this).is(':hover') ) {
+				// 	$('#menuSubcategorias li .submenu').hide();
+				// }
 			}
 			setTimeout(function() {
-				obj.addClass('category');
+				obj.removeClass('avoid');
 			}, 500);
+		});
+
+		$('#menuSubcategorias > li:not(.special .avoid) .submenu a').on('click touchstart', function(e) {
+			e.stopPropagation();
 		});
 
 		// Header - Abrir submenú de login al hacer click en versión movil
