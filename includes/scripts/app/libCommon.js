@@ -26,7 +26,6 @@ define(['jquery'], function ($) {
 	};
 
 	LibCommon.prototype.repositionSubmenu = function(that) {
-		console.log(that);
 		var position = that.position();
 		var spaceDerecha = $(window).width() - position.left;
 		var spaceIzquierda = position.left;
