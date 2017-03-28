@@ -1,4 +1,4 @@
-define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon, Bootstrap) {
+define(['./Base.js', '../libCommon.js'], function (Base, LibCommon) {
     var mGeneric = new Base('data for generic pages loaded');
     var common = new LibCommon();
 
