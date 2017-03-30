@@ -147,6 +147,7 @@
     &:focus {
       background: darken(@naranja, 3%);
       background: linear-gradient(to bottom, darken(@naranja, 2%) 0%, lighten(@naranja, 2%) 100%);
+      border-color: darken(@naranja, 3%);
       outline: 0;
     }
   }
@@ -187,6 +188,12 @@
     &:focus {
       color: @negro;
     }
+  }
+}
+
+.input-group {
+  .btn {
+    border: 1px solid transparent;
   }
 }
 
