@@ -180,7 +180,6 @@
   & > img {
     display: block;
     margin: 0 auto;
-    width: 90%;
     height: 220px;
     transition: transform 0.2s ease;
 
@@ -270,6 +269,23 @@
   margin-top: 5px;
 }
 
+.percentage() {
+  color: @gris;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.oldPrice() {
+  color: @gris_claro_mas;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+  text-decoration: line-through;
+  vertical-align: middle;
+}
+
 .delivery-time() {
   color: @gris;
   display: block;
@@ -344,11 +360,17 @@ section .producto-box {
       .precioProducto();
     }
     
-    .text-desc {
-      .titularNegroEspaciado();
-      color: @gris_oscuro;
-      display: block;
+    .discount {
       margin-bottom: 10px;
+      line-height: 18px;
+
+      .percentage {
+        .percentage();
+      }
+
+      .old-price {
+        .oldPrice();
+      }
 
       &.oculto {
         visibility: hidden;
