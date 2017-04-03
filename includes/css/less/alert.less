@@ -4,7 +4,7 @@
 	background-image: none;
 	
 	&.alert-sm {
-		font-size: 12px;
+		font-size: 1.2rem;
 		margin-bottom: 10px;
 		padding: 5px;
 	}
@@ -35,7 +35,7 @@
 
 		.title {
 		    color: @blanco;
-		    font-size: 16px;
+		    font-size: 1.6rem;
 		    letter-spacing: 2px;
 		    margin: 0;
 		    text-transform: uppercase;
@@ -60,7 +60,7 @@
 		    }
 
 			.glyphicon {
-				font-size: 10px;
+				font-size: 1rem;
 			}
 		}
 	}
@@ -74,7 +74,7 @@
         padding: 5px 30px 5px 0;
 
 		.title {
-			font-size: 13px;
+			font-size: 1.3rem;
 			margin: 0;
 
 			button {
@@ -82,7 +82,7 @@
 			    background: transparent;
 			    border: 0;
 			    text-transform: uppercase;
-			    font-size: 12px;
+			    font-size: 1.2rem;
 			    letter-spacing: 1px;
 			}
 		}
@@ -145,6 +145,14 @@
 		    position: initial;
 	    }
 	}
+
+	& .added-to-cart-alert {
+	    display: block;
+	    position: absolute;
+	    left: 50%;
+	    .transform(translateX(-50%));
+	    width: 200px;
+  	}
 }
  
   // Media queries
