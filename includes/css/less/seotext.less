@@ -1,0 +1,117 @@
+// SEO text
+.texto-seo {
+  font-size: 1.2rem;
+}
+
+.seo-text {
+  margin-bottom: 20px;
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+
+  .text {
+    color: @gris;
+    position: relative;
+
+    h1, h2 {
+      color: @gris_oscuro;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+
+  .read-more {
+    margin: 0;
+    padding: 10px 0;
+    text-decoration: none;
+    .background-image(linear-gradient(to bottom, rgba(242,242,242,0) 0%, rgba(242,242,242,1) 50%));
+    border: 0;
+    border-radius: 0;
+    min-height: inherit;
+    padding: 30px 0 0;  
+    text-align: left;
+
+    .toggleHeight {
+      background-color: transparent;
+      border: 0;
+      border-radius: 0;
+      color: @gris;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 auto;
+      letter-spacing: 0;
+      padding: 0;
+      text-transform: uppercase;
+      text-align: right;
+
+      &:last-child {
+        margin-top: -40px;
+      }    
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: @gris_oscuro;
+        text-decoration: none;
+        outline: 0;
+      }
+
+      .glyphicon {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  @media ( max-width: @screen-xxs-max ) {
+    display: none;
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .seo-text .text {
+    .column-count(1);
+  }
+}
+
+body {
+  &.category {
+    .title {
+      margin: 0px 0 10px;
+    }
+
+    .countdown {
+      display: none;
+    }
+
+    &.landing-promo {
+      .seo-text {
+        display: block;
+        height: auto;
+        margin: 0;
+        
+        .text {
+          text-align: center;
+
+          .gradient {
+            display: none;
+          }
+        }
+      }
+
+      .countdown {
+        display: block;
+        margin: 0 0 20px;
+      }
+      
+      .no-category {
+        display: none;
+      }
+    }
+  }
+}

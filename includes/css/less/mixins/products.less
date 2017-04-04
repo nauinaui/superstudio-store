@@ -335,6 +335,84 @@
   }
 }
 
+// Toggle outlet product grid
+body.category {
+  .producto-box {
+    .lista-labels.outlet {
+      display: none;
+    }
+
+    .item {
+      .outlet-finish {
+        display: none;
+      }
+
+      .info .categoria {
+        display: none;
+      }
+
+      .ask-date {
+        display: none;
+      }
+    }  
+
+    .folding .caja .add-product-form {
+      .add-to-cart.outlet {
+        display: none;
+      }
+
+      .acabados {
+        display: block;
+      }
+    }
+  }
+  
+  &.outlet .producto-box {
+    .item {
+      .lista-labels {
+        display: none;
+
+        &.outlet {
+          display: block;
+        }
+      }
+
+      .outlet-finish {
+        color: @gris;
+        display: inline;
+      }
+
+      .ask-date {
+        display: inline-block;
+      }
+    }
+      
+    .folding .caja {
+      .add-product-form {
+        .add-to-cart {
+          display: none;
+
+          &.outlet {
+            display: block;
+          }
+        }
+
+        .acabados {
+          display: none;
+        }
+      }
+
+      .aviso {
+        display: none;
+      }
+
+      .medidas {
+        height: 40px;
+      }
+    }
+  }
+}
+
 // Caja de producto (listado)
 ////////////////////////////////////////////////////////////////
 section .producto-box {
