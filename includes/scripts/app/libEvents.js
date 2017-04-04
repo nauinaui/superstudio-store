@@ -100,6 +100,9 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// Refresh products number in cart
 		common.loadCart();
+		
+		// Check if user is logged
+		common.checkLogin();
 
 		// Show cookies alert if user has not close cookies alert before
 		if ( !common.readCookie('cookies-accepted') == true ) {

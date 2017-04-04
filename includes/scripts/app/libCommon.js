@@ -124,7 +124,7 @@ define(['jquery'], function ($) {
 	}
 
 	/**
-	 * Logged user detection
+	 * Logged user detection // DEPRECATED
 	 */
 	LibCommon.prototype.detectLogged = function() {
 		var isLogged = false;
@@ -133,6 +133,21 @@ define(['jquery'], function ($) {
 			isLogged = true;
 		}
 		return isLogged;
+	}
+
+	/**
+	 * Check if user is logged
+	 */
+	LibCommon.prototype.checkLogin = function() {
+		$.ajax({
+	    	url: "/includes/web/plugin_login",
+	    	success: function(data) { 
+				$('#logOption').html(data);
+	    	},
+	    	error: function() {
+	    		console.log('Failed!');
+	    	},
+	    });
 	}
 
 	/**
