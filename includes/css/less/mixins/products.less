@@ -181,10 +181,20 @@
     display: block;
     margin: 0 auto;
     height: 220px;
+    max-width: 100%;
     transition: transform 0.2s ease;
 
     &.secondary {
       display: none;
+    }
+
+    &[src$="loader.gif"] {
+      height: 16px;
+      width: 28px;
+
+      @media (min-width:@screen-lg-min) {
+        margin: 117px auto 102px;
+      }
     }
     
     @media (max-width:@screen-md-max) {
