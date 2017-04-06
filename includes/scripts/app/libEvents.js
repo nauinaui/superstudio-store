@@ -4,64 +4,82 @@
 var lang = '',
 	hashId = '',
 	errorTextFinish = '',
-	errorTextCaptcha = '';
-
-switch(idioma_sesion) {
-    case 'CAS':
+	errorTextCaptcha = '',
+	countryWeb = '',
+	countryUser = '';
+	
+switch(document.domain) {
+    case 'intranet.superestudio.com':
+    	countryWeb = 'ES';
         lang = 'ES';
         hashId = 'c85616e94cdf5a841ae9709026705445';
         errorTextFinish = 'Selecciona un acabado para continuar';
         errorTextCaptcha= 'El captcha es erróneo';
-        break;
-    case 'ENG':
+    break;
+    case 'www.superestudio.com':
+    	countryWeb = 'ES';
+        lang = 'ES';
+        hashId = 'c85616e94cdf5a841ae9709026705445';
+        errorTextFinish = 'Selecciona un acabado para continuar';
+        errorTextCaptcha= 'El captcha es erróneo';
+    break;
+    case 'www.superestudio.co.uk':
+    	countryWeb = 'GB';
     	lang = '';
     	hashId = '91e72f6b02263af887fe3479675521d4';
     	errorTextFinish = 'Select a finishing to continue';
     	errorTextCaptcha= 'The captcha is wrong';
-    	break;
-    case 'DEU':
-    	lang = 'DE';
-    	hashId = 'ae7e683662be4de33ddba7892d968654';
-    	errorTextFinish = 'Wählen Sie eine Ausführung aus, um fortzufahren';
-    	errorTextCaptcha= 'Das Captcha ist falsch';
-    	break;
-    case 'FRA':
+    break;
+    case 'www.superestudio.fr':
+    	countryWeb = 'FR';
     	lang = 'FR';
     	hashId = '272d01ac4e915de0f9f33a4ff9a758af';
         errorTextFinish = 'Sélectionnez une finition pour continuer';
         errorTextCaptcha= 'Le captcha est erroné';
-        break;
-    case 'POR':
-    	lang = 'PT';
-    	hashId = 'aec257995db63b99dddea57024d346be';
-        errorTextFinish = 'Deverá selecionar um acabamento para continuar';
-        errorTextCaptcha= 'O captcha está errado';
-        break;
-    case 'NED':
+    break;
+    case 'www.superestudio.de':
+    	countryWeb = 'DE';
+    	lang = 'DE';
+    	hashId = 'ae7e683662be4de33ddba7892d968654';
+    	errorTextFinish = 'Wählen Sie eine Ausführung aus, um fortzufahren';
+    	errorTextCaptcha= 'Das Captcha ist falsch';
+    break;
+    case 'www.superstudiodesign.nl':
+    	countryWeb = 'NL';
     	lang = 'NL';
     	hashId = 'c2e403086ba1dd6ff223c56a291e1962';
     	errorTextFinish = 'U moet een afwerking selecteren om door te kunnen gaan';
     	errorTextCaptcha= 'De captcha is verkeerd';
-        break;
-    case 'ITA':
+    break;
+    case 'www.superestudio.it':
+    	countryWeb = 'IT';
         lang = 'IT';
         hashId = '8dda2e869819aab8c152111693e61a2f';
     	errorTextFinish = 'Selezionare una finitura per continuare';
     	errorTextCaptcha= 'Il captcha è sbagliato';
-        break;
-    case 'POL':
+    break;
+    case 'www.superestudio.pt':
+    	countryWeb = 'PT';
+    	lang = 'PT';
+    	hashId = 'aec257995db63b99dddea57024d346be';
+        errorTextFinish = 'Deverá selecionar um acabamento para continuar';
+        errorTextCaptcha= 'O captcha está errado';
+    break;
+    case 'www.superestudio.pl':
+    	countryWeb = 'PL';
         lang = 'PL';
         hashId = '13445ed56a72ade05e2824c46387fecd';
     	errorTextFinish = 'Wybierz wykończenie, aby kontynuować';
     	errorTextCaptcha= 'Obraz captcha jest źle';
-        break;
-    case 'NOR':
+    break;
+    case 'www.superestudionorge.com':
     	lang = 'NO';
     	hashid = 'bce3349b894c082c5c827ebcd783267c';
     	errorTextFinish = 'Du må velge en finish på produktet for å fortsette';
     	errorTextCaptcha= 'captcha er feil';
-    	break;
+	break;
     default:
+    	countryWeb = 'EU';
         lang = 'ES';
         hashId = 'c85616e94cdf5a841ae9709026705445';
         errorTextFinish = 'Selecciona un acabado para continuar';
@@ -83,26 +101,21 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		// Load images (Lazy loading)
 		common.loadImages();
 
+		// Refresh products number in cart
+		common.loadCart();
+		
+		// Check if user is logged
+		common.checkLogin();
+
+		// Show 'other country' modal
+		common.checkOtherCountryModal();
+
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
 		common.fixedNav(stickyNavTop);
 		$(window).scroll(function() {
 		    common.fixedNav(stickyNavTop);
 		});
-
-		// Show only first word of user name in topbar
-		if ( $('body').is('.logged') ) {
-			var username = $('#loggedDropdown').html();
-			username = username.split('&nbsp;');
-			var onlyName = username[1].replace(/(\w+).*/,"$1");
-			$('#loggedDropdown').html(username[0]+'&nbsp;'+onlyName+' <span class="caret"></span>');
-		}
-
-		// Refresh products number in cart
-		common.loadCart();
-		
-		// Check if user is logged
-		common.checkLogin();
 
 		// Show cookies alert if user has not close cookies alert before
 		if ( !common.readCookie('cookies-accepted') == true ) {
@@ -122,11 +135,6 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 
 		// product's grid - auto select finish when there is only one
 		common.autoSelectFinish();
-
-		// Show 'other country' modal
-		if ( $('#otherCountryModal').length > 0 ) {
-			$('#otherCountryModal').modal('show');
-		}
 		
 		// If browser is IE9 or older, show 'update browser' modal and block screen
 	    var ua = window.navigator.userAgent;

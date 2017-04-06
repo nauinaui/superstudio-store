@@ -15,6 +15,9 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		// Auto select finish if there is just one option
 		autoSelectFinish();
 
+		// Get if current product is a favourite product of user
+		checkFavourite();
+
 		// Zoom effect
 		window.addEventListener("resize", zoomInit);
 		zoomInit();
@@ -132,21 +135,35 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 		 * @param this:object Selected product finish
 		 */
 		function changeDeliveryTime(selection) {
-			$('#deliveryTimeText #choose').hide();
-			$('#deliveryTimeText .value').hide();
-			
-			if ( $('body').is('.pack') ) { // It's a pack product - check all options to get the largest time
-				var times = [],
-				i = 0;
-				$( ".finishes-list input:checked" ).each(function() {
-					times[i++] = $(this).attr('data-delivery');
-				});
-				var longestTime = Math.max.apply(Math,times);
-			} else { // it's a normal product - get time delivery
-				var longestTime = selection.attr('data-delivery');
+			var finishID = selection.attr('data-finish'),
+				productID = $('body').attr('data-product-id');
+
+			common.blockUI();
+			$.ajax({
+				url: 'includes/web/plugin_tiempo_entrega?id='+productID+'&id_color='+finishID,
+				success: function (data) {
+					common.unblockUI();
+					data = data.split('|');
+					$('#deliveryTimeText #choose').hide();
+					$('#deliveryTimeText .value').html(data[0]);
+					$('#deliveryTimeText .value').show();
+					refreshUnits(data[1]);
+				}
+			});
+		}
+
+		function refreshUnits(units) {
+			// Refresh unit selector according to stock of finish selected
+			$('#unitsSelect').empty();
+			$('#unitsSelect').removeClass('disabled');
+			// Limit unit selection at 50 as maximum
+			var maxstock = units;
+			if ( maxstock > 50 ) {
+				maxstock = 50;
 			}
-			$('#deliveryTimeText .value').text(longestTime);
-			$('#deliveryTimeText .value').show();
+			for (var i=0; i<maxstock; i++) {
+			    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
+			}
 		}
 
 		/**
@@ -345,6 +362,20 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 			});
 		}
 
+		function checkFavourite() {
+			var productID 	= $('body').attr('data-product-id');
+			$.ajax({
+				url: '/includes/web/plugin_favorito?id=' + productID,
+				success: function (data) {
+					if ( data == '1' ) { // it's favourite
+						$('.favourite-btn').addClass('added');
+					} else if (data == '0' ) { // it's not favourite
+						$('.favourite-btn').removeClass('added');
+					}
+				}
+			});
+		}
+
 	    function isCaptchaOk(form) {
 	        var v = grecaptcha.getResponse();
 	        if(v.length == 0) {
@@ -402,18 +433,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 
 			changeDeliveryTime($(this));
 			common.changeFinishImage(finishID, productRef, place);
-			changePrice($(this));
-			// Refresh unit selector according to stock of finish selected
-			$('#unitsSelect').empty();
-			$('#unitsSelect').removeClass('disabled');
-			// Limit unit selection at 50 as maximum
-			var maxstock = $(this).attr('data-stock');
-			if ( maxstock > 50 ) {
-				maxstock = 50;
-			}
-			for (var i=0; i<maxstock; i++) {
-			    $('#unitsSelect').append('<option>'+(i+1)+'</option>');
-			}			
+			changePrice($(this));			
 		});
 
 		// Initialize zoom effect with correct image - event triggered only by ajax request!

@@ -142,12 +142,52 @@ define(['jquery'], function ($) {
 		$.ajax({
 	    	url: "/includes/web/plugin_login",
 	    	success: function(data) { 
-				$('#logOption').html(data);
-	    	},
-	    	error: function() {
-	    		console.log('Failed!');
-	    	},
+	    		data = $.trim(data);
+	    		if ( data == '0' ) {
+	    			$('body').removeClass('logged');
+	    		} else {
+		    		data = data.split('|');
+		    		var desktopContent = data[0],
+		    			mobileContent = data[1];
+					$('#userDropdownDesktop').html(desktopContent);
+					$('#userDropdownMobile').html(mobileContent);
+					// Show only first word of user name in topbar
+					$('body').addClass('logged');
+					var username = $('#loggedDropdown').html();
+					username = username.split('&nbsp;');
+					var onlyName = username[1].replace(/(\w+).*/,"$1");
+					$('#loggedDropdown').html(username[0]+'&nbsp;'+onlyName+' <span class="caret"></span>');
+	    		}
+	    	}
 	    });
+	}
+
+	/**
+	 * Check if user is outside the country of the domain
+	 */
+	LibCommon.prototype.getLanguageAndCountry = function(handleData) {
+		$.ajax({
+	    	url: "/includes/web/plugin_idioma_pais_cliente",
+	    	success: function(data) {
+	    		data = data.split('|');
+	    		handleData(data);
+	    	}
+	    });
+	}
+
+
+	/**
+	 * Check if user is outside the country of the domain
+	 */
+	LibCommon.prototype.checkOtherCountryModal = function() {
+		$.get("https://ipinfo.io", function (response) {
+		    countryUser = response.country;
+		    console.log('country web: '+countryWeb);
+		    console.log('country user: '+countryUser);
+		    if (countryWeb != countryUser) {
+		    	$('#otherCountryModal').modal('show');
+		    }
+		}, "jsonp");
 	}
 
 	/**
