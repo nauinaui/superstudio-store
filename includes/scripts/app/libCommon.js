@@ -185,7 +185,9 @@ define(['jquery'], function ($) {
 		    console.log('country web: '+countryWeb);
 		    console.log('country user: '+countryUser);
 		    if (countryWeb != countryUser) {
-		    	$('#otherCountryModal').modal('show');
+				if ( !common.readCookie('other-country-dismiss') == true ) {
+					$('#otherCountryModal').modal('show');
+				}
 		    }
 		}, "jsonp");
 	}

@@ -367,6 +367,14 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			common.deleteAllProductFromCart( $(this).parent().parent().attr('data-relation-id') );
 		});
 
+		// Delete product from cart (all from same product)
+		$('#otherCountryModal button[data-dismiss="modal"').on('click', function() {
+			var name 	= 'other-country-dismiss',
+				value 	= true,
+				days 	= 1;
+			common.createCookie(name, value, days);
+		});
+
 		// Cart - Add one more products (already added in cart)
 		$('#myCart').on('click', '.btn.more', function() {
 			var item = $(this).closest('.item.media');
