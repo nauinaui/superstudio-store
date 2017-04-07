@@ -165,31 +165,21 @@ define(['jquery'], function ($) {
 	/**
 	 * Check if user is outside the country of the domain
 	 */
-	LibCommon.prototype.getLanguageAndCountry = function(handleData) {
+	LibCommon.prototype.checkOtherCountryModal = function() {
+		var thisFile = this;
 		$.ajax({
 	    	url: "/includes/web/plugin_idioma_pais_cliente",
 	    	success: function(data) {
 	    		data = data.split('|');
-	    		handleData(data);
+	    		countryUser = data[1];
+	    		console.log(countryUser);
+			    if (countryWeb != countryUser) {
+					if ( !thisFile.readCookie('other-country-dismiss') == true ) {
+						$('#otherCountryModal').modal('show');
+					}
+			    }
 	    	}
 	    });
-	}
-
-
-	/**
-	 * Check if user is outside the country of the domain
-	 */
-	LibCommon.prototype.checkOtherCountryModal = function() {
-		$.get("https://ipinfo.io", function (response) {
-		    countryUser = response.country;
-		    console.log('country web: '+countryWeb);
-		    console.log('country user: '+countryUser);
-		    if (countryWeb != countryUser) {
-				if ( !common.readCookie('other-country-dismiss') == true ) {
-					$('#otherCountryModal').modal('show');
-				}
-		    }
-		}, "jsonp");
 	}
 
 	/**
