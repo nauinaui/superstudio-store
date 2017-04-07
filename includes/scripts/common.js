@@ -31,7 +31,7 @@ require.config({
         validateIT:       'localization/messages_it.min',
         validateDE:       'localization/messages_de.min',
         validateNL:       'localization/messages_nl.min',
-        validatePL:       'localization/messages_pl', 
+        validatePL:       'localization/messages_pl.min', 
         validatePT:       'localization/messages_pt_PT.min',
     },
 	
