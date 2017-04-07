@@ -227,34 +227,36 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		})
 
 		// Header - Abrir submenú al hacer click en versión movil
-		$('#menuSubcategorias > li:not(.special .avoid)').on('click touchstart', function(e) {
+		$('#menuSubcategorias > li:not(.avoid)').on('click touchstart', function(e) {
 			e.stopPropagation();
-			e.preventDefault();
 			var obj = $(this);
 			obj.addClass('avoid'); // Avoid duplicate event (touchscreen)
-			if ( $(window).width() < 768 ) {
-				$(this).find('.submenu').toggle();
-			} else if ( common.detectMobile() == true ) {
-				if ( !obj.is('.pressed') ) {
-					$('#menuSubcategorias > li').removeClass('pressed');
-					obj.addClass('pressed');
-					$('#menuSubcategorias li .submenu').hide();
-					obj.find('.submenu').show();
-				} else {
-					obj.removeClass('pressed');
-					$('#menuSubcategorias li .submenu').hide();
+			if ( !obj.is('.special') == true ) {
+				e.preventDefault();
+				if ( $(window).width() < 768 ) {
+					$(this).find('.submenu').toggle();
+				} else if ( common.detectMobile() == true ) {
+					if ( !obj.is('.pressed') ) {
+						$('#menuSubcategorias > li').removeClass('pressed');
+						obj.addClass('pressed');
+						$('#menuSubcategorias li .submenu').hide();
+						obj.find('.submenu').show();
+					} else {
+						obj.removeClass('pressed');
+						$('#menuSubcategorias li .submenu').hide();
+					}
+					common.repositionSubmenu($(this));
+					// if ( $(this).is(':hover') ) {
+					// 	$('#menuSubcategorias li .submenu').hide();
+					// }
 				}
-				common.repositionSubmenu($(this));
-				// if ( $(this).is(':hover') ) {
-				// 	$('#menuSubcategorias li .submenu').hide();
-				// }
 			}
 			setTimeout(function() {
 				obj.removeClass('avoid');
 			}, 500);
 		});
 
-		$('#menuSubcategorias > li:not(.special .avoid) .submenu a').on('click touchstart', function(e) {
+		$('#menuSubcategorias > li:not(.avoid) .submenu a').on('click touchstart', function(e) {
 			e.stopPropagation();
 		});
 
@@ -368,7 +370,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		});
 
 		// Delete product from cart (all from same product)
-		$('#otherCountryModal button[data-dismiss="modal"').on('click', function() {
+		$('#otherCountryModal button[data-dismiss="modal"]').on('click', function() {
 			var name 	= 'other-country-dismiss',
 				value 	= true,
 				days 	= 1;
