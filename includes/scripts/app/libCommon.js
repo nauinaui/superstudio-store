@@ -172,7 +172,6 @@ define(['jquery'], function ($) {
 	    	success: function(data) {
 	    		data = data.split('|');
 	    		countryUser = data[1];
-	    		console.log(countryUser);
 			    if (countryWeb != countryUser) {
 					if ( !thisFile.readCookie('other-country-dismiss') == true ) {
 						$('#otherCountryModal').modal('show');
