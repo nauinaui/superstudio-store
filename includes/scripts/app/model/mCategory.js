@@ -565,14 +565,13 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			var busqueda = getParameterByName('busqueda');
 			var orden = getParameterByName('orden');
 			var packs = getParameterByName('packs');
-			var topventas = getParameterByName('topventas');
 
 			var url 		= window.location.href;
 			var index 		= url.lastIndexOf("/") + 1;
 			var category 	= url.substr(index);
 			category = category.split('?');
 
-			var urlParametros = category[0]+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&topventas='+topventas+'&plugin=1&desde='+paginateFrom;
+			var urlParametros = category[0]+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
 
 			$.ajax({
 				url: urlParametros,
