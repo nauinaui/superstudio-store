@@ -178,6 +178,36 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			}
 		})
 
+		// infinite scroll event
+		window.onscroll = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var productsList = $('#productsList');
+			if ( productsList.find('.full-products').length == 0 && productsList.find('.no-results').length == 0 ) {
+				var offset = productsList.offset();
+				offset = offset.top;
+				var screen = window.innerHeight * 2;
+				var pixelToEvent = offset + productsList.height();
+				var currentPixel = getScrollTop() + screen;
+				setTimeout(function(){
+					if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
+						documentoScroll();
+					} else if ( xivato == false ) {
+						$('#productsLoader').collapse('hide');
+					}
+				}, 100);
+			} else if ( productsList.find('.full-products').length > 0 ) {
+				$('#productsLoader').collapse('hide');
+			}
+		};
+
+		$( document ).ajaxStart(function() {
+			xivato = true;
+		});
+		$( document ).ajaxStop(function() {
+			xivato = false;
+		});
+
 		/**
 		 * =================
 		 * TO EXECUTE WHEN INIT
@@ -228,34 +258,6 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 				showSubscribeNewsletter();
 			}, 10000);
 		}
-
-		// infinite scroll event
-		window.onscroll = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var productsList = $('#productsList');
-			if ( productsList.find('.full-products').length == 0 && productsList.find('.no-results').length == 0 ) {
-				var offset = productsList.offset();
-				offset = offset.top;
-				var screen = window.innerHeight * 2;
-				var pixelToEvent = offset + productsList.height();
-				var currentPixel = getScrollTop() + screen;
-				setTimeout(function(){
-					if ( pixelToEvent < (getScrollTop() + screen) && !$('#productsLoader').is(':visible') ) {
-						documentoScroll();
-					} else if ( xivato == false ) {
-						$('#productsLoader').collapse('hide');
-					}
-				}, 100);
-			}
-		};
-
-		$( document ).ajaxStart(function() {
-			xivato = true;
-		});
-		$( document ).ajaxStop(function() {
-			xivato = false;
-		});
 
 		/**
 		 * =================
