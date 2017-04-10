@@ -15,6 +15,10 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		 * =================
 		 */
 
+		if ( $('#emptyListAlert').length > 0 ) {
+			$('button#deleteAllProducts').attr('disabled', 'disabled');
+		}
+
 		function listaVacia() {
 			var itemCuant = $(".product-info").length,
 				avisoLista = $(".avisoLista");
@@ -31,16 +35,16 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		 */
 		
 		$(".lista-top").on("click", "#deleteAllProducts", function () {
-			var mainList = $(this).closest(".products-table"),
+			var mainList = $('.products-table'),
 				that = $(this),
 				BoxDlista = mainList.find(".product-info");
 
 			$.ajax({
 				url: '/includes/web/plugin_listadeseos.asp?a=all',
 				success: function () {
-					that.remove();
+					that.attr('disabled', 'disabled');
 					BoxDlista.remove();
-					listaVacia();
+					$('#noItemAlert').collapse('show');
 				}
 			});
 		});
