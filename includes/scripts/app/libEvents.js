@@ -6,7 +6,8 @@ var lang = '',
 	errorTextFinish = '',
 	errorTextCaptcha = '',
 	countryWeb = '',
-	countryUser = '';
+	countryUser = '',
+	adrollSegment = '';
 	
 switch(document.domain) {
     case 'intranet.superestudio.com':
@@ -15,6 +16,7 @@ switch(document.domain) {
         hashId = 'c85616e94cdf5a841ae9709026705445';
         errorTextFinish = 'Selecciona un acabado para continuar';
         errorTextCaptcha= 'El captcha es erróneo';
+        adrollSegment = '9074d459';
     break;
     case 'www.superestudio.com':
     	countryWeb = 'ES';
@@ -22,6 +24,7 @@ switch(document.domain) {
         hashId = 'c85616e94cdf5a841ae9709026705445';
         errorTextFinish = 'Selecciona un acabado para continuar';
         errorTextCaptcha= 'El captcha es erróneo';
+        adrollSegment = '9074d459';
     break;
     case 'www.superestudio.co.uk':
     	countryWeb = 'GB';
@@ -36,6 +39,7 @@ switch(document.domain) {
     	hashId = '272d01ac4e915de0f9f33a4ff9a758af';
         errorTextFinish = 'Sélectionnez une finition pour continuer';
         errorTextCaptcha= 'Le captcha est erroné';
+        adrollSegment = 'ac218b9e';
     break;
     case 'www.superestudio.de':
     	countryWeb = 'DE';
@@ -43,6 +47,7 @@ switch(document.domain) {
     	hashId = 'ae7e683662be4de33ddba7892d968654';
     	errorTextFinish = 'Wählen Sie eine Ausführung aus, um fortzufahren';
     	errorTextCaptcha= 'Das Captcha ist falsch';
+    	adrollSegment = '09df8a26';
     break;
     case 'www.superstudiodesign.nl':
     	countryWeb = 'NL';
@@ -57,6 +62,7 @@ switch(document.domain) {
         hashId = '8dda2e869819aab8c152111693e61a2f';
     	errorTextFinish = 'Selezionare una finitura per continuare';
     	errorTextCaptcha= 'Il captcha è sbagliato';
+    	adrollSegment = '13ff6a32';
     break;
     case 'www.superestudio.pt':
     	countryWeb = 'PT';
@@ -64,6 +70,7 @@ switch(document.domain) {
     	hashId = 'aec257995db63b99dddea57024d346be';
         errorTextFinish = 'Deverá selecionar um acabamento para continuar';
         errorTextCaptcha= 'O captcha está errado';
+        adrollSegment = 'fdf86490';
     break;
     case 'www.superestudio.pl':
     	countryWeb = 'PL';
@@ -433,7 +440,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				$('#newsletterForm .form-group, #footerNewsletterForm .input-group').removeClass('has-error');
 				$('.help-block').addClass('hidden');
 
-				var url = '/newsletter';
+				var url  = '/newsletter';
+				
 				common.blockUI();
 				
 				$.ajax({
@@ -446,6 +454,13 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 							$('#step1').fadeOut('fast', function(){
 								$('#step2').fadeIn('fast');
 							});
+							if ( !adrollSegment=='' ) {
+								try {
+									__adroll.record_user({"adroll_segments": adrollSegment}) //plugin added outside of require.js with GTM
+								} catch(e) {
+									console.log('Error in recording user with Adroll: '+e);
+								}
+							}
 						} else {
 							if (data === 'noindicado') {
 								$('#helpBlockEmpty').removeClass('hidden');
