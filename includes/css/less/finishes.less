@@ -1,163 +1,140 @@
-// Finishes list
-.acabado {
+// Finishes in product box
+.finishes {
+  font-size: 0;
+  margin-bottom: 10px;
+  padding: 0;
+  text-align: left;
+
   .color {
-    &[value="35"] {
-      background-color: #000;
+    display: inline-block;
+    list-style: none;
+    margin: 3px;
+    width: 15px;
+    height: 15px;
+    padding-left: 0;
+
+    img {
+      border-radius: 50%;
+      height: 15px;
+      width: 15px;
+
+      &[src$="blanco.gif"],
+      &[src$="blanco.jpg"],
+      &[src$="transparente.jpg"],
+      &[src$="blanco_mate.jpg"],
+      &[src$="laca-blanca.jpg"] {
+        border: 1px solid @gris_claro_mas;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        width: 18px;
+        height: 18px;
+      }
     }
-    &[value="25"] {
-      background-color: #9b9b9b;
+
+    input[type="radio"] {
+      margin: 0;
+      width: 15px;
+      height: 15px;
+      opacity: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:checked + img {
+        border: 1px solid @blanco;
+        box-shadow: 0 0 0 2px @azul;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        width: 18px;
+        height: 18px;
+      }
     }
-    &[value="76"] {
-      background-color: #e3e4e8;
+
+    @media (max-width: @screen-xs-max) {
+      margin: 0 5px 5px;
+      width: 18px;
+      height: 18px;
     }
-    &[value="49"] {
-      background-color: #7ed320;
+  }
+}
+
+section .producto-box {
+  .item {
+    &.mobile {
+      & + .folding {
+        .caja {
+          .finishes {
+            height: 22px;
+            margin-bottom: 5px;
+            overflow-y: hidden;
+            position: relative;
+            transition: 0.5s;
+
+            @media (max-width: @screen-xxs-max) {
+              height: auto;
+            }
+          }
+        }
+      }
     }
-    &[value="6"] {
-      background-color: #4990e2;
+  }
+}
+
+// Finishes in detail page
+.detail-info {
+  .finishes {
+    margin-bottom: 30px;
+
+    &.pack {
+      display: none;
     }
-    &[value="28"] {
-      background-color: #ad0aed;
+
+    .text i {
+      display: none;
+      font-style: normal;
     }
-    &[value="43"] {
-      background-color: #fe5ee6;
-    }
-    &[value="42"] {
-      background-color: #d0011b;
-    }
-    &[value="32"] {
-      background-color: #8a5627;
-    }
-    &[value="33"] {
-      background-color: #630bed;
-    }
-    &[value="7"] {
-      background-color: #d1bda5;
-    }
-    &[value="34"] {
-      background-color: #ee990b;
-    }
-    &[value="4"] {
-      background-color: #f8e71d;
-    }
-    &[value="16"] {
-      background-color: #f6e6cc;
-    }
-    &[value="8"] {
-      background-color: #fff;
-      border: 1px solid @blanco_roto;
-      box-sizing: border-box;
-    }
-    &[value="1"] {
-      background-image: url('../../imagenes/colores/abedul.jpg');
-    }
-    &[value="2"] {
-      background-image: url('../../imagenes/colores/acero.jpg');
-    }
-    &[value="3"] {
-      background-image: url('../../imagenes/colores/aluminio.jpg');
-    }
-    &[value="5"] {
-      background-image: url('../../imagenes/colores/arena.jpg');
-    }
-    &[value="9"] {
-      background-image: url('../../imagenes/colores/bronce.jpg');
-    }
-    &[value="10"] {
-      background-image: url('../../imagenes/colores/cana.jpg');
-    }
-    &[value="11"] {
-      background-image: url('../../imagenes/colores/castano.jpg');
-    }
-    &[value="12"] {
-      background-image: url('../../imagenes/colores/cerezo.jpg');
-    }
-    &[value="13"] {
-      background-image: url('../../imagenes/colores/cobre.jpg');
-    }
-    &[value="15"] {
-      background-image: url('../../imagenes/colores/corcho.jpg');
-    }
-    &[value="17"] {
-      background-image: url('../../imagenes/colores/cristal.jpg');
-    }
-    &[value="18"] {
-      background-image: url('../../imagenes/colores/cromado.jpg');
-    }
-    &[value="19"] {
-      background-image: url('../../imagenes/colores/cuerda.jpg');
-    }
-    &[value="20"] {
-      background-image: url('../../imagenes/colores/cuero.jpg');
-    }
-    &[value="21"] {
-      background-image: url('../../imagenes/colores/dorado.jpg');
-    }
-    &[value="22"] {
-      background-image: url('../../imagenes/colores/espejo.jpg');
-    }
-    &[value="23"] {
-      background-image: url('../../imagenes/colores/estampado.jpg');
-    }
-    &[value="24"] {
-      background-image: url('../../imagenes/colores/fresno.jpg');
-    }
-    &[value="26"] {
-      background-image: url('../../imagenes/colores/haya.jpg');
-    }
-    &[value="27"] {
-      background-image: url('../../imagenes/colores/lana.jpg');
-    }
-    &[value="29"] {
-      background-image: url('../../imagenes/colores/madera.jpg');
-    }
-    &[value="30"] {
-      background-image: url('../../imagenes/colores/marfil.jpg');
-    }
-    &[value="31"] {
-      background-image: url('../../imagenes/colores/marmol.jpg');
-    }
-    &[value="14"] {
-      background-image: url('../../imagenes/colores/multicolor.jpg');
-    }
-    &[value="36"] {
-      background-image: url('../../imagenes/colores/nogal.jpg');
-    }
-    &[value="37"] {
-      background-image: url('../../imagenes/colores/palisandro.jpg');
-    }
-    &[value="38"] {
-      background-image: url('../../imagenes/colores/piel.jpg');
-    }
-    &[value="39"] {
-      background-image: url('../../imagenes/colores/plata.jpg');
-    }
-    &[value="40"] {
-      background-image: url('../../imagenes/colores/poliester.jpg');
-    }
-    &[value="41"] {
-      background-image: url('../../imagenes/colores/roble.jpg');
-    }
-    &[value="44"] {
-      background-image: url('../../imagenes/colores/satinado.jpg');
-    }
-    &[value="45"] {
-      background-image: url('../../imagenes/colores/teka.jpg');
-    }
-    &[value="46"] {
-      background-image: url('../../imagenes/colores/toro-normando.jpg');
-    }
-    &[value="47"] {
-      background-image: url('../../imagenes/colores/transparente.jpg');
-    }
-    &[value="48"] {
-      background-image: url('../../imagenes/colores/tropical.jpg');
-    }
-    &[value="50"] {
-      background-image: url('../../imagenes/colores/wengue.jpg');
-    }
-    &[value="51"] {
-      background-image: url('../../imagenes/colores/zebrano.jpg');
+    
+    .finishes-list {
+      font-size: 0;
+      padding: 0;
+
+      .color {
+        height: 25px;
+        margin: 0 7px 7px 0;
+        margin-right: 7px;
+        margin-bottom: 7px;
+        width: 25px;
+
+        & + .color {
+          margin-left: 0px;
+        }
+
+        input[type="radio"] {
+          height: 25px;
+          width: 25px;
+
+          &:checked + img {
+            border: 1px solid #fff;
+            box-shadow: 0 0 0 3px #00aedc;
+          }
+        }
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+
+        .option-price {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+      }
     }
   }
 }

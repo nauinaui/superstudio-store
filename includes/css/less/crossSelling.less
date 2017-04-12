@@ -1,0 +1,240 @@
+.cross-selling,
+.up-selling {
+  .title {
+    span {
+      color: @rojo;
+    } 
+  }
+  
+  .elements {
+    .carousel {
+      text-align: center;
+      
+      .carousel-inner {
+        margin-bottom: 30px;
+
+        .item.active {
+          cursor: pointer;
+
+          img.active {
+            border: 1px solid @azul;
+          }
+        }
+      }
+    }
+
+    .nav-tabs {
+      border: 0;
+      text-align: center;
+
+      & > li {
+        display: inline-block;
+        float: none;
+
+        &.active {
+          .category-btn {
+            background: linear-gradient(to bottom, lighten(@gris, 2%) 0%, darken(@gris, 2%) 100%);
+          }
+        }
+
+        .category-btn {
+          margin: 20px 10px 0;
+          min-width: 130px;
+        }
+      }
+    }
+  }
+
+  .selection {
+    margin-top: 15px;
+    text-align: center;
+
+    .combine-products {
+      border-bottom: 1px solid @gris_oscuro;
+      margin-bottom: 20px;
+
+      .product {
+        display: inline-block;
+        position: relative;
+      }
+
+      .product-to-add {
+        display: inline-block;
+        position: relative;
+        border-bottom: 2px solid @gris_oscuro;
+        
+        .discount {
+          position: absolute;
+          top: -20px;
+          left: 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .glyphicon {
+        color: @rojo;
+        font-size: 2.5rem;
+        margin: 35px 0;
+        .animation-iteration-count(infinite);
+      }
+    }
+
+    .pvp-price,
+    .offer-price {
+      .pvpPrice()
+    }
+    
+    .last-price {
+      .precioProducto()
+    }
+    
+    .total-price {
+      .totalPrice()
+    }
+
+    .btn {
+      margin: 20px 0 0;
+    }
+  }
+}
+
+.up-selling {
+  .elements .carousel .carousel-inner .item.active {
+    cursor: auto;
+  }
+
+  .item {
+    .product-pack {
+      margin-top: 50px;
+      position: relative;
+
+      &:first-child:after {
+        color: @rojo;
+        content: '+';
+        font-size: 3rem;
+        font-weight: 700;
+        position: absolute;
+        right: 0;
+        top: 70px;
+      }
+
+      &:nth-child(2):after {
+        color: @rojo;
+        content: '=';
+        font-size: 3rem;
+        font-weight: 700;
+        position: absolute;
+        right: 0;
+        top: 70px;
+      }
+
+      .units {
+        border: 1px solid @rojo;
+        color: @rojo;
+        display: inline-block;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 2px 5px;
+        text-transform: uppercase;
+        vertical-align: top;
+      }
+
+      .product-pack-img {
+        margin-bottom: 20px;
+      }
+
+      .product-name {
+        .nombre();
+        font-size: 1.4rem;
+        margin: 0 auto;
+        padding-left: 80px;
+        width: 230px;
+      }
+    }
+    
+    img {
+      width: 150px;
+    }
+  }
+
+  .info-price {
+    .pack-img {
+      margin-bottom: 10px;
+      width: 120px;
+    }
+    
+    .pvp-price,
+    .offer-price {
+      .pvpPrice();
+      
+      em {
+        color: @gris_claro;
+        display: inline-block;
+        font-size: 1.2rem;
+        font-style: normal;
+        margin-left: 5px;
+        text-decoration: none;
+        text-transform: none;
+      }
+    }
+    
+    .last-price {
+      .precioProducto()
+    }
+
+    .btn {
+      margin: 10px 0;
+      min-width: 150px;
+    }
+
+    .text-desc {
+      .titularNegroEspaciado();
+      color: @gris_oscuro;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: @screen-md-max) {
+  .cross-selling {
+    .selection {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .elements {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .up-selling .item .product-pack {
+    .product-pack-img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .product-name {
+      margin: 0 auto;
+      padding-left: 0;
+      max-width: 150px;
+      width: auto;
+    }
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .up-selling .item .product-pack {
+    &:nth-child(2):after {
+      display: none;
+    }
+
+    .product-pack-img {
+      max-width: 150px;
+      width: 100%;
+    }
+  }
+}

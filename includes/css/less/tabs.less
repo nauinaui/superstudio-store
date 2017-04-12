@@ -1,0 +1,258 @@
+// Tabs of other info in detail page
+.nav-tabs.other-info-title-tabs {
+  & > li {
+    & > a {
+      .subtitle();
+      margin: 0;
+
+      & > .icon {
+        color: @gris;
+        height: 40px;
+        font-size: 2.4rem;
+        padding: 10px 0;
+
+        @media (min-width: @screen-sm-min) {
+          display: none;
+        }
+      }
+
+      .wrap {
+        display: table;
+        width: 100%;
+
+        p {
+          margin: 0;
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        @media (max-width: @screen-xs-max) {
+          height: 40px;
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        border-radius: 0;
+        font-size: 1.2rem;
+        letter-spacing: 0;
+        line-height: 14px;
+        padding: 0;
+      }
+    }
+
+    &.active {
+      & > a {
+        color: @blanco;
+
+        & > .icon {
+          color: @blanco;
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        background-color: @gris_oscuro;
+
+        &:after {
+          content: "";
+          width: 0; 
+          height: 0; 
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid @gris_oscuro;
+          position: absolute;
+          bottom: -10px;
+          transform: translateX(-50%);
+          left: 50%;
+        }
+      }
+    }
+
+    &.show-more {
+      margin-right: 10px;
+
+      > a {
+        box-shadow: rgba(0,0,0,.1) 0px 0px 5px, inset rgba(255,255,255,.09) 0px 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 20px;
+        margin: 10px 0 0;
+        padding: 5px 10px;
+
+        div {
+          width: 15px;
+        }
+
+        &:before, &:after {
+          display: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          box-shadow: rgba(0,0,0,.3) 0px 0px 5px, inset rgba(255,255,255,.09) 0px 0;
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      z-index: 2;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      background-color: @blanco;
+      display: inline-block;
+      float: none;
+      height: 80px;
+      margin: 0;
+      vertical-align: top;
+      width: 94px;
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    border: 0;
+    font-size: 0;
+    overflow: initial;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.other-info-content-tabs {
+  color: @gris;
+  margin-top: 50px;
+
+  .title {
+    .titularNegroEspaciado();
+    font-size: 1.4rem;
+    margin: 0 0 20px;
+    text-align: left;
+  }
+
+  .text {
+    color: @gris;
+    column-count: 2;
+
+    ul {
+      padding-left: 10px;
+      li {
+        list-style: none;
+
+        &:before {
+          content: "- ";
+        }
+      }
+    }
+  }
+
+  .info-icon {
+    display: block;
+    margin-bottom: 20px;
+
+    img {
+      background-color: @gris_claro;
+      border-radius: 13px;
+      display: inline-block;
+      margin: 0 5px 0 0;
+      padding: 6px 15px;
+      vertical-align: middle;
+    }
+  }
+
+  #materialAndMeasures {
+    .sketch {
+      .category-chair {
+        .categoryChair();
+      }
+
+      .category-table {
+        .categoryTable();
+      }
+
+      .category-stool {
+        .categoryStool();
+      }
+
+      .category-lamp {
+        .categoryLamp();
+      }
+
+      .category-sofa {
+        .categorySofa();
+      }
+
+      .category-cushion {
+        .categoryCushion();
+      }
+
+      .category-carpet {
+        .categoryCarpet();
+      }
+
+      .category-frame {
+        .categoryFrame();
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-md-max) {
+  .other-info-title-tabs {
+    & > li.title {
+      & > a {
+        padding: 0 15px;
+      }
+    }
+  }
+
+  .other-info-content-tabs {
+    .sketch {
+      margin: 20px 0;
+    }
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .other-info-title-tabs {
+    .show-more {
+      padding: 0;
+    }
+    
+    & > li.title {
+      & > a {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+      }
+    }
+  }
+
+  .other-info-content-tabs {
+    .info {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .other-info-title-tabs {
+    border: 0;
+
+    & > li.title {
+      float: none;
+
+      &.active {
+        & > a,
+        & > a:hover,
+        & > a:focus {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  .other-info-content-tabs {
+    .text {
+      column-count: 1;
+    }
+  }
+}

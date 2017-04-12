@@ -11,6 +11,11 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
     $(document).ready( function() {
 		$('.dropdown-toggle').dropdown();
 
+		// Stop auto play cross selling carousel
+		$('#showPromoProduct .carousel').carousel({
+		  interval: false
+		})
+
 		/**
 		 * =================
 		 * FUNCTIONS

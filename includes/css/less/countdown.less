@@ -1,0 +1,52 @@
+// Countdown of banners and category page
+.banners-principales,
+.category {
+  .countdown {
+    display: inline-block;
+    width: 100%;
+    margin-top: 5px;
+    font-family: @mainFont;
+    font-size: 2.6rem;
+    font-weight: 700;
+    text-align: center;
+    color: @rojo;
+    
+    div {
+      display: inline-block;
+      margin-right: 10px;
+      line-height: 25px;
+    }
+    
+    span {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: @gris_oscuro;
+      border-top: 1px solid @gris_claro;
+      line-height: 17px;
+    }
+  }
+}
+
+// Countdown of detail page
+.countdown-group {
+  background-color: @rojo;
+  color: @blanco;
+  padding: 10px 10px 6px;
+  
+  .glyphicon {
+    line-height: 21px;
+    vertical-align: bottom;
+  }
+
+  .countdown {
+    display: inline;
+
+    & div {
+      display: inline;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+}
