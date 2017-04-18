@@ -12,3 +12,80 @@
     }
   }
 }
+
+// 'promotional products' module in checkout page
+.promotion {
+  .carousel {
+    text-align: center;
+
+    .producto-box {
+      .item {
+        .image {
+          text-align: center;
+        }
+
+        .nombre {
+          margin-bottom: 10px;
+          -webkit-line-clamp: 3;
+
+          @media (max-width: @screen-xs-max) {
+            height: 40px;
+            text-align: center;
+            -webkit-line-clamp: 2;
+          }
+        }
+        
+        .btn {
+          width: 100%;
+        }
+
+        @media (max-width: @screen-xs-max) {
+          .info {
+            position: inherit;
+            top: inherit;
+            transform: none;
+          }
+        }
+      }
+
+      @media (max-width: @screen-sm-max) {
+        width: 330px;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+    }
+    
+    .carousel-control.btn {
+      bottom: inherit;
+      font-size: inherit;
+      opacity: 1;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .glyphicon {
+        font-size: inherit;
+        height: auto;
+        margin: 0;
+        text-shadow: none;
+        width: auto;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        bottom: 0;
+        top: inherit;
+        transform: none;
+      }
+    }
+
+    .carousel-indicators {
+      li {
+        @media (max-width: @screen-xs-max) {
+          margin: 3px 0;
+        }
+      }
+    }
+  }
+}
