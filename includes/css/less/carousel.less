@@ -82,8 +82,21 @@
 
     .carousel-indicators {
       li {
+        border: 1px solid @gris_claro_mas;
+        height: 10px;
+        width: 10px;
+
+        &.active {
+          border: 1px solid @azul;
+          margin: 3px;
+        }
+
         @media (max-width: @screen-xs-max) {
           margin: 3px 0;
+          
+          &.active {
+            margin: 3px 0;
+          }
         }
       }
     }
