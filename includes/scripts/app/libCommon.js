@@ -218,17 +218,17 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.showInfoInTablet = function(element) {
 		var product = element.closest('.producto-box');
 		var productHeight = element.closest('.producto-box').height();
-		var heightFinishesCollapsed = product.find('.acabados').height();
+		var heightFinishesCollapsed = product.find('.finishes').height();
 		
 		if ( !product.find('.item').is('.show') ) {
-			product.find('.acabados').css('height','initial');
-			var heightFinishesOpened = product.find('.acabados').height();
-			product.find('.acabados').height(heightFinishesCollapsed);
-			product.find('.acabados').height(heightFinishesOpened);
+			product.find('.finishes').css('height','initial');
+			var heightFinishesOpened = product.find('.finishes').height();
+			product.find('.finishes').height(heightFinishesCollapsed);
+			product.find('.finishes').height(heightFinishesOpened);
 			product.find('.item').addClass('show');
 			product.height(productHeight);
 		} else {
-			product.find('.acabados').attr('style','');
+			product.find('.finishes').attr('style','');
 			setTimeout(function(){
 				product.attr('style','');
 				product.find('.item').removeClass('show');
@@ -242,8 +242,8 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.autoSelectFinish = function() {
 		if ( '.products-list'.length > 0 ) {
 			$('.producto-box').each( function() {
-				if ( $(this).find('.acabados input').length < 2 ) {
-					$(this).find('.acabados input').attr('checked','checked');
+				if ( $(this).find('.finishes input').length < 2 ) {
+					$(this).find('.finishes input').attr('checked','checked');
 				}
 			})
 		}

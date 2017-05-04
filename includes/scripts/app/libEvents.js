@@ -316,7 +316,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		});
 
 		// Product's grid - Change image for selected finished image
-		$('.products-list').on('change', '.producto-box .acabados input[type="radio"]', function() {
+		$('.products-list').on('change', '.producto-box .finishes input[type="radio"]', function() {
 			var finishID 	= $(this).attr('data-finish'),
 				productRef	= $(this).closest('.content').find('.item').attr('data-product-ref'),
 				place 		= 'grid';
@@ -335,7 +335,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				var objectItem	= $(this).closest('.content').find('.item');
 				var product_id 	= objectItem.attr('data-product-id'),
 					quantity	= 1,
-					finish 		= $(this).parent().find('.acabados input[type="radio"]:checked').attr('data-finish'),
+					finish 		= $(this).parent().find('.finishes input[type="radio"]:checked').attr('data-finish'),
 					type		= "product";
 					finishList 	= $('.finishes:not(.collapse)'),
 					ok 			= true,
