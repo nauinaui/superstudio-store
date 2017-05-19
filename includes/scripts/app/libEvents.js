@@ -115,7 +115,7 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 		common.checkLogin();
 
 		// Show 'other country' modal
-		common.checkOtherCountryModal();
+		// common.checkOtherCountryModal();
 
 		// Fixed header	 
 		var stickyNavTop = $('.topmenu').offset().top;
