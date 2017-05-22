@@ -187,7 +187,8 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 				lang: lang
 			},
 			hashid: hashId,
-			zone: 'eu1'
+			zone: 'eu1',
+			urlHash: false
 		}];
 
 		if ( reinitLang == true ) {
