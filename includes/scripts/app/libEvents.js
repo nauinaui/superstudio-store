@@ -263,9 +263,19 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			}, 500);
 		});
 
-		$('#menuSubcategorias > li:not(.avoid) .submenu a').on('click touchstart', function(e) {
-			e.stopPropagation();
+		// Let user to scroll in an opened subcategory content
+		$('#menuSubcategorias > li:not(.avoid) .submenu .container').on('click touchstart', function(e) {
+			if ( $(window).width() < 768 ) {
+				e.stopPropagation();
+			}
 		});
+
+		// Avoid link to all category items for mobile devices
+		$('#menuSubcategorias > li:not(.avoid) > a').on('click', function(e) {
+			if ( common.detectMobile() == false && $(window).width() > 767 ) {
+				e.stopPropagation();
+			}
+		})
 
 		// Header - Abrir submenú de login al hacer click en versión movil
 		$('#moreOptionsDropdown li a.toggle-info').on('click', function(e) {
