@@ -140,7 +140,7 @@ define(['./Base.js', '../libCommon.js', 'bootstrap', 'countdown', 'zoom', 'recap
 
 			common.blockUI();
 			$.ajax({
-				url: 'includes/web/plugin_tiempo_entrega?id='+productID+'&id_color='+finishID,
+				url: '/includes/web/plugin_tiempo_entrega?id='+productID+'&id_color='+finishID,
 				success: function (data) {
 					common.unblockUI();
 					data = data.split('|');
