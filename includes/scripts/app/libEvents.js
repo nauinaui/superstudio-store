@@ -264,14 +264,19 @@ define(['jquery', 'bootstrap', './libCommon.js', 'modernizr', 'placeholder', 'va
 			}, 500);
 		});
 
-		// Let user to scroll in an opened subcategory content
+		// Header - Let user to scroll in an opened subcategory content
 		$('#menuSubcategorias > li:not(.avoid) .submenu .container').on('click touchstart', function(e) {
 			if ( $(window).width() < 768 ) {
 				e.stopPropagation();
 			}
 		});
 
-		// Avoid link to all category items for mobile devices
+		// Header - Let user to click on 'see all products' btn, subcategory links and promoitem
+		$('#menuSubcategorias .submenu .btn, #menuSubcategorias .submenu a.item, #menuSubcategorias .promo-menu').on('click', function(e) {
+			e.stopPropagation();
+		})
+
+		// Header - Avoid link to all category items for mobile devices
 		$('#menuSubcategorias > li:not(.avoid) > a').on('click', function(e) {
 			if ( common.detectMobile() == false && $(window).width() > 767 ) {
 				e.stopPropagation();
