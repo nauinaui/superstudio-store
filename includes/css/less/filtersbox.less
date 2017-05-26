@@ -3,6 +3,7 @@
   background-color: @blanco;
   margin-bottom: 40px;
   padding: 20px;
+  text-align: center;
 
   .resultados{
     color: @azul;
@@ -57,9 +58,13 @@
     }
   }
 
-  .filters-section > .row,
-  .filters-section > .collapse > .row {
-    border-bottom: 1px solid @blanco_roto;
+  .filters-section {
+    text-align: left;
+
+    & > .row,
+    & > .collapse > .row {
+      border-bottom: 1px solid @blanco_roto;
+    }
   }
 
   .filter-label {
