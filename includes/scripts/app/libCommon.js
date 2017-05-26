@@ -217,7 +217,7 @@ define(['jquery'], function ($) {
 	 */
 	LibCommon.prototype.showInfoInTablet = function(element) {
 		var product = element.closest('.producto-box');
-		var productHeight = element.closest('.producto-box').height();
+		var productHeight = product.height();
 		var heightFinishesCollapsed = product.find('.finishes').height();
 		
 		if ( !product.find('.item').is('.show') ) {
