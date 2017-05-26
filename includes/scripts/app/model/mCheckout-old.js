@@ -209,6 +209,21 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 		$('[data-toggle="popover"]').popover({
 			html: true,
 			trigger: 'hover'
+		});
+
+		// Save product values when user add a promotional product
+		$('#showPromoProduct .add-to-cart-promo').on('click', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			if ( !$(this).is(':disabled') ) {
+				var product = $(this).closest('.item');
+				var promoProductId = product.attr('data-product-id');
+				var promoProductColor = product.attr('data-product-color_id');
+				$('input[name="promo-data-product-id"]').val(promoProductId);
+				$('input[name="promo-data-product-color_id"]').val(promoProductColor);
+				$('.botonComprar').trigger('click');
+			}
+			return false;
 		})
     });
 
