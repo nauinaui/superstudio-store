@@ -642,9 +642,13 @@ body.category {
     width: 350px;
 
     .item {
-      margin-bottom: 0;
+      margin: 5px auto;
       padding: 10px;
       position: relative;
+
+      &:hover {
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      }
 
       .image {
         padding: 0;
@@ -660,6 +664,12 @@ body.category {
         .nombre {
           height: 60px;
         }
+      }
+    
+      &.selected {
+        border: 2px solid @azul;
+        box-shadow: 0 0 5px rgba(0,173,219,0.5);
+        margin: 4px auto;
       }
     }
   }

@@ -221,9 +221,8 @@ define(['./Base.js', '../libCommon.js', 'bootstrap'], function (Base, LibCommon,
 				var promoProductColor = product.attr('data-product-color_id');
 				$('input[name="promo-data-product-id"]').val(promoProductId);
 				$('input[name="promo-data-product-color_id"]').val(promoProductColor);
-				$('.botonComprar').trigger('click');
+				$("#checkoutForm").submit();
 			}
-			return false;
 		})
     });
 
