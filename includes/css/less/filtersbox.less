@@ -132,25 +132,24 @@
           border: 1px solid @gris_claro;
         }
       }
+    }
+    
+    .finishes {
+      text-align: center;
 
-      .finishes {
-        text-align: center;
+      .color {       
+        background-size: cover;
+        display: inline-block;
+        height: 30px;
+        margin: 15px 0 10px;
+        transition: .3s;
+        width: 30px;
 
-        .color {       
-          background-size: cover;
-          display: inline-block;
-          height: 30px;
-          margin-top: 15px;
-          margin-bottom: 10px;
-          transition: .3s;
-          width: 30px;
-
-          &.selected {
-            background-position: 50% 50%;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            height: 40px;
-          }
+        &.selected {
+          background-position: 50% 50%;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          height: 40px;
         }
       }
     }
