@@ -79,7 +79,7 @@ switch(document.domain) {
     	errorTextFinish = 'Wybierz wykończenie, aby kontynuować';
     	errorTextCaptcha= 'Obraz captcha jest źle';
     break;
-    case 'www.superestudionorge.com':
+    case 'www.superstudionorge.com':
     	lang = 'NO';
     	hashid = 'bce3349b894c082c5c827ebcd783267c';
     	errorTextFinish = 'Du må velge en finish på produktet for å fortsette';
