@@ -396,6 +396,9 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 				filters = '',
 				currentPage = getParameterByName('camp', window.location.href),
 				busqueda = getParameterByName('busqueda');
+				cad = getParameterByName('cad');
+				idcat = getParameterByName('idcat');
+				npo = getParameterByName('npo');
 
 			$('.resultados .active-filter').each(function() {
 				var type = $(this).attr('id');
@@ -460,6 +463,17 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 				url = '?orden=' + sort + '&asc=' + asc;
 			} else {
 				url = url + '&orden=' + sort + '&asc=' + asc;
+			}
+
+			// Check for other parameters already written in url
+			if (!cad == '') {
+				url = url + '&cad=' + cad;
+			}
+			if (!idcat == '') {
+				url = url + '&idcat=' + idcat;
+			}
+			if (!npo == '') {
+				url = url + '&npo=' + npo;
 			}
 
 			// refresh page with parameters
@@ -564,14 +578,18 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 			var estado = getParameterByName('estado');
 			var busqueda = getParameterByName('busqueda');
 			var orden = getParameterByName('orden');
+			var asc = getParameterByName('asc');
 			var packs = getParameterByName('packs');
+			var cad = getParameterByName('cad');
+			var npo = getParameterByName('npo');
+			var idcat = getParameterByName('idcat');
 
 			var url 		= window.location.href;
 			var index 		= url.lastIndexOf("/") + 1;
 			var category 	= url.substr(index);
 			category = category.split('?');
 
-			var urlParametros = category[0]+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&busqueda='+busqueda+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
+			var urlParametros = category[0]+'?camp='+camp+'&subcamp='+subcamp+'&color='+color+'&colores='+colores+'&rango='+rango+'&cats1='+cats1+'&cats2='+cats2+'&dsd='+dsd+'&col='+col+'&mat='+mat+'&estado='+estado+'&orden='+orden+'&asc'+asc+'&busqueda='+busqueda+'&cad='+cad+'&npo='+npo+'&packs='+packs+'&plugin=1&desde='+paginateFrom;
 
 			$.ajax({
 				url: urlParametros,
