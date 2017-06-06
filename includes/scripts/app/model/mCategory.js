@@ -24,7 +24,7 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 		}
 
 		// Color selector tooltip filter
-		$('.acabado > div').mouseover(function() {
+		$('.finishes > div').mouseover(function() {
 			var colorName = $(this).attr('data-title');
 			$(this).tooltip('hide')
 				.attr('data-original-title', colorName)
@@ -79,7 +79,7 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 		});
 
 		// Show active filters (color/material type)
-		$('.acabado .color, .acabado .material').on('click', function() {
+		$('.finishes .color, .finishes .material').on('click', function() {
 			if ( $(this).hasClass('selected') ) {
 				disableFilter( 'finish', $(this).attr('value') );
 			} else {
@@ -504,7 +504,7 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 							$('label[data-url="col"]').closest('.filter-container').hide();
 						
 						} else if ( filter[0] === 'finish' ) { // it's finish filter
-							$('.filters-section .acabado div[value="'+ filter[1] +'"]').trigger('click');
+							$('.filters-section .finishes div[value="'+ filter[1] +'"]').trigger('click');
 						
 						} else if ( filter[0] === 'rango' ) { // it's price filter
 						    var range = filter[1];
@@ -536,7 +536,7 @@ define(['./Base.js', '../libCommon.js', 'countdown'], function (Base, LibCommon,
 						var j;
 						for (j = 0; j < values.length; ++j) {
 							if ( filter[0] === 'finish' ) { // it's finish filter
-								$('.filters-section .acabado div[value="'+ values[j] +'"]').trigger('click');
+								$('.filters-section .finishes div[value="'+ values[j] +'"]').trigger('click');
 							} else { //it's a normal filter
 								var filterType = $('#filtersBox label[data-url="'+filter[0]+'"]').parent();
 								filterType.next().find($('.filters-columns input[value="' + values[j] + '"]')).trigger( 'click' );
