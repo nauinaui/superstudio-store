@@ -66,7 +66,6 @@ define(['jquery'], function ($) {
 	LibCommon.prototype.fixedNav = function(stickyNavTop) {
 		var scrollTop = $(window).scrollTop(),
 			contentElement = $('body > .container').first();
-			console.log(contentElement);
 		if (scrollTop > stickyNavTop) { 
 		    $('.topmenu').addClass('fixed');
 		    contentElement.css('padding-top','75px');
