@@ -64,11 +64,15 @@ define(['jquery'], function ($) {
 	 * @param stickyNavTop:Int Scroll size needed
 	 */
 	LibCommon.prototype.fixedNav = function(stickyNavTop) {
-		var scrollTop = $(window).scrollTop();    
+		var scrollTop = $(window).scrollTop(),
+			contentElement = $('body > .container').first();
+			console.log(contentElement);
 		if (scrollTop > stickyNavTop) { 
 		    $('.topmenu').addClass('fixed');
+		    contentElement.css('padding-top','75px');
 		} else {
 		    $('.topmenu').removeClass('fixed'); 
+		    contentElement.removeAttr('style');
 		}
 		if ( $('#menuSubcategorias li .submenu').is(':visible') ) {
 			var openedMenu = $('#menuSubcategorias li .submenu:visible').parent();

@@ -33,798 +33,800 @@
 <!-- Only shown when lateral content or cart is opened-->
 <div class="dark-layer"></div>
 
-<!-- Topbar -->
-<div class="topbar hidden-xs">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-7 left hidden-xs">
-				<a href="/shipping">Envíos</a>
-				<a href="/newsletters">10€ de descuento</a>
-				<a href="/showrooms">Tiendas</a>
-				<a href="/devoluciones">Devoluciones</a>
-				<a href="/proyectos">Proyectos</a>
-				<a href="/contacto">Contacto</a>
-				<a href="/muebles_diseno/outlet_online_0">Outlet</a>
-			</div>
-			<div class="col-md-5 right">
-				<a href="#"><img src="imagenes/iconos/svg/telefono.svg" alt="teléfono">&nbsp;&nbsp;(+34) 932 417 330</a>
-				<div class="dropdown log-option">
-					<div class="login-dropdown">
-						<button class="btn btn-link dropdown-toggle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Iniciar sesión</button>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-							<div class="col-sm-6">
-								<div class="title">Acceso clientes</div>
-								<div class="subtitle">Ya soy cliente registrado</div>
-								<form id="loginForm" action="/includes/control/log-in" name="loginForm" method="post" target="_parent">
-									<input name="origen" type="hidden" id="origen" value="">
-									<input name="accion" type="hidden" id="accion" value="">
-									<input name="idcat" type="hidden" id="idcat" value="">
-									<input name="id" type="hidden" id="id" value="">
-									<input name="p" type="hidden" id="p" value="">
-									<input name="pet" type="hidden" id="pet" value="">
-									<input name="promorebajas" type="hidden" id="promorebajas" value="">
-									<input name="apa" type="hidden" id="apa" value="">
-									<div class="form-horizontal delivery-form">
-										<div class="form-group">
-										    <div class="col-sm-12">
-										    	<input name="email" type="text" class="form-control input_clientes" id="email_login" accesskey="e" tabindex="2" value="" maxlength="255">
-										    </div>
-										</div>
-										<div class="form-group">
-										    <div class="col-sm-12">
-										    	<input name="clave" type="password" class="form-control input_clientes" id="clave_login" accesskey="p" tabindex="3" value="" maxlength="255">
-										    </div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-12">
-												<div class="checkbox">
-													<label>
-														<input type="checkbox" name="recordar" value="si"> Recuérdame
-													</label>
+<header>
+	<div class="topbar hidden-xs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 left hidden-xs">
+					<a href="/shipping">Envíos</a>
+					<a href="/newsletters">10€ de descuento</a>
+					<a href="/showrooms">Tiendas</a>
+					<a href="/devoluciones">Devoluciones</a>
+					<a href="/proyectos">Proyectos</a>
+					<a href="/contacto">Contacto</a>
+					<a href="/muebles_diseno/outlet_online_0">Outlet</a>
+				</div>
+				<div class="col-md-5 right">
+					<a href="tel:+34932417330"><img src="imagenes/iconos/svg/telefono.svg" alt="teléfono">&nbsp;&nbsp;(+34) 932 417 330</a>
+					<div class="dropdown log-option">
+						<div class="login-dropdown">
+							<button class="btn btn-link dropdown-toggle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Iniciar sesión</button>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
+								<div class="col-sm-6">
+									<div class="title">Acceso clientes</div>
+									<div class="subtitle">Ya soy cliente registrado</div>
+									<form id="loginForm" action="/includes/control/log-in" name="loginForm" method="post" target="_parent">
+										<input name="origen" type="hidden" id="origen" value="">
+										<input name="accion" type="hidden" id="accion" value="">
+										<input name="idcat" type="hidden" id="idcat" value="">
+										<input name="id" type="hidden" id="id" value="">
+										<input name="p" type="hidden" id="p" value="">
+										<input name="pet" type="hidden" id="pet" value="">
+										<input name="promorebajas" type="hidden" id="promorebajas" value="">
+										<input name="apa" type="hidden" id="apa" value="">
+										<div class="form-horizontal delivery-form">
+											<div class="form-group">
+											    <div class="col-sm-12">
+											    	<input name="email" type="text" class="form-control input_clientes" id="email_login" accesskey="e" tabindex="2" value="" maxlength="255">
+											    </div>
+											</div>
+											<div class="form-group">
+											    <div class="col-sm-12">
+											    	<input name="clave" type="password" class="form-control input_clientes" id="clave_login" accesskey="p" tabindex="3" value="" maxlength="255">
+											    </div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" name="recordar" value="si"> Recuérdame
+														</label>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-12">
-												<button type="submit" class="btn btn-primary btn-rounded btn-sm" accesskey="s" tabindex="3">Log in</button>
-												<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<button type="submit" class="btn btn-primary btn-rounded btn-sm" accesskey="s" tabindex="3">Log in</button>
+													<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<p>¿Has olvidado tu clave? <a href="/recordar" title="solicita nueva clave">Clic aquí para obtener una nueva</a></p>
+												</div>
+												<div class="clearfix"></div>
 											</div>
 										</div>
-										<div class="form-group">
-											<div class="col-sm-12">
-												<p>¿Has olvidado tu clave? <a href="/recordar" title="solicita nueva clave">Clic aquí para obtener una nueva</a></p>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</form>
+									</form>
+								</div>
+								<div class="col-sm-6">
+									<div class="title">Aún no soy cliente registrado</div>
+									<p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
+									<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a>
+									<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
+								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="title">Aún no soy cliente registrado</div>
-								<p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
-								<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a>
-								<a class="btn btn-secondary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
+						</div>
+						<div class="user-dropdown">
+							<button class="btn btn-link dropdown-toggle" type="button" id="loggedDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Hola&nbsp;Arnau Monclús i Sánchez <span class="caret"></span></button>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="loggedDropdown">
+								<ul>
+									<li><a href="lista" title="Favoritos">Favoritos</a></li>
+									<li><a href="registro?accion=modifica" title="Mis datos">Mis datos</a></li>
+									<li><a href="mis_pedidos" title="Mis pedidos">Mis pedidos</a></li>
+									<li><a href="includes/control/log-out" title="Salir">Salir</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="user-dropdown">
-						<button class="btn btn-link dropdown-toggle" type="button" id="loggedDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Hola Arnau Monclús i Sánchez <span class="caret"></span></button>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="loggedDropdown">
-							<ul>
-								<li><a href="lista" title="Favoritos">Favoritos</a></li>
-								<li><a href="registro?accion=modifica" title="Mis datos">Mis datos</a></li>
-								<li><a href="mis_pedidos" title="Mis pedidos">Mis pedidos</a></li>
-								<li><a href="includes/control/log-out" title="Salir">Salir</a></li>
+					<div class="dropdown language navbar-right hidden-xs">
+						<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Idiomas <span class="caret"></span></button>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+							<ul class="language-list">
+								<li><a href="https://www.superestudio.com">Castellano</a></li>
+								<li><a href="https://www.superestudio.de">Deutsch</a></li>
+								<li><a href="https://www.superstudiodesign.nl">Dutch</a></li>
+								<li><a href="https://www.superestudio.co.uk">English</a></li>
+								<li><a href="https://www.superestudio.fr">Français</a></li>
+								<li><a href="https://www.superestudio.it">Italiano</a></li>
+								<li><a href="https://www.superestudio.pl">Polski</a></li>
+								<li><a href="https://www.superestudio.pt">Português</a></li>
 							</ul>
 						</div>
-					</div>
-				</div>
-				<div class="dropdown language navbar-right hidden-xs">
-					<button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Idiomas <span class="caret"></span></button>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
-						<ul class="language-list">
-							<li><a href="https://www.superestudio.com?idioma=CAS">Castellano</a></li>
-							<li><a href="https://www.superestudio.com?idioma=ENG">English</a></li>
-							<li><a href="http://www.superestudio.fr/?idioma=FRA">Français</a></li>
-							<li><a href="http://www.superestudio.de/?idioma=DEU">Deutsch</a></li>
-							<li><a href="http://www.superestudio.de/?idioma=DEU">Dutch</a></li>
-							<li><a href="http://www.superestudio.pt/?idioma=POR">Português</a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	<nav class="navbar navbar-default topmenu">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				
+				<!-- categorias dropdown -->
+				<div class="dropdown" id="menuDropdown">
+					<a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<span>Categorías</span>
+						<div class="icon-menu">
+							<i class="glyphicon glyphicon-menu-hamburger"></i>
+							<div class="icon-menu-wave"></div>
+						</div>
+					</a>
 
-<nav class="navbar navbar-default topmenu">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			
-			<!-- categorias dropdown -->
-			<div class="dropdown" id="menuDropdown">
-				<a href="#" id="showMenu" class="dropdown-toggle categorias" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					<span>Categorías</span>
-					<div class="icon-menu">
-						<i class="glyphicon glyphicon-menu-hamburger"></i>
-						<div class="icon-menu-wave"></div>
-					</div>
-				</a>
+					<ul class="dropdown-menu menu-subcategorias" id="menuSubcategorias">
+						<li class="special">
+							<a href="promociones" class="category sub rojo">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
+								<div class="text">Promociones<span class="glyphicon glyphicon-hourglass"></span></div>
+							</a>
+						</li>
+						<li class="divider"><div class="divider"></div></li>
+						<li class="special">
+							<a href="novedades" class="category sub azul">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
+								<div class="text">Novedades<span class="glyphicon glyphicon-heart-empty"></span></div>
+							</a>
+						</li>
+						<li class="divider"><div class="divider"></div></li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="sillas">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
+								<div class="text">Sillas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Sillas -->
+							<div class="submenu" id="sillas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Sillas
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todas las sillas</a>
+										<div class="row">
+											<div class="clearfix"></div>
+											<div class="col-sm-4">
+												<a href="#" class="item" data-feature-link="/silla-dsw-wooden-polipropileno-eames-baz004" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg">Sillas iconos del diseño <span>(201)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico con patas de madera <span>(31)</span></a>
+												<a href="#" class="item" data-feature-link="/sillas_plegables_silla_plex_144331" data-feature-title="Silla PLEX" data-feature-desc="Perfecta como silla auxiliar cuando tengas invitados en casa." data-feature-img="https://www.superestudio.com/imagenes/productos/SHX030/SHX0301.jpg">Sillas plegables <span>(64)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-dsw-baby-wooden--baby-eames" data-feature-title="Silla BABY WOODEN" data-feature-desc="Versión de menor tamaño de la Silla WOODEN, para niños" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ009/BAZ0091.jpg">Sillas baby <span>(64)</span></a>
+												<a href="#" class="item" data-feature-link="/puff-ferret-polyester-version-wv0007" data-feature-title="Puff FERRET -Polyester Version-" data-feature-desc="elemento decorativo original y muy divertido" data-feature-img="https://www.superestudio.com/imagenes/productos/WV0007/WV00071.jpg">Puffs <span>(7)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas metálicas <span>(39)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas tapizadas <span>(4)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-acapulco-chair-color-edition" data-feature-title="Silla MÉXICO -Color Edition-" data-feature-desc="Silla Acapulco, durabilidad, calidad y diseño" data-feature-img="https://www.superestudio.com/imagenes/productos/WIW003/WIW0031.jpg">Sillas para exterior <span>(1)</span></a>
+												<a href="#" class="item" data-feature-link="/banco-eco-batten" data-feature-title="Banco ECO BATTEN" data-feature-desc="Inspirado en el Banco Platform de George Nelson" data-feature-img="https://www.superestudio.com/imagenes/productos/XSG027/38/XSG027-38_1.jpg">Bancos <span>(1)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Silla WOODEN -Polipropileno-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Silla WOODEN -Polipropileno-</span>
+													<div class="promo-description">Silla de diseño de estilo Tower para cocina o comedor.</div>
+													<div class="promo-image">
+														<img class="featured-product-image" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
+												<a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
+												<a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category" data-tipo="taburetes">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuTaburetes.svg" alt="taburetes">
+								<div class="text">Taburetes</div>
+							</a>
+							<!-- SUBMENU Taburetes -->
+							<div class="submenu" id="taburetes">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Taburetes
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4 col-sm-offset-4 hidden-xs">
+												<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Taburete HIGHT URAL -Metal Cepillado">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Taburete HIGHT URAL -Metal Cepillado-</span>
+													<div class="promo-description">Taburete metálico en estilo industrial.</div>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
+													</div>
+												</a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los taburetes</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="mesas">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuMesas.svg" alt="mesas">
+								<div class="text">Mesas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Mesas -->
+							<div class="submenu" id="mesas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Mesas
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Mesas de comedor <span>(57)</span></a>
+												<a href="#" class="item">Mesas de oficina <span>(31)</span></a>
+												<a href="#" class="item">Mesas de centro <span>(64)</span></a>
+												<a href="#" class="item">Mesas de exterior <span>(4)</span></a>
+												<a href="#" class="item">Mobiliario de oficina <span>(1)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/mesa-dsw-tendar-wood-120-tendar-wood-eames">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Mesa TENDAR WOOD 120</span>
+													<div class="promo-description">Mesa de comedor inspirada en diseño de la Mesa DSW de Charles & Ray Eames.</div>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Mesitas de café <span>(47)</span></a>
+												<a href="#" class="item">Mesas de bar <span>(10)</span></a>
+												<a href="#" class="item">Mesas de TV <span>(39)</span></a>
+												<a href="#" class="item">Barras <span>(39)</span></a>
+												<a href="#" class="item">Consolas <span>(4)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las mesas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="lamparas">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuLamparas.svg" alt="lámparas">
+								<div class="text">Lámparas<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Lámparas -->
+							<div class="submenu" id="lamparas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Lámparas
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Lámparas en suspensión <span>(57)</span></a>
+												<a href="#" class="item">Lámparas de sobremesa <span>(23)</span></a>
+												<a href="#" class="item">Apliques <span>(4)</span></a>
+												<a href="#" class="item">Bombillas <span>(13)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/lampara-amsti" title="Lámpara AMSTI">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Lámpara AMSTI</span>
+													<div class="promo-description">Lámpara en acero tintado en negro con interior dorado.</div>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Lámparas de pie <span>(47)</span></a>
+												<a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
+												<a href="#" class="item">Iluminación creativa <span>(39)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las lámparas</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="sofas">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSofas.svg" alt="sofás">
+								<div class="text">Sofás<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Sofás -->
+							<div class="submenu" id="sofas">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Sofás
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Sofás <span>(18)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/sofa-chester-pu-2-plazas" title="Sofá CHESTER PU -2 Plazas-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Sofá CHESTER PU -2 Plazas-</span>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Sofás cama <span>(12)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los sofás</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="cojines">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCojines.svg" alt="cojines">
+								<div class="text">Cojines<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Cojines -->
+							<div class="submenu" id="cojines">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Cojines
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Frases <span>(18)</span></a>
+												<a href="#" class="item">Animales humanizados <span>(18)</span></a>
+												<a href="#" class="item">Estampados <span>(18)</span></a>
+												<a href="#" class="item">Países <span>(12)</span></a>
+												<a href="#" class="item">Cómic <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/funda-cojin-drink-champagne-algodon-30x50" title="Funda cojín DRINK CHAMPAGNE algodón 30x50">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Funda cojín DRINK CHAMPAGNE algodón 30x50</span>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Apalabrados <span>(12)</span></a>
+												<a href="#" class="item">Divertidos <span>(12)</span></a>
+												<a href="#" class="item">Rellenos <span>(12)</span></a>
+												<a href="#" class="item">Animales <span>(12)</span></a>
+												<a href="#" class="item">Pop <span>(12)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cojines</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="alfombras">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlfombras.svg" alt="alfombras">
+								<div class="text">Alfombras<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Alfombras -->
+							<div class="submenu" id="alfombras">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Alfombras
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Felpudos <span>(18)</span></a>
+												<a href="#" class="item">Alfombras infantiles <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/alfombra-felpudo-aqui-dentro-hay-mucho-amor-60x40cm" title="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-</span>
+													<div class="promo-description">Felpudo para recibir con arte a tus invitados</div>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Alfombras <span>(71)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las alfombras</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="cuadros">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCuadros.svg" alt="cuadros">
+								<div class="text">Cuadros<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Cuadros -->
+							<div class="submenu" id="cuadros">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Cuadros
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Lienzos 1 pieza <span>(18)</span></a>
+												<a href="#" class="item">Cuadros madera impresa <span>(18)</span></a>
+												<a href="#" class="item">Lienzos pirámide 5 piezas <span>(12)</span></a>
+												<a href="#" class="item">Chapas decorativas <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/banderola-yourself" title="Banderola YOURSELF">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Banderola YOURSELF</span>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
+												<a href="#" class="item">Cuadros con marco <span>(71)</span></a>
+												<a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
+												<a href="#" class="item">Portafotos <span>(12)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cuadros</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="vinilos">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuVinilos.svg" alt="vinilos">
+								<div class="text">Vinilos<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Vinilos -->
+							<div class="submenu" id="vinilos">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Vinilos
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Vinilos <span>(410)</span></a>
+												<a href="#" class="item">Vinilos luminiscentes <span>(18)</span></a>
+												<a href="#" class="item">Vinilos infantiles <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/vinilo-decorativo-live-your-dreams" title="Vinilo Decorativo LIVE YOUR DREAMS">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Vinilo Decorativo LIVE YOUR DREAMS</span>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
+												<a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
+												<a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los vinilos</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="almacenaje">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="almacenaje">
+								<div class="text">Almacenaje<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Almacenaje -->
+							<div class="submenu" id="almacenaje">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Almacenaje
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Baúles <span>(410)</span></a>
+												<a href="#" class="item">Joyeros <span>(18)</span></a>
+												<a href="#" class="item">Camas <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/baul-almacenaje-plegable-40-x-255-x-24-cm" title="Baúl almacenaje plegable 40 x 25,5 x 24 cm">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
+													<div class="promo-description"></div>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Estanterías <span>(71)</span></a>
+												<a href="#" class="item">Cajoneras <span>(12)</span></a>
+											</div>
+										</div>
+										<div class="text col-md-12">
+											<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los almacenajes</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="category.html" class="category sub" data-tipo="decoracion">
+								<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuDecoracion.svg" alt="decoración">
+								<div class="text">Decoración<span class="glyphicon glyphicon-menu-down"></span></div>
+							</a>
+							<!-- SUBMENU Decoración -->
+							<div class="submenu" id="decoracion">
+								<div class="container">
+									<div class="left">
+										<div class="text">
+											Decoración
+										</div>
+										<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
+										<div class="row">
+											<div class="col-sm-4">
+												<a href="#" class="item">Espejos <span>(18)</span></a>
+												<a href="#" class="item">Jarrones y figuras decorativas <span>(18)</span></a>
+												<a href="#" class="item">Relojes decorativos <span>(18)</span></a>
+												<a href="#" class="item">Trofeos cabeza animal en madera <span>(18)</span></a>
+												<a href="#" class="item">Biombos <span>(12)</span></a>
+												<a href="#" class="item">Maceteros <span>(12)</span></a>
+												<a href="#" class="item">Paneles decorativos <span>(12)</span></a>
+												<a href="#" class="item">Portafotos <span>(12)</span></a>
+											</div>
+											<div class="col-sm-4 hidden-xs">
+												<a class="promo-menu" href="/muebles_de_diseno/_mantel_pvc_43x30_picnik_green_-uso_1_persona-_141775" title="Mantel PVC 43x30 PICNIK Green -uso 1 persona-">
+													<div class="featuring-menu-title">Destacamos:</div>
+													<span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
+													<div class="promo-image">
+														<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
+													</div>
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a href="#" class="item">Percheros <span>(71)</span></a>
+												<a href="#" class="item">Plantas decorativas <span>(71)</span></a>
+												<a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
+												<a href="#" class="item">Pizarras <span>(71)</span></a>
+												<a href="#" class="item">Cajas de madera <span>(12)</span></a>
+												<a href="#" class="item">Menaje <span>(12)</span></a>
+												<a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
 
-				<ul class="dropdown-menu menu-subcategorias" id="menuSubcategorias">
-					<li class="special">
-						<a href="promociones" class="category sub rojo">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
-							<div class="text">Promociones<span class="glyphicon glyphicon-hourglass"></span></div>
-						</a>
-					</li>
-					<li class="divider"><div class="divider"></div></li>
-					<li class="special">
-						<a href="novedades" class="category sub azul">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
-							<div class="text">Novedades<span class="glyphicon glyphicon-heart-empty"></span></div>
-						</a>
-					</li>
-					<li class="divider"><div class="divider"></div></li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="sillas">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSillas.svg" alt="sillas">
-							<div class="text">Sillas<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Sillas -->
-						<div class="submenu" id="sillas">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Sillas
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todas las sillas</a>
-									<div class="row">
-										<div class="clearfix"></div>
-										<div class="col-sm-4">
-											<a href="#" class="item" data-feature-link="/silla-dsw-wooden-polipropileno-eames-baz004" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ004/BAZ0041.jpg">Sillas iconos del diseño <span>(201)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico con patas de madera <span>(31)</span></a>
-											<a href="#" class="item" data-feature-link="/sillas_plegables_silla_plex_144331" data-feature-title="Silla PLEX" data-feature-desc="Perfecta como silla auxiliar cuando tengas invitados en casa." data-feature-img="https://www.superestudio.com/imagenes/productos/SHX030/SHX0301.jpg">Sillas plegables <span>(64)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-dsw-baby-wooden--baby-eames" data-feature-title="Silla BABY WOODEN" data-feature-desc="Versión de menor tamaño de la Silla WOODEN, para niños" data-feature-img="https://www.superestudio.com/imagenes/productos/BAZ009/BAZ0091.jpg">Sillas baby <span>(64)</span></a>
-											<a href="#" class="item" data-feature-link="/puff-ferret-polyester-version-wv0007" data-feature-title="Puff FERRET -Polyester Version-" data-feature-desc="elemento decorativo original y muy divertido" data-feature-img="https://www.superestudio.com/imagenes/productos/WV0007/WV00071.jpg">Puffs <span>(7)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas metálicas <span>(39)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas tapizadas <span>(4)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-acapulco-chair-color-edition" data-feature-title="Silla MÉXICO -Color Edition-" data-feature-desc="Silla Acapulco, durabilidad, calidad y diseño" data-feature-img="https://www.superestudio.com/imagenes/productos/WIW003/WIW0031.jpg">Sillas para exterior <span>(1)</span></a>
-											<a href="#" class="item" data-feature-link="/banco-eco-batten" data-feature-title="Banco ECO BATTEN" data-feature-desc="Inspirado en el Banco Platform de George Nelson" data-feature-img="https://www.superestudio.com/imagenes/productos/XSG027/38/XSG027-38_1.jpg">Bancos <span>(1)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Silla WOODEN -Polipropileno-">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Silla WOODEN -Polipropileno-</span>
-												<div class="promo-description">Silla de diseño de estilo Tower para cocina o comedor.</div>
-												<div class="promo-image">
-													<img class="featured-product-image" src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX014/min/categoria/SHX0141.jpg" width="150" alt="Silla WOODEN -Polipropileno-"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item" data-feature-link="/silla-beech-tulipa" data-feature-title="Silla BEECH TULIPA" data-feature-desc="Silla de comedor muy confortable" data-feature-img="https://www.superestudio.com/imagenes/productos/FNG001/FNG0011.jpg">Sillas de madera <span>(47)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-de-oficina-pring" data-feature-title="Silla de Oficina PRING" data-feature-desc="Silla de Oficina PRING, inspiración Eames Pacc" data-feature-img="https://www.superestudio.com/imagenes/productos/311/3111.jpg">Sillas de oficina <span>(10)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-terek-metal-cepillado-jean-pauchard" data-feature-title="Silla TEREK -Metal Cepillado-" data-feature-desc="Aporta un toque moderno con una silla Terek" data-feature-img="https://www.superestudio.com/imagenes/productos/ANY013/127/ANY013-127_1.jpg">Sillas apilables <span>(22)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-ball-eero-aarnio" data-feature-title="Silla en Miniatura DIDI" data-feature-desc="Silla en miniatura, inspirada en la Silla Ball de Eero Aarnio." data-feature-img="https://www.superestudio.com/imagenes/productos/FYD010/24293/FYD010-24293_1.jpg">Sillas mini decorativas <span>(22)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-wooden-polipropileno-eames" data-feature-title="Silla WOODEN -Polipropileno-" data-feature-desc="Silla de diseño de estilo Tower para cocina o comedor" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX014/11/SHX014-11_1.jpg">Sillas de plástico<span>(39)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-wooden-arms-patchwork-edition-charles-ray-eames" data-feature-title="Silla WOODEN ARMS -Patchwork Edition-" data-feature-desc="Diseño y comodidad se unen en la Silla DAW" data-feature-img="https://www.superestudio.com/imagenes/productos/TDF011/87/TDF011-87_1.jpg">Sillas patchwork <span>(4)</span></a>
-											<a href="#" class="item" data-feature-link="/silla-rar-eames" data-feature-title="Silla Balancín TOWER ARMS" data-feature-desc="Silla RAR Eames ideal para relajarse en el hogar" data-feature-img="https://www.superestudio.com/imagenes/productos/SHX018/SHX0181.jpg">Sillas balancín <span>(1)</span></a>
-											<a href="#" class="item" data-feature-link="/sillon-bantra-wood-charles-ray-eames" data-feature-title="Sillón BANTRA WOOD" data-feature-desc="Sillón confortable con diseño elegante y funcional" data-feature-img="https://www.superestudio.com/imagenes/productos/ZSF002/ZSF0021.jpg">Sillones <span>(46)</span></a>
-										</div>
-									</div>
-								</div>
+					<div class="subcategorias">
+						<a href="#" class="rojo">Promociones</a>
+						<div class="dropdown">
+							<button class="btn dropdown-toggle verde" type="button" id="colectionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Colecciones</button>
+							<div class="dropdown-menu" aria-labelledby="colectionsDropdown">
+								<ul class="colections-list">
+			                        <li><a href="categoria?camp=iluminacion">Iluminación</a></li>
+			                        <li><a href="categoria?camp=lienzos">Lienzos y Vinilos</a></li>
+			                        <li><a href="muebles_diseno/cojines_y_fundas_68194">Cojines y fundas</a></li>
+			                        <li><a href="categoria?camp=bano">Baño</a></li>
+			                        <li><a href="categoria?camp=cocina">Cocina</a></li>
+			                        <li><a href="categoria?camp=trabajo">Trabajo</a></li>
+			                        <li><a href="categoria?camp=descanso">Descanso</a></li>
+			                        <li><a href="categoria?camp=dormitorio">Dormitorio</a></li>
+			                        <li><a href="categoria?camp=ninos">Niños</a></li>
+			                        <li><a href="categoria?camp=verano">Especial Verano</a></li>
+			                        <li><a href="categoria?camp=navidad">Especial Navidad</a></li>
+			                        <li><a href="categoria?camp=sanvalentin">Especial San Valentín</a></li>
+								</ul>
 							</div>
 						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category" data-tipo="taburetes">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuTaburetes.svg" alt="taburetes">
-							<div class="text">Taburetes</div>
-						</a>
-						<!-- SUBMENU Taburetes -->
-						<div class="submenu" id="taburetes">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Taburetes
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4 col-sm-offset-4 hidden-xs">
-											<a class="promo-menu" href="/silla-wooden-polipropileno-eames" title="Taburete HIGHT URAL -Metal Cepillado">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Taburete HIGHT URAL -Metal Cepillado-</span>
-												<div class="promo-description">Taburete metálico en estilo industrial.</div>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ANY017/min/categoria/ANY0171.jpg" width="150" alt="Taburete HIGHT URAL -Metal Cepillado"/>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los taburetes</a>
-									</div>
-								</div>
+						<div class="dropdown">
+							<button class="btn dropdown-toggle naranja" type="button" id="stylesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Estilos</button>
+							<div class="dropdown-menu" aria-labelledby="stylesDropdown">
+								<ul class="colections-list">
+									<li><a href="categoria?camp=tolix">Tolix</a></li>
+									<li><a href="categoria?camp=tower">Tower</a></li>
+									<li><a href="categoria?camp=modernclassics">Modern Classics</a></li>
+									<li><a href="categoria?camp=pop">Pop</a></li>
+									<li><a href="categoria?camp=color">Color edition</a></li>
+									<li><a href="categoria?camp=transparente">Transparente</a></li>
+									<li><a href="categoria?camp=vintage">Vintage</a></li>
+									<li><a href="categoria?camp=rustico">Rústico</a></li>
+									<li><a href="categoria?camp=industrial">Industrial</a></li>
+									<li><a href="categoria?camp=nordic">Nórdico</a></li>
+									<li><a href="categoria?camp=newyork">New York</a></li>
+									<li><a href="categoria?camp=decorativo">Objeto Decorativo</a></li>
+								</ul>
 							</div>
 						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="mesas">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuMesas.svg" alt="mesas">
-							<div class="text">Mesas<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Mesas -->
-						<div class="submenu" id="mesas">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Mesas
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Mesas de comedor <span>(57)</span></a>
-											<a href="#" class="item">Mesas de oficina <span>(31)</span></a>
-											<a href="#" class="item">Mesas de centro <span>(64)</span></a>
-											<a href="#" class="item">Mesas de exterior <span>(4)</span></a>
-											<a href="#" class="item">Mobiliario de oficina <span>(1)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/mesa-dsw-tendar-wood-120-tendar-wood-eames">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Mesa TENDAR WOOD 120</span>
-												<div class="promo-description">Mesa de comedor inspirada en diseño de la Mesa DSW de Charles & Ray Eames.</div>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/SHX022/SHX0221.jpg" width="150" alt="Mesa TENDAR WOOD 120"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Mesitas de café <span>(47)</span></a>
-											<a href="#" class="item">Mesas de bar <span>(10)</span></a>
-											<a href="#" class="item">Mesas de TV <span>(39)</span></a>
-											<a href="#" class="item">Barras <span>(39)</span></a>
-											<a href="#" class="item">Consolas <span>(4)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las mesas</a>
-									</div>
-								</div>
-							</div>
+					</div>
+		        </div>
+				
+				<!-- search dropdown (only mobile) -->
+				<div class="dropdown visible-xs-inline-block">
+					<a href="#" id="showSearch" class="dropdown-toggle search" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<div class="icon-menu">
+							<i class="glyphicon glyphicon-search"></i>
+							<div class="icon-menu-wave"></div>
 						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="lamparas">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuLamparas.svg" alt="lámparas">
-							<div class="text">Lámparas<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Lámparas -->
-						<div class="submenu" id="lamparas">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Lámparas
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Lámparas en suspensión <span>(57)</span></a>
-											<a href="#" class="item">Lámparas de sobremesa <span>(23)</span></a>
-											<a href="#" class="item">Apliques <span>(4)</span></a>
-											<a href="#" class="item">Bombillas <span>(13)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/lampara-amsti" title="Lámpara AMSTI">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Lámpara AMSTI</span>
-												<div class="promo-description">Lámpara en acero tintado en negro con interior dorado.</div>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/BV0003/min/categoria/BV00031.jpg" width="150" alt="Lámpara AMSTI"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Lámparas de pie <span>(47)</span></a>
-											<a href="#" class="item">Lámparas de oficina <span>(82)</span></a>
-											<a href="#" class="item">Iluminación creativa <span>(39)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las lámparas</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="sofas">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuSofas.svg" alt="sofás">
-							<div class="text">Sofás<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Sofás -->
-						<div class="submenu" id="sofas">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Sofás
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Sofás <span>(18)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/sofa-chester-pu-2-plazas" title="Sofá CHESTER PU -2 Plazas-">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Sofá CHESTER PU -2 Plazas-</span>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/ARTDE016/min/categoria/ARTDE0161.jpg" width="150" alt="Sofá CHESTER PU -2 Plazas-"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Sofás cama <span>(12)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los sofás</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="cojines">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCojines.svg" alt="cojines">
-							<div class="text">Cojines<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Cojines -->
-						<div class="submenu" id="cojines">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Cojines
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Frases <span>(18)</span></a>
-											<a href="#" class="item">Animales humanizados <span>(18)</span></a>
-											<a href="#" class="item">Estampados <span>(18)</span></a>
-											<a href="#" class="item">Países <span>(12)</span></a>
-											<a href="#" class="item">Cómic <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/funda-cojin-drink-champagne-algodon-30x50" title="Funda cojín DRINK CHAMPAGNE algodón 30x50">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Funda cojín DRINK CHAMPAGNE algodón 30x50</span>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2191/min/categoria/HCN21911.jpg" width="150" alt="Funda cojín DRINK CHAMPAGNE algodón 30x50"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Apalabrados <span>(12)</span></a>
-											<a href="#" class="item">Divertidos <span>(12)</span></a>
-											<a href="#" class="item">Rellenos <span>(12)</span></a>
-											<a href="#" class="item">Animales <span>(12)</span></a>
-											<a href="#" class="item">Pop <span>(12)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cojines</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="alfombras">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlfombras.svg" alt="alfombras">
-							<div class="text">Alfombras<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Alfombras -->
-						<div class="submenu" id="alfombras">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Alfombras
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Felpudos <span>(18)</span></a>
-											<a href="#" class="item">Alfombras infantiles <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/alfombra-felpudo-aqui-dentro-hay-mucho-amor-60x40cm" title="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-</span>
-												<div class="promo-description">Felpudo para recibir con arte a tus invitados</div>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2226/min/categoria/HCN22261.jpg" width="150" alt="Alfombra felpudo AQUI DENTRO HAY MUCHO AMOR -60x40cm-"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Alfombras <span>(71)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todas las alfombras</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="cuadros">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuCuadros.svg" alt="cuadros">
-							<div class="text">Cuadros<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Cuadros -->
-						<div class="submenu" id="cuadros">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Cuadros
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Lienzos 1 pieza <span>(18)</span></a>
-											<a href="#" class="item">Cuadros madera impresa <span>(18)</span></a>
-											<a href="#" class="item">Lienzos pirámide 5 piezas <span>(12)</span></a>
-											<a href="#" class="item">Chapas decorativas <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/banderola-yourself" title="Banderola YOURSELF">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Banderola YOURSELF</span>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN2439/min/categoria/HCN24391.jpg" width="150" alt="Banderola YOURSELF"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Lienzos trípticos <span>(71)</span></a>
-											<a href="#" class="item">Cuadros con marco <span>(71)</span></a>
-											<a href="#" class="item">Cuadros metal impreso <span>(12)</span></a>
-											<a href="#" class="item">Portafotos <span>(12)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los cuadros</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="vinilos">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuVinilos.svg" alt="vinilos">
-							<div class="text">Vinilos<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Vinilos -->
-						<div class="submenu" id="vinilos">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Vinilos
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Vinilos <span>(410)</span></a>
-											<a href="#" class="item">Vinilos luminiscentes <span>(18)</span></a>
-											<a href="#" class="item">Vinilos infantiles <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/vinilo-decorativo-live-your-dreams" title="Vinilo Decorativo LIVE YOUR DREAMS">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Vinilo Decorativo LIVE YOUR DREAMS</span>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1349/5/HCN1349-5_1.jpg" width="150" alt="Vinilo Decorativo LIVE YOUR DREAMS"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Vinilos de pizarra <span>(71)</span></a>
-											<a href="#" class="item">Vinilos de Navidad <span>(32)</span></a>
-											<a href="#" class="item">Vinilos de espejo <span>(12)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los vinilos</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="almacenaje">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuAlmacenaje.svg" alt="almacenaje">
-							<div class="text">Almacenaje<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Almacenaje -->
-						<div class="submenu" id="almacenaje">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Almacenaje
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Baúles <span>(410)</span></a>
-											<a href="#" class="item">Joyeros <span>(18)</span></a>
-											<a href="#" class="item">Camas <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/baul-almacenaje-plegable-40-x-255-x-24-cm" title="Baúl almacenaje plegable 40 x 25,5 x 24 cm">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Baúl almacenaje plegable 40 x 25,5 x 24 cm</span>
-												<div class="promo-description"></div>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1083/min/categoria/HCN10831.jpg" width="150" alt="Baúl almacenaje plegable 40 x 25,5 x 24 cm"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Estanterías <span>(71)</span></a>
-											<a href="#" class="item">Cajoneras <span>(12)</span></a>
-										</div>
-									</div>
-									<div class="text col-md-12">
-										<a href="#" class="btn btn-secondary btn-sm btn-rounded">Ver todos los almacenajes</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="category.html" class="category sub" data-tipo="decoracion">
-							<img src="imagenes/loader.gif" data-src="imagenes/iconos/svg/menuDecoracion.svg" alt="decoración">
-							<div class="text">Decoración<span class="glyphicon glyphicon-menu-down"></span></div>
-						</a>
-						<!-- SUBMENU Decoración -->
-						<div class="submenu" id="decoracion">
-							<div class="container">
-								<div class="left">
-									<div class="text">
-										Decoración
-									</div>
-									<a href="category.html" class="btn btn-secondary btn-sm btn-rounded">Ver todos los productos</a>
-									<div class="row">
-										<div class="col-sm-4">
-											<a href="#" class="item">Espejos <span>(18)</span></a>
-											<a href="#" class="item">Jarrones y figuras decorativas <span>(18)</span></a>
-											<a href="#" class="item">Relojes decorativos <span>(18)</span></a>
-											<a href="#" class="item">Trofeos cabeza animal en madera <span>(18)</span></a>
-											<a href="#" class="item">Biombos <span>(12)</span></a>
-											<a href="#" class="item">Maceteros <span>(12)</span></a>
-											<a href="#" class="item">Paneles decorativos <span>(12)</span></a>
-											<a href="#" class="item">Portafotos <span>(12)</span></a>
-										</div>
-										<div class="col-sm-4 hidden-xs">
-											<a class="promo-menu" href="/muebles_de_diseno/_mantel_pvc_43x30_picnik_green_-uso_1_persona-_141775" title="Mantel PVC 43x30 PICNIK Green -uso 1 persona-">
-												<div class="featuring-menu-title">Destacamos:</div>
-												<span class="promo-title">Mantel PVC 43x30 PICNIK Green -uso 1 persona-</span>
-												<div class="promo-image">
-													<img src="imagenes/loader.gif" data-src="https://www.superestudio.com/imagenes/productos/HCN1209/min/categoria/HCN12091.jpg" width="150" alt="Mantel PVC 43x30 PICNIK Green -uso 1 persona-"/>
-												</div>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="#" class="item">Percheros <span>(71)</span></a>
-											<a href="#" class="item">Plantas decorativas <span>(71)</span></a>
-											<a href="#" class="item">Mobiliario iluminado <span>(71)</span></a>
-											<a href="#" class="item">Pizarras <span>(71)</span></a>
-											<a href="#" class="item">Cajas de madera <span>(12)</span></a>
-											<a href="#" class="item">Menaje <span>(12)</span></a>
-											<a href="#" class="item">Colgadores decorativos <span>(12)</span></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
+					</a>
 
-				<div class="subcategorias">
-					<a href="#" class="rojo">Promociones</a>
-					<div class="dropdown">
-						<button class="btn dropdown-toggle verde" type="button" id="colectionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Colecciones</button>
-						<div class="dropdown-menu" aria-labelledby="colectionsDropdown">
-							<ul class="colections-list">
-		                        <li><a href="categoria?camp=iluminacion">Iluminación</a></li>
-		                        <li><a href="categoria?camp=lienzos">Lienzos y Vinilos</a></li>
-		                        <li><a href="muebles_diseno/cojines_y_fundas_68194">Cojines y fundas</a></li>
-		                        <li><a href="categoria?camp=bano">Baño</a></li>
-		                        <li><a href="categoria?camp=cocina">Cocina</a></li>
-		                        <li><a href="categoria?camp=trabajo">Trabajo</a></li>
-		                        <li><a href="categoria?camp=descanso">Descanso</a></li>
-		                        <li><a href="categoria?camp=dormitorio">Dormitorio</a></li>
-		                        <li><a href="categoria?camp=ninos">Niños</a></li>
-		                        <li><a href="categoria?camp=verano">Especial Verano</a></li>
-		                        <li><a href="categoria?camp=navidad">Especial Navidad</a></li>
-		                        <li><a href="categoria?camp=sanvalentin">Especial San Valentín</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="dropdown">
-						<button class="btn dropdown-toggle naranja" type="button" id="stylesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Estilos</button>
-						<div class="dropdown-menu" aria-labelledby="stylesDropdown">
-							<ul class="colections-list">
-								<li><a href="categoria?camp=tolix">Tolix</a></li>
-								<li><a href="categoria?camp=tower">Tower</a></li>
-								<li><a href="categoria?camp=modernclassics">Modern Classics</a></li>
-								<li><a href="categoria?camp=pop">Pop</a></li>
-								<li><a href="categoria?camp=color">Color edition</a></li>
-								<li><a href="categoria?camp=transparente">Transparente</a></li>
-								<li><a href="categoria?camp=vintage">Vintage</a></li>
-								<li><a href="categoria?camp=rustico">Rústico</a></li>
-								<li><a href="categoria?camp=industrial">Industrial</a></li>
-								<li><a href="categoria?camp=nordic">Nórdico</a></li>
-								<li><a href="categoria?camp=newyork">New York</a></li>
-								<li><a href="categoria?camp=decorativo">Objeto Decorativo</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-	        </div>
-			
-			<!-- search dropdown (only mobile) -->
-			<div class="dropdown visible-xs-inline-block">
-				<a href="#" id="showSearch" class="dropdown-toggle search" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					<div class="icon-menu">
-						<i class="glyphicon glyphicon-search"></i>
-						<div class="icon-menu-wave"></div>
-					</div>
-				</a>
-
-				<div class="dropdown-menu dropdown-search">
-					<form id="searchFormDropdown" class="navbar-form search" action="#" method="post" role="search" novalidate="novalidate">
-						<div class="col-xs-12">
-							<div class="input-group">
-						    	<input type="text" class="form-control input-search" name="input-buscar-mbl" placeholder="Busca..." required="" aria-required="true">
-						    	<span class="input-group-btn">
-						        	<button id="searchSubmitBtnMbl" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
-						      	</span>
+					<div class="dropdown-menu dropdown-search">
+						<form id="searchFormDropdown" class="navbar-form search" action="#" method="post" role="search" novalidate="novalidate">
+							<div class="col-xs-12">
+								<div class="input-group">
+							    	<input type="text" class="form-control input-search" name="input-buscar-mbl" placeholder="Busca..." required="" aria-required="true">
+							    	<span class="input-group-btn">
+							        	<button id="searchSubmitBtnMbl" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
+							      	</span>
+							    </div>
 						    </div>
-					    </div>
-					</form>
-				</div>
-	        </div>
+						</form>
+					</div>
+		        </div>
 
-	        <!-- logo -->
-			<a class="navbar-brand" href="default.asp">
-				<img class="logotipo animated bounceIn" src="imagenes/logo.png" srcset="imagenes/logo@2x.png 2x" width="145" height="56" alt="SuperStudio">
-				<img class="logotipo collapsed animated flip" src="imagenes/loader.gif" srcset="imagenes/logo-mini@2x.png 2x" data-src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
-			</a>
-
-			<!-- cart icon -->
-			<div class="cart-container">
-				<a id="cartBtn" class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
-					<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="carrito">
-					<span id="cartItemsNumber" class="badge">0</span>
+		        <!-- logo -->
+				<a class="navbar-brand" href="default.asp">
+					<img class="logotipo animated bounceIn" src="imagenes/logo.png" srcset="imagenes/logo@2x.png 2x" width="145" height="56" alt="SuperStudio">
+					<img class="logotipo collapsed animated flip" src="imagenes/loader.gif" srcset="imagenes/logo-mini@2x.png 2x" data-src="imagenes/logo-mini.png" width="66" height="40" alt="SuperStudio">
 				</a>
 
-				<!-- My cart (opened) -->
-				<div class="collapse my-cart" id="myCart">
-					<div class="dark-layer"></div>
-					<div class="content"></div>
-				</div>
-			</div>
+				<!-- cart icon -->
+				<div class="cart-container">
+					<a id="cartBtn" class="btn-cart" href="javascript:void(0)" data-toggle="collapse" data-target="#myCart" aria-expanded="false" aria-controls="myCart">
+						<img src="imagenes/iconos/svg/topmenuCarrito.svg" alt="carrito">
+						<span id="cartItemsNumber" class="badge">0</span>
+					</a>
 
-			<!-- more options (only mobile) -->
-			<div class="dropdown more-options visible-xs-inline-block">
-				<button class="btn btn-link dropdown-toggle" type="button" id="moreOptionsDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<div class="icon-menu">
-						<i class="glyphicon glyphicon-option-vertical"></i>
-						<div class="icon-menu-wave"></div>
+					<!-- My cart (opened) -->
+					<div class="collapse my-cart" id="myCart">
+						<div class="dark-layer"></div>
+						<div class="content"></div>
 					</div>
-				</button>
-				<div class="dropdown-menu more-options-dropdown" id="moreOptionsDropdown" aria-labelledby="moreOptionsDropdown">
-					<ul class="more-options-list">
-						<div class="log-option">
-							<div class="login-dropdown">
-								<li id="loginIniciarSesionDropdown">
-									<a href="javascript:void(0)" class="toggle-info">Iniciar sesión</a>
-									<div class="submenu col-xs-12" aria-labelledby="loginIniciarSesionDropdown">
-										<form id="loginForm" action="/includes/control/log-in" name="loginForm" method="post" target="_parent">
-											<input name="origen" type="hidden" id="origen" value="">
-											<input name="accion" type="hidden" id="accion" value="">
-											<input name="idcat" type="hidden" id="idcat" value="">
-											<input name="id" type="hidden" id="id" value="">
-											<input name="p" type="hidden" id="p" value="">
-											<input name="pet" type="hidden" id="pet" value="">
-											<input name="promorebajas" type="hidden" id="promorebajas" value="">
-											<input name="apa" type="hidden" id="apa" value="">
-											<div class="form-horizontal delivery-form">
-												<div class="form-group">
-												    <div class="col-sm-12">
-												    	<input name="email" type="text" class="form-control input_clientes" id="email_login" accesskey="e" tabindex="2" value="" maxlength="255">
-												    </div>
-												</div>
-												<div class="form-group">
-												    <div class="col-sm-12">
-												    	<input name="clave" type="password" class="form-control input_clientes" id="clave_login" accesskey="p" tabindex="3" value="" maxlength="255">
-												    </div>
-												</div>
-												<div class="form-group">
-													<div class="col-xs-12">
-														<div class="checkbox">
-															<label>
-																<input type="checkbox" name="recordar" value="si"> Recuérdame
-															</label>
+				</div>
+
+				<!-- more options (only mobile) -->
+				<div class="dropdown more-options visible-xs-inline-block">
+					<button class="btn btn-link dropdown-toggle" type="button" id="moreOptionsDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<div class="icon-menu">
+							<i class="glyphicon glyphicon-option-vertical"></i>
+							<div class="icon-menu-wave"></div>
+						</div>
+					</button>
+					<div class="dropdown-menu more-options-dropdown" id="moreOptionsDropdown" aria-labelledby="moreOptionsDropdown">
+						<ul class="more-options-list">
+							<div class="log-option">
+								<div class="login-dropdown">
+									<li id="loginIniciarSesionDropdown">
+										<a href="javascript:void(0)" class="toggle-info">Iniciar sesión</a>
+										<div class="submenu col-xs-12" aria-labelledby="loginIniciarSesionDropdown">
+											<form id="loginForm" action="/includes/control/log-in" name="loginForm" method="post" target="_parent">
+												<input name="origen" type="hidden" id="origen" value="">
+												<input name="accion" type="hidden" id="accion" value="">
+												<input name="idcat" type="hidden" id="idcat" value="">
+												<input name="id" type="hidden" id="id" value="">
+												<input name="p" type="hidden" id="p" value="">
+												<input name="pet" type="hidden" id="pet" value="">
+												<input name="promorebajas" type="hidden" id="promorebajas" value="">
+												<input name="apa" type="hidden" id="apa" value="">
+												<div class="form-horizontal delivery-form">
+													<div class="form-group">
+													    <div class="col-sm-12">
+													    	<input name="email" type="text" class="form-control input_clientes" id="email_login" accesskey="e" tabindex="2" value="" maxlength="255">
+													    </div>
+													</div>
+													<div class="form-group">
+													    <div class="col-sm-12">
+													    	<input name="clave" type="password" class="form-control input_clientes" id="clave_login" accesskey="p" tabindex="3" value="" maxlength="255">
+													    </div>
+													</div>
+													<div class="form-group">
+														<div class="col-xs-12">
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" name="recordar" value="si"> Recuérdame
+																</label>
+															</div>
 														</div>
 													</div>
-												</div>
-												<div class="form-group">
-													<div class="col-xs-12">
-														<button type="submit" class="btn btn-primary btn-rounded btn-sm" accesskey="s" tabindex="3">Log in</button>
-														<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
+													<div class="form-group">
+														<div class="col-xs-12">
+															<button type="submit" class="btn btn-primary btn-rounded btn-sm" accesskey="s" tabindex="3">Log in</button>
+															<div id="wrongPassLoginMsg" class="collapse alert alert-danger">Contraseña incorrecta.</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-xs-12">
+															<a href="/recordar" title="solicita nueva clave">He olvidado mi contraseña</a>
+														</div>
+														<div class="clearfix"></div>
 													</div>
 												</div>
-												<div class="form-group">
-													<div class="col-xs-12">
-														<a href="/recordar" title="solicita nueva clave">He olvidado mi contraseña</a>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</li>
-								<li id="loginRegisterDropdown">
-									<a href="javascript:void(0)" class="toggle-info">Registro</a>
-									<div class="submenu col-xs-12" aria-labelledby="loginRegisterDropdown">
-										<p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
-										<a class="btn btn-primary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a><br />
-										<a class="btn btn-primary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
-									</div>
-								</li>
-								<li><a href="#">Consultar estado de tu pedido</a></li>
-								<li><a href="#">Cerrar sesión</a></li>
+											</form>
+										</div>
+									</li>
+									<li id="loginRegisterDropdown">
+										<a href="javascript:void(0)" class="toggle-info">Registro</a>
+										<div class="submenu col-xs-12" aria-labelledby="loginRegisterDropdown">
+											<p>Cupón de 10€ por inscribirte a nuestras newsletter (sólo registro particular).</p>
+											<a class="btn btn-primary btn-rounded btn-sm" href="/registro?acciontienda=&amp;idcattienda=&amp;idtienda=&amp;p=&amp;pet=&amp;apa=&amp;promorebajas=" target="_parent" title="">Registro de clientes</a><br />
+											<a class="btn btn-primary btn-rounded btn-sm" href="/registro?tipo=pro" target="_parent" title="">Registro tiendas y profesionales*</a>
+										</div>
+									</li>
+									<li><a href="#">Consultar estado de tu pedido</a></li>
+									<li><a href="#">Cerrar sesión</a></li>
+								</div>
+								<div class="user-dropdown">
+									<li id="loggedDropdown" class="header">
+										<a href="javascript:void(0)" class="">Hola Arnau Monclús i Sánchez</a>
+									</li>
+									<li><a href="lista" title="Favoritos">Favoritos</a></li>
+									<li><a href="registro?accion=modifica" title="Mis datos">Mis datos</a></li>
+									<li><a href="mis_pedidos" title="Mis pedidos">Mis pedidos</a></li>
+									<li><a href="includes/control/log-out" title="Salir">Salir</a></li>
+								</div>
 							</div>
-							<div class="user-dropdown">
-								<li id="loggedDropdown" class="header">
-									<a href="javascript:void(0)" class="">Hola Arnau Monclús i Sánchez</a>
-								</li>
-								<li><a href="lista" title="Favoritos">Favoritos</a></li>
-								<li><a href="registro?accion=modifica" title="Mis datos">Mis datos</a></li>
-								<li><a href="mis_pedidos" title="Mis pedidos">Mis pedidos</a></li>
-								<li><a href="includes/control/log-out" title="Salir">Salir</a></li>
-							</div>
-						</div>
-					</ul>
+						</ul>
+					</div>
 				</div>
+
+				<form id="searchForm" class="navbar-form search hidden-xs hidden-xxs" action="#" method="post" role="search">
+					<div class="input-group">
+				    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required>
+				    	<span class="input-group-btn">
+				        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
+				      	</span>
+				    </div>
+				</form>
+
+				<!-- Estado de tu pedido -->
+				<a href="#" class="status">
+					<div class="text hidden-sm">
+						Consulta el <br />
+						<strong>estado de tu pedido</strong>
+					</div>
+					<img src="imagenes/iconos/svg/status.svg" alt="icono estado de pedido">
+				</a>
 			</div>
-
-			<form id="searchForm" class="navbar-form search hidden-xs hidden-xxs" action="#" method="post" role="search">
-				<div class="input-group">
-			    	<input type="text" class="form-control input-search" name="input-buscar" placeholder="Busca..." required>
-			    	<span class="input-group-btn">
-			        	<button id="searchSubmitBtn" class="btn btn-search" type="submit"><img src="imagenes/iconos/svg/topmenuSearch.svg" alt="lupa"></button>
-			      	</span>
-			    </div>
-			</form>
-
-			<!-- Estado de tu pedido -->
-			<a href="#" class="status">
-				<div class="text hidden-sm">
-					Consulta el <br />
-					<strong>estado de tu pedido</strong>
-				</div>
-				<img src="imagenes/iconos/svg/status.svg" alt="icono estado de pedido">
-			</a>
-		</div>
-	</div><!-- /.container-fluid -->
-</nav>
+		</div><!-- /.container-fluid -->
+	</nav>
+</header>
 
 <div class="container">
 	
