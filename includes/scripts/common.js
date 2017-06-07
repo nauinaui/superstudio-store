@@ -7,8 +7,8 @@
 //directory.
 require.config({
     waitSeconds: 20,
-    urlArgs: "v=1.2.1.0",
-    baseUrl: '/includes/scripts/lib', // /new-portada
+    urlArgs: "v=1.2.1.2",
+    baseUrl: '/new-portada/includes/scripts/lib', // /new-portada
     paths: {
       	app: 			  '../app',
         jquery:           'jquery-1.12.1.min',
